@@ -1,0 +1,4 @@
+2010-01-23 17:29:02 Warning: Warning (2): array_merge() [<a href='http://php.net/function.array-merge'>function.array-merge</a>]: Argument #2 is not an array in [CORE/cake/libs/view/helpers/form.php, line 175]
+2010-01-23 17:29:40 Warning: Warning (2): array_merge() [<a href='http://php.net/function.array-merge'>function.array-merge</a>]: Argument #2 is not an array in [CORE/cake/libs/view/helpers/form.php, line 175]
+2010-01-25 15:34:39 Warning: Warning (2): require_once(cake/libs/neat_string.php) [<a href='http://php.net/function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in [CORE/cake/basics.php, line 89]
+2010-01-25 18:36:53 Warning: Warning (512): Configure::load() - no variable $config found in codekettl-conf.php in [CORE/cake/libs/configure.php, line 421]
