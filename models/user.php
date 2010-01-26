@@ -33,12 +33,22 @@ class User extends AppModel{
 					'rule'       => array('minLength', 6),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
-					'message'    => "Your password must be at least 6 characters"))
+					'message'    => "Your password must be at least 6 characters"),
+					
+				'rule2' => array(
+					'rule'=>array('confirmPassword'),
+					'message'=>'Your passwords must match'
+				)
+			)
 		);
 		
 		function notDuplicate($check){
 			$count = $this->find('count', array('conditions' => $check, 'recursive' => -1));
 			return $count == 0;
+		}
+		
+		function confirmPassword($check){
+			return $this->data['User']['password_confirm'] == $check['password_new'];
 		}
 }
 ?>

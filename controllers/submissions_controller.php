@@ -18,10 +18,6 @@ class SubmissionsController extends AppController{
 			
 		if($this->Submission->save($this->data)){
 			$this->Session->setFlash("You've submitted your solution!");
-			//$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
-		}
-		else{
-			$this->Session->setFlash('Sorry, there was an error while submitting your solution.');
 			$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 		}
 	}

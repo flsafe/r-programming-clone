@@ -17,21 +17,13 @@ class UsersController extends AppController{
 	function register_new_user(){
 		if(empty($this->data))
 			return;
-			
-		if($this->data['User']['password_new'] == ($this->data['User']['password_confirm'])){
+
 			$this->data['User']['password'] = $this->Auth->password($this->data['User']['password_new']);
 			
 			if($this->User->save($this->data)){
 				$this->Session->setFlash("You have been registered!");
 				$this->redirect(array('controller'=>'submissions'));
 			}
-			$this->data['User']['password_new']     = null;
-			$this->data['User']['password_confirm'] = null;
-	 	}
-		else{
-			$this->Session->setFlash("Passwords did not match", array('controller'=>'users', 'action'=>'register_new_user'));
-			$this->redirect(array('controller'=>'users', 'action'=>'register_new_user'));
-		}
 	}
 	
 	function forgot_password(){
