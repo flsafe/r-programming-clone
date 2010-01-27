@@ -12,8 +12,52 @@ class UsersController extends AppController{
 	}
 	
 	function edit_user(){
-		if(empty($this->data))
-			return;		
+		$this->User->id = $this->Auth->user('id');
+		
+		if(empty($this->data)){
+			$this->data = $this->User->read();
+		}
+		else{
+			$idmatch = $this->data['User']['id'] == $this->Auth->user('id');
+			
+			if(!$idmatch)
+				return;
+			
+			$providedpass  = $this->data['User']['password_current'];
+			$data      = $this->User->read();	
+			$userpass  = $data['User']['password'];
+			
+			$this->log("provided pass: '$providedpass', is empty: " . empty($providedpass) );
+			$this->log("user pass: '$userpass'");
+			
+			if(empty($providedpass)){
+				$this->data['User']['password_new']     = 'abcdefg';
+				$this->data['User']['password_confirm'] = 'abcdefg';
+				
+				if($this->User->save($this->data)){
+					$this->Session->setFlash("We've updated your info!");
+					$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+				}		
+			}
+			else{
+						
+				if($this->Auth->password($providedpass) == $userpass){
+					$newpass = $this->Auth->password($this->data['User']['password_new']);
+					$this->data['User']['password'] = $newpass;
+					
+					if($this->User->save($this->data)){
+						$this->Session->setFlash("We've updated your info!");
+						$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+					}
+				}
+				else{
+					$this->Session->setFlash("Incorrect password");
+				}
+			}
+				
+		}
+		$this->data['User']['password_new']     = null;
+		$this->data['User']['password_confirm'] = null;					
 	}
 	
 	function register_new_user(){

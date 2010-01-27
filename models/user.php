@@ -52,8 +52,8 @@ class User extends AppModel{
 		);
 		
 		function notDuplicate($check){
-			$count = $this->find('count', array('conditions' => $check, 'recursive' => -1));
-			return $count == 0;
+			$user = $this->find('first', array('conditions' => $check, 'recursive' => -1));
+			return $user['User']['id'] == $this->data['User']['id'];
 		}
 		
 		function confirmPassword($check){
