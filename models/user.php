@@ -1,5 +1,6 @@
 <?php
 class User extends AppModel{
+
 	public $name = "User";
 	
 	public $validate = array(
@@ -25,7 +26,7 @@ class User extends AppModel{
 					
 			 'rule2' => array(
 					'rule' => array('notDuplicate'),
-					'message' => "That email address is already in use! Try a different email address.")
+					'message' => 'That email address is already in use! Try a different email address.')
 		),
 			
 			'password_new'   => array(
@@ -33,12 +34,20 @@ class User extends AppModel{
 					'rule'       => array('minLength', 6),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
-					'message'    => "Your password must be at least 6 characters"),
+					'message'    => 'Your password must be at least 6 characters'),
 					
 				'rule2' => array(
 					'rule'=>array('confirmPassword'),
 					'message'=>'Your passwords must match'
 				)
+			),
+			
+			'captcha' => array(
+				'rule1'         => array(
+					'rule'       => array('checkCaptcha'),
+					'required'   => 'true',
+					'allowEmpty' => 'false',
+					'message'    => "Sorry, hate to bug you about this, but your captcha wasn't right. Try again.")
 			)
 		);
 		
@@ -49,6 +58,10 @@ class User extends AppModel{
 		
 		function confirmPassword($check){
 			return $this->data['User']['password_confirm'] == $check['password_new'];
+		}
+		
+		function checkCaptcha($check){
+			return $check['captcha'] == $this->data['User']['captcha_keystring'];
 		}
 }
 ?>
