@@ -19,17 +19,17 @@ class User extends AppModel{
 			
 		'email' => array(
 			'rule1' => array(
-					'rule'       => 'email',
+					'rule' => 'email',
 					'required'   => 'true' ,
 					'allowEmpty' => 'false',
 					'message'    => 'You have to specify a valid email address.'),
 					
 			 'rule2' => array(
-					'rule' => array('notDuplicate'),
-					'message' => 'That email address is already in use! Try a different email address.')
+					'rule'       => array('notDuplicate'),
+					'message'    => 'That email address is already in use! Try a different email address.')
 		),
 			
-			'password_new'   => array(
+			'password_new' => array(
 				'rule1' => array(
 					'rule'       => array('minLength', 6),
 					'required'   => 'true',
@@ -37,13 +37,13 @@ class User extends AppModel{
 					'message'    => 'Your password must be at least 6 characters'),
 					
 				'rule2' => array(
-					'rule'=>array('confirmPassword'),
-					'message'=>'Your passwords must match'
+					'rule'       => array('confirmPassword'),
+					'message'    => 'Your passwords must match'
 				)
 			),
 			
 			'captcha' => array(
-				'rule1'         => array(
+				'rule1' => array(
 					'rule'       => array('checkCaptcha'),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
@@ -53,7 +53,10 @@ class User extends AppModel{
 		
 		function notDuplicate($check){
 			$user = $this->find('first', array('conditions' => $check, 'recursive' => -1));
-			return $user['User']['id'] == $this->data['User']['id'];
+			if(empty($user['User']))
+				return true;
+			else
+					return $user['User']['id'] == $this->data['User']['id'];
 		}
 		
 		function confirmPassword($check){
