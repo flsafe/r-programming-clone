@@ -44,27 +44,25 @@ class User extends AppModel{
 			
 			'captcha' => array(
 				'rule1' => array(
-					'rule'       => array('checkCaptcha'),
+					'rule'       => array('checkCaptcha', 'User'),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
-					'message'    => "Sorry, hate to bug you about this, but your captcha wasn't right. Try again.")
+					'message'    => "Sorry, hate to bug you about this, but your captcha wasn't right.")
 			)
 		);
 		
 		function notDuplicate($check){
 			$user = $this->find('first', array('conditions' => $check, 'recursive' => -1));
-			if(empty($user['User']))
-				return true;
+			
+			if(!isset($this->data['User']['id'])){
+				return empty($user['User']);
+			}
 			else
-					return $user['User']['id'] == $this->data['User']['id'];
+				return $user['User']['id'] == $this->data['User']['id'];
 		}
 		
 		function confirmPassword($check){
 			return $this->data['User']['password_confirm'] == $check['password_new'];
-		}
-		
-		function checkCaptcha($check){
-			return $check['captcha'] == $this->data['User']['captcha_keystring'];
 		}
 }
 ?>

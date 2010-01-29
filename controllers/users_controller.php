@@ -1,14 +1,10 @@
 <?php
 class UsersController extends AppController{
 	public $name        = "Users";
-	public $components  = array('Auth', 'Email','Session', 'Captcha');
+	public $components  = array('Auth', 'Email','Session');
 	
 	function beforeFilter(){
 		$this->Auth->allow('register_new_user', 'forgot_password', 'captcha');
-	}
-	
-	function captcha(){
-		$this->Captcha->render();
 	}
 	
 	function edit_user(){
