@@ -4,10 +4,10 @@ class UsersController extends AppController{
 	public $components  = array('Auth', 'Email','Session');
 	
 	function beforeFilter(){
-		$this->Auth->allow('register_new_user', 'forgot_password', 'captcha');
+		$this->Auth->allow('add', 'forgot_password', 'captcha');
 	}
 	
-	function edit_user(){
+	function edit(){
 		$this->User->id = $this->Auth->user('id');
 		
 		if(empty($this->data)){
@@ -53,7 +53,7 @@ class UsersController extends AppController{
 		$this->data['User']['password_confirm'] = null;					
 	}
 	
-	function register_new_user(){
+	function add(){
 		if(empty($this->data))
 			return;
 

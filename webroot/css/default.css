@@ -81,6 +81,7 @@ img{
 	background: url(/img/img02.gif) no-repeat left center;
 	font-weight: bold;
 	color: #FFFFFF;
+	text-decoration: none;
 }
 
 /* Header */

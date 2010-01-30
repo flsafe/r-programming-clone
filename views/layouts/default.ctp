@@ -17,10 +17,8 @@
 		<li> <?php echo $html->link("Blog", "http://www.cozysystems.com/blog");?> </li>
 		<li> 
 			<?php 
-				$action = 'login';
-				if($loggedin)
-					$action = 'Logout';
-				$str = $loggedin ? "Logout" : "Login";
+				$action = $loggedin ? "logout" : "login";
+				$str    = $loggedin ? "Logout" : "Login";
 				echo $html->link($str, array('controller'=>'users', 'action'=>"$action"));
 			?> 
 		</li>

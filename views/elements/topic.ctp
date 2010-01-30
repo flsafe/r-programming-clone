@@ -9,7 +9,7 @@
 	
 		<div class="meta">
 			<div class="metadata">
-			<?php echo "$points points &nbsp posted by" ?>
+			<?php echo "$points points | posted by $username" ?>
 			</div>
 		</div>
 		

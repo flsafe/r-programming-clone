@@ -7,5 +7,5 @@
 	echo $form->end("Login");
 ?>
 
-<p>Not registered? Register <a href="register_new_user">here</a>.<br/>
+<p>Not registered? Register <a href="add">here</a>.<br/>
 	 Forgot your password? Get it <a href="forgot_password">here</a>.<p>

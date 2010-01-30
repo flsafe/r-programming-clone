@@ -11,10 +11,12 @@ class SubmissionsController extends AppController{
 
 	}
 	
-	function add_new_submission(){
+	function add(){
 		if(empty($this->data))
 			return;
 			
+		$this->data['Submission']['captcha_keystring'] = $this->Session->read('captcha_keystring');
+		$this->data['Submission']['user_id']           = $this->Auth->user('id');
 		if($this->Submission->save($this->data)){
 			$this->Session->setFlash("You've submitted your solution!");
 			$this->redirect(array('controller'=>'submissions', 'action'=>'index'));

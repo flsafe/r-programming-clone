@@ -1,6 +1,6 @@
 <?php
 class TopicsController extends AppController{
-	public $name       = "Topics";
+	public $name    = "Topics";
 	
 	public $paginate = array(
 		'limit'      =>'25',
@@ -13,8 +13,8 @@ class TopicsController extends AppController{
 	}
 
 	function index(){
-		$data = $this->paginate('Topic');
-		$this->set('topics', $data);
+		$topics = $this->paginate('Topic');
+		$this->set('topics', $topics);
 	}
 	
 	function view($id = null){
@@ -29,11 +29,6 @@ class TopicsController extends AppController{
 			
 		$this->data['Topic']['captcha_keystring'] = $this->Session->read('captcha_keystring');
 		$this->data['Topic']['user_id']           = $this->Auth->user('id');
-		
-		$username                     = $this->Auth->user('username');
-		$title                        = $this->data['Topic']['title'];
-		$username_title               = "$title by $username";
-		$this->data['Topic']['title'] = $username_title;
 
 		if($this->Topic->save($this->data)){
 			$this->Session->setFlash("You've submitted your topic!");
