@@ -1,7 +1,6 @@
 <?php
 class SubmissionsController extends AppController{
 	public $name       = "Submissions";
-	public $components = array("Auth");
 	
 	function beforeFilter(){
 		$this->Auth->allow(array("index"));
@@ -9,7 +8,7 @@ class SubmissionsController extends AppController{
 	}
 
 	function index(){
-		
+
 	}
 	
 	function add_new_submission(){

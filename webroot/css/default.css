@@ -1,0 +1,179 @@
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #F1F1F1 url(/img/img01.gif) repeat-x;
+	font: normal 14px Tahoma, Arial, Helvetica, sans-serif;
+	color: #0;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #2A9022;
+}
+
+h2 {
+	margin-bottom: 20px;
+	letter-spacing: -1px;
+	font-size: 18px;
+	color: #2A9022;
+}
+
+h3 {
+	margin: 30px 0 15px 0;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #2A9022;
+}
+
+p, blockquote, ul, ol {
+	margin-top: 0;
+	line-height: 19px;
+}
+
+blockquote {
+	padding-left: 35px;
+	background: url(/img/img15.gif) no-repeat left top;
+}
+
+a {
+	color: #2A9022;
+}
+
+img{
+	border: none;
+}
+
+/* Menu */
+
+#menu {
+	width: 740px;
+	height: 30px;
+	margin: 0 auto;
+}
+
+#menu ul {
+	float: right;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	line-height: normal;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu a {
+	display: block;
+	float: left;
+	height: 19px;
+	padding: 7px 20px 5px 20px;
+	background: url(/img/img02.gif) no-repeat left center;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+/* Header */
+
+#header {
+	width: 740px;
+	height: 84px;
+	margin: 0 auto;
+	padding: 20px 0 0 0;
+}
+
+#header h1{
+	float: left;
+	font-size: 36px;
+	color: #FFFFFF;
+}
+
+#header a{
+	float: left;
+	font-size: 36;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+#header h2 {
+	float: left;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+
+/* Content */
+
+#content {
+	width: 740px;
+	margin: 0 auto;
+}
+
+#topics {
+	float: left;
+	width: 600px;
+}
+
+#topics .topic {
+	margin: 0 0 20px 0;
+	padding: 50px 20px 20px 20px;
+	background: #FFFFFF;
+}
+
+#topics .title {
+	padding: 0 10px;
+}
+
+#topics .text {
+	padding: 0 10px;
+}
+
+#topics ul {
+	list-style: square;
+}
+
+#topics .meta {
+	height: 10px;
+	margin-top: 20px;
+	padding: 10px 10px;
+	background: #FFFFFF ;
+	border-top: 0px solid #BFDDBC;
+	border-bottom: 0px solid #BFDDBC;
+}
+
+#topics .meta a{
+	text-decoration: none;
+}
+
+#topics .metadata{
+	color: #909090;
+}
+
+/* Footer */
+
+#footer {
+	clear: both;
+	width: 760px;
+	margin: 0 auto;
+	padding: 20px 0;
+}
+
+#footer p {
+	margin: 0;
+	text-align: center;
+	line-height: normal;
+	font-size: 10px;
+}
+
+#footer a {
+	color: #909090;
+}

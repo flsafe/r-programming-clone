@@ -2,8 +2,6 @@
 class TopicsController extends AppController{
 	public $name       = "Topics";
 	
-	public $components = array('Auth');
-	
 	public $paginate = array(
 		'limit'      =>'25',
 		'order'      =>array('Topic.rank' => 'asc'),
