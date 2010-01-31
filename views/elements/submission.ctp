@@ -1,7 +1,3 @@
-<!--
-Params:title, text, points, username
- -->
-
 <div id="topics">
 	<div class="topic">
 	
@@ -10,12 +6,17 @@ Params:title, text, points, username
 		</h2>
 	
 		<div class="text">
-			<p><?php echo $text ?></p>
+			
+			<p>
+				<?php echo "Size: $size <br/>" ?>
+				<?php echo "Points: $points"?>
+			</p>
+			
 		</div>
 	
 		<div class="meta">
 			<div class="metadata">
-			<?php echo "$points points | posted by $username" . " | <a href=''>comments</a>" ?>
+			<?php echo "by $username" ?>
 			</div>
 		</div>
 		

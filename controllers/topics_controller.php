@@ -4,7 +4,7 @@ class TopicsController extends AppController{
 	
 	public $paginate = array(
 		'limit'      =>'25',
-		'order'      =>array('Topic.rank' => 'asc'),
+		'order'      => array('Topic.rank' => 'asc'),
 		'conditions' => array('Topic.was_chosen'=>'0', 'Topic.current_topic'=>'0'));
 		
 	function beforeFilter(){

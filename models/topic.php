@@ -2,7 +2,10 @@
 	class Topic extends AppModel{
 		public $name = "Topic";
 		
-		public $belongsTo = 'User';
+		public $belongsTo = array(
+			'User'=>array(
+				'fields' => array('id', 'username'))
+			);
 		
 		public $validate = array(
 			'title' => array(

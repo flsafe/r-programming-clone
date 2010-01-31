@@ -9,5 +9,6 @@
 					echo $this->element('topic', array('text'   => $topic['Topic']['text'],
 																						 'title'  => $topic['Topic']['title'],
 																						 'points' => $points,
-																						'username'=> $topic['User']['username'])) ?>
+																						'username'=> $topic['User']['username']))
+		?>
 <?php endforeach;?>

@@ -2,7 +2,13 @@
 class Submission extends AppModel{
 	public $name = "Submission";
 	
-	public $belongsTo = "User";
+	public $belongsTo = array(
+		'User'=>array(
+			'fields' => array('id', 'username')
+		),
+		
+		'Topic'=>array()
+		);
 	
 	public $validate = array(
 		'title'=>array(

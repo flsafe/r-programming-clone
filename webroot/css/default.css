@@ -163,6 +163,14 @@ img{
 	color: #909090;
 }
 
+#topics .metadata a{
+	color: #909090;
+}
+
+#topics .metadata a:hover{
+	text-decoration: underline;
+}
+
 /* Footer */
 
 #footer {
