@@ -24,7 +24,11 @@ class SubmissionsController extends AppController{
 	
 	function add(){
 		if(empty($this->data))
-			return;
+			return;						
+			
+		$user_id = $this->Auth->user('id');			
+		$this->data['Submission']['user_id'] = $user_id;		
+		$this->data['Submission']['size']    = strlen($this->data['Submission']['text1']);
 			
 		$this->data['Submission']['captcha_keystring'] = $this->Session->read('captcha_keystring');
 		$this->data['Submission']['user_id']           = $this->Auth->user('id');
