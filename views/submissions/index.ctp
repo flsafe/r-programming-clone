@@ -9,12 +9,14 @@
 </p>
 
 <?php 
+	$id       = $topic['Topic']['id'];
 	$title    = $topic['Topic']['title'];
 	$text     = $topic['Topic']['text'];
 	$points   = $topic['Topic']['upvotes'] - $topic['Topic']['downvotes'];
 	$username = $topic['User']['username'];
 	
 	echo $this->element('topic', array(
+																'id'       => $id,
 																'title'    => $title,
 																'text'     => $text,
 																'points'   => $points,

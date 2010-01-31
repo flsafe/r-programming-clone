@@ -6,9 +6,10 @@
 
 		<?php $points = $topic['Topic']['upvotes'] - $topic['Topic']['downvotes'];
 		
-					echo $this->element('topic', array('text'   => $topic['Topic']['text'],
-																						 'title'  => $topic['Topic']['title'],
-																						 'points' => $points,
-																						'username'=> $topic['User']['username']))
+					echo $this->element('topic', array(
+																						 'id'       => $topic['Topic']['id'],
+																 					   'title'    => $topic['Topic']['title'],
+																						 'points'   => $points,
+																						 'username' => $topic['User']['username']));
 		?>
 <?php endforeach;?>
