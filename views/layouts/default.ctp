@@ -14,14 +14,14 @@
 	<div id="menu">
 		<ul>
 		
-			<li class="first"> 
+			<li <?php echo $loggedin ? "class='first'" : ""?>> 
 				<?php 
 					if($loggedin)
 						echo $html->link("Profile", array('controller'=>'users', 'action'=>'edit'));
 				?>
 			</li>
 			
-			<li class="<?php echo $loggedin ? '' : 'first'?>"> 
+			<li <?php echo $loggedin ? "" : "class='first'"?> > 
 				<?php echo $html->link("About", array('controller'=>'pages', 'action'=>'about_us'));?> 
 			</li>
 			
@@ -42,7 +42,8 @@
 	</div>
 
 	<div id="content">
-		<?php echo $content_for_layout?>
+		<?php echo $session->flash();?>
+		<?php echo $content_for_layout;?>
 	</div>
 
 	<div id="footer">

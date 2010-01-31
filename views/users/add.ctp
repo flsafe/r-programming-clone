@@ -8,6 +8,6 @@
 ?>
 <img src="<?php echo $html->url(array('controller'=>'users', 'action'=>'captcha')); ?>"/>
 <?php
-	echo $form->input('User.captcha', array('label'=>'Are you a computer program? Type the letters above here.'));
+	echo $form->input('User.captcha', array('label'=>'Are you a computer program?'));
 	echo $form->end('Register');
 ?>

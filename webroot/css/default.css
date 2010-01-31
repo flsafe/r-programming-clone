@@ -84,6 +84,10 @@ img{
 	text-decoration: none;
 }
 
+#menu .first a {
+	background: none;
+}
+
 /* Header */
 
 #header {

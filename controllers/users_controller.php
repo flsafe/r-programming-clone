@@ -28,7 +28,6 @@ class UsersController extends AppController{
 				$this->data['User']['password_confirm'] = 'abcdefg';
 				
 				if($this->User->save($this->data)){
-					$this->Session->setFlash("We've updated your info!");
 					$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 				}		
 			}
@@ -39,7 +38,6 @@ class UsersController extends AppController{
 					$this->data['User']['password'] = $newpass;
 					
 					if($this->User->save($this->data)){
-						$this->Session->setFlash("We've updated your info!");
 						$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 					}
 				}
@@ -49,7 +47,7 @@ class UsersController extends AppController{
 			}
 				
 		}
-		$this->data['User']['password_new']     = null;
+		$this->data['User']['password_new']     = null; #Clear dumy password
 		$this->data['User']['password_confirm'] = null;					
 	}
 	
