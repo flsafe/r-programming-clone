@@ -39,5 +39,5 @@
 																		'points'   => $points,
 																		'username' => $username));
 	?>
-?>
+	
 <?php endforeach; ?>

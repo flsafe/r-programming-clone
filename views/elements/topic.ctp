@@ -11,6 +11,10 @@ Params:title, text, points, username
 				<img src="/img/up_arrow.gif" width="16" height="16"/>
 			</a> 
 			
+			<a href="">
+				<img src="/img/down_arrow.gif" width="16" height="16"/>
+			</a>
+			
 			<?php 
 				echo $html->link($title, array('controller'=>'topics', 'action'=>'view', $id));
 				echo "<br/>";
