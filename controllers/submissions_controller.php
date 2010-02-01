@@ -10,7 +10,7 @@ class SubmissionsController extends AppController{
 			'conditions' => array('Topic.current_topic' => '1'));
 	
 	function beforeFilter(){
-		$this->Auth->allow(array("index"));
+		$this->Auth->allow(array('index', 'view'));
 		$this->Auth->authError = "Oops! You've got to be logged in to submit.";
 	}
 
@@ -20,6 +20,12 @@ class SubmissionsController extends AppController{
 		
 		$topic = $this->Submission->Topic->findByCurrentTopic('1');
 		$this->set('topic', $topic);
+	}
+	
+	function view($id = null){
+		$this->Submission->id = $id;
+		$data = $this->Submission->read();
+		$this->set('submission', $data);
 	}
 	
 	function add(){

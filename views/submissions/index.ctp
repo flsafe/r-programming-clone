@@ -26,12 +26,14 @@
 <?php foreach($submissions as $submission):?>
 
 	<?php
+		$id       = $submission['Submission']['id'];
 		$title    = $submission['Submission']['title'];
 		$size     = $submission['Submission']['size'];
 		$points   = $submission['Submission']['upvotes'] - $submission['Submission']['downvotes'];
 		$username = $submission['User']['username'];
 	
 		echo $this->element('submission', array(
+																		'id'       => $id,
 																		'title'    => $title,
 																		'size'     => $size,
 																		'points'   => $points,

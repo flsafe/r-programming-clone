@@ -16,14 +16,14 @@ h1, h2, h3 {
 	margin: 0;
 	padding: 0;
 	font-family: Arial, Helvetica, sans-serif;
-	color: #2A9022;
+	color: #3366CC;
 }
 
 h2 {
 	margin-bottom: 20px;
 	letter-spacing: -1px;
 	font-size: 18px;
-	color: #2A9022;
+	color: #3366CC;
 }
 
 h3 {
@@ -32,7 +32,7 @@ h3 {
 	letter-spacing: 2px;
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	font-size: 10px;
-	color: #2A9022;
+	color: #3366CC;
 }
 
 p, blockquote, ul, ol {
@@ -46,7 +46,7 @@ blockquote {
 }
 
 a {
-	color: #2A9022;
+	color: #3366CC;
 }
 
 img{
