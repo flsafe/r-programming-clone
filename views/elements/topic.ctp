@@ -1,20 +1,21 @@
 <!--
-Params:title, text, points, username
+Params:title,id, text, points, username
  -->
 
 <div id="topics">
 	<div class="topic">
-	
-		<p class="title"> 
-			
-			<a href="">
+		
+		<div class="vote">
+			<a href="#" id="<?php echo $id ?>" class="upvote" onClick="return false;">
 				<img src="/img/up_arrow.gif" width="16" height="16"/>
 			</a> 
 			
-			<a href="">
+			<a href="#" id="<?php echo $id ?>"onClick="return false;" class="downvote">
 				<img src="/img/down_arrow.gif" width="16" height="16"/>
 			</a>
-			
+		</div class="vote">
+		
+		<p class="title"> 
 			<?php 
 				echo $html->link($title, array('controller'=>'topics', 'action'=>'view', $id));
 				echo "<br/>";
@@ -25,10 +26,21 @@ Params:title, text, points, username
 	
 		<div class="meta">
 			<div class="metadata">
-			<?php echo "$points points | posted by $username | <a href=''>comments</a>" ?>
+				
+				<div id="<?php echo "points${id}"?>">
+					<?php echo "$points points | " ?>
+				</div>
+				
+				<div>
+					<?php echo "by $username |" ?>
+				</div>
+				
+				<div>
+					<?php echo '<a href="">comments</a>' ?>
+				</div>
+				
 			</div>
 		</div>
 		
 	</div>
-		
 </div>

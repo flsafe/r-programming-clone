@@ -9,6 +9,8 @@ class Submission extends AppModel{
 		
 		'Topic'=>array()
 		);
+		
+	public $hasMany = "Vote";
 	
 	public $validate = array(
 		'title'=>array(

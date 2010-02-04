@@ -47,7 +47,7 @@ class UsersController extends AppController{
 			}
 				
 		}
-		$this->data['User']['password_new']     = null; #Clear dumy password
+		$this->data['User']['password_new']     = null; #Clear dummy password
 		$this->data['User']['password_confirm'] = null;					
 	}
 	
