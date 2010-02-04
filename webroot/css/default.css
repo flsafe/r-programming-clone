@@ -210,6 +210,15 @@ img{
 	display: inline;
 }
 
+#register{
+	float: left;
+}
+
+#login{
+	float: left;
+	margin-left: 50px;
+}
+
 /* Footer */
 
 #footer {
