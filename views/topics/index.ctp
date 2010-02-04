@@ -1,9 +1,10 @@
 <h1>Vote On Next Week's Topic</h1>
 
-<p><?php echo "<br/>" . $html->link("Submit Topic", array('controller'=>'topics', 'action'=>'add')); ?></p>
-
 <?php $javascript->link('jquery/jquery.min', false) ?>
-<?php $javascript->link('jquery/topics_index', false)?>
+<?php $javascript->link('jquery/topics', false)?>
+<?php $javascript->link('jquery/vote', false)?>
+
+<p><?php echo "<br/>" . $html->link("Submit Topic", array('controller'=>'topics', 'action'=>'add')); ?></p>
 
 <?php foreach($topics as $topic):?>
 

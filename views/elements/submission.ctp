@@ -1,17 +1,20 @@
 <div id="topics">
 	<div class="topic">
-	
+		
+		<?php 
+			echo $this->element('vote', array('id'=>$id)) 
+		?>
+		
 		<p class="title"> 
-			<a href="">
-				<img src="/img/up_arrow.gif" width="16" height="16"/>
-			</a> 
 			<?php 
 				echo $html->link($title, array('controller'=>'submissions', 'action'=>'view', $id));
+				echo "<br/>";
+				if(isset($text))
+					echo $text;
 			?>
 		</p>
 	
 		<div class="text">
-			
 			<p>
 				<?php 
 					echo "Size: $size <br/>" ;
@@ -20,15 +23,13 @@
 					echo "Elegance: <br/>";
 				?>
 			</p>
-			
 		</div>
 	
-		<div class="meta">
-			<div class="metadata">
-			<?php echo "$points points | posted by $username | <a href=''>comments</a>" ?>
-			</div>
-		</div>
+		<?php
+			echo $this->element('meta', array('id'       => $id,
+																	 			'points'   => $points,
+																	 			'username' => $username));
+		?>
 		
 	</div>
-		
 </div>

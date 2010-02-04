@@ -33,7 +33,6 @@ class TopicsController extends AppController{
 			
 		$this->data['Topic']['captcha_keystring'] = $this->Session->read('captcha_keystring');
 		$this->data['Topic']['user_id']           = $this->Auth->user('id');
-		$this->data['Topic']['upvotes']           = '1';
 
 		if($this->Topic->save($this->data)){
 			$this->redirect(array('controller'=>'topics', 'action'=>'index'));
@@ -43,13 +42,9 @@ class TopicsController extends AppController{
 	function vote($type = null, $id = null){
 		Configure::write('debug', 0);
 		$this->autoRender = false;
-		if($type != 'up' && $type != 'down')
-			return;
 			
 		if($this->RequestHandler->isAjax()){
 			$points = $this->Vote->voteForModel($type, $this->Topic, $id, $this->Auth->user('id'));
-			$this->set('points', $points);
-			
 			echo json_encode(array('points'=>$points));
 		}
 	}

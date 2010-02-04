@@ -1,5 +1,9 @@
 <h1>This week's discussion topic</h1>
 
+<?php $javascript->link('jquery/jquery.min', false) ?>
+<?php $javascript->link('jquery/submissions', false)?>
+<?php $javascript->link('jquery/vote', false)?>
+
 <br/>
 
 <p> 

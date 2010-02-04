@@ -1,9 +1,10 @@
+
 $(document).ready(function(){
 	
 	$('.upvote').click(function(){
 		var topicid = $(this).attr('id');
 
-		$.post('/topics/vote/up/' + topicid, function(data){
+		$.post('/'+controller+'/vote/up/' + topicid, function(data){
 			
 				try{
 					var resp = JSON.parse(data);
@@ -21,7 +22,7 @@ $(document).ready(function(){
 	$('.downvote').click(function(){
 		var topicid = $(this).attr('id');
 
-		$.post('/topics/vote/down/' + topicid, function(data){
+		$.post('/'+controller+'/vote/down/' + topicid, function(data){
 			
 				try{
 					var resp = JSON.parse(data);
@@ -35,5 +36,4 @@ $(document).ready(function(){
 				}
 			});
 	});
-	
 });

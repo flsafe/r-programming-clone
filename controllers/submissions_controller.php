@@ -2,11 +2,13 @@
 class SubmissionsController extends AppController{
 	public $name = "Submissions";
 	
-	public $uses = array('Submission', 'Topic');
+	public $components = array('RequestHandler');
+	
+	public $uses = array('Submission', 'Topic', 'Vote');
 	
 	public $paginate = array(
 			'limit'      => '25',
-			'order'      => array('Submission.upvotes'  => 'asc'),
+			'order'      => array('Submission.upvotes'  => 'desc'),
 			'conditions' => array('Topic.current_topic' => '1'));
 	
 	function beforeFilter(){
@@ -45,6 +47,16 @@ class SubmissionsController extends AppController{
 		
 		if($this->Submission->save($this->data)){
 			$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+		}
+	}
+	
+	function vote($type = null, $id = null){
+		Configure::write('debug', 0);
+		$this->autoRender = false;
+		
+		if($this->RequestHandler->isAjax()){
+			$points = $this->Vote->voteForModel($type, $this->Submission, $id, $this->Auth->user('id'));
+			echo json_encode(array('points' => $points));
 		}
 	}
 }

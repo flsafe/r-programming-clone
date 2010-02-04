@@ -5,15 +5,9 @@ Params:title,id, text, points, username
 <div id="topics">
 	<div class="topic">
 		
-		<div class="vote">
-			<a href="#" id="<?php echo $id ?>" class="upvote" onClick="return false;">
-				<img src="/img/up_arrow.gif" width="16" height="16"/>
-			</a> 
-			
-			<a href="#" id="<?php echo $id ?>"onClick="return false;" class="downvote">
-				<img src="/img/down_arrow.gif" width="16" height="16"/>
-			</a>
-		</div class="vote">
+		<?php
+			echo $this->element('vote', array('id'=>$id));
+		?>
 		
 		<p class="title"> 
 			<?php 
@@ -24,23 +18,9 @@ Params:title,id, text, points, username
 			?>
 		</p>
 	
-		<div class="meta">
-			<div class="metadata">
-				
-				<div id="<?php echo "points${id}"?>">
-					<?php echo "$points points | " ?>
-				</div>
-				
-				<div>
-					<?php echo "by $username |" ?>
-				</div>
-				
-				<div>
-					<?php echo '<a href="">comments</a>' ?>
-				</div>
-				
-			</div>
-		</div>
-		
+		<?php echo $this->element('meta', array('id'  => $id,
+																			 'points'   => $points,
+																			 'username' => $username)); 
+		?>
 	</div>
 </div>
