@@ -1,6 +1,7 @@
 <h1>Vote On Next Week's Topic</h1>
 
 <?php $javascript->link('jquery/jquery.min', false) ?>
+<?php $javascript->link('json2min.js') ?>
 <?php $javascript->link('jquery/topics', false)?>
 <?php $javascript->link('jquery/vote', false)?>
 

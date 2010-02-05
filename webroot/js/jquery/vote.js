@@ -13,8 +13,8 @@ $(document).ready(function(){
 
 					$('#points'+topicid ).html(resp.points + ' points |');
 				}
-				catch(err){
-					/*The server returns null if the user was not logged in*/
+				catch(err){/*Empty string is returned if user is not logged in*/
+				    window.location = "/users/login";
 				}
 			});
 	});
@@ -32,7 +32,7 @@ $(document).ready(function(){
 					$('#points' + topicid ).html(resp.points + ' points |');
 				}
 				catch(err){
-					/*The server returns null if the user was not logged in*/
+                    window.location = '/users/login';
 				}
 			});
 	});
