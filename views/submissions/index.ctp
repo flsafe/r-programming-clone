@@ -24,7 +24,8 @@
 																'title'    => $title,
 																'text'     => $text,
 																'points'   => $points,
-																'username' => $username));
+																'username' => $username,
+																'vote'     => 'none'));
 ?>
 
 <?php foreach($submissions as $submission):?>
@@ -41,7 +42,8 @@
 																		'title'    => $title,
 																		'size'     => $size,
 																		'points'   => $points,
-																		'username' => $username));
+																		'username' => $username,
+																		'vote'     => 'none'));
 	?>
 	
 <?php endforeach; ?>

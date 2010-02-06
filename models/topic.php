@@ -7,8 +7,6 @@
 				'fields' => array('id', 'username'))
 			);
 			
-		public $hasMany = "Vote";
-		
 		public $validate = array(
 			'title' => array(
 				'rule1' => array(

@@ -8,7 +8,7 @@ class Vote extends AppModel{
 	*twice. User can change their vote on an object.
 	*@param string $type Either 'up' or 'down'
 	*@param object $model Reference to the model object that will be 
-	*voted on
+	*voted on. Must have a public name field.
 	*@param string $model_id The id of the model to be voted on
 	*@param string $user_id The id of the user that is logged in
 	*@return integer Returns (upvotes - downvotes) if the user hasn't voted
@@ -71,7 +71,7 @@ class Vote extends AppModel{
 			$model->save($modeldata);
 			
 			$modelnamelow = strtolower($modelname);
-			$votedata = array('Vote'=>array(
+			$votedata = array('Vote' =>array(
 					'user_id'            => $user_id,
 					"${modelnamelow}_id" => $model_id,
 					'upvote'             => $upvote,
@@ -80,6 +80,34 @@ class Vote extends AppModel{
 			
 			return $modeldata[$modelname]['upvotes'] - $modeldata[$modelname]['downvotes'];
 		}
+	}
+	
+	/**
+	*Returns an associative array mapping model ids to 
+	*the user vote for that model.
+	*@param $model The object to get the votes for. Must have a public name field.
+	*@param array $modelids An array of model ids. The function returns the user vote,
+	*if a vote exists, for each model id.
+	*@param string $userid The user to get the votes for
+	*@return Returns an associative array such that: array[modelid] => "1" or "0".
+	*"1" is returned if the user upvoted that model, otherwise "0". If the user did not
+	*vote on the model at all then array[modelid] will not be set.
+	*/
+	function getUserVotes($model, $modelids, $userid){
+		$modelname = strtolower($model->name);
+		
+		$userVotes = $this->find('all',
+								array('fields' => array('upvote', "${modelname}_id"),
+											'conditions' => array(
+												'user_id' => $userid,
+												"${modelname}_id" => $modelids)));
+			
+		$userVotesTab = array();
+		foreach($userVotes as $vote){
+			$modelid = $vote['Vote']["${modelname}_id"];
+			$userVotesTab[$modelid] = $vote['Vote']['upvote'];
+		}
+		return $userVotesTab;
 	}
 }
 ?>

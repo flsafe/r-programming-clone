@@ -1,12 +1,12 @@
 <!--
-Params:title,id, text, points, username
+Params:title,id, text, points, username, vote-("up","down", "none")
  -->
 
 <div id="topics">
 	<div class="topic">
 		
 		<?php
-			echo $this->element('vote', array('id'=>$id));
+			echo $this->element('vote', array('id'=>$id, 'vote'=>$vote));
 		?>
 		
 		<p class="title"> 

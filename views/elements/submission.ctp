@@ -2,7 +2,7 @@
 	<div class="topic">
 		
 		<?php 
-			echo $this->element('vote', array('id'=>$id)) 
+			echo $this->element('vote', array('id'=>$id, 'vote'=>$vote));
 		?>
 		
 		<p class="title"> 

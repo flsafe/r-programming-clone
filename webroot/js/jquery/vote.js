@@ -5,8 +5,8 @@ function vote(cntrl, type, id){
     		try{
     			var resp = JSON.parse(data);
     			if(resp.points == null)
-    				return;/*Some kind of server error*/
-
+    				return;/*The user already voted on it*/
+    				
     			$('#points'+id ).html(resp.points + ' points |');
 
     			var src;
@@ -29,7 +29,6 @@ function vote(cntrl, type, id){
     		    window.location = "/users/login";
     		}});
 }
-
 
 $(document).ready(function(){
 	$('.upvote').click(function(){

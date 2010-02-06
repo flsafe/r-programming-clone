@@ -13,12 +13,21 @@ class TopicsController extends AppController{
 		
 	function beforeFilter(){
 		$this->Auth->allow(array('index', 'view'));
-		
 		$this->Auth->authError = "You've got to be logged in to submit a topic!";
 	}
 
 	function index(){
 		$topics = $this->paginate('Topic');
+		
+		$topicids = array();
+		foreach($topics as $topic)
+			$topicids[] = $topic['Topic']['id'];
+		
+		$uservotes = array();
+		if($this->Auth->user('id'))
+			$uservotes = $this->Vote->getUserVotes($this->Topic, $topicids, $this->Auth->user('id'));
+			
+		$this->set('uservotes', $uservotes);
 		$this->set('topics', $topics);
 	}
 	

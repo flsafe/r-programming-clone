@@ -10,11 +10,17 @@
 <?php foreach($topics as $topic):?>
 
 		<?php $points = $topic['Topic']['upvotes'] - $topic['Topic']['downvotes'];
-		
+					
+					$topicid = $topic['Topic']['id'];
+					$vote    = 'none';
+					if(isset($uservotes[$topicid])){
+						$vote = $uservotes[$topicid] ? 'up' : 'down';
+					}
 					echo $this->element('topic', array('id'       => $topic['Topic']['id'],
 																 					   'title'    => $topic['Topic']['title'],
 																						 'points'   => $points,
-																						 'username' => $topic['User']['username']));
+																						 'username' => $topic['User']['username'],
+																						 'vote'     => $vote));
 		?>
 <?php endforeach;?>
 
