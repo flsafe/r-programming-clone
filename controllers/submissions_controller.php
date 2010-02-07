@@ -2,7 +2,7 @@
 class SubmissionsController extends AppController{
 	public $name = "Submissions";
 	
-	public $components = array('RequestHandler');
+	public $components = array('RequestHandler', 'VoteUtil');
 	
 	public $uses = array('Submission', 'Topic', 'Vote');
 	
@@ -20,6 +20,9 @@ class SubmissionsController extends AppController{
 		$submissions = $this->paginate('Submission');
 		$this->set('submissions', $submissions);
 		
+		$uservotes = $this->VoteUtil->getUserVotes($this->Submission->name, $submissions, $this->Vote, $this->Auth->user('id'));
+		$this->set('uservotes', $uservotes);
+
 		$topic = $this->Submission->Topic->findByCurrentTopic('1');
 		$this->set('topic', $topic);
 	}
@@ -51,13 +54,9 @@ class SubmissionsController extends AppController{
 	}
 	
 	function vote($type = null, $id = null){
-		Configure::write('debug', 0);
 		$this->autoRender = false;
-		
-		if($this->RequestHandler->isAjax()){
-			$points = $this->Vote->voteForModel($type, $this->Submission, $id, $this->Auth->user('id'));
-			echo json_encode(array('points' => $points));
-		}
+		$resp = $this->VoteUtil->vote($this->RequestHandler->isAjax(), $type, $this->Submission, $this->Vote, $id, $this->Auth->user('id'));
+		echo $resp;
 	}
 }
 ?>

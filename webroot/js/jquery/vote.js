@@ -4,8 +4,9 @@ function vote(cntrl, type, id){
 	
     		try{
     			var resp = JSON.parse(data);
+    		
     			if(resp.points == null)
-    				return;/*The user already voted on it*/
+    				return;/*The user already voted on it, so the vote doesn't take effect*/
     				
     			$('#points'+id ).html(resp.points + ' points |');
 

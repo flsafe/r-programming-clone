@@ -20,7 +20,7 @@
 	$username = $topic['User']['username'];
 	
 	echo $this->element('topic', array(
-																'id'       => $id,
+																'id'       => '0', #TODO: Avoid duplicate id. Need a better home page!
 																'title'    => $title,
 																'text'     => $text,
 																'points'   => $points,
@@ -36,6 +36,9 @@
 		$size     = $submission['Submission']['size'];
 		$points   = $submission['Submission']['upvotes'] - $submission['Submission']['downvotes'];
 		$username = $submission['User']['username'];
+		$vote     = "none";
+		if(isset($uservotes[$id]))
+			$vote = $uservotes[$id] ? 'up':'down';
 	
 		echo $this->element('submission', array(
 																		'id'       => $id,
@@ -43,7 +46,7 @@
 																		'size'     => $size,
 																		'points'   => $points,
 																		'username' => $username,
-																		'vote'     => 'none'));
+																		'vote'     => $vote));
 	?>
 	
 <?php endforeach; ?>

@@ -2,7 +2,7 @@
 class TopicsController extends AppController{
 	public $name    = "Topics";
 	
-	public $components = array('RequestHandler');
+	public $components = array('RequestHandler', 'VoteUtil');
 	
 	public $uses = array('Topic', 'Vote');
 	
@@ -17,18 +17,11 @@ class TopicsController extends AppController{
 	}
 
 	function index(){
-		$topics = $this->paginate('Topic');
+		$topicdata = $this->paginate('Topic');
+		$this->set('topics', $topicdata);
 		
-		$topicids = array();
-		foreach($topics as $topic)
-			$topicids[] = $topic['Topic']['id'];
-		
-		$uservotes = array();
-		if($this->Auth->user('id'))
-			$uservotes = $this->Vote->getUserVotes($this->Topic, $topicids, $this->Auth->user('id'));
-			
+		$uservotes = $this->VoteUtil->getUserVotes($this->Topic->name, $topicdata, $this->Vote, $this->Auth->user('id'));
 		$this->set('uservotes', $uservotes);
-		$this->set('topics', $topics);
 	}
 	
 	function view($id = null){
@@ -51,11 +44,9 @@ class TopicsController extends AppController{
 	
 	function vote($type = null, $id = null){
 		$this->autoRender = false;
-
-		if($this->RequestHandler->isAjax()){
-			$points = $this->Vote->voteForModel($type, $this->Topic, $id, $this->Auth->user('id'));
-			echo json_encode(array('points'=>$points));
-		}
+		$resp =  $this->VoteUtil->vote($this->RequestHandler->isAjax(), $type, $this->Topic, $this->Vote, $id, $this->Auth->user('id'));
+		echo $resp;
 	}
+		
 }
 ?>

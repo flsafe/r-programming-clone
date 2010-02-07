@@ -13,13 +13,12 @@ class Vote extends AppModel{
 	*@param string $user_id The id of the user that is logged in
 	*@return integer Returns (upvotes - downvotes) if the user hasn't voted
 	*on the model before or changes his vote.
-	*Otherwise returns null if the user vote doesn't take effect or
-	*if the vote type doesn't equal up or down.
+	*Otherwise returns null if the user vote doesn't take effect, the vote type isn't
+	*'up' or 'down' or there are not database objects with the ids provided.
 	*/
-	function voteForModel($type, $model, $model_id, $user_id){
+	public function voteForModel($type, $model, $model_id, $user_id){
 		if($type != 'up' && $type != 'down')
 			return;
-			
 		$modelname = $model->name;
 		
 		$votedata = $this->find('first', 
@@ -28,12 +27,9 @@ class Vote extends AppModel{
 														"Vote.${modelname}_id" => $model_id)));
 												
 		$upvote = $type == "up" ? '1' : '0';
-											
 		if($votedata){
-			
 			$changedvote = $votedata['Vote']['upvote'] != $upvote;
 			if($changedvote){
-				
 				$modeldata = $model->findById($model_id);
 				if(empty($modeldata))
 					return;
@@ -93,8 +89,8 @@ class Vote extends AppModel{
 	*"1" is returned if the user upvoted that model, otherwise "0". If the user did not
 	*vote on the model at all then array[modelid] will not be set.
 	*/
-	function getUserVotes($model, $modelids, $userid){
-		$modelname = strtolower($model->name);
+	public function getUserVotes($modelname, $modelids, $userid){
+		$modelname = strtolower($modelname);
 		
 		$userVotes = $this->find('all',
 								array('fields' => array('upvote', "${modelname}_id"),

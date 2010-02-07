@@ -1,3 +1,10 @@
+<?php # id object - id
+ 			#vote - (up,down,none) 
+			#text - display text under title if set
+			#points - Points to display
+			#username - username to dispaly
+?>
+
 <div id="topics">
 	<div class="topic">
 		
