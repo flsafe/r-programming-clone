@@ -1,6 +1,6 @@
 
-function vote(cntrl, type, id){
-    $.post('/' + cntrl + '/vote/' + type + '/' + id, function(data){
+function vote(type, model, id){
+    $.post('/votes/vote/'+type+'/'+model+'/'+id, function(data){
 	
     		try{
     			var resp = JSON.parse(data);
@@ -27,18 +27,18 @@ function vote(cntrl, type, id){
 			    $(imgid).attr('src', src);
     		}
     		catch(err){/*Empty string is returned if user is not logged in*/
-    		    window.location = "/users/login";
+    		    //window.location = "/users/login";
     		}});
 }
 
 $(document).ready(function(){
 	$('.upvote').click(function(){
-		var topicid = $(this).attr('id').replace("upvote","");
-        vote(controller,"up",topicid);
+		var modelid = $(this).attr('id').replace("upvote","");
+        vote("up", model, modelid);
         });
 	
 	$('.downvote').click(function(){
-		var topicid = $(this).attr('id').replace("downvote","");
-        vote(controller,"down",topicid);
+		var modelid = $(this).attr('id').replace("downvote","");
+        vote("down", model, modelid);
         });
 });

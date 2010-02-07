@@ -8,14 +8,6 @@ class VoteUtilComponent extends Object{
 		$this->controller = $controller;
 	}
 	
-	public function vote($isAjax = false, $type, $model, $votemodel, $id, $userid){
-		if(! $isAjax)
-			return;
-			
-		$points = $votemodel->voteForModel($type, $model, $id, $userid);
-		return json_encode(array('points'=>$points));
-	}
-	
 	/**
 	 * Returns the user up or down-vote associated with the given model data.
 	 *@param string $modelname The name of the model to get votes for.

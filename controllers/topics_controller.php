@@ -41,12 +41,5 @@ class TopicsController extends AppController{
 			$this->redirect(array('controller'=>'topics', 'action'=>'index'));
 		}
 	}
-	
-	function vote($type = null, $id = null){
-		$this->autoRender = false;
-		$resp =  $this->VoteUtil->vote($this->RequestHandler->isAjax(), $type, $this->Topic, $this->Vote, $id, $this->Auth->user('id'));
-		echo $resp;
-	}
-		
 }
 ?>

@@ -52,11 +52,5 @@ class SubmissionsController extends AppController{
 			$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 		}
 	}
-	
-	function vote($type = null, $id = null){
-		$this->autoRender = false;
-		$resp = $this->VoteUtil->vote($this->RequestHandler->isAjax(), $type, $this->Submission, $this->Vote, $id, $this->Auth->user('id'));
-		echo $resp;
-	}
 }
 ?>

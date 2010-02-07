@@ -1,1 +1,1 @@
-var controller = "topics";
+var model = "Topic";

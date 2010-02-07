@@ -1,1 +1,1 @@
-var controller = "submissions";
+var model = "Submission";
