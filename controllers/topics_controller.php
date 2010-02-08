@@ -38,6 +38,7 @@ class TopicsController extends AppController{
 		$this->data['Topic']['user_id']           = $this->Auth->user('id');
 
 		if($this->Topic->save($this->data)){
+			$this->Vote->voteForModel('up', $this->Topic, $this->Topic->id, $this->Auth->user('id'));
 			$this->redirect(array('controller'=>'topics', 'action'=>'index'));
 		}
 	}

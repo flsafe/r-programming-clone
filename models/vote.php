@@ -38,9 +38,11 @@ class Vote extends AppModel{
 				
 				if($upvote){
 					$modeldata[$modelname]['upvotes']++;
+					$modeldata[$modelname]['downvotes']--;
 				}
 				else{
 					$modeldata[$modelname]['downvotes']++;
+					$modeldata[$modelname]['upvotes']--;
 				}
 				
 				#TODO: Calc rank based on time
@@ -70,8 +72,7 @@ class Vote extends AppModel{
 			$votedata = array('Vote' =>array(
 					'user_id'            => $user_id,
 					"${modelnamelow}_id" => $model_id,
-					'upvote'             => $upvote,
-				));
+					'upvote'             => $upvote,));
 			$this->save($votedata);
 			
 			return $modeldata[$modelname]['upvotes'] - $modeldata[$modelname]['downvotes'];
