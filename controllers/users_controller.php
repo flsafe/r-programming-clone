@@ -55,11 +55,13 @@ class UsersController extends AppController{
 		if(empty($this->data))
 			return;
 			
-			#Avoid the cakephp auto hash, inorder to validate unhashed password
+			#Avoid the cakephp auto hash by using 'password_new' in the form to validate unhashed password
 			$this->data['User']['password']          = $this->Auth->password($this->data['User']['password_new']);
 			$this->data['User']['captcha_keystring'] = $this->Session->read('captcha_keystring');
 			
 			if($this->User->save($this->data)){
+				$this->Auth->login(array('username'=>$this->data['User']['username'],
+																 'password'=>$this->data['User']['password']));
 				$this->redirect(array('controller'=>'submissions'));
 			}
 			$this->data['User']['password'] = null;
