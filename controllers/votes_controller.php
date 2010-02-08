@@ -12,27 +12,21 @@
 				return;
 			
 			if($type != 'up' && $type != 'down'){
-				$this->log("Not valid vote: $type");
 				return;
 			}
 			
 			$submission = $this->Submission;
 			$topic      = $this->Topic;
-			$models = array("Submission" => $submission, 
-											"Topic"      => $topic);
-			if(!isset($models[$model])){
-				$this->log("Not found $model");
+			$models     = array("Submission" => $submission, 
+											    "Topic"      => $topic);
+			if(!isset($models[$model]))
 				return;
-			}
-			
+				
 			$userid = $this->Auth->user('id');
-			if(!$userid){
-				$this->log("Not logged in");
+			if(!$userid)
 				return;
-			}
-
-			$points = $this->Vote->voteForModel($type, $models[$model], $id, $userid);
-			echo json_encode(array('points'=>$points));
+				
+			$this->Vote->voteForModel($type, $models[$model], $id, $userid);
 		}
 	}
 ?>
