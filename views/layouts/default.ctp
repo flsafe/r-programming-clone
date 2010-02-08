@@ -16,8 +16,10 @@
 		
 			<li <?php echo $loggedin ? "class='first'" : ""?>> 
 				<?php 
-					if($loggedin)
+					if($loggedin){
 						echo $html->link("Profile", array('controller'=>'users', 'action'=>'edit'));
+						echo "<label id='loggedin'/>"; #Used to determine if the user is logged in from client"
+					}
 				?>
 			</li>
 			

@@ -6,6 +6,7 @@ up      = '/img/up_arrow.gif';
 down    = '/img/down_arrow.gif';
 upred   = '/img/up_arrow_red.gif';
 downred = '/img/down_arrow_red.gif';
+login   = '/users/login';
 
 function vote(type, model, id){
     $.post('/votes/vote/'+type+'/'+model+'/'+id, function(data){
@@ -42,13 +43,27 @@ function changeVoteDisplay(type, id){
     $(imgid).attr('src', src);
 }
 
+function notLoggedIn(){
+    return ! $('#loggedin').length;
+}
+
 $(document).ready(function(){
 	$('.upvote').click(function(){
-		    var modelid = $(this).attr('id').replace("upvote","");
-		    changeVoteDisplay('up', modelid);
-            vote("up", model, modelid);});
+       if(notLoggedIn()){
+        window.location = login;
+        return;
+     }
+            
+	var modelid = $(this).attr('id').replace("upvote","");
+	changeVoteDisplay('up', modelid);
+    vote("up", model, modelid);});
 	
 	$('.downvote').click(function(){
+	    if(notLoggedIn()){
+	        window.location = login;
+	        return;
+        }
+	        
 		var modelid = $(this).attr('id').replace("downvote","");
         changeVoteDisplay('down', modelid);
         vote("down", model, modelid);});
