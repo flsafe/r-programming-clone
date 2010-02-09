@@ -20,6 +20,7 @@ class Vote extends AppModel{
 	public function voteForModel($type = null, $model = null, $model_id = null, $user_id = null, $rankFunction = array('self','hackerNewsRank')){
 		if($type != 'up' && $type != 'down')
 			return;
+
 		$modelname = $model->name;
 		
 		$votedata = $this->find('first', 
