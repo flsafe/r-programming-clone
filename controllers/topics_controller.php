@@ -2,7 +2,7 @@
 class TopicsController extends AppController{
 	public $name    = "Topics";
 	
-	public $components = array('RequestHandler', 'VoteUtil');
+	public $components = array('RequestHandler', 'VoteUtil', 'Security');
 	
 	public $uses = array('Topic', 'Vote');
 	
@@ -37,7 +37,9 @@ class TopicsController extends AppController{
 		$this->data['Topic']['captcha_keystring'] = $this->Session->read('captcha_keystring');
 		$this->data['Topic']['user_id']           = $this->Auth->user('id');
 
-		if($this->Topic->save($this->data)){
+		if($this->Topic->save($this->data,
+                          array('title','text','user_id'))){
+
 			$this->Vote->voteForModel('up', $this->Topic, $this->Topic->id, $this->Auth->user('id'));
 			$this->redirect(array('controller'=>'topics', 'action'=>'index'));
 		}

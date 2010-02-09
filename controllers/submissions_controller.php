@@ -1,8 +1,10 @@
 <?php
+App::import('Sanitize');
+
 class SubmissionsController extends AppController{
 	public $name = "Submissions";
 	
-	public $components = array('RequestHandler', 'VoteUtil');
+	public $components = array('RequestHandler', 'VoteUtil', 'Security');
 	
 	public $uses = array('Submission', 'Topic', 'Vote');
 	
@@ -42,13 +44,14 @@ class SubmissionsController extends AppController{
 		$this->data['Submission']['size']    = strlen($this->data['Submission']['text1']);
 			
 		$this->data['Submission']['captcha_keystring'] = $this->Session->read('captcha_keystring');
-		$this->data['Submission']['user_id']           = $this->Auth->user('id');
 		
 		$topic    = $this->Submission->Topic->findByCurrentTopic('1');
 		$topic_id = $topic['Topic']['id'];
 		$this->data['Submission']['topic_id'] = $topic_id;
 		
-		if($this->Submission->save($this->data)){
+		if($this->Submission->save($this->data,
+                               array('user_id', 'topic_id', 'size', 'title', 'description1', 'text1'))){
+
       $this->Vote->voteForModel('up', $this->Submission, $this->Submission->id, $this->Auth->user('id'));
 			$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 		}
