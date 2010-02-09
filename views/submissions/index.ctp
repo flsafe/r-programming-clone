@@ -19,8 +19,10 @@
 	$points   = $topic['Topic']['upvotes'] - $topic['Topic']['downvotes'];
 	$username = $topic['User']['username'];
 	
+  $sanitizeutil->htmlEsc($topic['Topic'],array('title','text'));
+
 	echo $this->element('topic', array(
-																'id'       => '0', #TODO: Avoid duplicate id. Need a better home page!
+																'id'       => '0',
 																'title'    => $title,
 																'text'     => $text,
 																'points'   => $points,

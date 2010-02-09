@@ -47,7 +47,7 @@ class User extends AppModel{
 					'rule'       => array('checkCaptcha', 'User'),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
-					'message'    => "Sorry, hate to bug you about this, but your captcha wasn't right.")
+					'message'    => "Shoot! Your captcha wasn't right.")
 			)
 		);
 		

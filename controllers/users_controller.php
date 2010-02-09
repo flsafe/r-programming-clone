@@ -59,7 +59,9 @@ class UsersController extends AppController{
 			$this->data['User']['password']          = $this->Auth->password($this->data['User']['password_new']);
 			$this->data['User']['captcha_keystring'] = $this->Session->read('captcha_keystring');
 			
-			if($this->User->save($this->data)){
+			if($this->User->save($this->data, 
+                           array('username', 'password','email'))){
+
 				$this->Auth->login(array('username'=>$this->data['User']['username'],
 																 'password'=>$this->data['User']['password']));
 				$this->redirect(array('controller'=>'submissions'));
