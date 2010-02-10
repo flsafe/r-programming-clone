@@ -82,9 +82,9 @@ class UsersController extends AppController{
 			$this->Email->from    = 'CodeKettl';
 			$this->Email->to      = 'francisco.licea@gmail.com'; #TODO: Session user's email is hard-coded
 			$this->Email->subject = "Reset Password";
-			$ticket               = $this->Ticket->set($email);
-			
-			if($this->Email->send("To reset your password: http://www.codekettl.com/users/reset_password/$ticket"))
+			$ticket               = $this->Ticket->set($userdata['User']['email']);
+      
+			if($this->Email->send("To reset your password: http://www.codekettl.com/users/reset_password/ticket:$ticket"))
 				$this->Session->setFlash("We've sent an email to reset your password. Check your email.");
 			else
 				$this->Session->setFlash("Sorry, we encountered a server error and could not reset your password. Try again later.");
@@ -94,27 +94,35 @@ class UsersController extends AppController{
 		}
 	}
 	
-	function reset_password($ticket = null){
-		if($ticket && $empty($this->data)){
+	function reset_password(){
+    	$ticket = isset($this->passedArgs['ticket']) ? $this->passedArgs['ticket'] : null;
+
+		if($ticket && empty($this->data)){
 			
-			$data = $this->Ticket->get($ticket);
-			if(empty($data)){
+			$ticketdata = $this->Ticket->get($ticket);
+
+			if(empty($ticketdata))
 				$this->Session->setFlash("Invalid Ticket");
-			}
-			else{
+			else
 				$this->set('ticket', $ticket);
-			}
 		}
 		else if($ticket && !empty($this->data)){
-			$password_new     = $this->data['User']['password_new'];
-			$password_confirm = $this->data['User']['password_confirm'];
-			
-			$email            = $this->User->findByEmail($this->Ticket->get($ticket));
-			if(!$email){
+			$userdata = $this->User->findByEmail($this->Ticket->get($ticket));
+
+			if(empty($userdata)){
 				$this->Session->setFlash("Invalid Ticket");
 			}
 			else{
-				
+        $userdata['User']['password']         = $this->Auth->password($this->data['User']['password_new']);
+        $userdata['User']['password_new']     = $this->data['User']['password_new'];
+        $userdata['User']['password_confirm'] = $this->data['User']['password_confirm'];
+
+        if($this->User->save($userdata, array('password'))){
+          $this->Ticket->del($ticket);
+          $this->Auth->login(array('username'=>$userdata['User']['username'], 'password'=>$userdata['User']['password']));
+          $this->Session->setFlash("We've updated your password!");
+          $this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+        }
 			}
 		}
 	}

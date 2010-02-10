@@ -1,5 +1,5 @@
 <?php
 class Ticket extends AppModel{
-	$name = "Ticket";
+	public $name = "Ticket";
 }
 ?>

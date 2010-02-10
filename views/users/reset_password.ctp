@@ -1,6 +1,9 @@
 <?php
-	$form->create('User', array('controller'=>'users', 'action'=>'reset_password', 'ticket'=>"$ticket"));
-	$form->input('User.password_new', array('label'=>'New Password', 'type'=>'password'));
-	$form->input('User.password_confirm', array('lable'=>'Confirm Password', 'type'=>'password'));
-	$form->end('Reset My Password');
+if(!isset($ticket))
+  $ticket = "";
+
+echo $form->create('User', array('url' => array('controller'=>'users', 'action'=>'reset_password', 'ticket'=>"$ticket")));
+echo $form->input('User.password_new', array('label'=>'New Password', 'type'=>'password'));
+echo $form->input('User.password_confirm', array('label'=>'Confirm Password', 'type'=>'password'));
+echo $form->end('Reset My Password');
 ?>
