@@ -1,10 +1,10 @@
 <?php
 class UsersController extends AppController{
 	public $name        = "Users";
-	public $components  = array('Auth', 'Email','Session', 'Security');
+	public $components  = array('Auth', 'Email','Session', 'Security', 'Ticket');
 	
 	function beforeFilter(){
-		$this->Auth->allow('add', 'forgot_password', 'captcha');
+		$this->Auth->allow('add', 'forgot_password','reset_password', 'captcha');
 	}
 	
 	function edit(){
@@ -78,30 +78,44 @@ class UsersController extends AppController{
 		$email    = $this->data['User']['email'];
 		$userdata = $this->User->find('first', array('conditions'=>array('username'=>"$username", 'email'=>"$email")));
 		
-		if($userdata){
-			$prevpassword = $userdata['User']['password'];
-			$randpassword = substr(md5(uniqid(mt_rand(), true)), 0, 10);
-			$userdata['User']['password'] = $this->Auth->password($randpassword);
+		if(!empty($userdata)){
+			$this->Email->from    = 'CodeKettl';
+			$this->Email->to      = 'francisco.licea@gmail.com'; #TODO: Session user's email is hard-coded
+			$this->Email->subject = "Reset Password";
+			$ticket               = $this->Ticket->set($email);
 			
-			if($this->User->save($userdata, false, array('password'))){
-				$this->Email->from    = 'CozySystems';
-				$this->Email->to      = 'francisco.licea@gmail.com'; #TODO: Session user's email is hard-coded
-				$this->Email->subject = "Rest Password";
-				
-				if($this->Email->send("Your password has been reset to $randpassword")){
-					$this->Session->setFlash("We've reset your password. Check your email to get your new password.");
-					$this->redirect(array('controller' =>'submissions', 'action'=>'index'));
-				}
-				else{
-					$userdata['User']['password'] = $prevpassword;
-					$this->User->save($userdata, false, array('password'));
-					$this->Session->setFlash("Sorry, we encountered a server error and could not reset your password. Try again later.");
-					$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
-				}
-			}
+			if($this->Email->send("To reset your password: http://www.codekettl.com/users/reset_password/$ticket"))
+				$this->Session->setFlash("We've sent an email to reset your password. Check your email.");
+			else
+				$this->Session->setFlash("Sorry, we encountered a server error and could not reset your password. Try again later.");
 		}
 		else{
 			$this->Session->setflash("Sorry, the username and password did not match any of our records.");
+		}
+	}
+	
+	function reset_password($ticket = null){
+		if($ticket && $empty($this->data)){
+			
+			$data = $this->Ticket->get($ticket);
+			if(empty($data)){
+				$this->Session->setFlash("Invalid Ticket");
+			}
+			else{
+				$this->set('ticket', $ticket);
+			}
+		}
+		else if($ticket && !empty($this->data)){
+			$password_new     = $this->data['User']['password_new'];
+			$password_confirm = $this->data['User']['password_confirm'];
+			
+			$email            = $this->User->findByEmail($this->Ticket->get($ticket));
+			if(!$email){
+				$this->Session->setFlash("Invalid Ticket");
+			}
+			else{
+				
+			}
 		}
 	}
 	
