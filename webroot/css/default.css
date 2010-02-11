@@ -189,9 +189,23 @@ img{
 	padding: 10px;
 }
 
+#selectedtopic{
+    font-size: 15;
+    float: left;
+    margin-right: 135px;
+    padding: 10px 10px 10px 10px;
+    background: white;
+    -moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+#selectdtopic h3{
+    
+}
+
 .vote{
 	width: 15px;
-  float: left; 
+    float: left; 
 	clear: left;
 }
 

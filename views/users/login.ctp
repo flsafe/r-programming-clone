@@ -17,7 +17,7 @@
 	</div>
 
 	<div id="login">
-		<h2>Already a member? Login Here</h2>
+		<h2>Already A member? Login Here</h2>
 		<?php
 			$session->flash();
 			$session->flash('auth');

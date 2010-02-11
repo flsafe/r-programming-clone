@@ -1,4 +1,4 @@
-<h1>This week's discussion topic</h1>
+<?php echo $html->tag('h1', "This Week's Discussion Topic") ?>
 
 <?php $javascript->link('jquery/jquery.min', false) ?>
 <?php $javascript->link('jquery/submissions', false)?>
@@ -6,11 +6,7 @@
 
 <br/>
 
-<p> 
-	<?php echo $html->link("Next Week's Topics", array('controller'=>'topics', 'action'=>'index')). "&nbsp&nbsp".
-					   $html->link('Submit Solution', array('controller'=>'submissions', 'action'=>'add'));
-	?> 
-</p>
+
 
 <?php 
 	$id       = $topic['Topic']['id'];
@@ -19,15 +15,14 @@
 	$points   = $topic['Topic']['upvotes'] - $topic['Topic']['downvotes'];
 	$username = $topic['User']['username'];
 	
-  $sanitizeutil->htmlEsc($topic['Topic'],array('title','text'));
+  $sanitizeutil->htmlEsc($topic['Topic'], array('title','text'));
 
-	echo $this->element('topic', array(
-																'id'       => '0',
-																'title'    => $title,
-																'text'     => $text,
-																'points'   => $points,
-																'username' => $username,
-																'vote'     => 'none'));
+	echo $this->element('selectedtopic', array('title'=>$title, 'username'=>$username, 'text'=>$text));
+	
+	echo $html->tag('p',  $html->link("Next Week's Topics", array('controller'=>'topics', 'action'=>'index')). "&nbsp&nbsp".
+			 						      $html->link('Submit Solution', array('controller'=>'submissions', 'action'=>'add')));
+	
+	echo  $html->tag('h3', "This week's solutions:");
 ?>
 
 <?php foreach($submissions as $submission):?>
