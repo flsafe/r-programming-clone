@@ -1,12 +1,12 @@
 <?php
-App::import('Sanitize');
-
 class SubmissionsController extends AppController{
-	public $name = "Submissions";
+	public $name       = "Submissions";
 	
 	public $components = array('RequestHandler', 'VoteUtil', 'Security');
 	
-	public $uses = array('Submission', 'Topic', 'Vote');
+	public $uses       = array('Submission', 'Topic', 'Vote');
+
+  public $helpers    = array('Markdown');
 	
 	public $paginate = array(
 			'limit'      => '25',

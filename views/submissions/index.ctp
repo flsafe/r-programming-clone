@@ -15,7 +15,7 @@
 	$points   = $topic['Topic']['upvotes'] - $topic['Topic']['downvotes'];
 	$username = $topic['User']['username'];
 	
-  $sanitizeutil->htmlEsc($topic['Topic'], array('title','text'));
+  $sanitizeUtil->htmlEsc($topic['Topic'], array('title','text'));
 
 	echo $this->element('selectedtopic', array('title'=>$title, 'username'=>$username, 'text'=>$text));
 	

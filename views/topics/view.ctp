@@ -1,4 +1,4 @@
-<?php $sanitizeutil->htmlEsc($topic['Topic'], array('title', 'text')); ?>
+<?php $sanitizeUtil->htmlEsc($topic['Topic'], array('title', 'text')); ?>
 
 <h1>
 <?php echo $topic['Topic']['title'];?>
