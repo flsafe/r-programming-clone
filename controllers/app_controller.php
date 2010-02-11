@@ -5,9 +5,12 @@
 		function beforeRender(){
 			$userdata = $this->Auth->user();
 			$loggedin = !empty($userdata['User']);
-			$this->set("loggedin", $loggedin); #Sets the login/logout html in the default layout
-
-      		$this->set('sanitizeutil', $this->SanitizeUtil); #Escape html for render
+			
+			
+			$this->set('loggedin', $loggedin);
+			if($loggedin)
+				$this->set('sessionusername', $userdata['User']['username']);
+      $this->set('sanitizeutil', $this->SanitizeUtil); #Escape html for render
 		}
 		
 		function captcha(){

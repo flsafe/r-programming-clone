@@ -13,25 +13,29 @@
 	
 	<div id="menu">
 		<ul>
-		
-			<li <?php echo $loggedin ? "class='first'" : ""?>> 
+			
+			<li <?php echo $loggedin ? "class='first'" : ""?> > 
+				<?php echo $html->link("About", array('controller'=>'pages', 'action'=>'about_us'));?> 
+			</li>
+			
+			<li <?php echo $loggedin ? "" : "class='first'"?>> 
 				<?php 
 					if($loggedin){
-						echo $html->link("Profile", array('controller'=>'users', 'action'=>'edit'));
+						echo $html->link("My Profile", array('controller'=>'users', 'action'=>'edit'));
 						echo "<label id='loggedin'/>"; #Used to determine if the user is logged in from client"
 					}
 				?>
 			</li>
 			
-			<li <?php echo $loggedin ? "" : "class='first'"?> > 
-				<?php echo $html->link("About", array('controller'=>'pages', 'action'=>'about_us'));?> 
-			</li>
-			
 			<li> 
 				<?php 
-					$action = $loggedin ? "logout" : "login";
-					$str    = $loggedin ? "Logout" : "Login";
-					echo $html->link($str, array('controller'=>'users', 'action'=>"$action"));
+					if($loggedin){
+						echo $html->link('Logout', array('controller'=>'users', 'action'=>'logout'));
+					}
+					else{
+						echo $html->link('Login', array('controller'=>'users', 'action'=>'login'));
+						echo $html->link('Register', array('controller'=>'users', 'action'=>'login'));
+					}
 				?> 
 			</li>
 		
