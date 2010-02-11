@@ -2,7 +2,7 @@
 	class AppController extends Controller{
     public $components = array('Captcha', 'Auth');
     
-    public $helpers = array('SanitizeUtil', 'html');
+    public $helpers = array('SanitizeUtil', 'Html', 'Form');
 		
 		function beforeRender(){
 			$userdata = $this->Auth->user();

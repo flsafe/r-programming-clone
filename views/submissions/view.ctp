@@ -3,14 +3,14 @@
 ?>
 
 <h2>
-	<?php $markdown->parse($submission['Submission']['title']); ?>
+	<?php echo $markdown->parse($submission['Submission']['title']); ?>
 </h2>
 
 <p>
-  <?php echo $submission['Submission']['description1']; ?>
+<?php echo $markdown->parse( $submission['Submission']['description1']); ?>
 </p>
 
 <p>
-	<?php echo $submission['Submission']['text1']; ?>
+<?php echo $markdown->parse($submission['Submission']['text1']); ?>
 </p>
 
