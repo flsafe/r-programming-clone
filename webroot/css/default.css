@@ -27,11 +27,10 @@ h2 {
 }
 
 h3 {
-	margin: 30px 0 15px 0;
-	text-transform: uppercase;
+	margin: 35px 0 15px 0;
 	letter-spacing: 2px;
-	font-family: Tahoma, Arial, Helvetica, sans-serif;
-	font-size: 10px;
+	font-family:  Arial, Helvetica, sans-serif;
+	font-size: 14px;
 	color: #3366CC;
 }
 
@@ -191,12 +190,11 @@ img{
 
 #selectedtopic{
     font-size: 15;
-    float: left;
-    margin-right: 135px;
+    width: 575px;
     padding: 10px 10px 10px 10px;
     background: white;
     -moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	  -webkit-border-radius: 10px;
 }
 
 #selectdtopic h3{
@@ -205,7 +203,7 @@ img{
 
 .vote{
 	width: 15px;
-    float: left; 
+   float: left; 
 	clear: left;
 }
 
