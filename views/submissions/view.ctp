@@ -1,6 +1,5 @@
 <?php 
-
-  $sanitizeUtil->htmlEsc($submission['Submission'], array('title', 'text1', 'description1'));
+  $sanitizeUtil->htmlEsc($submission['Submission'], array('title', 'description1'));
 ?>
 
 <h2>
@@ -12,6 +11,9 @@
 </p>
 
 <p>
-<?php echo $markdown->parse($submission['Submission']['text1']); ?>
+<?php 
+	$code = $submission['Submission']['text1']; 
+	echo $syntaxHighlighter->highlight($code, 'java');
+?>
 </p>
 

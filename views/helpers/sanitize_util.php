@@ -22,5 +22,10 @@ class SanitizeUtilHelper extends Helper{
 
     $this->log(print_r($modeldata, true));
   }
+
+	public function htmlEscStr($str){
+		App::import('Sanitize');
+		return Sanitize::html($str);
+	}
 }
 ?>
