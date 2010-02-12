@@ -47,3 +47,5 @@
 	?>
 	
 <?php endforeach; ?>
+
+<?php $this->element('paginiation') ?>

@@ -6,6 +6,8 @@ class TopicsController extends AppController{
 	
 	public $uses = array('Topic', 'Vote');
 	
+	public $helpers = array('Markdown');
+	
 	public $paginate = array(
 		'limit'      =>'12',
 		'order'      => array('Topic.rank' => 'desc'),
