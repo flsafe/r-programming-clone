@@ -32,7 +32,7 @@ class SubmissionsController extends AppController{
 	function view($id = null){
 		$this->Submission->id = $id;
 		$data = $this->Submission->read();
-		$this->set('submission', $data);
+		$this->set('submission', $data); 
 	}
 	
 	function add(){

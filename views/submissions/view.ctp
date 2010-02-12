@@ -1,4 +1,5 @@
 <?php 
+
   $sanitizeUtil->htmlEsc($submission['Submission'], array('title', 'text1', 'description1'));
 ?>
 
