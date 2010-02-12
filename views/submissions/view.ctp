@@ -7,13 +7,15 @@
 </h2>
 
 <p>
-<?php echo $markdown->parse( $submission['Submission']['description1']); ?>
+	<?php echo $markdown->parse($submission['Submission']['description1']); ?>
 </p>
 
 <p>
-<?php 
-	$code = $submission['Submission']['text1']; 
-	echo $syntaxHighlighter->highlight($code, 'java');
-?>
+	<div id='srccode'>
+	<?php 
+		$code = $submission['Submission']['text1']; 
+		echo $syntaxHighlighter->highlight($code, 'java');
+	?>
+	</div>
 </p>
 
