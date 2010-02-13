@@ -22,7 +22,7 @@ class SubmissionsController extends AppController{
 		$submissions = $this->paginate('Submission');
 		$this->set('submissions', $submissions);
 		
-		$uservotes = $this->VoteUtil->getUserVotes($this->Submission->name, $submissions, $this->Vote, $this->Auth->user('id'));
+		$uservotes   = $this->VoteUtil->getUserVotes($this->Submission->name, $submissions, $this->Vote, $this->Auth->user('id'));
 		$this->set('uservotes', $uservotes);
 
 		$topic = $this->Submission->Topic->findByCurrentTopic('1');

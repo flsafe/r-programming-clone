@@ -6,8 +6,6 @@
 
 <br/>
 
-
-
 <?php 
 	$id       = $topic['Topic']['id'];
 	$title    = $topic['Topic']['title'];
