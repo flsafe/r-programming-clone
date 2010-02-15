@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.2.1deb1
+-- version 3.2.2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 10, 2010 at 04:19 PM
--- Server version: 5.1.37
--- PHP Version: 5.2.10-2ubuntu6.4
+-- Generation Time: Feb 15, 2010 at 10:55 AM
+-- Server version: 5.0.86
+-- PHP Version: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -16,29 +16,50 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  `submission_id` int(11) NOT NULL,
+  `topic` int(11) NOT NULL,
+  `lft` int(11) default NULL,
+  `rght` int(11) default NULL,
+  `text` text NOT NULL,
+  `created` datetime default NULL,
+  `modified` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `submissions`
 --
 
 DROP TABLE IF EXISTS `submissions`;
 CREATE TABLE IF NOT EXISTS `submissions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL,
   `topic_id` int(11) NOT NULL,
   `upvotes` int(11) NOT NULL,
   `downvotes` int(11) NOT NULL,
-  `rank` double NOT NULL,
+  `rank` int(11) NOT NULL,
   `size` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `description1` text NOT NULL,
+  `description1` varchar(255) NOT NULL,
   `text1` text NOT NULL,
-  `description2` text,
+  `description2` varchar(255) default NULL,
   `text2` text,
-  `description3` text,
+  `description3` varchar(255) default NULL,
   `text3` text,
-  `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `created` datetime default NULL,
+  `modified` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 -- --------------------------------------------------------
 
@@ -48,14 +69,14 @@ CREATE TABLE IF NOT EXISTS `submissions` (
 
 DROP TABLE IF EXISTS `tickets`;
 CREATE TABLE IF NOT EXISTS `tickets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `hash` varchar(255) NOT NULL,
   `data` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   UNIQUE KEY `hash` (`hash`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -65,19 +86,19 @@ CREATE TABLE IF NOT EXISTS `tickets` (
 
 DROP TABLE IF EXISTS `topics`;
 CREATE TABLE IF NOT EXISTS `topics` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL,
   `title` varchar(125) NOT NULL,
   `text` text NOT NULL,
   `upvotes` int(11) NOT NULL,
   `downvotes` int(11) NOT NULL,
-  `rank` double NOT NULL,
+  `rank` int(11) NOT NULL,
   `current_topic` tinyint(1) NOT NULL,
   `was_chosen` tinyint(1) NOT NULL,
-  `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
+  `created` datetime default NULL,
+  `modified` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 -- --------------------------------------------------------
 
@@ -87,14 +108,14 @@ CREATE TABLE IF NOT EXISTS `topics` (
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `username` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `created` datetime default NULL,
+  `modified` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 -- --------------------------------------------------------
 
@@ -104,12 +125,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 DROP TABLE IF EXISTS `votes`;
 CREATE TABLE IF NOT EXISTS `votes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL,
   `topic_id` int(11) NOT NULL,
   `submission_id` int(11) NOT NULL,
   `upvote` tinyint(1) NOT NULL,
-  `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=116 ;
+  `created` datetime default NULL,
+  `modified` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=75 ;
