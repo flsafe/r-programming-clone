@@ -95,7 +95,7 @@ class UsersController extends AppController{
 	}
 	
 	function reset_password(){
-    	$ticket = isset($this->passedArgs['ticket']) ? $this->passedArgs['ticket'] : null;
+    $ticket = isset($this->passedArgs['ticket']) ? $this->passedArgs['ticket'] : null;
 
 		if($ticket && empty($this->data)){
 			
