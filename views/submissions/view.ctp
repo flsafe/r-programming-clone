@@ -19,3 +19,9 @@
 	</div>
 </p>
 
+<?php
+	echo $this->element('comments', array('modelname'=>'Submission', 
+														'model_id' => $submission['Submission']['id'],
+														'username' => $submission['User']['username'],
+														'user_id'=>$submission['User']['id']));
+?>

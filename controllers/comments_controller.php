@@ -13,7 +13,6 @@ class CommentsController extends AppController{
 	}
 	
 	public function model_comments($modelname, $modelid){
-		$this->autoRender = false;
 		if(! in_array($modelname, $this->models))
 			return;
 			
@@ -22,7 +21,7 @@ class CommentsController extends AppController{
 		
 		$data = $this->Comment->getModelComments($modelname, $modelid, null);
 
-		debug($data);
+		return $data;
 	}
 	
 	public function user_comments(){
