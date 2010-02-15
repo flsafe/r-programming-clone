@@ -3,6 +3,9 @@ class SanitizeUtilHelper extends Helper{
 
 
   public function htmlEsc(&$modeldata, $fields = array()){
+
+    if(empty($modeldata))
+      return;
 	
 		#Temporary hack to let a subset of the php mark down go through.
 		$unescape    = array('&#40;', '&#41;');

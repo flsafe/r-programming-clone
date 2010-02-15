@@ -15,7 +15,7 @@
 	
   $sanitizeUtil->htmlEsc($topic['Topic'], array('title','text'));
 
-	echo $this->element('selectedtopic', array('title'=>$title, 'username'=>$username, 'text'=>$text));
+  echo $this->element('selectedtopic', array('title'=>$title, 'username'=>$username, 'text'=>$markdown->parse($text)));
 	
 	echo $html->tag('p',  $html->link("Next Week's Topics", array('controller'=>'topics', 'action'=>'index')). "&nbsp&nbsp".
 			 						      $html->link('Submit Solution', array('controller'=>'submissions', 'action'=>'add')));

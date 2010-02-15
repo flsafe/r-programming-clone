@@ -6,7 +6,7 @@ class CommentsController extends AppController{
 	
 	public $uses = array('Comment', 'Submission');
 	
-	public $models = array('Submission', 'Comment');
+	public $models = array('Submission', 'Topic');
 	
 	public function beforeFilter(){
 		$this->Auth->allow(array('comment', 'model_comments')); #TEMP for testing
@@ -32,7 +32,7 @@ class CommentsController extends AppController{
 	public function comment($modelname, $model_id, $parent_id, $text){
 		$this->autoRender = false;
 		/*if(!$this->RequestHandler->isAjax())
-			return;*/
+			return;*/ #Not doing ajax while in development
 		
 		if(! in_array($modelname, $this->models))
 			return;

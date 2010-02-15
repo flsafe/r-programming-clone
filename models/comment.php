@@ -1,4 +1,5 @@
 <?php
+App::import('Sanitize');
 class Comment extends AppModel{
 	public $name = 'Comment';
 	
@@ -15,10 +16,14 @@ class Comment extends AppModel{
 		$modelname           = strtolower($modelname);
 		
 		if($getAllModelComments){
-			#return $this->generatetreelist(array("Comment.${modelname}_id"=>$model_id), null,'{n}.Comment', '&nbsp;&nbsp;');
-			return $this->find('all', array(
-													'conditions'=>array("Comment.${modelname}_id"=>$model_id),
-													'order'=>array('Comment.lft asc')));
+      $modelname = Sanitize::escape($modelname);
+      $model_id = Sanitize::escape($model_id);
+      $user_id = Sanitize::escape($user_id);
+      return $this->query("Select comment.id, comment.text, user.username, user.id, (COUNT(parent.id)-1) AS depth 
+                                          FROM comments AS comment, 
+                                               comments AS parent  LEFT JOIN users as user ON (user_id = user.id)
+                                          WHERE comment.lft BETWEEN parent.lft AND parent.rght AND comment.${modelname}_id = $model_id
+                                          GROUP BY comment.id ORDER BY comment.lft");
 		}
 		elseif ($getAllUserComments){
 			return $this->getneratetreelist(array('Comment.user_id'=>$user_id), '$nbsp;&nbsp');
