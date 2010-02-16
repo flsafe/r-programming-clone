@@ -1,7 +1,7 @@
 <?php echo $html->tag('h1', "This Week's Discussion Topic") ?>
 
 <?php $javascript->link('jquery/jquery.min', false) ?>
-<?php $javascript->link('jquery/submissions', false)?>
+<?php $javascript->link('jquery/submissions', false) #TODO: You can use jquery data to do this?> 
 <?php $javascript->link('jquery/vote', false)?>
 
 <br/>
@@ -26,6 +26,7 @@
 <?php foreach($submissions as $submission):?>
 
 	<?php
+		$sanitizeUtil->htmlEsc($submission['Submission'], array('id','title', 'size', 'upvotes', 'downvotes'));
 		$id       = $submission['Submission']['id'];
 		$title    = $submission['Submission']['title'];
 		$size     = $submission['Submission']['size'];

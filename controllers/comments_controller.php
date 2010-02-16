@@ -28,10 +28,16 @@ class CommentsController extends AppController{
 		
 	}
 	
-	public function comment($modelname, $model_id, $parent_id, $text){
+	public function comment($modelname, $model_id, $parent_id){
 		$this->autoRender = false;
+		
 		/*if(!$this->RequestHandler->isAjax())
 			return;*/ #Not doing ajax while in development
+			
+		$this->log(print_r($this->data,true));
+		
+		if(empty($this->data) && empty($this->data['text']))
+			return;
 		
 		if(! in_array($modelname, $this->models))
 			return;
