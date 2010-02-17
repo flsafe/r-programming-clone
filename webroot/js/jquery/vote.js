@@ -12,7 +12,6 @@ function vote(type, model, id){
     $.post('/votes/vote/'+type+'/'+model+'/'+id, function(data){
         //Nothing here yet
     });
-
 }
 
 function changeVoteDisplay(type, id){
@@ -49,10 +48,11 @@ function notLoggedIn(){
 
 $(document).ready(function(){
 	$('.upvote').click(function(){
-       if(notLoggedIn()){
+	    
+    if(notLoggedIn()){
         window.location = login;
         return;
-     }
+    }
             
 	var modelid = $(this).attr('id').replace("upvote","");
 	changeVoteDisplay('up', modelid);

@@ -1,4 +1,6 @@
-<?php 
+<?php
+ 	echo $javascript->link('jquery/jquery.min', false);
+	echo $javascript->link('jquery/comment');
   $sanitizeUtil->htmlEsc($submission['Submission'], array('title', 'description1', 'id'));
 ?>
 

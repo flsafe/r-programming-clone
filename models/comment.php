@@ -21,7 +21,8 @@ class Comment extends AppModel{
       $user_id = Sanitize::escape($user_id);
       return $this->query("Select Comment.id, Comment.text, User.username, User.id, (COUNT(parent.id)-1) AS depth 
                                           FROM comments AS Comment, 
-                                               comments AS parent  LEFT JOIN users as User ON (user_id = User.id)
+                                               comments AS parent  
+																					LEFT JOIN users as User ON (user_id = User.id)
                                           WHERE Comment.lft BETWEEN parent.lft AND parent.rght AND Comment.${modelname}_id = $model_id
                                           GROUP BY Comment.id ORDER BY Comment.lft");
 		}
@@ -31,7 +32,13 @@ class Comment extends AppModel{
 	}
 	
 	public function commentOnModel($modelname, $model_id, $parent_id, $user_id, $text){
-		$modelname = strtolower($modelname);
+		$modelname                   = Sanitize::escape($modelname);
+    $model_id                    = Sanitize::escape($model_id);
+		$parent_id                   = Sanitize::escape($parent_id);
+    $user_id                     = Sanitize::escape($user_id);
+		$text                        = Sanitize::escape($text);
+
+		$modelname                   = strtolower($modelname);
 		$c                           = 'Comment';
 		$data[$c]['user_id']         = $user_id;
 		$data[$c]["${modelname}_id"] = $model_id;
