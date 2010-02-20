@@ -1,35 +1,31 @@
 <?php # id object - id
  			#vote - (up,down,none) 
 			#text - display text under title if set
+			#size - the size of the solution
 			#points - Points to display
 			#username - username to dispaly
 ?>
 
-<div id="topics">
-	<div class="topic">
+<div id="submissions">
+	<div class="submission">
+
+		<?php echo $this->element('vote', array('id'=>$id, 'vote'=>$vote));?>
 		
-		<?php 
-			echo $this->element('vote', array('id'=>$id, 'vote'=>$vote));
-		?>
-		
-		<p class="title"> 
+		<div class="submissiontitle">
 			<?php 
 				echo $html->link($title, array('controller'=>'submissions', 'action'=>'view', $id));
-				echo "<br/>";
 				if(isset($text))
 					echo $text;
 			?>
-		</p>
+		</div>
 	
-		<div class="text">
-			<p>
+		<div class="submissionstats">
 				<?php 
 					echo "Size: $size <br/>" ;
 					echo "Efficiency: <br/>";
 					echo "Readability: <br/>";
 					echo "Elegance: <br/>";
 				?>
-			</p>
 		</div>
 	
 		<?php
@@ -37,6 +33,5 @@
 																	 			'points'   => $points,
 																	 			'username' => $username));
 		?>
-		
 	</div>
 </div>

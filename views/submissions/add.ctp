@@ -1,3 +1,4 @@
+<div id="submitsolution">
 <h1>Submit Your Code</h1>
 <?php
 	echo $form->create("Submission", array('controller'=>'submissions', 'action'=>'add'));
@@ -12,4 +13,4 @@
 	echo $form->input("Submission.captcha", array('label'=>"Are you a robot? Type the text above."));
 	echo $form->end("Submit"); 
 ?>
-
+</div>
