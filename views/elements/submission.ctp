@@ -4,29 +4,12 @@
 			#size - the size of the solution
 			#points - Points to display
 			#username - username to dispaly
+			#text - code associated with the submition used for preview
 ?>
 <div class="submission">
 
 	<div class="submissioncode">
-		<p>
-			foreach x in range 10<br/>
-				x pp<br/>
-				if x gt 100<br/>
-					print 10<br/>
-				else<br/>
-					count 20 10<br/>
-			foreach y in range 100<br/>
-				sum y  x</br>
-				if sum lt 5<br/>
-					docomp x y<br/>
-			sum x y<br/>
-			dofpr x y<br/>
-			check b <br/>
-			foreach y in range 100<br/>
-				sum y  x</br>
-				if sum lt 5<br/>
-					docomp x y<br/>
-		</p>
+		<?php echo $syntaxHighlighter->highlight($text, 'java');?>
 	</div>
 
 	<div class="submissiontitle">
@@ -34,8 +17,6 @@
 		<?php 
 		 	echo $this->element('vote', array('id'=>$id, 'vote'=>$vote));
 			echo $html->link($title, array('controller'=>'submissions', 'action'=>'view', $id));
-			if(isset($text))
-				echo $text;
 		?>
 
 	</div>

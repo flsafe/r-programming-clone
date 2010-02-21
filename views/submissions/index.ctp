@@ -25,12 +25,13 @@
 <?php foreach($submissions as $submission):?>
 
 	<?php
-		$sanitizeUtil->htmlEsc($submission['Submission'], array('id','title', 'size', 'upvotes', 'downvotes'));
+		$sanitizeUtil->htmlEsc($submission['Submission'], array('id','title', 'size', 'upvotes', 'downvotes', 'text1'));
 		$id       = $submission['Submission']['id'];
 		$title    = $submission['Submission']['title'];
 		$size     = $submission['Submission']['size'];
 		$points   = $submission['Submission']['upvotes'] - $submission['Submission']['downvotes'];
 		$username = $submission['User']['username'];
+		$text     = $submission['Submission']['text1'];
 		$vote     = "none";
 		if(isset($uservotes[$id]))
 			$vote = $uservotes[$id] ? 'up':'down';
@@ -41,6 +42,7 @@
 																		'size'     => $size,
 																		'points'   => $points,
 																		'username' => $username,
+																		'text'     => $text,
 																		'vote'     => $vote));
 	?>
 	
