@@ -1,19 +1,12 @@
 <?php #params id, points, username ?>
-	<div class="meta">
+<span class="submissionmeta">
+	
 			<span id="<?php echo "points${id}"?>" class="metadatapoints">
 				<?php echo "$points" ?>
-			</div>
+			</span>
 			
-			<?php echo " points | by" ?>
-			
-			<div class="metadatausername">
-				<?php echo "$username" ?>
-			</div>
-			
-			<?php echo " | " ?>
-			
-			<span class="metadatacomments">
-				<?php echo '<a href="">comments</a>' ?>
+			<span >
+			<?php echo " points | by <a href=\"\">$username</a> | <a href=\"\">comments</a>" ?>
 			</span>
 
-	</div>
+</span>

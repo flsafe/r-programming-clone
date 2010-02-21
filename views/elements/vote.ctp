@@ -14,4 +14,4 @@
 		<img id="<?php echo "downvoteimg${id}" ?>" src="<?php echo $srcdown[$vote] ?>" width="16" height="16"/>
 	</a>
 	
-</div class="votearrows">
+</div>

@@ -13,10 +13,15 @@
   $sanitizeUtil->htmlEsc($topic['Topic'], array('title','text'));
 
   echo $this->element('selectedtopic', array('title'=>$title, 'username'=>$username, 'text'=>$markdown->parse($text)));
-	
-	echo $html->tag('div',  $html->link('Submit Solution', array('controller'=>'submissions', 'action'=>'add')), array('class'=>'submitsolution'));
 ?>
 
+<div id="submitsolution">
+	<a href="/submissions/add" title="Submit Solution">
+		<img	src="/img/submitbutton.gif" alt="submit your solution" height="50" width="200"/>
+	</a>
+</div>
+
+<div id="submissions">
 <?php foreach($submissions as $submission):?>
 
 	<?php
@@ -40,5 +45,6 @@
 	?>
 	
 <?php endforeach; ?>
+</div>
 
 <?php $this->element('paginiation') ?>
