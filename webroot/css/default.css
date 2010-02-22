@@ -16,6 +16,7 @@ body img{
 }
 
 /*----------------Header-----------------*/
+
 #header{
     border-bottom: 2px solid rgb(200, 0, 0);
     padding: 5px;
@@ -36,7 +37,6 @@ body img{
 /*--------------Selected Topic-----------*/
 
 #selectedtopic{
-    border-bottom: 1px dashed rgb(255, 175, 175);
     padding: 10px 10px 0px 10px;
     margin: 25px 0px 50px 40px;
     font-size: 1.1em;
@@ -64,6 +64,19 @@ body img{
     font-size: 1.5em;
 }
 
+.votearrows{
+    float: left;
+    clear: left;
+    margin-right: 10px;
+}
+
+.votearrows img{
+    position: relative;
+    top: -8px;
+    display:block;
+    clear:both;
+}
+
 .submissioncode{
     float: right;
     background: black;
@@ -72,17 +85,17 @@ body img{
     margin:0px 0px 0px 0px;
     padding: 0px;
     width: 255px;
-    height:137px;
+    height:110px;
     overflow: hidden;
     border: 2px solid rgb(50, 50, 50);
-    border-top: 2px solid rgb(75, 75, 75);
+    border-top: 2px solid rgb(150, 150, 150);
     border-left: 2px solid rgb(75, 75, 75);
     border-right:2px solid rgb(0,0,0);
     border-bottom:2px solid rgb(0,0,0);;
 }
 
 .submissionstats{
-    margin:10px 0px 10px 0px;
+    margin:20px 0px 10px 0px;
 }
 
 .submissionmeta{
