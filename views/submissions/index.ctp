@@ -17,8 +17,11 @@
 
 <div id="submitsolution">
 	<a href="/submissions/add" title="Submit Solution">
-		<img	src="/img/submitbutton.gif" alt="submit your solution" height="50" width="200"/>
+		<img	src="/img/submitbutton.png" alt="submit your solution" height="40"/>
 	</a>
+	
+	
+	
 </div>
 
 <div id="submissions">

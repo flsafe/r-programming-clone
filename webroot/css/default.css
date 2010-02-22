@@ -34,12 +34,26 @@ body img{
     padding: 82px 0px 0px 0px;
 }
 
+#beta{
+    position: absolute;
+    left: 250px;
+    
+}
+
 /*--------------Selected Topic-----------*/
 
 #selectedtopic{
     padding: 10px 10px 0px 10px;
-    margin: 25px 0px 50px 40px;
+    margin: 25px 0px 90px 29px;
     font-size: 1.1em;
+}
+
+#morepuzzelsbutton{
+    float: right;
+    width: 100px;
+    position: relative;
+    top: -10px;
+    /*margin-right: 25px;*/
 }
 
 /*---------------Submissions----------------*/
@@ -55,7 +69,7 @@ body img{
 .submission{
     background-color: rgb(230,230,230);
     padding: 15px 0px 12px 12px ;
-    margin: 10px 0px 20px 0px;
+    margin: 3px 0px 20px 0px;
     border: 1px dashed rgb(210,210,210);
 }
 
