@@ -22,7 +22,7 @@
 				<?php 
 					if($loggedin){
 						echo $html->link("My Profile", array('controller'=>'users', 'action'=>'edit'));
-						echo "<label id='loggedin'/>"; #Used to determine if the user is logged in from client"
+						echo "<label id='loggedin'/>"; #Used to determine if the user is logged in from client
 					}
 				?>
 			</li>
