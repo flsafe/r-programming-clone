@@ -8,7 +8,7 @@ body{
 
 body a{
     text-decoration: none;
-    color:rgb(21, 117, 210);
+    color:rgb(63, 116, 182);
 }
 
 body img{
@@ -37,23 +37,32 @@ body img{
 #beta{
     position: absolute;
     left: 250px;
-    
 }
 
 /*--------------Selected Topic-----------*/
 
 #selectedtopic{
-    padding: 10px 10px 0px 10px;
-    margin: 25px 0px 90px 29px;
-    font-size: 1.1em;
+    padding: 0px 10px 10px 10px;
+    margin: 35px 0px 80px 35px;
+    font-size: 1.2em;
+    background: rgb(245, 245, 245);
+    border: 2px dashed black;
+    color: black;
+}
+
+#selectedtopic h1, h2{
+    background: rgb(211, 43, 33);
+    color: white;
+    padding: 10px;
+    font-family: Times New Roman, Times, serif;
 }
 
 #morepuzzelsbutton{
     float: right;
     width: 100px;
+    margin-top: 14px;
     position: relative;
-    top: -10px;
-    /*margin-right: 25px;*/
+    left: 14px;
 }
 
 /*---------------Submissions----------------*/
@@ -67,14 +76,14 @@ body img{
 }
 
 .submission{
-    background-color: rgb(230,230,230);
+    background-color: rgb(235,235,235);
     padding: 15px 0px 12px 12px ;
     margin: 3px 0px 20px 0px;
     border: 1px dashed rgb(210,210,210);
 }
 
 .submission a{
-    color: blue;
+    color: rgb(53, 106, 172);
     font-size: 1.5em;
 }
 
@@ -139,6 +148,10 @@ body img{
 
 #viewsubmissionhead h1{
     margin-bottom: 0px;
+}
+
+#viewsubmissionhead p{
+    
 }
 
 #viewsubmissioncode{
