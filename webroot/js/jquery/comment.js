@@ -6,7 +6,7 @@ function postComment(modelname, model_id, parent_id, commenttext){
 }
 
 function displayComment(commenttext){
-    first      = $("#comments :first");
+    first      = $("#commentslist :first");
     newcomment = $(commentdiv);
     newcomment.text(commenttext);
     first.before(newcomment);
@@ -20,12 +20,12 @@ function displayReply(replyingto, level, commenttext){
 }
 
 $(document).ready(function(){
-	$("#submitComment").click(function(){
+	$("#submitcomment").click(function(){
 	    
-	    modelname   = $("#modelname").val();
+	    modelname   = $("#modelname").val(); /*TODO: YUCK, place this stuff in hidden fields*/
 	    model_id    = $("#model_id").val();
-	    commenttext = $("#commentText").val();
-	    $("#commentText").val("");
+	    commenttext = $("#commenttext").val();
+	    $("#commenttext").val("");
 	    
 	    postComment(modelname, model_id, 0, commenttext);
 	    displayComment(commenttext);

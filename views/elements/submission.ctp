@@ -8,7 +8,7 @@
 ?>
 <div class="submission">
 
-	<div class="submissioncode">
+	<div class="submissionpreview">
 		<?php echo $syntaxHighlighter->highlight($text, 'java');?>
 	</div>
 

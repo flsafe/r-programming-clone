@@ -2,17 +2,17 @@
 	#params modelname, model_id, username, user_id
 	$comments = $this->requestAction("comments/model_comments/${modelname}/${model_id}");
 ?>
+<div id="comments">
+	
+	<form id="commentsform">
+		<textarea id="commenttext">
+		</textarea>
+		<input id="modelname" value="<?php echo $modelname ?>" type="hidden"/>
+		<input id="model_id" value="<?php echo $model_id ?>" type="hidden"/>
+		<input id="submitcomment" type="submit" value="Comment"/>
+	</form>
 
-<form id="commentForm">
-	<textarea id="commentText">
-	</textarea>
-	</br>
-	<input id="modelname" value="<?php echo $modelname ?>" type="hidden"/>
-	<input id="model_id" value="<?php echo $model_id ?>" type="hidden"/>
-	<input id="submitComment" type="submit" value="Comment"/>
-</form>
-
-<div id="comments" class="comments">
+<div id="commentslist">
 	
 <?php foreach($comments as $comment): ?>
 

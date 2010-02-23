@@ -92,7 +92,7 @@ body img{
     clear:both;
 }
 
-.submissioncode{
+.submissionpreview{
     float: right;
     background: black;
     font-size: .25em;
@@ -127,6 +127,29 @@ body img{
     text-decoration: underline;
 }
 
+/*-------View Submission-----*/
+#viewsubmission{
+}
+
+#viewsubmissionhead {
+    margin-left: 20px;
+    margin-bottom:40px;
+    font-size: 1.1em;
+}
+
+#viewsubmissionhead h1{
+    margin-bottom: 0px;
+}
+
+#viewsubmissioncode{
+    margin: 40px 15px 10px 20px;
+    background: rgb(255,250,250);
+    border: 1px solid rgb(100, 100, 100);
+}
+
+#commentsform{
+    margin-left: 20px;
+}
 /*----------Footer------------------*/
 #footer{
     text-align: center;
@@ -143,5 +166,4 @@ body img{
 
 #footerlegal a{
     font-size: .90em;
-    color:rgb(100, 100, 100);
 }
