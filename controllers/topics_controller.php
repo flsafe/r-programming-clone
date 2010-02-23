@@ -35,8 +35,6 @@ class TopicsController extends AppController{
 				
 			$this->set('uservotes', $uservotes);
 		}
-		
-		$this->set('uservotes', $uservotes);
 	}
 	
 	function view($id = null){

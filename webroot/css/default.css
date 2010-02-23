@@ -49,13 +49,13 @@ body img{
     padding: 0px 10px 10px 10px;
     margin: 45px 0px 80px 35px;
     font-size: 1.2em;
-    border-bottom: 1px dotted black;
+    border-left: 1px solid grey;
     color: black;
 }
 
 #selectedtopic h2{
-    background: rgb(211, 43, 33);
-    color: white;
+    /*background: rgb(211, 43, 33);*/
+    /*color: white;*/
     padding: 10px;
     font-family: "Times New Roman", Times, serif;
 }
@@ -112,7 +112,7 @@ body img{
     margin:0px 0px 0px 0px;
     padding: 0px;
     width: 255px;
-    height:122px;
+    height:120px;
     overflow: hidden;
     border: 2px solid rgb(50, 50, 50);
     border-top: 2px solid rgb(150, 150, 150);
@@ -148,7 +148,7 @@ body img{
     margin-bottom:70px;
     margin-top: 40px;
     font-size: 1.2em;
-    border-bottom: 2px solid rgb(53, 106, 172);
+    border-bottom: 1px dashed rgb(53, 106, 172);
 }
 
 #viewsubmissionheadtitle{
