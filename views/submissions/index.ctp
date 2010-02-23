@@ -1,7 +1,9 @@
 
-<?php $javascript->link('jquery/jquery.min', false) ?>
-<?php $javascript->link('jquery/submissions', false) #TODO: You can use jquery data to do this?> 
-<?php $javascript->link('jquery/vote', false)?>
+<?php 
+	echo $javascript->link('jquery/jquery.min', false);
+	echo  $javascript->link('jquery/submissions', false); #TODO: You can use jquery data to do this?
+	echo  $javascript->link('jquery/vote', false);
+?>
 
 <?php 
 	$id       = $topic['Topic']['id'];

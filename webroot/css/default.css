@@ -49,11 +49,11 @@ body img{
     padding: 0px 10px 10px 10px;
     margin: 45px 0px 80px 35px;
     font-size: 1.2em;
-    border: 1px dotted black;
+    border-bottom: 1px dotted black;
     color: black;
 }
 
-#selectedtopic h1, h2{
+#selectedtopic h2{
     background: rgb(211, 43, 33);
     color: white;
     padding: 10px;
@@ -145,19 +145,21 @@ body img{
 
 #viewsubmissionhead {
     margin-left: 20px;
-    margin-bottom:40px;
+    margin-bottom:70px;
+    margin-top: 40px;
     font-size: 1.2em;
-    border-bottom: 1px solid #999;
+    border-bottom: 4px solid black;
+    border-top: 4px solid black;
 }
 
-#viewsubmissionhead h1{
-    background: rgb(211, 43, 33);
-    color: white;
-    padding-left: 3px;
+#viewsubmissionheadtitle{
+
+    font-size: .80em;
 }
+
 
 #viewsubmissionhead p{
-    
+    font-size: 1.1em;
 }
 
 #viewsubmissioncode{
