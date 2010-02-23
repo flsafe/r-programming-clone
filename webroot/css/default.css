@@ -47,10 +47,10 @@ body img{
 
 #selectedtopic{
     padding: 0px 10px 10px 10px;
-    margin: 35px 0px 80px 35px;
+    margin: 45px 0px 80px 35px;
     font-size: 1.2em;
     background: rgb(245, 245, 245);
-    border: 2px dashed black;
+    border: 1px dashed black;
     color: black;
 }
 
