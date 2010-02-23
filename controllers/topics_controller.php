@@ -2,7 +2,7 @@
 class TopicsController extends AppController{
 	public $name    = "Topics";
 	
-	public $components = array('RequestHandler', 'VoteUtil', 'Security');
+	public $components = array('RequestHandler', 'Security');
 	
 	public $uses = array('Topic', 'Vote');
 	
@@ -22,7 +22,20 @@ class TopicsController extends AppController{
 		$topicdata = $this->paginate('Topic');
 		$this->set('topics', $topicdata);
 		
-		$uservotes = $this->VoteUtil->getUserVotes($this->Topic->name, $topicdata, $this->Vote, $this->Auth->user('id'));
+		$userid    = $this->Auth->user('id');
+		$modelname = 'Topic';
+		if($userid){
+			$modelids  = array();
+			foreach($topicdata as $m)
+				$modelids[] = $m[$modelname]['id'];
+
+			$uservotes = array();
+				if($userid)
+					$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $userid);
+				
+			$this->set('uservotes', $uservotes);
+		}
+		
 		$this->set('uservotes', $uservotes);
 	}
 	

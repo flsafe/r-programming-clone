@@ -1,4 +1,3 @@
-
 <?php 
 	echo $javascript->link('jquery/jquery.min', false);
 	echo  $javascript->link('jquery/submissions', false); #TODO: You can use jquery data to do this?
