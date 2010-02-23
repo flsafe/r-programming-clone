@@ -148,12 +148,10 @@ body img{
     margin-bottom:70px;
     margin-top: 40px;
     font-size: 1.2em;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
+    border-bottom: 2px solid rgb(53, 106, 172);
 }
 
 #viewsubmissionheadtitle{
-
     font-size: .80em;
 }
 
