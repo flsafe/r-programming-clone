@@ -8,15 +8,32 @@ body{
 
 body a{
     text-decoration: none;
-    color:rgb(63, 116, 182);
+    color:rgb(19, 98, 118);
 }
 
 body h1,h2{
     font-family: "Times New Roman", Times, serif;
+   color: rgb(0, 89, 89);
 }
 
 body img{
     border: none;
+}
+
+.input label{ /*Cake php form helper labels*/
+    color:rgb(100, 100, 100);
+    width: 125px;
+    float:left;
+    size: 1.1em;
+}
+
+.input{ /*Cake php*/
+    margin-bottom: 8px;
+}
+
+.error-message{ /*Part of the cakephp form helper*/
+    color:rgb(200, 50, 50);
+    margin-top: 5px;
 }
 
 /*----------------Header-----------------*/
@@ -30,7 +47,7 @@ body img{
 
 #header a{
     text-decoration: none;
-    color: rgb(95, 133, 1);
+    color: rgb(90, 128, 0);
 }
 
 #menu{
@@ -41,6 +58,40 @@ body img{
 #beta{
     position: absolute;
     left: 250px;
+}
+
+/*--------------Login Page--------------*/
+
+#loginpage{
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 30px;
+    width: 550px;
+    height: 500px;
+}
+
+
+
+#forgotpassword{
+    color:black;
+    size: 1.1em;
+}
+
+
+
+
+
+#register{
+    width:275px;
+    float: right;
+    border-left: 1px solid #999;
+    padding-left: 45px;
+}
+
+#login{
+    border: 1px solid white; /*Both login and register need borders so they line up*/
+    width: 200px;
 }
 
 /*--------------Selected Topic-----------*/
@@ -54,8 +105,6 @@ body img{
 }
 
 #selectedtopic h2{
-    /*background: rgb(211, 43, 33);*/
-    /*color: white;*/
     padding: 10px;
     font-family: "Times New Roman", Times, serif;
 }
@@ -69,6 +118,7 @@ body img{
 }
 
 /*---------------Submissions----------------*/
+
 #submissionmenu{
     margin-left: 40px;
 }
@@ -139,6 +189,7 @@ body img{
 }
 
 /*-------View Submission-----*/
+
 #viewsubmission{
 }
 
@@ -168,10 +219,13 @@ body img{
 #commentsform{
     margin-left: 18px;
 }
+
 /*----------Footer------------------*/
+
 #footer{
     text-align: center;
-    margin: 25px, 0px, 0px, 0px;
+    margin: 60px, 0px, 0px, 0px;
+    clear:right;
 }
 
 #footer a:hover{
