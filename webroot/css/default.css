@@ -20,6 +20,10 @@ body img{
     border: none;
 }
 
+#content{
+    margin-left: 40px;
+}
+
 .input label{ /*Cake php form helper labels*/
     color:rgb(100, 100, 100);
     width: 125px;
@@ -71,16 +75,10 @@ body img{
     height: 500px;
 }
 
-
-
 #forgotpassword{
     color:black;
     size: 1.1em;
 }
-
-
-
-
 
 #register{
     width:275px;
@@ -98,7 +96,7 @@ body img{
 
 #selectedtopic{
     padding: 0px 10px 10px 10px;
-    margin: 45px 0px 80px 35px;
+    margin: 45px 0px 80px 0px;
     font-size: 1.2em;
     border-left: 1px solid rgb(100,100,100);
     color: black;
@@ -120,11 +118,11 @@ body img{
 /*---------------Submissions----------------*/
 
 #submissionmenu{
-    margin-left: 40px;
+
 }
 
 #submissions{
-    margin: 0px 0px 40px 40px;
+    margin: 0px 0px 40px 0px;
 }
 
 .submission{
@@ -194,7 +192,7 @@ body img{
 }
 
 #viewsubmissionhead {
-    margin-left: 20px;
+    margin-left: 0px;
     margin-bottom:70px;
     margin-top: 40px;
     font-size: 1.2em;
@@ -211,13 +209,13 @@ body img{
 }
 
 #viewsubmissioncode{
-    margin: 40px 15px 10px 20px;
+    margin: 40px 15px 10px 0px;
     background: rgb(250,240,240);
     border: 1px solid rgb(150, 150, 150);
 }
 
 #commentsform{
-    margin-left: 18px;
+    margin-left: 0px;
 }
 
 /*----------Footer------------------*/
