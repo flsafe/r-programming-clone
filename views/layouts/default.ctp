@@ -23,7 +23,7 @@
 				$space = "&nbsp;&nbsp;&nbsp;";
 
 				if($loggedin){
-					echo $html->link("My Profile", array('controller'=>'users', 'action'=>'edit')) . $space ;
+					echo $html->link("$sessionusername", array('controller'=>'users', 'action'=>'edit')) . $space ;
 					echo $html->link('Logout', array('controller'=>'users', 'action'=>'logout')) . $space;
 					echo "<label id='loggedin'/>"; #Used to determine if the user is logged in from jquery
 				}
