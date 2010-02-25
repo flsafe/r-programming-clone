@@ -70,7 +70,7 @@ body img{
 
 #header a{
     text-decoration: none;
-    color: rgb(70, 108, 0);
+    color: rgb(100, 138, 30);
 }
 
 #menu{
@@ -115,7 +115,7 @@ body img{
 #selectedtopic{
     padding: 0px 10px 10px 10px;
     margin: 0px 0px 80px 0px;
-    font-size: 1.2em;
+    font-size: 1.1em;
     border-left: 10px solid rgb(125, 125, 125);
     border-bottom: 1px outset rgb(240, 240, 240);
     color: black;
@@ -148,7 +148,7 @@ body img{
 
 .submission a{
     color: rgb(32, 161, 195);
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 #submissions .votearrows img{
@@ -192,7 +192,7 @@ body img{
     margin-left: 0px;
     margin-bottom:50px;
     margin-top: 40px;
-    font-size: 1.2em;
+    font-size: 1.1em;
     border: 2px outset rgb(230,230,230);
     padding: 10px;
     -moz-border-radius: 5px; /*firefox and webkit only*/
@@ -205,7 +205,7 @@ body img{
 }
 
 #viewsubmissionheadtitle{
-    font-size: .80em;
+
 }
 
 #viewsubmissionhead p{
@@ -237,7 +237,7 @@ body img{
 
 .topic a{
     color: rgb(32, 161, 195);
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 
 .topic{
