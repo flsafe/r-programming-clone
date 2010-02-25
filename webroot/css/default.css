@@ -22,6 +22,8 @@ body img{
 
 #content{
     margin-left: 40px;
+    margin-top:40px;
+    margin-bottom: 30px;
 }
 
 .input label{ /*Cake php form helper labels*/
@@ -35,9 +37,15 @@ body img{
     margin-bottom: 8px;
 }
 
-.error-message{ /*Part of the cakephp form helper*/
+.error-message{ /*Part of the cakephp form helper. This class sets the form errors*/
     color:rgb(200, 50, 50);
     margin-top: 5px;
+}
+
+.message{ /*Cakephp messages. Sets any flash messages*/
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color:rgb(200, 50, 50);
 }
 
 /*----------------Header-----------------*/
@@ -67,7 +75,6 @@ body img{
 /*--------------Login Page--------------*/
 
 #loginpage{
-    margin-top: 30px;
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 30px;
@@ -96,23 +103,14 @@ body img{
 
 #selectedtopic{
     padding: 0px 10px 10px 10px;
-    margin: 45px 0px 80px 0px;
+    margin: 0px 0px 80px 0px;
     font-size: 1.2em;
-    border-left: 1px solid rgb(100,100,100);
+    border-left: 10px solid rgb(125, 125, 125);
     color: black;
-}
-
-#selectedtopic h2{
-    padding: 10px;
-    font-family: "Times New Roman", Times, serif;
 }
 
 #morepuzzelsbutton{
     float: right;
-    width: 100px;
-    margin-top: 14px;
-    position: relative;
-    left: 14px;
 }
 
 /*---------------Submissions----------------*/
@@ -196,13 +194,11 @@ body img{
     margin-bottom:70px;
     margin-top: 40px;
     font-size: 1.2em;
-    border-bottom: 1px dotted rgb(255, 100, 100);
 }
 
 #viewsubmissionheadtitle{
     font-size: .80em;
 }
-
 
 #viewsubmissionhead p{
     font-size: 1.1em;

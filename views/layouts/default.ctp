@@ -38,27 +38,27 @@
 	</div>
 
 	<div id="content">
-		
 		<?php echo $session->flash();?>
 		<?php echo $content_for_layout;?>
+	</div>		
 
-		<div id="footer">
-			<div id="footerlinks">
+	<div id="footer">
+		<div id="footerlinks">
 
-			<?php 
-				echo $html->link("About", array('controller'=>'pages', 'action'=>'about_us')). $space;
-			?>
-			<a href="">Feedback</a>&nbsp;&nbsp;
-			<a href="">Blog</a>
-			</div>
-		
-			<div id="footerlegal">
-				&copy; 2010 
-				<?php echo $html->link(' CozySystems LLC ', 'http://www.cozysystems.com');?>
-			</div>
+		<?php 
+			echo $html->link("About", array('controller'=>'pages', 'action'=>'about_us')). $space;
+		?>
+		<a href="">Feedback</a>&nbsp;&nbsp;
+		<a href="">Blog</a>
 		</div>
 	
+		<div id="footerlegal">
+			&copy; 2010 
+			<?php echo $html->link(' CozySystems LLC ', 'http://www.cozysystems.com');?>
+		</div>
 	</div>
+	
+
 
 </body>
 </html>

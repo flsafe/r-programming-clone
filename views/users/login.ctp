@@ -1,7 +1,5 @@
 <div id="loginpage">
 
-	
-
 	<div id="register">
 		<h2>Register</h2>
 		<?php
@@ -28,7 +26,7 @@
 			echo $form->input('User.password', array('type'=>'password'));
 			echo $form->end("Login");
 		?>
-		<p id="forgotpassword">Forgot your password? Get it <a href="forgot_password">here</a>.</p>
+		<p id="forgotpassword">Forgot your password? Get it <a href="forgot_password">here.</a></p>
 	</div>
 
 </div>

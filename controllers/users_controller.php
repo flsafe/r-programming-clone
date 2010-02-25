@@ -12,43 +12,39 @@ class UsersController extends AppController{
 		
 		if(empty($this->data)){
 			$this->data = $this->User->read();
+			$this->set('userid', $this->User->id);
 		}
 		else{
+			$this->User->save($this->data, array('email'));
+			$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+		}
+	}
+	
+	function change_password($userid){
+		if(!empty($this->data)){
 			$idmatch = $this->data['User']['id'] == $this->Auth->user('id');
-			
 			if(!$idmatch)
 				return;
-			
+				
 			$providedpass = $this->data['User']['password_current'];
 			$data         = $this->User->read();	
 			$userpass     = $data['User']['password'];
-			
-			if(empty($providedpass)){
-				$this->data['User']['password_new']     = 'abcdefg'; #Dummy password to get past validation
-				$this->data['User']['password_confirm'] = 'abcdefg';
-				
-				if($this->User->save($this->data)){
+	
+			if($this->Auth->password($providedpass) == $userpass){
+				$newpass = $this->Auth->password($this->data['User']['password_new']);
+				$this->data['User']['password'] = $newpass;
+		
+				if($this->User->save($this->data, array('password'))){
 					$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
-				}		
+				}
 			}
 			else{
-						
-				if($this->Auth->password($providedpass) == $userpass){
-					$newpass = $this->Auth->password($this->data['User']['password_new']);
-					$this->data['User']['password'] = $newpass;
-					
-					if($this->User->save($this->data)){
-						$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
-					}
-				}
-				else{
-					$this->Session->setFlash("Incorrect password");
-				}
+				$this->Session->setFlash("Incorrect Password");
 			}
-				
 		}
-		$this->data['User']['password_new']     = null; #Clear dummy password
-		$this->data['User']['password_confirm'] = null;					
+		else{
+			$this->data['User']['id'] = $userid;
+		}
 	}
 	
 	function add(){
