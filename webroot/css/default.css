@@ -117,11 +117,14 @@ body img{
     margin: 0px 0px 80px 0px;
     font-size: 1.2em;
     border-left: 10px solid rgb(125, 125, 125);
+    border-bottom: 1px outset rgb(240, 240, 240);
     color: black;
 }
 
 #morepuzzelsbutton{
     float: right;
+    position: relative;
+    top: 15px;
 }
 
 /*---------------Submissions----------------*/
@@ -187,9 +190,18 @@ body img{
 
 #viewsubmissionhead {
     margin-left: 0px;
-    margin-bottom:70px;
+    margin-bottom:50px;
     margin-top: 40px;
     font-size: 1.2em;
+    border: 2px outset rgb(230,230,230);
+    padding: 10px;
+    -moz-border-radius: 5px; /*firefox and webkit only*/
+    -webkit-border-radius: 5px;
+}
+
+#viewsubmissionhead .votearrows{
+    position: relative;
+    bottom: 9px;
 }
 
 #viewsubmissionheadtitle{
