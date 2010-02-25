@@ -6,7 +6,7 @@ class TopicsController extends AppController{
 	
 	public $uses = array('Topic', 'Vote');
 	
-	public $helpers = array('Markdown');
+	public $helpers = array('Markdown', 'Javascript');
 	
 	public $paginate = array(
 		'limit'      =>'12',
@@ -41,6 +41,15 @@ class TopicsController extends AppController{
 		$this->Topic->id = $id;
 		$this->data = $this->Topic->read();
 		$this->set('topic', $this->data);
+		
+		$userid    = $this->Auth->user('id');
+		$modelname = 'Topic';
+		if($userid){
+			$uservotes = array();
+			$uservotes = $this->Vote->getUserVotes($modelname, $id, $userid);
+
+			$this->set('uservotes', $uservotes);
+		}
 	}
 	
 	function add(){

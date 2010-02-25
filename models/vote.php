@@ -137,7 +137,7 @@ class Vote extends AppModel{
 
     $ageInHours     = ($now - $created) / $secondsPerHour;
 
-    $rank           =  ($points - 1)/pow(($ageInHours + $b), $c);
+    $rank           =  ($points)/pow(($ageInHours + $b), $c);
     return $rank;
   }
 }

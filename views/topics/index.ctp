@@ -1,9 +1,10 @@
 <h1>Vote On Tommorrow's Puzzle!</h1>
 
-<?php $javascript->link('jquery/jquery.min', false) ?>
-<?php $javascript->link('json2min.js') ?>
-<?php $javascript->link('jquery/topics', false)?>
-<?php $javascript->link('jquery/vote', false)?>
+<?php 
+	$javascript->link('jquery/jquery.min', false);
+ 	$javascript->link('jquery/topics', false);
+ 	$javascript->link('jquery/vote', false);
+?>
 
 
 <a href="/topics/add"><img src="/img/submittopic.png" alt="submit topic" title="submittopic"></a>
