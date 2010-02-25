@@ -1,10 +1,11 @@
-<?php
-	#params: title, text, username
-?>
+<?php #params: title, text, username ?>
 
 <div id="selectedtopic">
-<?php 
-echo $html->tag('h2', "$title by $username");
-echo $html->tag('p', $text);
-?>
+	
+	<h2><?php echo $title ?> by <?php echo $username ?></h2>
+	<p><?php echo $text ?></p>
+	<a href="/topics/index">
+		<img id="morepuzzelsbutton" src="/img/morepuzzlesbutton.png" alt="view more puzzels" height="35"/>
+	</a>
+	
 </div>

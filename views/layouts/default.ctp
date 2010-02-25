@@ -1,65 +1,64 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Code Kettl</title>
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
+	<meta name="keywords" content="Programming Practice Collaborate" />
+	<meta name="description" content="Practice Programming Together" />
 	<?php echo $html->css("default")?>
 	<?php echo $scripts_for_layout?>
 </head>
 
 <body>
 	
-	<div id="menu">
-		<ul>
-			
-			<li <?php echo $loggedin ? "class='first'" : ""?> > 
-				<?php echo $html->link("About", array('controller'=>'pages', 'action'=>'about_us'));?> 
-			</li>
-			
-			<li <?php echo $loggedin ? "" : "class='first'"?>> 
-				<?php 
-					if($loggedin){
-						echo $html->link("My Profile", array('controller'=>'users', 'action'=>'edit'));
-						echo "<label id='loggedin'/>"; #Used to determine if the user is logged in from client
-					}
-				?>
-			</li>
-			
-			<li> 
-				<?php 
-					if($loggedin){
-						echo $html->link('Logout', array('controller'=>'users', 'action'=>'logout'));
-					}
-					else{
-						echo $html->link('Login', array('controller'=>'users', 'action'=>'login'));
-						echo $html->link('Register', array('controller'=>'users', 'action'=>'login'));
-					}
-				?> 
-			</li>
-		
-		</ul>
-	</div>
-
 	<div id="header">
-		<h1><?php echo $html->link('Code Kettl', array('controller'=>'submissions', 'action'=>'index'));?></h1>
-		<h2>[ The Better Way To Practice Programming ]</h2>
+
+		<a href="/submissions/index/"><img src="/img/codekettllogo.jpg"/></a>
+		<img id="beta" src="/img/beta.png"/ height="50"/>
+
+		<div id="menu">
+			<?php 
+				$space = "&nbsp;&nbsp;&nbsp;";
+
+				if($loggedin){
+					echo $html->link("$sessionusername", array('controller'=>'users', 'action'=>'edit')) . $space ;
+					echo $html->link('Logout', array('controller'=>'users', 'action'=>'logout')) . $space;
+					echo "<label id='loggedin'/>"; #Used to determine if the user is logged in from jquery
+				}
+				else{
+					echo $html->link('Login', array('controller'=>'users', 'action'=>'login')) . $space;
+					echo $html->link('Register', array('controller'=>'users', 'action'=>'login')) . $space;
+				}
+			?>
+		</div>
 	</div>
 
 	<div id="content">
 		<?php echo $session->flash();?>
 		<?php echo $content_for_layout;?>
-	</div>
+	</div>		
 
 	<div id="footer">
-		<p id="legal">
+		<div id="footerlinks">
+
+		<?php 
+			echo $html->link("About", array('controller'=>'pages', 'action'=>'about_us')). $space;
+		?>
+		<a href="">Feedback</a>&nbsp;&nbsp;
+		<a href="">Blog</a>
+		</div>
+	
+		<div id="footerlegal">
 			&copy; 2010 
-			<?php 
-				echo $html->link(' CozySystems LLC ', 'http://www.cozysystems.com');
-			?>
-		</p>
+			<?php echo $html->link(' CozySystems LLC ', 'http://www.cozysystems.com');?>
+		</div>
 	</div>
+	
+
 
 </body>
 </html>

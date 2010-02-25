@@ -14,14 +14,14 @@ class Submission extends AppModel{
 		
 	public $validate = array(
 		'title'=>array(
-			'rule'       =>array('between',1, 100),
+			'rule'       =>array('between',1, 255),
 			'required'   =>'true',
 			'allowEmpty' =>'false',
 			'message'    => 'Titles must between one and one-hundred characters long.'
 		),
 			
 		'description1' =>array(
-			'rule'       =>array('between',1, 100),
+			'rule'       =>array('between',1, 16000),
 			'required'   =>'true',
 			'allowEmpty' =>'true',
 			'message'    => 'Descriptions must between one and one-hundred characters long.'
@@ -38,7 +38,7 @@ class Submission extends AppModel{
 			'rule'       => array('checkCaptcha', 'Submission'),
 			'required'   =>'true',
 			'allowEmpty' =>'false',
-			'message'    =>'Oh No! Try again')
+			'message'    =>'Oh No! Try again.')
 		);
 }
 ?>

@@ -1,7 +1,7 @@
-<div>
+<div id="loginpage">
+
 	<div id="register">
-		
-		<h2>Not A Member? Registering Is Fast And Easy!</h2>
+		<h2>Register</h2>
 		<?php
 			echo $form->create("User", array('controller'=>'users', 'action'=>'add'));
 			echo $form->input('User.username');
@@ -15,9 +15,9 @@
 			echo $form->end('Register');
 		?>
 	</div>
-
+	
 	<div id="login">
-		<h2>Already A member? Login Here</h2>
+		<h2>Login</h2>
 		<?php
 			$session->flash();
 			$session->flash('auth');
@@ -26,8 +26,9 @@
 			echo $form->input('User.password', array('type'=>'password'));
 			echo $form->end("Login");
 		?>
-		<p>Forgot your password? Get it <a href="forgot_password">here</a>.</p>
+		<p id="forgotpassword">Forgot your password? Get it <a href="forgot_password">here.</a></p>
 	</div>
+
 </div>
 
 

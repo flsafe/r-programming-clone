@@ -1,257 +1,323 @@
-/*
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 2.5 License
-*/
-
-body {
-	margin: 0;
-	padding: 0;
-	background: #5D8AB3;
-	font: normal 14px Tahoma, Arial, Helvetica, sans-serif;
-	color: #0;
+body{
+    font-family: Arial, "MS Trebuchet", sans-serif;
+    font-size: small;
+    color: black;
+    background-color: white;
 }
 
-h1, h2, h3 {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, Helvetica, sans-serif;
-	color: #23366F;
+body a{
+    text-decoration: none;
+    color:rgb(19, 98, 118);
 }
 
-h2 {
-	margin-bottom: 20px;
-	letter-spacing: -1px;
-	font-size: 18px;
-	color: #23366F;
+body h1,h2{
+    font-family: "Times New Roman", Times, serif;
+    color: rgb(90, 90, 90);
 }
 
-h3 {
-	margin: 35px 0 15px 0;
-	letter-spacing: 2px;
-	font-family:  Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	color: #3366CC;
+body img{
+    border: none;
 }
 
-p, blockquote, ul, ol {
-	margin-top: 0;
-	line-height: 19px;
+#content{
+    margin-left: 40px;
+    margin-top:40px;
+    margin-bottom: 30px;
 }
 
-blockquote {
-	padding-left: 35px;
-	background: url(/img/img15.gif) no-repeat left top;
+.input label{ /*Cake php form helper labels*/
+    color:rgb(100, 100, 100);
+    width: 125px;
+    float:left;
+    size: 1.1em;
 }
 
-a {
-	color: #23366F;
+.input{ /*Cake php*/
+    margin-bottom: 8px;
 }
 
-img{
-	border: none;
+.error-message{ /*Part of the cakephp form helper. This class sets the form errors*/
+    color:rgb(200, 50, 50);
+    margin-top: 5px;
+    width: 200px;
 }
 
-/* Menu */
-
-#menu {
-	width: 740px;
-	height: 30px;
-	margin: 0 auto;
+.message{ /*Cakephp messages. Sets any flash messages*/
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color:rgb(200, 50, 50);
 }
 
-#menu ul {
-	float: right;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	line-height: normal;
+.votearrows{
+    float: left;
+    clear: left;
+    margin-right: 10px;
 }
 
-#menu li {
-	display: inline;
+
+.votearrows img{
+    display:block;
+    clear:both;
 }
 
-#menu a {
-	display: block;
-	float: left;
-	height: 19px;
-	padding: 7px 20px 5px 20px;
-	background: url(/img/img02.gif) no-repeat left center;
-	font-weight: bold;
-	color: #FFFFFF;
-	text-decoration: none;
+.votearrows a:focus, .votearrows a:active{
+    outline: 0;
 }
 
-#menu .first a {
-	background: none;
-}
+/*----------------Header-----------------*/
 
-/* Header */
-
-#header {
-	width: 740px;
-	height: 84px;
-	margin: 0 auto;
-	padding: 20px 0 0 0;
-}
-
-#header h1{
-	float: left;
-	font-size: 36px;
-	color: #FFFFFF;
+#header{
+    border-bottom: 3px  solid rgb(0, 129, 163);
+    padding: 5px;
+    font-weight: bold;
+    font-size: 1.5em;
 }
 
 #header a{
-	float: left;
-	font-size: 36;
-	color:#FFFFFF;
-	text-decoration:none;
+    text-decoration: none;
+    color: rgb(100, 138, 30);
 }
 
-#header h2 {
-	float: left;
-	font-size: 14px;
-	color: #FFFFFF;
+#menu{
+    float: right;
+    padding: 82px 0px 0px 0px;
 }
 
-/* Content */
-
-#content {
-	width: 740px;
-	margin: 0 auto;
+#beta{
+    position: absolute;
+    left: 250px;
 }
 
-#topics {
-	float: left;
-	width: 600px;
+/*--------------Login Page--------------*/
+
+#loginpage{
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 30px;
+    width: 550px;
+    height: 500px;
 }
 
-#topics .topic {
-	margin: 0 0 15px 0;
-	padding: 10px 10px 20px 20px;
-	background: #FFFFFF;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-}
-
-#topics .title {
-	padding: 7px 10px;
-}
-
-#topics .text {
-	padding: 0 10px;
-}
-
-#topics ul {
-	list-style: square;
-}
-
-#topics .meta {
-	height: 5px;
-	margin-top: 5px;
-	padding: 0px 10px;
-	background: #FFFFFF ;
-	border-top: 0px solid #BFDDBC;
-	border-bottom: 0px solid #BFDDBC;
-}
-
-#topics .meta a{
-	text-decoration: none;
-}
-
-#topics .metadata{
-	color: #909090;
-	padding: 0px 15px;
-}
-
-#topics .metadata a{
-	color: #909090;
-}
-
-#topics .metadata a:hover{
-	text-decoration: underline;
-}
-
-#topics .metadata div{
-	display: inline;
-}
-
-#topics .title{
-	
-}
-
-#topics .title a{
-	text-decoration: none;
-	font-weight: bold;
-	font-size: 14;
-	padding: 10px;
-}
-
-#selectedtopic{
-    font-size: 15;
-    width: 575px;
-    padding: 10px 10px 10px 10px;
-    background: white;
-    -moz-border-radius: 10px;
-	  -webkit-border-radius: 10px;
-}
-
-#selectdtopic h3{
-    
-}
-
-.vote{
-	width: 15px;
-   float: left; 
-	clear: left;
-}
-
-.vote img{
-	display: block;
-  float: none; 
-	clear: both;
-}
-
-.pagination{
-	display: block;
-	clear: both;
-}
-
-.pagination div{
-	display: inline;
-}
-
-#srccode{
-    background: white;
-    width: 100%;
+#forgotpassword{
+    color:black;
+    size: 1.1em;
 }
 
 #register{
-	float: left;
+    width:275px;
+    float: right;
+    border-left: 1px solid #999;
+    padding-left: 45px;
 }
 
 #login{
-	float: left;
-	margin-left: 50px;
+    border: 1px solid white; /*Both login and register need borders so they line up*/
+    width: 200px;
 }
 
-/* Footer */
+/*--------------Selected Topic-----------*/
 
-#footer {
-	clear: both;
-	width: 760px;
-	margin: 0 auto;
-	padding: 20px 0;
+#selectedtopic{
+    padding: 0px 10px 10px 10px;
+    margin: 0px 0px 80px 0px;
+    font-size: 1.1em;
+    border-left: 10px solid rgb(80, 80, 80);
+    border-bottom: 1px outset rgb(80,80,80);
+    color: black;
 }
 
-#footer p {
-	margin: 0;
-	text-align: center;
-	line-height: normal;
-	font-size: 10px;
+#morepuzzelsbutton{
+    float: right;
+    position: relative;
+    top: 15px;
 }
 
-#footer a {
-	color: #909090;
+/*---------------Submissions----------------*/
+
+#submissionmenu{
+
+}
+
+#submissions{
+    margin: 0px 0px 40px 0px;
+}
+
+.submission{
+    background: rgb(247, 247, 247);
+    padding: 12px 0px 12px 12px ;
+    margin: 3px 0px 10px 0px;
+    border: 1px solid  rgb(175,175,175);
+    -moz-border-radius: 3px; /*firefox and webkit only*/
+    -webkit-border-radius: 3px;
+}
+
+.submission a{
+    color: rgb(32, 161, 195);
+    font-size: 1.3em;
+}
+
+#submissions .votearrows img{
+    position: relative;
+    top: -8px;    /*Slight adjustments so the arrows line up better*/
+    left: -2px;
+}
+
+.submissionpreview{
+    float: right;
+    background: black;
+    font-size: .25em;
+    color: white;
+    margin:0px 0px 0px 0px;
+    padding: 0px;
+    width: 255px;
+    height:88px;
+    overflow: hidden;
+    border: 2px solid rgb(50, 50, 50);
+    border-top: 2px solid rgb(150, 150, 150);
+    border-left: 2px solid rgb(75, 75, 75);
+    border-right:2px solid rgb(0,0,0);
+    border-bottom:2px solid rgb(0,0,0);;
+}
+
+.submissionstats{
+    margin:20px 0px 10px 0px;
+}
+
+
+.submissionmeta a:hover{
+    text-decoration: underline;
+}
+
+#SubmissionAddForm .input{
+    width: 100px;
+}
+
+#SubmissionAddForm textarea{
+    width: 600px;   
+}
+
+#SubmissionAddForm label{
+    float: left;
+    width: 150px;
+    clear:right;
+    color:rgb(100, 100, 100);
+    size: 1.1em;
+}
+
+#SubmissionTitle{
+    width: 600px;
+}
+
+/*-------View Submission-----*/
+
+#viewsubmission{
+}
+
+#viewsubmissionhead {
+    margin-left: 0px;
+    margin-bottom:50px;
+    margin-top: 40px;
+    font-size: 1.1em;
+    border: 2px outset rgb(230,230,230);
+    padding: 10px;
+    -moz-border-radius: 5px; /*firefox and webkit only*/
+    -webkit-border-radius: 5px;
+}
+
+#viewsubmissionhead .votearrows{
+    position: relative;
+    bottom: 9px;
+}
+
+#viewsubmissionheadtitle{
+
+}
+
+#viewsubmissionhead p{
+    font-size: 1.1em;
+}
+
+#viewsubmissioncode{
+    margin: 40px 15px 10px 0px;
+    background: rgb(230,230,230);
+    border: 1px solid rgb(150, 150, 150);
+}
+
+#commentsform{
+    margin-left: 0px;
+}
+
+/*----------Topics------------------*/
+
+/*Topics and puzzles are synonyms. The site
+  used to use 'disscussion topics' as a metaphor for 
+  puzzels but I decided to stop that. The code still
+  uses that terminology.*/
+  
+#topics .votearrows{
+ position:relative;   
+ top:4px;
+ right: 3px;
+}
+
+.topic a{
+    color: rgb(32, 161, 195);
+    font-size: 1.4em;
+}
+
+.topic{
+    margin-bottom: 10px;
+    padding-top: 2px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    border: 1px dotted #999;
+    -moz-border-radius: 2px;
+   -webkit-border-radius: 2px;
+}
+
+#TopicAddForm .input{
+    width: 200px;
+}
+
+#TopicAddForm textArea{
+    width:600px;
+}
+
+#TopicTitle{
+    width: 600px;
+}
+/*----------Footer------------------*/
+
+#footer{
+    text-align: center;
+    margin: 60px, 0px, 0px, 0px;
+    clear:right;
+}
+
+#footer a:hover{
+    text-decoration: underline;
+}
+
+#footerlinks{
+    margin-bottom: 10px;
+}
+
+#footerlegal a{
+    font-size: .90em;
+}
+
+/*--------meta data----------------*/
+/*
+I put meta data down here so that it has preference
+when the meta data is embeded in divs or spans
+*/
+
+.meta{
+    color: rgb(100, 100, 100);
+    font-size: 1em;
+}
+
+.meta a{
+    color: rgb(100, 100, 100);
+    font-size: 1em;
 }

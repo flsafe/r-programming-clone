@@ -2,11 +2,11 @@
 class TopicsController extends AppController{
 	public $name    = "Topics";
 	
-	public $components = array('RequestHandler', 'VoteUtil', 'Security');
+	public $components = array('RequestHandler', 'Security');
 	
 	public $uses = array('Topic', 'Vote');
 	
-	public $helpers = array('Markdown');
+	public $helpers = array('Markdown', 'Javascript');
 	
 	public $paginate = array(
 		'limit'      =>'12',
@@ -22,14 +22,34 @@ class TopicsController extends AppController{
 		$topicdata = $this->paginate('Topic');
 		$this->set('topics', $topicdata);
 		
-		$uservotes = $this->VoteUtil->getUserVotes($this->Topic->name, $topicdata, $this->Vote, $this->Auth->user('id'));
-		$this->set('uservotes', $uservotes);
+		$userid    = $this->Auth->user('id');
+		$modelname = 'Topic';
+		if($userid){
+			$modelids  = array();
+			foreach($topicdata as $m)
+				$modelids[] = $m[$modelname]['id'];
+
+			$uservotes = array();
+				if($userid)
+					$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $userid);
+				
+			$this->set('uservotes', $uservotes);
+		}
 	}
 	
 	function view($id = null){
 		$this->Topic->id = $id;
 		$this->data = $this->Topic->read();
 		$this->set('topic', $this->data);
+		
+		$userid    = $this->Auth->user('id');
+		$modelname = 'Topic';
+		if($userid){
+			$uservotes = array();
+			$uservotes = $this->Vote->getUserVotes($modelname, $id, $userid);
+
+			$this->set('uservotes', $uservotes);
+		}
 	}
 	
 	function add(){

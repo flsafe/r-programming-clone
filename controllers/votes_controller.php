@@ -28,5 +28,9 @@
 				
 			$this->Vote->voteForModel($type, $models[$model], $id, $userid);
 		}
+		
+		public function getUserVotes(){
+			
+		}
 	}
 ?>

@@ -34,11 +34,10 @@ class User extends AppModel{
 					'rule'       => array('minLength', 6),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
-					'message'    => 'Your password must be at least 6 characters'),
-					
+					'message'    => 'Your password must be at least 6 characters.'),
 				'rule2' => array(
 					'rule'       => array('confirmPassword'),
-					'message'    => 'Your passwords must match'
+					'message'    => 'Your passwords must match.'
 				)
 			),
 			
@@ -53,12 +52,13 @@ class User extends AppModel{
 		
 		function notDuplicate($check){
 			$user = $this->find('first', array('conditions' => $check, 'recursive' => -1));
-			
+						
 			if(!isset($this->data['User']['id'])){
 				return empty($user['User']);
 			}
-			else
+			else{
 				return $user['User']['id'] == $this->data['User']['id'];
+			}
 		}
 		
 		function confirmPassword($check){

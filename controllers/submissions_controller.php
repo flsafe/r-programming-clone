@@ -2,16 +2,16 @@
 class SubmissionsController extends AppController{
 	public $name       = "Submissions";
 	
-	public $components = array('RequestHandler', 'VoteUtil', 'Security');
+	public $components = array('RequestHandler', 'Security');
 	
 	public $uses       = array('Submission', 'Topic', 'Vote');
 
   public $helpers    = array('Markdown', 'SyntaxHighlighter', 'Javascript');
 	
-	public $paginate = array(
-			'limit'      => '25',
-			'order'      => array('Submission.rank'  => 'desc'),
-			'conditions' => array('Topic.current_topic' => '1'));
+	public $paginate   = array(
+			'limit'        => '25',
+			'order'        => array('Submission.rank'  => 'desc'),
+			'conditions'   => array('Topic.current_topic' => '1'));
 	
 	function beforeFilter(){
 		$this->Auth->allow(array('index', 'view'));
@@ -22,8 +22,19 @@ class SubmissionsController extends AppController{
 		$submissions = $this->paginate('Submission');
 		$this->set('submissions', $submissions);
 		
-		$uservotes   = $this->VoteUtil->getUserVotes($this->Submission->name, $submissions, $this->Vote, $this->Auth->user('id'));
-		$this->set('uservotes', $uservotes);
+		$userid    = $this->Auth->user('id');
+		$modelname ='Submission';
+		if($userid){
+			$modelids  = array();
+			foreach($submissions as $m)
+				$modelids[] = $m[$modelname]['id'];
+
+			$uservotes = array();
+				if($userid)
+					$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $userid);
+				
+			$this->set('uservotes', $uservotes);
+		}
 
 		$topic = $this->Submission->Topic->findByCurrentTopic('1');
 		$this->set('topic', $topic);
@@ -33,6 +44,12 @@ class SubmissionsController extends AppController{
 		$this->Submission->id = $id;
 		$data = $this->Submission->read();
 		$this->set('submission', $data); 
+		
+		$userid = $this->Auth->user('id');
+		if(isset($userid)){
+			$uservotes = $this->Vote->getUserVotes("Submission", array($id), $userid);
+			$this->set('uservotes', $uservotes);
+		}
 	}
 	
 	function add(){
