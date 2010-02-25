@@ -1,5 +1,5 @@
 <?php #params id, points, username ?>
-<span class="submissionmeta">
+<span class="meta">
 	
 			<span id="<?php echo "points${id}"?>" class="metadatapoints">
 				<?php echo "$points" ?>

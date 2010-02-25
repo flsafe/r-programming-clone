@@ -1,26 +1,24 @@
-<!--
-Params:title,id, text, points, username, vote-("up","down", "none")
- -->
+<?php 
+#Params:title,id, text, points, username, vote-("up","down", "none")
+?>
 
-<div id="topics">
-	<div class="topic">
-		
-		<?php
-			echo $this->element('vote', array('id'=>$id, 'vote'=>$vote));
-		?>
-		
-		<p class="title"> 
-			<?php 
-				echo $html->link($title, array('controller'=>'topics', 'action'=>'view', $id));
-				echo "<br/>";
-				if(isset($text))
-					echo $text;
-			?>
-		</p>
+<div class="topic">
+
+	<?php
+		echo $this->element('vote', array('id'=>$id, 'vote'=>$vote));
+	?>
 	
-		<?php echo $this->element('meta', array('id'  => $id,
-																			 'points'   => $points,
-																			 'username' => $username)); 
+	<p class="topictitle"> 
+		<?php 
+			echo $html->link($title, array('controller'=>'topics', 'action'=>'view', $id));
+			if(isset($text))
+				echo $text;
 		?>
-	</div>
+	</p>
+
+	<?php echo $this->element('meta', array('id'  => $id,
+																		 'points'   => $points,
+																		 'username' => $username)); 
+	?>
+	
 </div>
