@@ -48,6 +48,17 @@ body img{
     color:rgb(200, 50, 50);
 }
 
+.votearrows{
+    float: left;
+    clear: left;
+    margin-right: 10px;
+}
+
+.votearrows img{
+    display:block;
+    clear:both;
+}
+
 /*----------------Header-----------------*/
 
 #header{
@@ -135,18 +146,10 @@ body img{
     font-size: 1.5em;
 }
 
-.votearrows{
-    float: left;
-    clear: left;
-    margin-right: 10px;
-}
-
-.votearrows img{
+#submissions .votearrows img{
     position: relative;
     top: -8px;    /*Slight adjustments so the arrows line up better*/
     left: -2px;
-    display:block;
-    clear:both;
 }
 
 .submissionpreview{
@@ -212,7 +215,10 @@ body img{
   puzzels but I decided to stop that. The code still
   uses that terminology.*/
   
-#topics{
+#topics .votearrows{
+ position:relative;   
+ top:4px;
+ right: 3px;
 }
 
 .topic a{
@@ -222,6 +228,10 @@ body img{
 
 .topic{
     margin-bottom: 20px;
+    padding-top: 2px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    border: 1px dotted #999;
 }
 
 /*----------Footer------------------*/
