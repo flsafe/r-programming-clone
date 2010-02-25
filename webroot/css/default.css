@@ -12,7 +12,7 @@ body a{
 
 body h1,h2{
     font-family: "Times New Roman", Times, serif;
-   color: rgb(90, 90, 90);
+    color: rgb(90, 90, 90);
 }
 
 body img{
@@ -39,6 +39,7 @@ body img{
 .error-message{ /*Part of the cakephp form helper. This class sets the form errors*/
     color:rgb(200, 50, 50);
     margin-top: 5px;
+    width: 200px;
 }
 
 .message{ /*Cakephp messages. Sets any flash messages*/
@@ -62,8 +63,6 @@ body img{
 .votearrows a:focus, .votearrows a:active{
     outline: 0;
 }
-
-
 
 /*----------------Header-----------------*/
 
@@ -189,6 +188,26 @@ body img{
     text-decoration: underline;
 }
 
+#SubmissionAddForm .input{
+    width: 100px;
+}
+
+#SubmissionAddForm textarea{
+    width: 600px;   
+}
+
+#SubmissionAddForm label{
+    float: left;
+    width: 150px;
+    clear:right;
+    color:rgb(100, 100, 100);
+    size: 1.1em;
+}
+
+#SubmissionTitle{
+    width: 600px;
+}
+
 /*-------View Submission-----*/
 
 #viewsubmission{
@@ -256,6 +275,17 @@ body img{
    -webkit-border-radius: 2px;
 }
 
+#TopicAddForm .input{
+    width: 200px;
+}
+
+#TopicAddForm textArea{
+    width:600px;
+}
+
+#TopicTitle{
+    width: 600px;
+}
 /*----------Footer------------------*/
 
 #footer{

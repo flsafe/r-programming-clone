@@ -10,7 +10,7 @@
 		public $validate = array(
 			'title' => array(
 				'rule1' => array(
-					'rule'=>array('between', 1, 125),
+					'rule'=>array('between', 1, 255),
 					'required'=>'true',
 					'allowEmpty'=>'false',
 					'message'=>'Your title has to be between one and one-hundred characters long.')
