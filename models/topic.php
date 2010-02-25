@@ -29,7 +29,7 @@
 					'rule'=>array('checkCaptcha', 'Topic'),
 					'required'=>'true',
 					'allowEmpty'=>'false',
-					'message'=>"Oh, no! Try again")
+					'message'=>"Oh, no! Try again.")
 				)
 		);
 	}

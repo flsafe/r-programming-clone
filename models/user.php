@@ -34,10 +34,10 @@ class User extends AppModel{
 					'rule'       => array('minLength', 6),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
-					'message'    => 'Your password must be at least 6 characters'),
+					'message'    => 'Your password must be at least 6 characters.'),
 				'rule2' => array(
 					'rule'       => array('confirmPassword'),
-					'message'    => 'Your passwords must match'
+					'message'    => 'Your passwords must match.'
 				)
 			),
 			
