@@ -5,7 +5,8 @@
 <?php $javascript->link('jquery/topics', false)?>
 <?php $javascript->link('jquery/vote', false)?>
 
-<p><?php echo $html->link("Submit Topic", array('controller'=>'topics', 'action'=>'add')); ?></p>
+
+<a href="/topics/add"><img src="/img/submittopic.png" alt="submit topic" title="submittopic"></a>
 
 <div id="topics">
 	<?php foreach($topics as $topic):?>

@@ -24,8 +24,6 @@
 	<div class="submissionstats">
 			<?php 
 				echo "Size: $size <br/>" ;
-				echo "Elegance: <br/>";
-				echo "Efficiency: <br/>";
 			?>
 	</div>
 
