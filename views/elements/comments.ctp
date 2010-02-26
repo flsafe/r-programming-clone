@@ -1,6 +1,35 @@
 <?php 
 	#params modelname, model_id, username, user_id
+	
+	function getLft($left, &$comments){
+		/*Binary search*/
+		
+		echo ("Searching through:<br/>");
+		echo print_r($comments, true);
+		
+		$l       = 0;
+		$u       = count($comments);
+		
+		while($l < $u){
+			$mid     = ($l + $u) / 2;
+			$comment = $comments[$mid];
+			
+			if($comment['Comment']['lft'] == $left){
+				break;
+			}
+
+			if($left < $comments[$mid]['Comment']['lft'])
+				$u = $mid - 1;
+			else
+				$l = $mid + 1;
+		}
+		
+		return null;
+	}
+	
 	$comments = $this->requestAction("comments/model_comments/${modelname}/${model_id}");
+	$c = getLft(3, $comments);
+	$this->log(print_r($c, true));
 ?>
 <div id="comments">
 	
