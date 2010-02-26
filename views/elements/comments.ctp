@@ -1,22 +1,18 @@
 <?php 
 	#params modelname, model_id, username, user_id
 	
-	function getLft($left, &$comments){
+	function get($left, &$comments){
 		/*Binary search*/
 		
-		echo ("Searching through:<br/>");
-		echo print_r($comments, true);
+		$l = 0;
+		$u = count($comments) - 1;
 		
-		$l       = 0;
-		$u       = count($comments);
-		
-		while($l < $u){
-			$mid     = ($l + $u) / 2;
+		while($l <= $u){
+			$mid     = intval(($l + $u) / 2);
 			$comment = $comments[$mid];
 			
-			if($comment['Comment']['lft'] == $left){
-				break;
-			}
+			if($comment['Comment']['lft'] == $left)
+				return $comment;
 
 			if($left < $comments[$mid]['Comment']['lft'])
 				$u = $mid - 1;
@@ -27,9 +23,68 @@
 		return null;
 	}
 	
+	function nextSibling(&$comment, &$rootComment, &$comments){
+		$nextLeftVal = $comment['Comment']['rght'] + 1;
+		$noSibling   = $nextLeftVal >= $rootComment['Comment']['rght'];
+		
+		if($noSibling)
+			return null;
+			
+		return get($nextLeftVal, $comments);
+	}
+	
+	function getChildren(&$rootComment, &$comments){
+		$noChildren = $rootComment['Comment']['lft']+ 1 == $rootComment['Comment']['rght'];
+		
+		if($noChildren)
+			return array();
+		
+		/*I will buy the childrens a school bus, so they can go on field trips*/
+		$childrens   = array(); 
+		$firstChild  = get($rootComment['Comment']['lft'] + 1, $comments);
+		$childrens[] = $firstChild;
+		
+		$nextChild = $firstChild;
+		while(($nextChild = nextSibling($nextChild, $rootComment, $comments)) != null){
+			$childrens[] = $nextChild;
+		}
+		
+		return $childrens;
+	}
+	
+	function getComments(&$rootComment, &$comments, &$dom){
+		$children = getChildren($rootComment, $comments);
+			
+		$replys = array();
+		foreach($children as $c){
+			$replys[] = getComments($c, $comments, $dom);
+		}
+		
+		$topOfTree = $rootComment[0]['depth'] == 0;
+		
+		$element   = $dom->createElement('div', $rootComment['Comment']['text']);
+		$class     = $topOfTree ? 'rootcomment' : 'childcomment';
+		$element->setAttribute('class', $class );
+		
+		foreach($replys as $r){
+			$element->appendChild($r);
+		}
+		
+		if($topOfTree)
+			$dom->appendChild($element);
+		else
+			return $element;
+	}
+	
+	function buildCommentHiearchy(&$comments){
+	
+	}
+	
 	$comments = $this->requestAction("comments/model_comments/${modelname}/${model_id}");
-	$c = getLft(3, $comments);
-	$this->log(print_r($c, true));
+	$doc      = new DOMDocument();
+	
+	getComments($comments[0], $comments, $doc);
+	$this->log($doc->saveHtml());
 ?>
 <div id="comments">
 	
