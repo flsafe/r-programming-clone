@@ -1,12 +1,11 @@
 <?php
 App::import('Sanitize');
 class Comment extends AppModel{
-	public $name = 'Comment';
+	public $name      = 'Comment';
 	
-	public $actsAs = array('Tree');
+	public $actsAs    = array('Tree');
 	
-	public $belongsTo = array('User' => 
-															array('fields'=>array('id', 'username')));
+	public $belongsTo = array('User' => array('fields'=>array('id', 'username')));
 	
 	#TODO: add the validation rules
 	
@@ -17,8 +16,8 @@ class Comment extends AppModel{
 		
 		if($getAllModelComments){
       $modelname = Sanitize::escape($modelname);
-      $model_id = Sanitize::escape($model_id);
-      $user_id = Sanitize::escape($user_id);
+      $model_id  = Sanitize::escape($model_id);
+      $user_id   = Sanitize::escape($user_id);
       return $this->query("Select Comment.id, Comment.text, User.username, User.id, (COUNT(parent.id)-1) AS depth 
                                           FROM comments AS Comment, 
                                                comments AS parent  
@@ -40,6 +39,7 @@ class Comment extends AppModel{
 
 		$modelname                   = strtolower($modelname);
 		$c                           = 'Comment';
+		
 		$data[$c]['user_id']         = $user_id;
 		$data[$c]["${modelname}_id"] = $model_id;
 		$data[$c]['text']            = $text;

@@ -1,12 +1,12 @@
 <?php
 class CommentsController extends AppController{
-	public $name = 'Comments';
+	public $name      = 'Comments';
 	
 	public $component = array('RequestHandler', 'Auth');
 	
-	public $uses = array('Comment', 'Submission');
+	public $uses      = array('Comment', 'Submission');
 	
-	public $models = array('Submission', 'Topic');
+	public $models    = array('Submission', 'Topic');
 	
 	public function beforeFilter(){
 		$this->Auth->allow(array('add', 'model_comments')); #TEMP for testing
@@ -18,10 +18,8 @@ class CommentsController extends AppController{
 			
 		if(!$modelid)
 			return;
-		
-		$data = $this->Comment->getModelComments($modelname, $modelid, null);
 
-		return $data;
+		return $this->Comment->getModelComments($modelname, $modelid, null);
 	}
 	
 	public function user_comments(){
@@ -32,7 +30,7 @@ class CommentsController extends AppController{
 		$this->autoRender = false;
 		
 		/*if(!$this->RequestHandler->isAjax())
-			return;*/ #Not doing ajax while in development
+			return;*/ #TEMP Not doing ajax while in development
 			
 		$this->log("***********");
 		$this->log(print_r($this->params,true));
