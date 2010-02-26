@@ -27,7 +27,7 @@ body img{
 
 .input label{ /*Cake php form helper labels*/
     color:rgb(100, 100, 100);
-    width: 125px;
+    width: 135px;
     float:left;
     size: 1.1em;
 }
@@ -53,7 +53,6 @@ body img{
     clear: left;
     margin-right: 10px;
 }
-
 
 .votearrows img{
     display:block;
@@ -94,7 +93,7 @@ body img{
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 30px;
-    width: 550px;
+    width: 540px;
     height: 500px;
 }
 
