@@ -2,7 +2,9 @@
 	#params modelname, model_id, username, user_id
 	
 	function get($left, &$comments){
-		/*Binary search*/
+
+		if(empty($comments))
+			return null;
 		
 		$l = 0;
 		$u = count($comments) - 1;
@@ -76,14 +78,31 @@
 			return $element;
 	}
 	
-	function buildCommentHiearchy(&$comments){
-	
+	function buildCommentHiearchy(&$comments, &$doc, &$t){
+		if(empty($comments))
+			return;
+			
+		$rootComments   = array();
+		
+		$nextRoot       = $comments[0];
+		$rootComments[] = $nextRoot;
+		
+		while(($nextRoot = get($nextRoot['Comment']['rght'] + 1, $comments)) != null){
+			$rootComments[] = $nextRoot;
+		}
+		
+		$t->log("Hello");
+		$t->log(print_r($rootComments, true));
+				
+		foreach($rootComments as $root){
+			getComments($root, $comments, $doc);
+		}
 	}
 	
 	$comments = $this->requestAction("comments/model_comments/${modelname}/${model_id}");
 	$doc      = new DOMDocument();
+	buildCommentHiearchy($comments, $doc, $this);
 	
-	getComments($comments[0], $comments, $doc);
 	$this->log($doc->saveHtml());
 ?>
 <div id="comments">
