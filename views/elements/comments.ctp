@@ -54,6 +54,38 @@
 		return $childrens;
 	}
 	
+	function createFormElem($commentid, &$comment, &$dom){
+		$commentForm = $dom->createElement('form');
+		$commentForm->setAttribute('class', 'replyform');
+		
+		$hidden = $dom->createElement('input');
+		$hidden->setAttribute('type', 'hidden');
+		$hidden->setAttribute('value', $commentid);
+		$hidden->setAttribute('name', 'commentid');
+
+		$commentForm->appendChild($hidden);
+		
+		$textDiv = $dom->createElement('div', $comment['Comment']['text']);
+		$textDiv->setAttribute('class', 'commenttext');
+		$commentForm->appendChild($textDiv);
+
+		return $commentForm;
+	}
+	
+	function createCommentDiv($rootComment, $dom){
+			$topOfTree  = $rootComment[0]['depth'] == 0;
+
+			$commentDiv = $dom->createElement('div');
+			$class      = $topOfTree ? 'rootcomment' : 'childcomment';
+			$commentDiv->setAttribute('class', $class);
+
+			$commentDiv->appendChild(createFormElem($rootComment['Comment']['id'],
+															$rootComment, 
+															$dom));
+			
+			return $commentDiv;
+	}
+	
 	function getComments(&$rootComment, &$comments, &$dom){
 		$children = getChildren($rootComment, $comments);
 			
@@ -62,25 +94,20 @@
 			$replys[] = getComments($c, $comments, $dom);
 		}
 		
-		$topOfTree = $rootComment[0]['depth'] == 0;
-		
-		$element   = $dom->createElement('div', $rootComment['Comment']['text']);
-		$class     = $topOfTree ? 'rootcomment' : 'childcomment';
-		$element->setAttribute('class', $class );
-		
-		/*TODO: Set enough comment data to reply to any comment*/
+		$commentDiv = createCommentDiv($rootComment, $dom);
 		
 		foreach($replys as $r){
-			$element->appendChild($r);
+			$commentDiv->appendChild($r);
 		}
 		
+		$topOfTree  = $rootComment[0]['depth'] == 0;
 		if($topOfTree)
-			$dom->appendChild($element);
+			$dom->appendChild($commentDiv);
 		else
-			return $element;
+			return $commentDiv;
 	}
 	
-	function buildCommentHiearchy(&$comments, &$doc, &$t){
+	function buildCommentHiearchy(&$comments, &$doc){
 		if(empty($comments))
 			return;
 			
@@ -89,9 +116,8 @@
 		$nextRoot       = $comments[0];
 		$rootComments[] = $nextRoot;
 		
-		while(($nextRoot = get($nextRoot['Comment']['rght'] + 1, $comments)) != null){
+		while(($nextRoot = get($nextRoot['Comment']['rght'] + 1, $comments)) != null)
 			$rootComments[] = $nextRoot;
-		}
 		
 		foreach($rootComments as $root){
 			getComments($root, $comments, $doc);
@@ -100,16 +126,13 @@
 	
 	$comments = $this->requestAction("comments/model_comments/${modelname}/${model_id}");
 	$doc      = new DOMDocument();
-	buildCommentHiearchy($comments, $doc, $this);
-	
-	$this->log($doc->saveHtml());
+	buildCommentHiearchy($comments, $doc);
 ?>
 
 <div id="comments">
 	
-	<form id="commentsform">
-		<textarea id="commenttext">
-		</textarea>
+	<form id="newcommentform">
+		<textarea id="newcommentformtext"></textarea>
 		<input id="modelname" value="<?php echo $modelname ?>" type="hidden"/>
 		<input id="model_id" value="<?php echo $model_id ?>" type="hidden"/>
 		<input id="submitcomment" type="submit" value="Comment"/>

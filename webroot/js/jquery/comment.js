@@ -7,32 +7,28 @@ function postComment(modelname, model_id, parent_id, commenttext){
 
 function displayComment(commenttext){
     first      = $("#commentslist :first");
-    newcomment = $(commentdiv);
+    newcomment = $(commentdiv); /*TODO: Form correct comment div*/
     newcomment.text(commenttext);
     first.before(newcomment);
 }
 
 function displayReply(replyingto, level, commenttext){
-    parent = $("#comment"+replyingto);
-    reply = $(commentdiv);
-    reply.text(commenttext);
-    parent.after(reply);
 }
 
 $(document).ready(function(){
-	$("#submitcomment").click(function(){
-	    
-	    modelname   = $("#modelname").val(); /*TODO: YUCK, place this stuff in hidden fields*/
+	$("#newcommentform").submit(function(){
+
+	    commenttext = $("#newcommentformtext").val();
+	    $("#submitnewcommentformtext").val("");
+	    modelname   = $("#modelname").val();
 	    model_id    = $("#model_id").val();
-	    commenttext = $("#commenttext").val();
-	    $("#commenttext").val("");
-	    
+
 	    postComment(modelname, model_id, 0, commenttext);
 	    displayComment(commenttext);
 	    
         return false;})
     
-    $(".reply").click(function(){
+    $(".reply").click(function(){ /*TODO: use .submit for the reply forms*/
         meta = $(this).data("meta");
         postComment(meta.modelname, meta.model_id, meta.id, "New Reply");
         displayReply(meta.id, meta.level, "New Reply");
