@@ -66,9 +66,9 @@
 
 		$commentForm->appendChild($hidden);
 		
-		$textDiv = $dom->createElement('div', $comment['Comment']['text']);
-		$textDiv->setAttribute('class', 'commenttext');
-		$commentForm->appendChild($textDiv);
+		$textp = $dom->createElement('p', $comment['Comment']['text']);
+		$textp->setAttribute('class', 'commenttext');
+		$commentForm->appendChild($textp);
 
 		return $commentForm;
 	}

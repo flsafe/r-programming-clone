@@ -27,7 +27,7 @@
 				if($loggedin){
 					echo $html->link("$sessionusername", array('controller'=>'users', 'action'=>'edit')) . $space ;
 					echo $html->link('Logout', array('controller'=>'users', 'action'=>'logout')) . $space;
-					echo "<label id='loggedin'/>"; #Used to determine if the user is logged in from jquery
+					echo "<label id=\"loggedin\" name=\"{$sessionusername}\"/>"; #Used to determine if the user is logged in from jquery
 				}
 				else{
 					echo $html->link('Login', array('controller'=>'users', 'action'=>'login')) . $space;
