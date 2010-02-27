@@ -57,7 +57,7 @@
 	function getComments(&$rootComment, &$comments, &$dom){
 		$children = getChildren($rootComment, $comments);
 			
-		$replys = array();
+		$replys   = array();
 		foreach($children as $c){
 			$replys[] = getComments($c, $comments, $dom);
 		}
@@ -67,6 +67,8 @@
 		$element   = $dom->createElement('div', $rootComment['Comment']['text']);
 		$class     = $topOfTree ? 'rootcomment' : 'childcomment';
 		$element->setAttribute('class', $class );
+		
+		/*TODO: Set enough comment data to reply to any comment*/
 		
 		foreach($replys as $r){
 			$element->appendChild($r);
