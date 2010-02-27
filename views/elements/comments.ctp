@@ -1,6 +1,7 @@
 <?php 
 	#params modelname, model_id, username, user_id
-	
+
+	/*TODO: This needs to go into a helper*/
 	function get($left, &$comments){
 
 		if(empty($comments))
