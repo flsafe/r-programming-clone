@@ -286,12 +286,19 @@ body img{
 
 .childcomment{
     margin-left: 10px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border: 1px solid #999;
 }
 
 .rootcomment{
     margin-bottom: 10px;
+    border: 1px solid #999;
+}
+
+.commentmeta{
+    size: 1.0em;
+    color: gray;
 }
 
 /*----------Footer------------------*/

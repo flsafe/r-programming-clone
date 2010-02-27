@@ -1,5 +1,8 @@
 <?php
+App::import('Sanitize');
+
 class SanitizeUtilHelper extends Helper{
+
 
 
   public function htmlEsc(&$modeldata, $fields = array()){
@@ -11,7 +14,7 @@ class SanitizeUtilHelper extends Helper{
 		$unescape    = array('&#40;', '&#41;');
 		$replacewith = array('(', ')');
 
-    App::import('Sanitize');
+
 
     foreach($fields as $field){
     	$modeldata[$field] = Sanitize::html($modeldata[$field]);
@@ -23,7 +26,6 @@ class SanitizeUtilHelper extends Helper{
   }
 
 	public function htmlEscStr($str){
-		App::import('Sanitize');
 		return Sanitize::html($str);
 	}
 }

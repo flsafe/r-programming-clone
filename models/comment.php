@@ -18,7 +18,7 @@ class Comment extends AppModel{
       $modelname = Sanitize::escape($modelname);
       $model_id  = Sanitize::escape($model_id);
       $user_id   = Sanitize::escape($user_id);
-      return $this->query("Select Comment.id, Comment.lft, Comment.rght, Comment.text, User.username, User.id, (COUNT(parent.id)-1) AS depth 
+      return $this->query("Select Comment.id, Comment.lft, Comment.rght, Comment.text, Comment.created, User.username, User.id, (COUNT(parent.id)-1) AS depth 
                                           FROM comments AS Comment, 
                                                comments AS parent  
 																					LEFT JOIN users as User ON (user_id = User.id)
