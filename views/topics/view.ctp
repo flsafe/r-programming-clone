@@ -1,6 +1,7 @@
 <?php
 	echo $javascript->link('jquery/jquery.min', false);
 	echo $javascript->link('jquery/topics', false);
+	echo $javascript->link('util', false);
  	echo $javascript->link('jquery/vote', false);
 	
  	if(!isset($topic['User']))

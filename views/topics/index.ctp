@@ -1,9 +1,10 @@
 <h1>Vote On Tommorrow's Puzzle!</h1>
 
 <?php 
-	$javascript->link('jquery/jquery.min', false);
- 	$javascript->link('jquery/topics', false);
- 	$javascript->link('jquery/vote', false);
+	echo $javascript->link('jquery/jquery.min', false);
+ 	echo $javascript->link('jquery/topics', false);
+	echo $javascript->link('util', false);
+ 	echo $javascript->link('jquery/vote', false);
 ?>
 
 

@@ -1,8 +1,15 @@
-/*There is a convention here. A new top level comment is called just
-  a 'comment' and its class is 'rootcomment'. A comment that is a reply 
-  to another comment is called a 'reply'. This convention is reflected 
-  in the class names and the id's in the xhtml.*/
+/*
+Client side comment logic. Look at comments.ctp to see where
+all this html is generated.
+
+
+There is a convention here. A new top level comment is called just
+a 'comment' and its class is 'rootcomment'. A comment that is a reply 
+to another comment is called a 'reply'. This convention is reflected 
+in the class names and the id's in the xhtml.
+*/
   
+//Used to wrap new comments
 commentdiv     = "<div class=\"rootcomment\"></div>";
 commenttextdiv = "<div class=\"commenttext\"></div>";
 
@@ -26,7 +33,10 @@ function displayReply(replyingto, level, commenttext){
 
 $(document).ready(function(){
 	$("#newcommentform").submit(function(){
-
+        
+        if(bailIfNotLoggedIn())
+            return false;
+        
 	    commenttext = $("#newcommentformtext").val();
 	    $("#newcommentformtext").val("");
 	    modelname   = $("#modelname").val();

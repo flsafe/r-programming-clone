@@ -1,7 +1,8 @@
 <?php
  	echo $javascript->link('jquery/jquery.min', false);
+	echo $javascript->link('util', false);
 	echo $javascript->link('jquery/comment');
-	echo $javascript->link('jquery/submissions', false); #TODO: You can use jquery data to do this
+	echo $javascript->link('jquery/submissions', false); #TODO: Need a better way to do this
 	echo $javascript->link('jquery/vote', false);
   $sanitizeUtil->htmlEsc($submission['Submission'], array('title', 'description1', 'id'));
 ?>
@@ -37,6 +38,7 @@
 		<p>
 			<?php echo $markdown->parse($submission['Submission']['description1']); ?>
 		</p>
+		
   </div>
 
 	<div id='viewsubmissioncode'>

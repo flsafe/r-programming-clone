@@ -1,12 +1,19 @@
+/**
+*Client side vote logic. Take a look at the vote.ctp file
+*to see where all the html.
+*/
+
+//No javascript trim function? Puh-leeze
 String.prototype.trim = function () {
   return this.replace(/^\s*(\S*(\s+\S+)*)\s*$/, "$1");
 };
 
+//These are the up and down vote arrow images that
+//change when the user upvotes or downvotes
 up      = '/img/up_arrow.gif';
 down    = '/img/down_arrow.gif';
 upred   = '/img/up_arrow_red.gif';
 downred = '/img/down_arrow_red.gif';
-login   = '/users/login';
 
 function vote(type, model, id){
     $.post('/votes/vote/'+type+'/'+model+'/'+id, function(data){
@@ -42,27 +49,23 @@ function changeVoteDisplay(type, id){
     $(imgid).attr('src', src);
 }
 
-function notLoggedIn(){
-    return ! $('#loggedin').length;
-}
-
 $(document).ready(function(){
 	$('.upvote').click(function(){
 	    
-    if(notLoggedIn()){
-        window.location = login;
+    if(bailIfNotLoggedIn())
         return;
-    }
-            
+    
+    //The up/down vote id(s) are in the form 'upvote(N)' or 'downvote(N)' where (N) is the 
+    //id of the model object the user is voting on. This convention is followed for
+    //points(N) and images so you'll see this type of replace in several places.
 	var modelid = $(this).attr('id').replace("upvote","");
 	changeVoteDisplay('up', modelid);
     vote("up", model, modelid);});
 	
 	$('.downvote').click(function(){
-	    if(notLoggedIn()){
-	        window.location = login;
-	        return;
-        }
+	    
+        if(bailIfNotLoggedIn())
+            return;
 	        
 		var modelid = $(this).attr('id').replace("downvote","");
         changeVoteDisplay('down', modelid);

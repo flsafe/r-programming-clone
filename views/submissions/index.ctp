@@ -1,6 +1,7 @@
 <?php 
 	echo $javascript->link('jquery/jquery.min', false);
-	echo  $javascript->link('jquery/submissions', false); #TODO: You can use jquery data to do this?
+	echo  $javascript->link('jquery/submissions', false); #TODO: Kind of a hack. What's the better way?
+	echo $javascript->link('util', false);
 	echo  $javascript->link('jquery/vote', false);
 ?>
 
