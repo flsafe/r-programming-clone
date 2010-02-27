@@ -28,7 +28,8 @@ function displayComment(commenttext){
     first.before(newcomment);
 }
 
-function displayReply(replyingto, level, commenttext){
+function displayReply(){
+    
 }
 
 $(document).ready(function(){
@@ -47,6 +48,7 @@ $(document).ready(function(){
         return false;})
     
     $(".reply").click(function(){ /*TODO: use .submit for the reply forms*/
+        
         return false;});
         
     return false;

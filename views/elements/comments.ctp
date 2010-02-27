@@ -8,12 +8,12 @@
 
 <div id="comments">
 	
-	<form id="newcommentform">
-		<textarea id="newcommentformtext"></textarea>
-		<input id="modelname" value="<?php echo $modelname ?>" type="hidden"/>
-		<input id="model_id" value="<?php echo $model_id ?>" type="hidden"/>
-		<input id="submitcomment" type="submit" value="Comment"/>
-	</form>
+	<?php 
+		if($loggedin == true){
+			echo $this->element('submitcommentform', array('modelname'=>$modelname,
+																								 'model_id'=>$model_id));
+		}
+	?>
 
 	<div id="commentslist">
 		<?php echo $doc->saveHtml(); ?>

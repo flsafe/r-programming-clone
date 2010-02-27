@@ -126,6 +126,10 @@ class CommentsBuilderHelper extends AppHelper{
 		$textp->setAttribute('class', 'commenttext');
 		$commentForm->appendChild($commentMeta);
 		$commentForm->appendChild($textp);
+		$replyLink = $dom->createElement('a', 'reply');
+		$replyLink->setAttribute('href', '#');
+		$replyLink->setAttribute('class', 'reply');
+		$commentForm->appendChild($replyLink);
 
 		return $commentForm;
 	}

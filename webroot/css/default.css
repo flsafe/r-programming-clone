@@ -285,20 +285,18 @@ body img{
 /*----------Comments----------------*/
 
 .childcomment{
-    margin-left: 10px;
+    margin-left: 30px;
     margin-bottom: 5px;
     margin-top: 5px;
-    border: 1px solid #999;
 }
 
 .rootcomment{
     margin-bottom: 10px;
-    border: 1px solid #999;
 }
 
 .commentmeta{
-    size: 1.0em;
-    color: gray;
+    font-size: 0.90em;
+    color: rgb(150, 150, 150);
 }
 
 /*----------Footer------------------*/
