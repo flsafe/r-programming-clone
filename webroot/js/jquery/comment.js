@@ -25,21 +25,24 @@ function postComment(modelname, model_id, parent_id, commenttext){
 }
 
 function postReply(thiselem){
+    var parent         = thiselem.parent();
     var modelname      = $("#modelname").val();
 	var model_id       = $("#model_id").val();
 	var comment_id     = parent.find("[name=commentid]").val();
     var replytext      = parent.find(".replyformtext").val();
     
-	var parent         = thiselem.parent();
+
     
     postComment(modelname, model_id, comment_id, replytext);
     parent.find(".replyformtext").remove();
     parent.find("[type=submit]").remove();
 
-    displayReply(replydiv, commenttextspan, parent)
+    displayReply(replydiv, commenttextspan, replytext, parent)
 }
 
-function displayReply(newcommentdiv, textspan, parentelem){
+function displayReply(newcommentdiv, textspan, replytext, parentelem){
+    if(replytext == "")
+        return;
     var newcomment     = $(newcommentdiv);
     var text           = $(textspan);
 
@@ -62,6 +65,11 @@ function displayComment(commenttext){
 }
 
 function displayReplyForm(thiselem){
+    if($.find('.replyformtext').length > 0)
+        return;
+        
+    reply = $(replyform);
+    reply.find(".replyformtext").first().focus();
     thiselem.after(replyform);
 }
 
