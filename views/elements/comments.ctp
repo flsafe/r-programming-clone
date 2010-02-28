@@ -3,6 +3,8 @@
 
 	$comments = $this->requestAction("comments/model_comments/${modelname}/${model_id}");
 	$doc      = new DOMDocument();
+	if($loggedin)
+		$commentsBuilder->displayReplys = true;
 	$commentsBuilder->buildCommentHiearchy($comments, $doc);
 ?>
 

@@ -24,9 +24,19 @@ function postReply(thiselem){
     modelname      = $("#modelname").val();
 	model_id       = $("#model_id").val();
 	comment        = thiselem.parent();
+	
 	comment_id     = comment.find("[name=commentid]").val();
     replytext      = comment.find(".replyformtext").val();
+    
     postComment(modelname, model_id, comment_id, replytext);
+    comment.find(".replyformtext").remove();
+    comment.find("[type=submit]").remove();
+
+    newcomment = $(commentdiv);
+    text = $(commenttextdiv);
+    text.text(replytext);
+    newcomment.append(text);
+    comment.append(newcomment);
 }
 
 function displayComment(commenttext){
@@ -58,7 +68,7 @@ $(document).ready(function(){
 	    displayComment(commenttext);
         return false;})
     
-    $(".reply").click(function(){ /*TODO: use .submit for the reply forms*/
+    $(".reply").click(function(){
         displayReplyForm($(this))
         return false;});
         

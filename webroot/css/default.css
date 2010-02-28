@@ -1,7 +1,7 @@
 body{
     font-family: Arial, "MS Trebuchet", sans-serif;
     font-size: small;
-    color: black;
+    color: rgb(30, 30, 30);
     background-color: white;
 }
 
@@ -283,20 +283,30 @@ body img{
 }
 
 /*----------Comments----------------*/
+#comments{
+    margin-top: 50px;
+}
+
+.commentslist{
+    
+}
 
 .childcomment{
     margin-left: 30px;
-    margin-bottom: 5px;
-    margin-top: 5px;
 }
 
-.rootcomment{
+.childcomment, .rootcomment{
+    margin-top: 10px;
     margin-bottom: 10px;
+    font-size:14px;
 }
 
 .commentmeta{
     font-size: 0.90em;
     color: rgb(150, 150, 150);
+}
+
+.commenttext{
 }
 
 /*----------Footer------------------*/

@@ -1,6 +1,8 @@
 <?php
 class CommentsBuilderHelper extends AppHelper{
 	
+	public $displayReplys = false;
+	
 	function get($left, &$comments){
 
 		if(empty($comments))
@@ -116,20 +118,25 @@ class CommentsBuilderHelper extends AppHelper{
 		$created     = $datetime->format('U');
 		$now         = new DateTime();
 		$now         = $now->format('U');
-		$timeAgo = $this->timeAgo($now, $created);
+		$timeAgo     = $this->timeAgo($now, $created);
 			
-		$username = $comment['User']['username'];			
+		$username    = $comment['User']['username'];			
 		$commentMeta->appendChild($dom->createTextNode("by {$username} {$timeAgo}"));
 		
 		
-		$textp = $dom->createElement('p', $comment['Comment']['text']);
-		$textp->setAttribute('class', 'commenttext');
+		$text = $dom->createElement('span', $comment['Comment']['text']);
+		$text->setAttribute('class', 'commenttext');
 		$commentForm->appendChild($commentMeta);
-		$commentForm->appendChild($textp);
-		$replyLink = $dom->createElement('a', 'reply');
-		$replyLink->setAttribute('href', '#');
-		$replyLink->setAttribute('class', 'reply');
-		$commentForm->appendChild($replyLink);
+		$commentForm->appendChild($dom->createElement('br'));
+		$commentForm->appendChild($text);
+		
+		if($this->displayReplys){
+			$commentForm->appendChild($dom->createElement('br'));
+			$replyLink = $dom->createElement('a', 'reply');
+			$replyLink->setAttribute('href', '#');
+			$replyLink->setAttribute('class', 'reply');
+			$commentForm->appendChild($replyLink);
+		}
 
 		return $commentForm;
 	}
