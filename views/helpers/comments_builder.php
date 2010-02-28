@@ -1,9 +1,22 @@
 <?php
 class CommentsBuilderHelper extends AppHelper{
-	
+	/**
+	 * Used to display the little 'reply' link under comment text.
+	 * These aren't shown when the use is not loggedin.
+	 */
 	public $displayReplys = false;
 	
-	function get($left, &$comments){
+	/**
+	*Used to process comment data from the data base
+	*/
+	private $markdown;
+	private $sanitizeUtil;
+	
+	/**
+	 * Get the comment with its Comment.lft field
+	 * equal to $left 
+	 */
+	private function get($left, &$comments){
 
 		if(empty($comments))
 			return null;
@@ -27,7 +40,11 @@ class CommentsBuilderHelper extends AppHelper{
 		return null;
 	}
 	
-	function nextSibling(&$comment, &$rootComment, &$comments){
+	/**
+	 * Get the next sibling of $comment. $rootComment
+	 * is the parent of $comment.
+	 */
+	private function nextSibling(&$comment, &$rootComment, &$comments){
 		$nextLeftVal = $comment['Comment']['rght'] + 1;
 		$noSibling   = $nextLeftVal >= $rootComment['Comment']['rght'];
 		
@@ -37,7 +54,10 @@ class CommentsBuilderHelper extends AppHelper{
 		return $this->get($nextLeftVal, $comments);
 	}
 	
-	function getChildren(&$rootComment, &$comments){
+	/**
+	 * Get the children of $rootComment.
+	 */
+	private function getChildren(&$rootComment, &$comments){
 		$noChildren = $rootComment['Comment']['lft']+ 1 == $rootComment['Comment']['rght'];
 		
 		if($noChildren)
@@ -56,14 +76,19 @@ class CommentsBuilderHelper extends AppHelper{
 		return $childrens;
 	}
 	
+	/**
+	 * Returns a rough estimate of how long ago
+	 * $created was compared to $now. Returns
+	 * a string in the form '(N) [years,months, days, hours, minutes, seconds] ago'.
+	 * 
+	 */
 	private function timeAgo($now, $created){
-		$diff = $now - $created;
-		$this->log("created: $created now: $now");
+		$diff    = $now - $created;
 		$timeAgo = "";
 		
 		$secondsPerHour  = 3600;
 		$secondsPerDay   = $secondsPerHour * 24;
-		$secondsPerMonth = $secondsPerDay * 30; /*Not worried about being exactly accurate*/
+		$secondsPerMonth = $secondsPerDay * 30;
 		$secondsPerYear  = $secondsPerMonth * 12;
 		$secondsPerMin   = 60;
 
@@ -88,8 +113,8 @@ class CommentsBuilderHelper extends AppHelper{
 			$timeAgo = "$t hour{$s} ago";
 		}
 		elseif($diff > $secondsPerMin){
-			$t = floor($diff / $secondsPerMin);
-			$s = $t == 1 ? '':'s';
+			$t       = floor($diff / $secondsPerMin);
+			$s       = $t == 1 ? '':'s';
 			$timeAgo = "$t minute{$s} ago";
 		}
 		else{
@@ -99,10 +124,16 @@ class CommentsBuilderHelper extends AppHelper{
 		return $timeAgo;
 	}
 	
-	function createFormElem($commentid, &$comment, &$dom){
+	/**
+	 * Each comment is stored in a form containing hidden
+	 * fields that help identify the comment on replies, meta data, and the
+	 * comment text.
+	 */
+	private function createFormElem($commentid, &$comment, &$dom){
 		$commentForm = $dom->createElement('form');
 		$commentForm->setAttribute('class', 'replyform');
 		
+		/*Identifiying data for replies to this comment*/
 		$hidden = $dom->createElement('input');
 		$hidden->setAttribute('type', 'hidden');
 		$hidden->setAttribute('value', $commentid);
@@ -110,7 +141,7 @@ class CommentsBuilderHelper extends AppHelper{
 
 		$commentForm->appendChild($hidden);
 		
-		
+		/*Meta data*/
 		$commentMeta = $dom->createElement('span');
 		$commentMeta->setAttribute('class', 'commentmeta');
 		
@@ -123,24 +154,34 @@ class CommentsBuilderHelper extends AppHelper{
 		$username    = $comment['User']['username'];			
 		$commentMeta->appendChild($dom->createTextNode("by {$username} {$timeAgo}"));
 		
+		/*Comment text*/
+		$this->sanitizeUtil->htmlEsc($comment['Comment'], array('text'));
 		
-		$text = $dom->createElement('span', $comment['Comment']['text']);
+		$text = $dom->createElement('span', $this->markdown->parse($comment['Comment']['text']));
 		$text->setAttribute('class', 'commenttext');
+		
 		$commentForm->appendChild($commentMeta);
 		$commentForm->appendChild($dom->createElement('br'));
 		$commentForm->appendChild($text);
 		
+		/*Reply links are visible if the user is logged in*/
 		if($this->displayReplys){
 			$commentForm->appendChild($dom->createElement('br'));
 			$replyLink = $dom->createElement('a', 'reply');
 			$replyLink->setAttribute('href', '#');
 			$replyLink->setAttribute('class', 'reply');
+			
 			$commentForm->appendChild($replyLink);
 		}
 
 		return $commentForm;
 	}
 	
+	/**
+	 * Each comment is inside a div. The div itself contains
+	 * a form with the comment data in it, followed
+	 * by more comment divs.
+	 */
 	function createCommentDiv($rootComment, $dom){
 			$topOfTree  = $rootComment[0]['depth'] == 0;
 
@@ -155,7 +196,11 @@ class CommentsBuilderHelper extends AppHelper{
 			return $commentDiv;
 	}
 	
-	function getComments(&$rootComment, &$comments, &$dom){
+	/*
+	*Build the html comments bottom to top starting
+	*with the leaf comments.
+	*/
+	private function getComments(&$rootComment, &$comments, &$dom){
 		$children = $this->getChildren($rootComment, $comments);
 			
 		$replys   = array();
@@ -176,15 +221,22 @@ class CommentsBuilderHelper extends AppHelper{
 			return $commentDiv;
 	}
 	
-	function buildCommentHiearchy(&$comments, &$doc){
+	/**
+	 * Builds a a div structure containing nested
+	 * comments. The html structure is written to $dom.
+	 */
+	function buildCommentHiearchy(&$comments, &$doc, $markdown, $sanitizeUtil){
 		if(empty($comments))
 			return;
 			
-		$rootComments   = array();
+		$this->markdown     = $markdown;
+		$this->sanitizeUtil = $sanitizeUtil;
 		
-		$nextRoot       = $comments[0];
-		$rootComments[] = $nextRoot;
-		
+		/*Comments are a forest. Get all the root comments
+		  so we can build the nested comment structure for each.*/
+		$rootComments       = array();
+		$nextRoot           = $comments[0];
+		$rootComments[]     = $nextRoot;
 		while(($nextRoot = $this->get($nextRoot['Comment']['rght'] + 1, $comments)) != null)
 			$rootComments[] = $nextRoot;
 		

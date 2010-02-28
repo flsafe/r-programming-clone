@@ -3,52 +3,58 @@ Client side comment logic. Look at comments_builder.php to see where
 all this html is generated.
 
 
-There is a convention here. A new top level comment is called just
+There is a convention here. A new top level comment is called 
 a 'comment' and its class is 'rootcomment'. A comment that is a reply 
 to another comment is called a 'reply'. This convention is reflected 
 in the class names and the id's in the xhtml.
 */
   
 //Used to wrap new comments
-commentdiv      = "<div class=\"rootcomment\"></div>";
-replydiv        = '<div class="childcomment"></div>';
-commentmetaspan = '<span class="commentmeta">by $name just a moment ago</span>';
-commenttextspan = "<span class=\"commenttext\"></span>";
-replyform       = '<div><textarea class="replyformtext"></textarea></div><input type="submit" value="Reply"/>';
+var commentdiv      = "<div class=\"rootcomment\"></div>";
+var commentmetaspan = '<span class="commentmeta">by $name just a moment ago</span>';
+var commenttextspan = "<span class=\"commenttext\"></span>";
+
+var replyform       = '<div><textarea class="replyformtext"></textarea></div><input type="submit" value="Reply"/>';
+var replydiv        = '<div class="childcomment"></div>';
 
 function postComment(modelname, model_id, parent_id, commenttext){
     if(commenttext == "")
         return;
-    url = "/comments/add/"+modelname+"/"+model_id+"/"+parent_id+"/";
+    var url = "/comments/add/"+modelname+"/"+model_id+"/"+parent_id+"/";
     $.post(url, {text: commenttext});
 }
 
 function postReply(thiselem){
-    modelname      = $("#modelname").val();
-	model_id       = $("#model_id").val();
-	parent        = thiselem.parent();
-	
-	comment_id     = parent.find("[name=commentid]").val();
-    replytext      = parent.find(".replyformtext").val();
+    var modelname      = $("#modelname").val();
+	var model_id       = $("#model_id").val();
+	var comment_id     = parent.find("[name=commentid]").val();
+    var replytext      = parent.find(".replyformtext").val();
+    
+	var parent         = thiselem.parent();
     
     postComment(modelname, model_id, comment_id, replytext);
     parent.find(".replyformtext").remove();
     parent.find("[type=submit]").remove();
 
-    newcomment     = $(replydiv);
-    text           = $(commenttextspan);
-    //The html has a label with the name attribute set to the username
+    displayReply(replydiv, commenttextspan, parent)
+}
+
+function displayReply(newcommentdiv, textspan, parentelem){
+    var newcomment     = $(newcommentdiv);
+    var text           = $(textspan);
+
     newcomment.append(commentmetaspan.replace("$name", $('#loggedin').attr('name')) + "<br/>");
     text.text(replytext);
     newcomment.append(text);
-    parent.find(".replyform").first().after(newcomment);
-    
+    parentelem.find(".replyform").first().after(newcomment); //Add to top of replies
 }
 
 function displayComment(commenttext){
-    first      = $("#commentslist :first");
-    newcomment = $(commentdiv); 
-    text       = $(commenttextdiv);
+    var first      = $("#commentslist :first");
+    var newcomment = $(commentdiv); 
+    var text       = $(commenttextspan);
+    
+    newcomment.append(commentmetaspan.replace("$name", $('#loggedin').attr('name')) + "<br/>");
     text.text(commenttext); /*Don't forget this escapes the text*/
     newcomment.append(text);
     
@@ -65,10 +71,10 @@ $(document).ready(function(){
         if(bailIfNotLoggedIn())
             return false;
         
-	    commenttext = $("#newcommentformtext").val();
+	    var commenttext = $("#newcommentformtext").val();
 	    $("#newcommentformtext").val("");
-	    modelname   = $("#modelname").val();
-	    model_id    = $("#model_id").val();
+	    var modelname   = $("#modelname").val();
+	    var model_id    = $("#model_id").val();
 
 	    postComment(modelname, model_id, 0, commenttext);
 	    displayComment(commenttext);

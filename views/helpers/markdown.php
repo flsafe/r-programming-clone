@@ -1,10 +1,9 @@
 <?php
+App::import('Vendor', 'markdown-extra/markdown');
+
 class MarkdownHelper extends AppHelper{
 
   function parse($text){
-
-    App::import('Vendor', 'markdown-extra/markdown');
-
     return $this->output(Markdown($text));
   }
 }

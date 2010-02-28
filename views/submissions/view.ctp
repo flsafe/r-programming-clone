@@ -4,7 +4,6 @@
 	echo $javascript->link('jquery/comment');
 	echo $javascript->link('jquery/submissions', false); #TODO: Need a better way to do this
 	echo $javascript->link('jquery/vote', false);
-  $sanitizeUtil->htmlEsc($submission['Submission'], array('title', 'description1', 'id'));
 ?>
 
 <div id="viewsubmission">
@@ -13,7 +12,8 @@
 		
 		<div id="viewsubmissionheadtitle">
 			<?php
-			 
+			  $sanitizeUtil->htmlEsc($submission['Submission'], array('title', 'description1', 'id'));
+			
 				$id       = $submission['Submission']['id'];
 				$title    = $submission['Submission']['title'];
 				$size     = $submission['Submission']['size'];
@@ -42,10 +42,10 @@
   </div>
 
 	<div id='viewsubmissioncode'>
-	<?php 
-			$code = $submission['Submission']['text1']; 
-			echo $syntaxHighlighter->highlight($code, 'java');
-	?>
+		<?php 
+				$code = $submission['Submission']['text1']; 
+				echo $syntaxHighlighter->highlight($code, 'java');
+		?>
 	</div>
 
 	<?php
@@ -55,7 +55,7 @@
 		echo $this->element('comments', array('modelname'=>'Submission', 
 															'model_id' => $submission['Submission']['id'],
 															'username' => $submission['User']['username'],
-															'user_id'=>$submission['User']['id']));
+															'user_id'  => $submission['User']['id']));
 	?>
 
 </div>
