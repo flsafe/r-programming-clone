@@ -138,7 +138,6 @@ class CommentsBuilderHelper extends AppHelper{
 		$hidden->setAttribute('type', 'hidden');
 		$hidden->setAttribute('value', $commentid);
 		$hidden->setAttribute('name', 'commentid');
-
 		$commentForm->appendChild($hidden);
 		
 		/*Meta data*/
@@ -155,20 +154,27 @@ class CommentsBuilderHelper extends AppHelper{
 		$commentMeta->appendChild($dom->createTextNode("by {$username} {$timeAgo}"));
 		
 		/*Comment text*/
-		#TODO: No markdown support in comments right now.
-		//$this->sanitizeUtil->htmlEsc($comment['Comment'], array('text')); Placing in node text escapes everything :(
-		$text = $dom->createElement('div', /*$this->markdown->parse(*/$comment['Comment']['text']/*)*/);
-		$text->setAttribute('class', 'commenttext');
-		
+		$this->sanitizeUtil->htmlEsc($comment['Comment'], array('text'));
+
 		$commentForm->appendChild($commentMeta);
-		$commentForm->appendChild($text);
+		
+		$commentDoc  = new DOMDocument();
+		$t           = $this->markdown->parse($comment['Comment']['text']);
+		if($commentDoc->loadHTML("<div class=\"commenttext\">$t</div>")){
+			try{
+				$textnode    = $commentDoc->getElementsByTagName('div')->item(0);
+				$textnode    = $dom->importNode($textnode, true);
+				$commentForm->appendChild($textnode);
+			}
+			catch(Exception $e){/*Nothing to do*/}
+	 	}
+
 		
 		/*Reply links are visible if the user is logged in*/
 		if($this->displayReplys){
 			$replyLink = $dom->createElement('a', 'reply');
 			$replyLink->setAttribute('href', '#');
 			$replyLink->setAttribute('class', 'reply');
-			
 			$commentForm->appendChild($replyLink);
 		}
 
