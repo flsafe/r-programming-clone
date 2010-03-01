@@ -344,3 +344,7 @@ when the meta data is embeded in divs or spans
     color: rgb(100, 100, 100);
     font-size: 1em;
 }
+
+.meta a:hover{
+    text-decoration: underline;
+}
