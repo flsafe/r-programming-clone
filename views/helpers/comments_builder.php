@@ -155,9 +155,9 @@ class CommentsBuilderHelper extends AppHelper{
 		$commentMeta->appendChild($dom->createTextNode("by {$username} {$timeAgo}"));
 		
 		/*Comment text*/
-		$this->sanitizeUtil->htmlEsc($comment['Comment'], array('text'));
-		
-		$text = $dom->createElement('div', $this->markdown->parse($comment['Comment']['text']));
+		#TODO: No markdown support in comments right now.
+		//$this->sanitizeUtil->htmlEsc($comment['Comment'], array('text')); Placing in node text escapes everything :(
+		$text = $dom->createElement('div', /*$this->markdown->parse(*/$comment['Comment']['text']/*)*/);
 		$text->setAttribute('class', 'commenttext');
 		
 		$commentForm->appendChild($commentMeta);
