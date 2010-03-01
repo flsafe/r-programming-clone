@@ -60,8 +60,11 @@ function displayComment(commenttext){
     newcomment.append(commentmetaspan.replace("$name", $('#loggedin').attr('name')) + "<br/>");
     text.text(commenttext); /*Don't forget this escapes the text*/
     newcomment.append(text);
-    
-    first.before(newcomment);
+
+    if(!first.length)
+        $("#commentslist").append(newcomment);
+    else
+        first.before(newcomment);
 }
 
 function displayReplyForm(thiselem){

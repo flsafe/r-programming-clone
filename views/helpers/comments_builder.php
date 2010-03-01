@@ -153,7 +153,7 @@ class CommentsBuilderHelper extends AppHelper{
 		$username    = $comment['User']['username'];			
 		$commentMeta->appendChild($dom->createTextNode("by {$username} {$timeAgo}"));
 		
-		/*Comment text*/
+		/*Append the meta and comment text*/
 		$this->sanitizeUtil->htmlEsc($comment['Comment'], array('text'));
 
 		$commentForm->appendChild($commentMeta);
@@ -169,7 +169,6 @@ class CommentsBuilderHelper extends AppHelper{
 			catch(Exception $e){/*Nothing to do*/}
 	 	}
 
-		
 		/*Reply links are visible if the user is logged in*/
 		if($this->displayReplys){
 			$replyLink = $dom->createElement('a', 'reply');
