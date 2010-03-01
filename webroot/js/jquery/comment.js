@@ -21,7 +21,6 @@ function postComment(modelname, model_id, parent_id, commenttext){
     if(commenttext == "")
         return;
     var url = "/comments/add/"+modelname+"/"+model_id+"/"+parent_id+"/";
-    alert(commenttext);
     $.post(url, {text: commenttext});
 }
 
@@ -52,6 +51,8 @@ function displayReply(newcommentdiv, textspan, replytext, parentelem){
 }
 
 function displayComment(commenttext){
+    if(commenttext == "")
+        return;
     var first      = $("#commentslist :first");
     var newcomment = $(commentdiv); 
     var text       = $(commenttextspan);

@@ -10,7 +10,7 @@ class SubmissionsController extends AppController{
 	
 	public $paginate   = array(
 			'limit'        => '25',
-			'order'        => array('Submission.rank'  => 'desc'),
+			'order'        => array('Submission.rank'     => 'desc'),
 			'conditions'   => array('Topic.current_topic' => '1'));
 	
 	function beforeFilter(){

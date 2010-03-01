@@ -291,6 +291,16 @@ body img{
     
 }
 
+#newcommentformtext{
+    width: 400px;
+    height: 100px;
+}
+
+.replyformtext{
+    width: 400px;
+    height: 100px;
+}
+
 .childcomment{
     margin-left: 30px;
 }
