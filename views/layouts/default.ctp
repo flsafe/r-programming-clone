@@ -17,7 +17,7 @@
 	
 	<div id="header">
 
-		<a href="/submissions/index/"><img src="/img/codekettllogo.jpg"/></a>
+		<a href="/submissions/index/"><img src="/img/codekettllogo.png"/></a>
 		<img id="beta" src="/img/beta.png"/ height="50"/>
 
 		<div id="menu">

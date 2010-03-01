@@ -67,9 +67,9 @@ body img{
 
 #header{
     border-bottom: 3px  solid rgb(0, 129, 163);
-    padding: 5px;
+    padding: 0px;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 #header a{
@@ -79,12 +79,12 @@ body img{
 
 #menu{
     float: right;
-    padding: 82px 0px 0px 0px;
+    padding: 95px 0px 0px 0px;
 }
 
 #beta{
     position: absolute;
-    left: 250px;
+    left: 275px;
 }
 
 /*--------------Login Page--------------*/

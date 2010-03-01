@@ -157,16 +157,14 @@ class CommentsBuilderHelper extends AppHelper{
 		/*Comment text*/
 		$this->sanitizeUtil->htmlEsc($comment['Comment'], array('text'));
 		
-		$text = $dom->createElement('span', $this->markdown->parse($comment['Comment']['text']));
+		$text = $dom->createElement('div', $this->markdown->parse($comment['Comment']['text']));
 		$text->setAttribute('class', 'commenttext');
 		
 		$commentForm->appendChild($commentMeta);
-		$commentForm->appendChild($dom->createElement('br'));
 		$commentForm->appendChild($text);
 		
 		/*Reply links are visible if the user is logged in*/
 		if($this->displayReplys){
-			$commentForm->appendChild($dom->createElement('br'));
 			$replyLink = $dom->createElement('a', 'reply');
 			$replyLink->setAttribute('href', '#');
 			$replyLink->setAttribute('class', 'reply');

@@ -21,6 +21,7 @@ function postComment(modelname, model_id, parent_id, commenttext){
     if(commenttext == "")
         return;
     var url = "/comments/add/"+modelname+"/"+model_id+"/"+parent_id+"/";
+    alert(commenttext);
     $.post(url, {text: commenttext});
 }
 
@@ -30,8 +31,6 @@ function postReply(thiselem){
 	var model_id       = $("#model_id").val();
 	var comment_id     = parent.find("[name=commentid]").val();
     var replytext      = parent.find(".replyformtext").val();
-    
-
     
     postComment(modelname, model_id, comment_id, replytext);
     parent.find(".replyformtext").remove();
