@@ -41,6 +41,7 @@ function postReply(thiselem){
 function displayReply(newcommentdiv, textspan, replytext, parentelem){
     if(replytext == "")
         return;
+        
     var newcomment     = $(newcommentdiv);
     var text           = $(textspan);
 
@@ -53,6 +54,7 @@ function displayReply(newcommentdiv, textspan, replytext, parentelem){
 function displayComment(commenttext){
     if(commenttext == "")
         return;
+        
     var first      = $("#commentslist :first");
     var newcomment = $(commentdiv); 
     var text       = $(commenttextspan);
