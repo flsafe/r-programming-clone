@@ -16,7 +16,7 @@ class CommentsController extends AppController{
 		if(! in_array($modelname, $this->models))
 			return;
 			
-		if(!$modelid)
+		if(!isset($modelid))
 			return;
 
 		return $this->Comment->getModelComments($modelname, $modelid, null);

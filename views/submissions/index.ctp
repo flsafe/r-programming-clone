@@ -37,7 +37,7 @@
 <?php foreach($submissions as $submission):?>
 
 	<?php
-		$sanitizeUtil->htmlEsc($submission['Submission'], array('id','title', 'size', 'upvotes', 'downvotes', 'text1'));
+		$sanitizeUtil->htmlEsc($submission['Submission'], array('id', 'size', 'upvotes', 'downvotes', 'text1'));
 		$id       = $submission['Submission']['id'];
 		$title    = $submission['Submission']['title'];
 		$size     = $submission['Submission']['size'];
