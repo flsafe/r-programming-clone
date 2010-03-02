@@ -7,7 +7,7 @@
  	if(!isset($topic['User']))
 		$topic['User']['username'] = "";
 		
-	$sanitizeUtil->htmlEsc($topic['Topic'], array('title', 'text'));
+	$sanitizeUtil->htmlEsc($topic['Topic'], array('text'));
 	
 	$points  = $topic['Topic']['upvotes'] - $topic['Topic']['downvotes'];
 	$topicid = $topic['Topic']['id'];
