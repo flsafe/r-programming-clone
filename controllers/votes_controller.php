@@ -30,7 +30,7 @@
 		}
 		
 		public function getUserVotes(){
-			
+			/*Nothing here*/
 		}
 	}
 ?>

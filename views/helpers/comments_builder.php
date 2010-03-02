@@ -68,7 +68,7 @@ class CommentsBuilderHelper extends AppHelper{
 		$firstChild  = $this->get($rootComment['Comment']['lft'] + 1, $comments);
 		$childrens[] = $firstChild;
 		
-		$nextChild = $firstChild;
+		$nextChild   = $firstChild;
 		while(($nextChild = $this->nextSibling($nextChild, $rootComment, $comments)) != null){
 			$childrens[] = $nextChild;
 		}
@@ -83,8 +83,8 @@ class CommentsBuilderHelper extends AppHelper{
 	 * 
 	 */
 	private function timeAgo($now, $created){
-		$diff    = $now - $created;
-		$timeAgo = "";
+		$diff            = $now - $created;
+		$timeAgo         = "";
 		
 		$secondsPerHour  = 3600;
 		$secondsPerDay   = $secondsPerHour * 24;

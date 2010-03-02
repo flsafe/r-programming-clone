@@ -9,6 +9,7 @@ class Comment extends AppModel{
 	
 	#TODO: add the validation rules
 	
+	#TODO: Huh, I'm not sure that this function should serve both model comments and user coments
 	public function getModelComments($modelname = null, $model_id = null, $user_id = null){
 		$getAllModelComments = $modelname && $model_id && !($user_id);
 		$getAllUserComments  = !($modelname) && !($model_id) && $user_id;
