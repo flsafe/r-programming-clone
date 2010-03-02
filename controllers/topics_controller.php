@@ -1,12 +1,12 @@
 <?php
 class TopicsController extends AppController{
-	public $name    = "Topics";
+	public $name       = "Topics";
 	
 	public $components = array('RequestHandler', 'Security');
 	
-	public $uses = array('Topic', 'Vote');
+	public $uses       = array('Topic', 'Vote');
 	
-	public $helpers = array('Markdown', 'Javascript');
+	public $helpers    = array('Markdown', 'Javascript');
 	
 	public $paginate = array(
 		'limit'      => '12',

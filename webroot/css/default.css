@@ -72,6 +72,11 @@ body img{
     font-size: 1.3em;
 }
 
+#tagline{
+    font-size:0.70em;
+    width:300px;
+}
+
 #header a{
     text-decoration: none;
     color: rgb(100, 138, 30);
@@ -79,7 +84,8 @@ body img{
 
 #menu{
     float: right;
-    padding: 95px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    margin-top: 115px;
 }
 
 #beta{
@@ -270,6 +276,10 @@ body img{
    -webkit-border-radius: 2px;
 }
 
+#topictext{
+    font-size:1.1em;
+}
+
 #TopicAddForm .input{
     width: 200px;
 }
@@ -296,6 +306,11 @@ body img{
     height: 100px;
 }
 
+.replyform{
+    border-bottom: 1px dotted rgb(220,220,220);
+    /*border-top: 1px dotted #999;*/
+}
+
 .replyformtext{
     width: 400px;
     height: 100px;
@@ -316,7 +331,8 @@ body img{
     color: rgb(150, 150, 150);
 }
 
-.commenttext{
+h1.commenttext, h2.commenttext, h3.commenttext{
+    font-size:.90em;
 }
 
 /*----------Footer------------------*/

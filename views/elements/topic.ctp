@@ -1,9 +1,6 @@
-<?php 
-#Params:title,id, text, points, username, vote-("up","down", "none")
-?>
+<?php #Params:title, id, points, username, vote-("up","down", "none")?>
 
 <div class="topic">
-
 	<?php
 		echo $this->element('vote', array('id'=>$id, 'vote'=>$vote));
 	?>
@@ -11,8 +8,6 @@
 	<p class="topictitle"> 
 		<?php 
 			echo $html->link($title, array('controller'=>'topics', 'action'=>'view', $id));
-			if(isset($text))
-				echo $text;
 		?>
 	</p>
 
@@ -20,5 +15,4 @@
 																		 'points'   => $points,
 																		 'username' => $username)); 
 	?>
-	
 </div>

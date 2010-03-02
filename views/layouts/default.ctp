@@ -16,25 +16,25 @@
 <body>
 	
 	<div id="header">
-
-		<a href="/submissions/index/"><img src="/img/codekettllogo.png"/></a>
-		<img id="beta" src="/img/beta.png"/ height="50"/>
-
-		<div id="menu">
+		<span id="menu">
 			<?php 
 				$space = "&nbsp;&nbsp;&nbsp;";
 
 				if($loggedin){
 					echo $html->link("$sessionusername", array('controller'=>'users', 'action'=>'edit')) . $space ;
 					echo $html->link('Logout', array('controller'=>'users', 'action'=>'logout')) . $space;
-					echo "<label id=\"loggedin\" name=\"{$sessionusername}\"/>"; #Used to determine if the user is logged in from jquery
+					echo "<input id=\"loggedin\" name=\"{$sessionusername}\" type=\"hidden\"/>";
 				}
 				else{
 					echo $html->link('Login', array('controller'=>'users', 'action'=>'login')) . $space;
 					echo $html->link('Register', array('controller'=>'users', 'action'=>'login')) . $space;
 				}
 			?>
-		</div>
+		</span>
+
+		<a href="/submissions/index/"><img src="/img/codekettllogo.png"/></a>
+		<img id="beta" src="/img/beta.png"/ height="50"/>
+		<div><a href="/submissions/index/" id="tagline">Your Daily Cup Of Programming Interview Practice</a></div>
 	</div>
 
 	<div id="content">
@@ -57,8 +57,6 @@
 			<?php echo $html->link(' CozySystems LLC ', 'http://www.cozysystems.com');?>
 		</div>
 	</div>
-	
-
 
 </body>
 </html>
