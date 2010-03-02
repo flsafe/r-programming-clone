@@ -9,17 +9,20 @@ to another comment is called a 'reply'. This convention is reflected
 in the class names and the id's in the xhtml.
 */
   
-//Used to wrap new comments
+//Used to wrap new comments and replys
 var commentdiv      = "<div class=\"rootcomment\"></div>";
 var commentmetaspan = '<span class="commentmeta">by $name just a moment ago</span>';
-var commenttextspan = "<span class=\"commenttext\"></span>";
+var commenttextdiv  = "<div class=\"commenttext\"></div>";
 
 var replyform       = '<div><textarea class="replyformtext"></textarea></div><input type="submit" value="Reply"/>';
 var replydiv        = '<div class="childcomment"></div>';
 
+var markdown        = new Showdown.converter();
+
 function postComment(modelname, model_id, parent_id, commenttext){
     if(commenttext == "")
         return;
+        
     var url = "/comments/add/"+modelname+"/"+model_id+"/"+parent_id+"/";
     $.post(url, {text: commenttext});
 }
@@ -35,19 +38,20 @@ function postReply(thiselem){
     parent.find(".replyformtext").remove();
     parent.find("[type=submit]").remove();
 
-    displayReply(replydiv, commenttextspan, replytext, parent)
+    displayReply(replytext, parent)
 }
 
-function displayReply(newcommentdiv, textspan, replytext, parentelem){
+function displayReply(replytext, parentelem){
     if(replytext == "")
         return;
         
-    var newcomment     = $(newcommentdiv);
-    var text           = $(textspan);
+    var newcomment     = $(replydiv);
 
     newcomment.append(commentmetaspan.replace("$name", $('#loggedin').attr('name')) + "<br/>");
-    text.text(replytext);
-    newcomment.append(text);
+    
+    textdiv = escapeAndMarkdown(replytext);
+    newcomment.append(textdiv);
+    
     parentelem.find(".replyform").first().after(newcomment); //Add to top of replies
 }
 
@@ -55,18 +59,19 @@ function displayComment(commenttext){
     if(commenttext == "")
         return;
         
-    var first      = $("#commentslist :first");
     var newcomment = $(commentdiv); 
-    var text       = $(commenttextspan);
+   
+    newcomment.append(commentmetaspan.replace("$name", $('#loggedin').attr('name')));
     
-    newcomment.append(commentmetaspan.replace("$name", $('#loggedin').attr('name')) + "<br/>");
-    text.text(commenttext); /*Don't forget this escapes the text*/
-    newcomment.append(text);
+    textdiv = escapeAndMarkdown(commenttext);
+    newcomment.append(textdiv);
 
-    if(!first.length)
+    var firstcomment        = $("#commentslist :first");
+    var postingFirstComment = !firstcomment.length;
+    if(postingFirstComment)
         $("#commentslist").append(newcomment);
     else
-        first.before(newcomment);
+        firstcomment.before(newcomment);
 }
 
 function displayReplyForm(thiselem){
@@ -76,6 +81,15 @@ function displayReplyForm(thiselem){
     reply = $(replyform);
     reply.find(".replyformtext").first().focus();
     thiselem.after(replyform);
+}
+
+function escapeAndMarkdown(commenttext){
+    var text = $("<div/>");
+    text.text(commenttext); /*escapes html*/
+    text     = markdown.makeHtml(text.html());
+    textdiv  = $(commenttextdiv);
+    textdiv.append($(text));
+    return textdiv;
 }
 
 $(document).ready(function(){

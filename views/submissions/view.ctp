@@ -1,8 +1,9 @@
 <?php
  	echo $javascript->link('jquery/jquery.min', false);
 	echo $javascript->link('util', false);
+	echo $javascript->link('showdown');
 	echo $javascript->link('jquery/comment');
-	echo $javascript->link('jquery/submissions', false); #TODO: Need a better way to do this
+	echo $javascript->link('jquery/submissions', false); #TODO: Defines some vars that enable votes on submissions
 	echo $javascript->link('jquery/vote', false);
 ?>
 
