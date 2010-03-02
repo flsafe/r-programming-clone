@@ -46,8 +46,8 @@ class CommentsBuilderHelper extends AppHelper{
 	 */
 	private function nextSibling(&$comment, &$rootComment, &$comments){
 		$nextLeftVal = $comment['Comment']['rght'] + 1;
-		$noSibling   = $nextLeftVal >= $rootComment['Comment']['rght'];
 		
+		$noSibling   = $nextLeftVal >= $rootComment['Comment']['rght'];
 		if($noSibling)
 			return null;
 			
@@ -58,7 +58,7 @@ class CommentsBuilderHelper extends AppHelper{
 	 * Get the children of $rootComment.
 	 */
 	private function getChildren(&$rootComment, &$comments){
-		$noChildren = $rootComment['Comment']['lft']+ 1 == $rootComment['Comment']['rght'];
+		$noChildren = $rootComment['Comment']['lft'] + 1 == $rootComment['Comment']['rght'];
 		
 		if($noChildren)
 			return array();
@@ -78,7 +78,7 @@ class CommentsBuilderHelper extends AppHelper{
 	
 	/**
 	 * Returns a rough estimate of how long ago
-	 * $created was compared to $now. Returns
+	 * $created is compared to $now. Returns
 	 * a string in the form '(N) [years,months, days, hours, minutes, seconds] ago'.
 	 * 
 	 */
@@ -154,10 +154,9 @@ class CommentsBuilderHelper extends AppHelper{
 		$commentMeta->appendChild($dom->createTextNode("by {$username} {$timeAgo}"));
 		
 		/*Append the meta and comment text*/
-		$this->sanitizeUtil->htmlEsc($comment['Comment'], array('text'));
-
 		$commentForm->appendChild($commentMeta);
 		
+		$this->sanitizeUtil->htmlEsc($comment['Comment'], array('text'));
 		$commentDoc  = new DOMDocument();
 		$t           = $this->markdown->parse($comment['Comment']['text']);
 		if($commentDoc->loadHTML("<div class=\"commenttext\">$t</div>")){
