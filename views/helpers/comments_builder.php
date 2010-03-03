@@ -17,7 +17,6 @@ class CommentsBuilderHelper extends AppHelper{
 	 * equal to $left 
 	 */
 	private function get($left, &$comments){
-
 		if(empty($comments))
 			return null;
 		
