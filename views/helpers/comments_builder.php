@@ -55,7 +55,8 @@ class CommentsBuilderHelper extends AppHelper{
 	}
 	
 	/**
-	 * Get the children of $rootComment.
+	 * Get the children of $rootComment. They are returned in
+	 * FILO order
 	 */
 	private function getChildren(&$rootComment, &$comments){
 		$noChildren = $rootComment['Comment']['lft'] + 1 == $rootComment['Comment']['rght'];
@@ -68,12 +69,12 @@ class CommentsBuilderHelper extends AppHelper{
 		$firstChild  = $this->get($rootComment['Comment']['lft'] + 1, $comments);
 		$childrens[] = $firstChild;
 		
-		$nextChild = $firstChild;
+		$nextChild   = $firstChild;
 		while(($nextChild = $this->nextSibling($nextChild, $rootComment, $comments)) != null){
 			$childrens[] = $nextChild;
 		}
 		
-		return $childrens;
+		return array_reverse($childrens);
 	}
 	
 	/**
@@ -83,8 +84,8 @@ class CommentsBuilderHelper extends AppHelper{
 	 * 
 	 */
 	private function timeAgo($now, $created){
-		$diff    = $now - $created;
-		$timeAgo = "";
+		$diff            = $now - $created;
+		$timeAgo         = "";
 		
 		$secondsPerHour  = 3600;
 		$secondsPerDay   = $secondsPerHour * 24;
@@ -241,6 +242,7 @@ class CommentsBuilderHelper extends AppHelper{
 		$rootComments[]     = $nextRoot;
 		while(($nextRoot = $this->get($nextRoot['Comment']['rght'] + 1, $comments)) != null)
 			$rootComments[] = $nextRoot;
+		$rootComments = array_reverse($rootComments); /*Order by FILO*/
 		
 		foreach($rootComments as $root){
 			$this->getComments($root, $comments, $doc);

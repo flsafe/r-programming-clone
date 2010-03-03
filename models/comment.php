@@ -9,6 +9,7 @@ class Comment extends AppModel{
 	
 	#TODO: add the validation rules
 	
+	#TODO: Huh, I'm not sure that this function should serve both model comments and user coments
 	public function getModelComments($modelname = null, $model_id = null, $user_id = null){
 		$getAllModelComments = $modelname && $model_id && !($user_id);
 		$getAllUserComments  = !($modelname) && !($model_id) && $user_id;
@@ -31,12 +32,6 @@ class Comment extends AppModel{
 	}
 	
 	public function commentOnModel($modelname, $model_id, $parent_id, $user_id, $text){
-		$modelname                   = Sanitize::escape($modelname);
-    $model_id                    = Sanitize::escape($model_id);
-		$parent_id                   = Sanitize::escape($parent_id);
-    $user_id                     = Sanitize::escape($user_id);
-		$text                        = Sanitize::escape($text);
-
 		$modelname                   = strtolower($modelname);
 		$c                           = 'Comment';
 		

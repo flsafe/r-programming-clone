@@ -16,7 +16,7 @@ class CommentsController extends AppController{
 		if(! in_array($modelname, $this->models))
 			return;
 			
-		if(!$modelid)
+		if(!isset($modelid))
 			return;
 
 		return $this->Comment->getModelComments($modelname, $modelid, null);
@@ -47,7 +47,7 @@ class CommentsController extends AppController{
 			
 		$replyingToComment = $parent_id != '0';
 		if($replyingToComment){
-			$submissiondata = $this->Comment->findById($parent_id);
+			$submissiondata   = $this->Comment->findById($parent_id);
 			$noCommentExists  = empty($submissiondata);
 			if($noCommentExists)
 				return;	

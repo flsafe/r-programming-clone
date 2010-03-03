@@ -6,7 +6,7 @@
 			</span>
 			
 			<span >
-			<?php echo " points | by <a href=\"\">$username</a> | <a href=\"\">comments</a>" ?>
+			<?php echo " points | by <a href=\"\">$username</a>" ?>
 			</span>
 
-</span>
+</span>

@@ -69,11 +69,12 @@ class Vote extends AppModel{
 			else
 				$down = $modeldata[$modelname]['downvotes']++;
 				
-      $upvotes = $modeldata[$modelname]['upvotes'];
-      $downvotes = $modeldata[$modelname]['downvotes'];
-      $created = $modeldata[$modelname]['created'];
-      $rank = call_user_func($rankFunction, $upvotes, $downvotes, $created);
+      $upvotes                       = $modeldata[$modelname]['upvotes'];
+      $downvotes                     = $modeldata[$modelname]['downvotes'];
+      $created                       = $modeldata[$modelname]['created'];
+      $rank                          = call_user_func($rankFunction, $upvotes, $downvotes, $created);
       $modeldata[$modelname]['rank'] = $rank;
+
 
 			$model->save($modeldata);
 			$modelnamelow = strtolower($modelname);
@@ -102,14 +103,14 @@ class Vote extends AppModel{
 		$modelname = strtolower($modelname);
 		
 		$userVotes = $this->find('all',
-								array('fields' => array('upvote', "${modelname}_id"),
-											'conditions' => array(
-												'user_id' => $userid,
-												"${modelname}_id" => $modelids)));
+								array('fields'           => array('upvote', "${modelname}_id"),
+											'conditions'       => array(
+											'user_id'          => $userid,
+											"${modelname}_id"  => $modelids)));
 			
 		$userVotesTab = array();
 		foreach($userVotes as $vote){
-			$modelid = $vote['Vote']["${modelname}_id"];
+			$modelid                = $vote['Vote']["${modelname}_id"];
 			$userVotesTab[$modelid] = $vote['Vote']['upvote'];
 		}
 		return $userVotesTab;

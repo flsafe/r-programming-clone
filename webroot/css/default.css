@@ -1,7 +1,7 @@
 body{
     font-family: Arial, "MS Trebuchet", sans-serif;
     font-size: small;
-    color: rgb(30, 30, 30);
+    color: rgb(40, 40, 40);
     background-color: white;
 }
 
@@ -10,7 +10,7 @@ body a{
     color:rgb(19, 98, 118);
 }
 
-body h1,h2{
+body h1,h2,h3,h4{
     font-family: "Times New Roman", Times, serif;
     color: rgb(0, 109, 143);
 }
@@ -223,10 +223,8 @@ body img{
     margin-bottom:50px;
     margin-top: 40px;
     font-size: 1.1em;
-    border: 2px outset rgb(230,230,230);
+    border-bottom: 1px outset rgb(240,240,240);
     padding: 10px;
-    -moz-border-radius: 5px; /*firefox and webkit only*/
-    -webkit-border-radius: 5px;
 }
 
 #viewsubmissionhead .votearrows{
@@ -297,6 +295,11 @@ body img{
     margin-top: 50px;
 }
 
+.formathelp{
+    margin-left:265px;
+    font-size:12px;
+}
+
 .commentslist{
     
 }
@@ -331,10 +334,9 @@ body img{
     color: rgb(150, 150, 150);
 }
 
-h1.commenttext, h2.commenttext, h3.commenttext{
-    font-size:.90em;
+.commenttext h1, .commenttext h2, .commenttex h3, .commenttext h4{
+    font-size:1.1em;
 }
-
 /*----------Footer------------------*/
 
 #footer{

@@ -13,7 +13,10 @@
 		
 		<div id="viewsubmissionheadtitle">
 			<?php
-			  $sanitizeUtil->htmlEsc($submission['Submission'], array('title', 'description1', 'id'));
+			  $sanitizeUtil->htmlEsc($submission['Submission'], array('description1', 'id'));
+			
+				if(!isset($submission['User']))
+					$submission['User'] = array('username'=>'', 'id'=>'');
 			
 				$id       = $submission['Submission']['id'];
 				$title    = $submission['Submission']['title'];
