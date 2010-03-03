@@ -32,12 +32,6 @@ class Comment extends AppModel{
 	}
 	
 	public function commentOnModel($modelname, $model_id, $parent_id, $user_id, $text){
-		$modelname                   = Sanitize::escape($modelname);
-    $model_id                    = Sanitize::escape($model_id);
-		$parent_id                   = Sanitize::escape($parent_id);
-    $user_id                     = Sanitize::escape($user_id);
-		$text                        = Sanitize::escape($text);
-
 		$modelname                   = strtolower($modelname);
 		$c                           = 'Comment';
 		

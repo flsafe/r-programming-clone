@@ -295,6 +295,10 @@ body img{
     margin-top: 50px;
 }
 
+#submitcomment{
+    display:block; /*Get that comment box under the comment text area*/
+}
+
 .commentslist{
     
 }
