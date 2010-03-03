@@ -13,7 +13,7 @@
 	*your text here*
 </p>
 <h4>Example</h4>
-<p>I simply can't *stand* Lost's cliff hanger</p>
+<p>I simply can't *stand* Lost's cliff hangers!</p>
 <p>I simply can't  <em>stand</em> Lost's cliff hangers!</p>
 
 <br/><br/>
