@@ -47,8 +47,8 @@
 
 	<div id='viewsubmissioncode'>
 		<?php 
-				$code = $submission['Submission']['text1']; 
-				echo $syntaxHighlighter->highlight($code, 'java');
+				$code = $submission['Submission']['text1'];
+				echo $syntaxHighlighter->highlight($code, $submission['Submission']['syntax']);
 		?>
 	</div>
 

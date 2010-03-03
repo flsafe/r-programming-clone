@@ -67,7 +67,13 @@ class SubmissionsController extends AppController{
 		$this->data['Submission']['topic_id'] = $topic_id;
 		
 		if($this->Submission->save($this->data,
-                               array('user_id', 'topic_id', 'size', 'title', 'description1', 'text1'))){
+                               array('user_id', 
+																		 'topic_id', 
+																		 'size', 
+																		 'title', 
+																		 'description1', 
+																		 'text1', 
+																		'syntax'))){
 
       $this->Vote->voteForModel('up', $this->Submission, $this->Submission->id, $this->Auth->user('id'));
 			$this->redirect(array('controller'=>'submissions', 'action'=>'index'));

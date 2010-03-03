@@ -9,7 +9,7 @@ class CommentsController extends AppController{
 	public $models    = array('Submission', 'Topic');
 	
 	public function beforeFilter(){
-		$this->Auth->allow(array('add', 'model_comments')); #TEMP for testing
+		$this->Auth->allow(array('add', 'model_comments')); #TODO TEMP for testing
 	}
 	
 	public function model_comments($modelname, $modelid){
