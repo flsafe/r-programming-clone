@@ -30,7 +30,7 @@ class CommentsController extends AppController{
 		$this->autoRender = false;
 		
 		/*if(!$this->RequestHandler->isAjax())
-			return;*/ #TEMP Not doing ajax while in development
+			return;*/ #TODO Not doing ajax while in development
 			
 		$this->log("***********");
 		$this->log(print_r($this->params,true));
