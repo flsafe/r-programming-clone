@@ -15,7 +15,7 @@ var commentmetaspan = '<span class="commentmeta">by $name just a moment ago</spa
 var commenttextdiv  = '<div class="commenttext"></div>';
 
 var replyform       = '<div><textarea class="replyformtext"></textarea></div><input type="submit" value="Comment"/><a class="formathelp" href="/pages/format_help">format help</a>';
-var replydiv        = '<div class="childcomment"></div>';
+var replydiv        = '<div class="childcomment"><form class="replyform"></form></div>';
 
 var markdown        = new Showdown.converter();
 
@@ -37,6 +37,7 @@ function postReply(thiselem){
     postComment(modelname, model_id, comment_id, replytext);
     parent.find(".replyformtext").remove();
     parent.find("[type=submit]").remove();
+    parent.find(".formathelp").remove();
 
     displayReply(replytext, parent)
 }
@@ -45,12 +46,12 @@ function displayReply(replytext, parentelem){
     if(replytext == "")
         return;
         
-    var newcomment     = $(replydiv);
+    var newcomment = $(replydiv);
 
-    newcomment.append(commentmetaspan.replace("$name", $('#loggedin').attr('name')) + "<br/>");
+    newcomment.find(".replyform").append(commentmetaspan.replace("$name", $('#loggedin').attr('name')) + "<br/>");
     
     textdiv = escapeAndMarkdown(replytext);
-    newcomment.append(textdiv);
+    newcomment.find(".replyform").append(textdiv);
     
     parentelem.find(".replyform").first().after(newcomment); //Add to top of replies
 }
