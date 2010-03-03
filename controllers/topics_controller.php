@@ -64,5 +64,16 @@ class TopicsController extends AppController{
 			$this->redirect(array('controller'=>'topics', 'action'=>'index'));
 		}
 	}
+	
+	function edit($id=null){
+		$this->Topic->id = $id;
+		
+		if(empty($this->data)){
+			;
+		}
+		else{
+			;
+		}
+	}
 }
 ?>

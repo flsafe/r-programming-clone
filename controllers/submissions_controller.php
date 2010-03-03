@@ -73,10 +73,24 @@ class SubmissionsController extends AppController{
 																		 'title', 
 																		 'description1', 
 																		 'text1', 
-																		'syntax'))){
+																		 'syntax'))){
 
       $this->Vote->voteForModel('up', $this->Submission, $this->Submission->id, $this->Auth->user('id'));
 			$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+		}
+	}
+	
+	function edit($id = null){
+		$this->Submission->id = $id;
+		
+		if(empty($this->data)){
+			$this->data = $this->Submission->read();
+		}
+		else{
+			$this->data['Submission']['size'] = strlen($this->data['Submission']['text1']);
+			if($this->Submission->save($this->data, array('title', 'description1', 'text1', 'syntax', 'size'))){
+				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+			}
 		}
 	}
 }

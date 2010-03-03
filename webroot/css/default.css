@@ -193,20 +193,12 @@ body img{
     text-decoration: underline;
 }
 
-#SubmissionAddForm .input{
+#submissionform .input{
     width: 100px;
 }
 
-#SubmissionAddForm textarea{
+#submissionform textarea{
     width: 600px;   
-}
-
-#SubmissionAddForm label{
-    float: left;
-    width: 150px;
-    clear:right;
-    color:rgb(100, 100, 100);
-    size: 1.1em;
 }
 
 #SubmissionTitle{

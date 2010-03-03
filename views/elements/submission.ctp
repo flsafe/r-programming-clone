@@ -1,4 +1,5 @@
-<?php # id object - id
+<?php 
+			#id object - id
  			#vote - (up,down,none) 
 			#text - display text under title if set
 			#size - the size of the solution
@@ -26,9 +27,10 @@
 	</div>
 
 	<?php
-		echo $this->element('meta', array('id'       => $id,
-																 			'points'   => $points,
-																 			'username' => $username));
+		echo $this->element('meta', array('modelname'   => "Submission",
+																			'id'          => $id,
+																 			'points'      => $points,
+																 			'username'    => $username));
 	?>
 	
 </div>
