@@ -10,11 +10,11 @@ in the class names and the id's in the xhtml.
 */
   
 //Used to wrap new comments and replys
-var commentdiv      = "<div class=\"rootcomment\"></div>";
+var commentdiv      = '<div class="rootcomment"></div>';
 var commentmetaspan = '<span class="commentmeta">by $name just a moment ago</span>';
-var commenttextdiv  = "<div class=\"commenttext\"></div>";
+var commenttextdiv  = '<div class="commenttext"></div>';
 
-var replyform       = '<div><textarea class="replyformtext"></textarea></div><input type="submit" value="Reply"/>';
+var replyform       = '<div><textarea class="replyformtext"></textarea></div><input type="submit" value="Comment"/><a class="formathelp" href="/pages/format_help">format help</a>';
 var replydiv        = '<div class="childcomment"></div>';
 
 var markdown        = new Showdown.converter();
