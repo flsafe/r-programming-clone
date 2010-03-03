@@ -5,8 +5,8 @@
 				<?php echo "$points" ?>
 			</span>
 			
-			<span >
-			<?php echo " points | by <a href=\"\">$username</a>" ?>
+			<span>
+			<?php echo " points | by <a href=\"\">$username</a>";?>
 			</span>
 
-</span>
+</span>

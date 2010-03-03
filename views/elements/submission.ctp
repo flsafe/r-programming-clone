@@ -13,12 +13,10 @@
 	</div>
 
 	<div class="submissiontitle">
-
 		<?php 
 		 	echo $this->element('vote', array('id'=>$id, 'vote'=>$vote));
 			echo $html->link($title, array('controller'=>'submissions', 'action'=>'view', $id));
 		?>
-
 	</div>
 
 	<div class="submissionstats">
@@ -32,5 +30,6 @@
 																 			'points'   => $points,
 																 			'username' => $username));
 	?>
+	
 </div>
 
