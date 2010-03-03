@@ -53,9 +53,6 @@
 	</div>
 
 	<?php
-		$sanitizeUtil->htmlEsc($submission['Submission'], array('id'));
-		$sanitizeUtil->htmlEsc($submission['Subission']['User'], array('username', 'id'));
-	
 		echo $this->element('comments', array('modelname'=>'Submission', 
 															'model_id' => $submission['Submission']['id'],
 															'username' => $submission['User']['username'],

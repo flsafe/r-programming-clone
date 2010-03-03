@@ -6,7 +6,7 @@ class TopicsController extends AppController{
 	
 	public $uses       = array('Topic', 'Vote');
 	
-	public $helpers    = array('Markdown', 'Javascript');
+	public $helpers    = array('Markdown', 'Javascript', 'CommentsBuilder');
 	
 	public $paginate = array(
 		'limit'      => '12',
