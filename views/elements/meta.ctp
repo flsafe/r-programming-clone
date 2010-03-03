@@ -9,4 +9,4 @@
 			<?php echo " points | by <a href=\"\">$username</a>" ?>
 			</span>
 
-</span>
+</span>

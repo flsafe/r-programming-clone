@@ -55,7 +55,8 @@ class CommentsBuilderHelper extends AppHelper{
 	}
 	
 	/**
-	 * Get the children of $rootComment.
+	 * Get the children of $rootComment. They are returned in
+	 * FILO order
 	 */
 	private function getChildren(&$rootComment, &$comments){
 		$noChildren = $rootComment['Comment']['lft'] + 1 == $rootComment['Comment']['rght'];
@@ -73,7 +74,7 @@ class CommentsBuilderHelper extends AppHelper{
 			$childrens[] = $nextChild;
 		}
 		
-		return $childrens;
+		return array_reverse($childrens);
 	}
 	
 	/**
@@ -241,6 +242,7 @@ class CommentsBuilderHelper extends AppHelper{
 		$rootComments[]     = $nextRoot;
 		while(($nextRoot = $this->get($nextRoot['Comment']['rght'] + 1, $comments)) != null)
 			$rootComments[] = $nextRoot;
+		$rootComments = array_reverse($rootComments); /*Order by FILO*/
 		
 		foreach($rootComments as $root){
 			$this->getComments($root, $comments, $doc);
