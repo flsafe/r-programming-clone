@@ -17,12 +17,16 @@
 	$vote    = 'none';
 	if(isset($uservotes[$topicid]))
 		$vote = $uservotes[$topicid] ? 'up' : 'down';
+	$showedit = false;
+	if(isset($loggedin))
+		$showedit = true;
 
 	echo $this->element('topic', array('id'      => $topic['Topic']['id'],
 																		'title'    => $topic['Topic']['title'],
 																		'points'   => $points,
 																		'username' => $topic['User']['username'],
-																		'vote'     => $vote));
+																		'vote'     => $vote,
+																		'showedit' => $showedit));
 ?>
 <div id="topictext">
 	<?php echo $markdown->parse($topic['Topic']['text']);?>

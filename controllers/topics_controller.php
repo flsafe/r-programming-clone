@@ -30,7 +30,7 @@ class TopicsController extends AppController{
 				$modelids[] = $m[$modelname]['id'];
 				
 			$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $userid);
-				
+			$this->set('loggedin', true);
 			$this->set('uservotes', $uservotes);
 		}
 	}
@@ -45,6 +45,7 @@ class TopicsController extends AppController{
 		if($userid){
 			$uservotes = $this->Vote->getUserVotes($modelname, $id, $userid);
 			$this->set('uservotes', $uservotes);
+			$this->set('loggedin', true);
 		}
 	}
 	

@@ -1,4 +1,10 @@
-<?php #Params:title, id, points, username, vote-("up","down", "none")?>
+<?php #Params:
+	    #title - The title of the topic
+			#id - The id of the topic 
+			#points - How many points does this have?
+			#username - The user who submitted this topic 
+			#vote-("up","down", "none")
+			#showedit - Show the edit link? ?>
 
 <div class="topic">
 	<?php
@@ -14,6 +20,7 @@
 	<?php echo $this->element('meta', array('id'  => $id,
 																		 'modelname'=> "Topic",
 																		 'points'   => $points,
-																		 'username' => $username)); 
+																		 'username' => $username,
+																		 'showedit' => $showedit)); 
 	?>
 </div>
