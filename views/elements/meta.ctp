@@ -11,17 +11,17 @@
 <span class="meta">
 	
 			<span id="<?php echo "points${id}"?>" class="metadatapoints">
-				<?php echo "$points points | by" ?>
+				<?php echo "$points points | by " ?>
 			</span>
 			
 			<span>
 				<?php 
 					$controller = Inflector::pluralize(Inflector::underscore(strtolower($modelname)));
-					echo $html->link(" $username ", array());
+					echo $html->link("$username", array());
 					
 
 					if($showedit){
-						echo "| ";
+						echo " | ";
 						echo $html->link("edit", array('controller'=>"$controller", 'action'=>'edit', 'id'=>"$id"));
 					}
 				?>
