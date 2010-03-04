@@ -21,6 +21,8 @@ class TopicsController extends AppController{
 	function index(){
 		$topicdata = $this->paginate('Topic');
 		$this->set('topics', $topicdata);
+		$this->set('loggedin', false);
+		$this->set('uservotes', array());
 		
 		$userid    = $this->Auth->user('id');
 		if($userid){
@@ -39,6 +41,8 @@ class TopicsController extends AppController{
 		$this->Topic->id = $id;
 		$this->data      = $this->Topic->read();
 		$this->set('topic', $this->data);
+		$this->set('loggedin', false);
+		$this->set('uservotes', array());
 		
 		$userid          = $this->Auth->user('id');
 		$modelname       = 'Topic';

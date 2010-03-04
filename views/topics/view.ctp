@@ -5,31 +5,21 @@
 	echo $javascript->link('jquery/comment');
 	echo $javascript->link('jquery/topics', false);
  	echo $javascript->link('jquery/vote', false);
-
 	
  	if(!isset($topic['User']))
 		$topic['User']['username'] = "";
-		
-	$sanitizeUtil->htmlEsc($topic['Topic'], array('text'));
 	
-	$points  = $topic['Topic']['upvotes'] - $topic['Topic']['downvotes'];
-	$topicid = $topic['Topic']['id'];
-	$vote    = 'none';
-	if(isset($uservotes[$topicid]))
-		$vote = $uservotes[$topicid] ? 'up' : 'down';
-	$showedit = false;
-	if(isset($loggedin))
-		$showedit = true;
-
-	echo $this->element('topic', array('id'      => $topic['Topic']['id'],
-																		'title'    => $topic['Topic']['title'],
-																		'points'   => $points,
-																		'username' => $topic['User']['username'],
-																		'vote'     => $vote,
-																		'showedit' => $showedit));
+	
 ?>
+
+<?php echo $this->element('topic', array('topic'=>$topic,
+																				 'showedit'=>$loggedin ? true : false)); ?>
+
 <div id="topictext">
-	<?php echo $markdown->parse($topic['Topic']['text']);?>
+	<?php 
+		$sanitizeUtil->htmlEsc($topic['Topic'], array('text'));
+		echo $markdown->parse($topic['Topic']['text']);
+	?>
 </div>
 
 <?php

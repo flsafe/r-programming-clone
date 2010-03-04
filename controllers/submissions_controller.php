@@ -21,9 +21,11 @@ class SubmissionsController extends AppController{
 	function index(){
 		$submissions = $this->paginate('Submission');
 		$this->set('submissions', $submissions);
-		
-		$userid    = $this->Auth->user('id');
+		$this->set('uservotes', array());
+		$this->set('loggedin', false);
+
 		$modelname ='Submission';
+		$userid    = $this->Auth->user('id');
 		if($userid){
 			$modelids  = array();
 			foreach($submissions as $m)
@@ -42,7 +44,9 @@ class SubmissionsController extends AppController{
 	function view($id = null){
 		$this->Submission->id = $id;
 		$data = $this->Submission->read();
-		$this->set('submission', $data); 
+		$this->set('submission', $data);
+		$this->set('loggedin', false);
+		$this->set('uservotes', array());
 		
 		$userid = $this->Auth->user('id');
 		if(isset($userid)){

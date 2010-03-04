@@ -16,8 +16,6 @@
 
   echo $this->element('selectedtopic', array('title'=>$title, 'username'=>$username, 'text'=>$markdown->parse($text)));
 	echo $this->element('contentmenu');
-	if(!isset($uservotes))
-		$uservotes = array();
 	echo $this->element('submissionslist', array('submissions'=> $submissions, 
 																							 'uservotes'  => $uservotes,
 																							 'loggedin'   => $loggedin));

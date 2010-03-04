@@ -10,43 +10,19 @@
 <div id="viewsubmission">
 	
 	<div id="viewsubmissionhead">	
-		
 		<div id="viewsubmissionheadtitle">
 			<?php
-			  $sanitizeUtil->htmlEsc($submission['Submission'], array('description1', 'id'));
-			
-				if(!isset($submission['User']))
-					$submission['User'] = array('username'=>'', 'id'=>'');
-			
-				$id       = $submission['Submission']['id'];
-				$title    = $submission['Submission']['title'];
-				$size     = $submission['Submission']['size'];
-				$points   = $submission['Submission']['upvotes'] - $submission['Submission']['downvotes'];
-				$username = $submission['User']['username'];
-				$text     = $submission['Submission']['text1'];
-				$vote     = "none";
-				if(isset($uservotes[$id]))
-					$vote = $uservotes[$id] ? 'up':'down';
-				$showedit = false;
-				if(isset($loggedin) && $loggedin == true)
-					$showedit = $loggedin;
-
-				echo $this->element('submission', array(
-																				'id'       => $id,
-																				'title'    => $title,
-																				'size'     => $size,
-																				'points'   => $points,
-																				'username' => $username,
-																				'text'     => $text,
-																				'vote'     => $vote,
-																				'showedit' => $showedit));
+			 echo $this->element('submission', array('uservotes' => $uservotes,
+																					     'showedit'  => $loggedin ? true: false));
 			?>
 		</div>
 		
 		<p>
-			<?php echo $markdown->parse($submission['Submission']['description1']); ?>
+			<?php 
+				$sanitizeUtil->htmlEsc($submission['Submission'], array('description1'));
+				echo $markdown->parse($submission['Submission']['description1']); 
+			?>
 		</p>
-		
   </div>
 
 	<div id='viewsubmissioncode'>

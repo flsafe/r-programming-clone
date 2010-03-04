@@ -1,10 +1,16 @@
 <?php #Params:
-	    #title - The title of the topic
-			#id - The id of the topic 
-			#points - How many points does this have?
-			#username - The user who submitted this topic 
-			#vote-("up","down", "none")
-			#showedit - Show the edit link? ?>
+			#topic     - A reference to the topic that will be displayed
+			#uservotes - A reference to the array of user votes
+			#showedit - Show the edit link? 
+			
+		 	$id       = $topic['Topic']['id'];
+			$title    = $topic['Topic']['title'];
+			$username = $topic['User']['username'];
+			$points   = $topic['Topic']['upvotes'] - $topic['Topic']['downvotes'];
+			$vote     = 'none';
+			if(isset($uservotes[$id]))
+				$vote = $uservotes[$id] ? 'up' : 'down';
+?>
 
 <div class="topic">
 	<?php

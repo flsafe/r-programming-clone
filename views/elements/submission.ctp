@@ -1,12 +1,19 @@
 <?php 
-			#id object - id
- 			#vote - (up,down,none) 
-			#text - display text under title if set
-			#size - the size of the solution
-			#points - Points to display
-			#username - username to dispaly
-			#text - code associated with the submition used for preview
-			#showedit - if 'true' then the reply link will be displayed, otherwise it won't
+			#params
+			#submission - A reference to the submission object that will be displayed
+			#uservotes  - The votes asscociated with this user
+			#showedit   - Show the edit link? Usally only when the user is logged in
+			
+			$sanitizeUtil->htmlEsc($submission['Submission'], array('id', 'size', 'upvotes', 'downvotes', 'text1'));
+			$id       = $submission['Submission']['id'];
+			$title    = $submission['Submission']['title'];
+			$size     = $submission['Submission']['size'];
+			$points   = $submission['Submission']['upvotes'] - $submission['Submission']['downvotes'];
+			$username = $submission['User']['username'];
+			$text     = $submission['Submission']['text1'];
+			$vote     = "none";
+			if(isset($uservotes[$id]))
+				$vote = $uservotes[$id] ? 'up':'down';
 ?>
 <div class="submission">
 
