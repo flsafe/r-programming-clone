@@ -59,7 +59,6 @@ class TopicsController extends AppController{
 		$this->data['Topic']['user_id']           = $this->Auth->user('id');
 
 		if($this->Topic->save($this->data, array('title','text','user_id'))){
-
 			$this->Vote->voteForModel('up', $this->Topic, $this->Topic->id, $this->Auth->user('id'));
 			$this->redirect(array('controller'=>'topics', 'action'=>'index'));
 		}
@@ -69,10 +68,26 @@ class TopicsController extends AppController{
 		$this->Topic->id = $id;
 		
 		if(empty($this->data)){
-			;
+			$topic         = $this->Topic->read();
+			$topicOfTheDay = $topic['Topic']['current_topic'] != '0' || $topic['Topic']['was_chosen'] != '0';
+			
+			if($topicOfTheDay){
+				$this->data = null;
+				$this->Session->setFlash("You can't edit the topic of the day!");
+				return;
+			}
+			$this->data = $topic;
 		}
 		else{
-			;
+			$topicOfTheDay = $this->data['Topic']['current_topic'] != '0' || $this->data['Topic']['was_chosen'] != '0';
+			if($topicOfTheDay){
+				$this->Session->setFlash("You can't edit the topic of the day!");
+				return;
+			}
+				
+			if($this->Topic->save($this->data, array('title', 'text'))){
+				$this->redirect(array('controller'=>'topics', 'action'=>'index'));
+			}
 		}
 	}
 }

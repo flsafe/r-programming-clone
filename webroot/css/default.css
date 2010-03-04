@@ -188,7 +188,6 @@ body img{
     margin:20px 0px 10px 0px;
 }
 
-
 .submissionmeta a:hover{
     text-decoration: underline;
 }
@@ -270,11 +269,11 @@ body img{
     font-size:1.1em;
 }
 
-#TopicAddForm .input{
+#topicform .input{
     width: 200px;
 }
 
-#TopicAddForm textArea{
+#topicform textArea{
     width:600px;
 }
 
