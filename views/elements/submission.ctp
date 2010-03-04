@@ -6,6 +6,7 @@
 			#points - Points to display
 			#username - username to dispaly
 			#text - code associated with the submition used for preview
+			#showedit - if 'true' then the reply link will be displayed, otherwise it won't
 ?>
 <div class="submission">
 
@@ -30,7 +31,8 @@
 		echo $this->element('meta', array('modelname'   => "Submission",
 																			'id'          => $id,
 																 			'points'      => $points,
-																 			'username'    => $username));
+																 			'username'    => $username,
+																      'showedit'    => $showedit));
 	?>
 	
 </div>

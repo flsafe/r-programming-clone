@@ -13,8 +13,8 @@ class User extends AppModel{
 					'message'    => 'Only letters, numbers and underscores are allowed.'),
 					
 			'rule2' => array(
-				'rule' => array('notDuplicate'),
-				'message' => 'Shoot! Someone beat you to that username! Try a different username.'),
+				'rule' => array('unique'),
+				'message' => 'Shoot! Someone beat you to that username!'),
 		),
 			
 		'email' => array(
@@ -25,7 +25,7 @@ class User extends AppModel{
 					'message'    => 'You have to specify a valid email address.'),
 					
 			 'rule2' => array(
-					'rule'       => array('notDuplicate'),
+					'rule'       => array('unique'),
 					'message'    => 'That email address is already in use! Try a different email address.')
 		),
 			
@@ -50,15 +50,20 @@ class User extends AppModel{
 			)
 		);
 		
-		function notDuplicate($check){
-			$user = $this->find('first', array('conditions' => $check, 'recursive' => -1));
-						
-			if(!isset($this->data['User']['id'])){
-				return empty($user['User']);
+		function unique($check){
+			$otherUser = $this->find('first', array('conditions' => $check, 'recursive' => -1));
+			$thisUser  = $this->data;
+			
+			if(empty($otherUser['User']))
+				return true;
+			
+			$insertingNewUser = !isset($this->data['User']['id']);
+			
+			if($insertingNewUser){
+				return empty($otherUser['User']);
 			}
-			else{
-				return $user['User']['id'] == $this->data['User']['id'];
-			}
+
+			return $thisUser['User']['id'] == $otherUser['User']['id'];
 		}
 		
 		function confirmPassword($check){

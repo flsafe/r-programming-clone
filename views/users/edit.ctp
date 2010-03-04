@@ -10,7 +10,7 @@
 	?>
 	
 	<p>
-		Change your password? Click <a href="<?php echo "/users/change_password/$userid"?>">here.</a>
+		Change your password? Click <a href="<?php echo "/users/change_password/$user_id"; ?>">here.</a>
 	<p>
 	
 </div>

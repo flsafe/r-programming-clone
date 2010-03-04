@@ -13,12 +13,12 @@ class UsersController extends AppController{
 		
 		if(empty($this->data)){
 			$this->data = $this->User->read();
-			$this->set('userid', $this->User->id);
 		}
 		else{
-			$this->User->save($this->data, array('email'));
-			$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+			if($this->User->save($this->data, array('email')))
+				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 		}
+		$this->set('user_id', $this->User->id);
 	}
 	
 	function change_password($userid){

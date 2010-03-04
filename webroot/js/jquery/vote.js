@@ -1,6 +1,6 @@
 /**
 *Client side vote logic. Take a look at the vote.ctp file
-*to see where all the html.
+*to see all the html.
 */
 
 //No javascript trim function? Puh-leeze
@@ -21,6 +21,17 @@ function vote(type, model, id){
     });
 }
 
+function getHtmlId(type, id){
+	var imgid;
+	if(type == "up"){
+        imgid = '#upvoteimg';
+    }
+	else{
+	    imgid = '#downvoteimg'
+    }
+    return imgid += id;
+}
+
 function changeVoteDisplay(type, id){
     alreadyVoted =    type == 'up'  && $('#upvoteimg'+id).attr('src')   == upred
                    || type == 'down'&& $('#downvoteimg'+id).attr('src') == downred;
@@ -30,22 +41,12 @@ function changeVoteDisplay(type, id){
         
     points = $('#points'+id ).html().trim();
     points = parseInt(points) + (type == 'up' ? 1 : -1);
-    $('#points'+id).html(points);
+    $('#points'+id).html(points + " points | ");
     
-    var src;
-	var imgid;
-	if(type == "up"){
-        src = upred;
-        imgid = '#upvoteimg';
-    }
-	else{
-	    src = downred;
-	    imgid = '#downvoteimg'
-    }
-    imgid += id;
-
     $('#upvoteimg'+id).attr('src', up);
     $('#downvoteimg'+id).attr('src', down);
+    src   = type == "up" ? upred : downred;
+    imgid = getHtmlId(type,id);
     $(imgid).attr('src', src);
 }
 

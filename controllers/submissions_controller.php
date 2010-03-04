@@ -9,10 +9,9 @@ class SubmissionsController extends AppController{
   public $helpers    = array('Markdown', 'SanitizeUtil', 'SyntaxHighlighter', 'Javascript', 'CommentsBuilder');
 	
 	/*All submissions to the current topic*/
-	public $paginate   = array(
-			'limit'        => '25',
-			'order'        => array('Submission.rank'     => 'desc'),
-			'conditions'   => array('Topic.current_topic' => '1'));
+	public $paginate   = array('limit'      => '25',
+														 'order'      => array('Submission.rank'     => 'desc'),
+														 'conditions' => array('Topic.current_topic' => '1'));
 	
 	function beforeFilter(){
 		$this->Auth->allow(array('index', 'view'));
@@ -33,6 +32,7 @@ class SubmissionsController extends AppController{
 			$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $userid);
 				
 			$this->set('uservotes', $uservotes);
+			$this->set('loggedin', true);
 		}
 
 		$topic = $this->Submission->Topic->findByCurrentTopic('1');
@@ -48,7 +48,21 @@ class SubmissionsController extends AppController{
 		if(isset($userid)){
 			$uservotes = $this->Vote->getUserVotes("Submission", array($id), $userid);
 			$this->set('uservotes', $uservotes);
+			$this->set('loggedin', true);
 		}
+	}
+	
+	function review(){
+		$user_id = $this->Auth->user('id');
+		if(!user_id)
+			return;
+			
+		$this->paginate   = array('limit'      => '25',
+															'order'      => array('Submission.created'     => 'desc'),
+															'conditions' => array('Topic.user_id' => $user_id));
+															
+		$usersubmissions = $this->paginate('Submission');
+		$this->set('usersubmissions', $usersubmissions);
 	}
 	
 	function add(){

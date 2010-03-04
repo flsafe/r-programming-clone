@@ -27,6 +27,9 @@
 				$vote     = "none";
 				if(isset($uservotes[$id]))
 					$vote = $uservotes[$id] ? 'up':'down';
+				$showedit = false;
+				if(isset($loggedin) && $loggedin == true)
+					$showedit = $loggedin;
 
 				echo $this->element('submission', array(
 																				'id'       => $id,
@@ -35,7 +38,8 @@
 																				'points'   => $points,
 																				'username' => $username,
 																				'text'     => $text,
-																				'vote'     => $vote));
+																				'vote'     => $vote,
+																				'showedit' => $showedit));
 			?>
 		</div>
 		
