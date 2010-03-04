@@ -12,6 +12,7 @@
 	</p>
 
 	<?php echo $this->element('meta', array('id'  => $id,
+																		 'modelname'=> "Topic",
 																		 'points'   => $points,
 																		 'username' => $username)); 
 	?>
