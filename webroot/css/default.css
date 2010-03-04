@@ -282,6 +282,7 @@ body img{
 }
 
 /*----------Comments----------------*/
+
 #comments{
     margin-top: 50px;
 }
@@ -328,6 +329,7 @@ body img{
 .commenttext h1, .commenttext h2, .commenttex h3, .commenttext h4{
     font-size:1.1em;
 }
+
 /*----------Footer------------------*/
 
 #footer{
