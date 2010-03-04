@@ -11,9 +11,8 @@
 			if(! $this->RequestHandler->isAjax())
 				return;
 			
-			if(! ($type == 'up' || $type == 'down')){
+			if(! ($type == 'up' || $type == 'down'))
 				return;
-			}
 			
 			$submission = $this->Submission;
 			$topic      = $this->Topic;

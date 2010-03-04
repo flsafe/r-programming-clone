@@ -1,6 +1,7 @@
 <?php
 class UsersController extends AppController{
 	public $name        = "Users";
+	
 	public $components  = array('Auth', 'Email','Session', 'Security', 'Ticket');
 	
 	function beforeFilter(){
@@ -36,7 +37,7 @@ class UsersController extends AppController{
 		
 				if($this->User->save($this->data, array('password'))){
 					$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
-				}
+				}/*Else, the validation rules failed. There is no redirect so that the errors show*/
 			}
 			else{
 				$this->Session->setFlash("Incorrect Password");
@@ -51,7 +52,7 @@ class UsersController extends AppController{
 		if(empty($this->data))
 			return;
 			
-			#Avoid the cakephp auto hash by using 'password_new' in the form to validate unhashed password
+			/*Avoid the cakephp auto hash by using 'password_new' in the form to validate unhashed password*/
 			$this->data['User']['password']          = $this->Auth->password($this->data['User']['password_new']);
 			$this->data['User']['captcha_keystring'] = $this->Session->read('captcha_keystring');
 			
@@ -60,7 +61,7 @@ class UsersController extends AppController{
 
 				$this->Auth->login(array('username'=>$this->data['User']['username'],
 																 'password'=>$this->data['User']['password']));
-				$this->redirect(array('controller'=>'submissions'));
+				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 			}
 			$this->data['User']['password'] = null;
 			$this->render("login");
