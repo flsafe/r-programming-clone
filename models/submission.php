@@ -10,7 +10,7 @@ class Submission extends AppModel{
 		'Topic'=>array()
 		);
 		
-	public $hasMany = array('Comment');
+	public $hasMany = array('Comment', 'Vote');
 		
 	public $validate = array(
 		'title'=>array(

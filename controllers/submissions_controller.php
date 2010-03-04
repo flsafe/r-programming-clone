@@ -18,8 +18,13 @@ class SubmissionsController extends AppController{
 		$this->Auth->authError = "You've got to be logged in to do that!";
 	}
 
+	/*
+		This is the home page
+	*/
 	function index(){
+		$this->Submission->unbindModel(array('hasMany'=>array('Comment')), false);
 		$submissions = $this->paginate('Submission');
+		
 		$this->set('submissions', $submissions);
 		$this->set('uservotes', array());
 		$this->set('loggedin', false);

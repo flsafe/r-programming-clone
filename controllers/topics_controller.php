@@ -19,7 +19,9 @@ class TopicsController extends AppController{
 	}
 
 	function index(){
+		$this->Topic->unbindModel(array('hasMany'=>array('Comment')), false);
 		$topicdata = $this->paginate('Topic');
+		
 		$this->set('topics', $topicdata);
 		$this->set('loggedin', false);
 		$this->set('uservotes', array());
