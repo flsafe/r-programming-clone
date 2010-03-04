@@ -8,6 +8,7 @@ class SubmissionsController extends AppController{
 
   public $helpers    = array('Markdown', 'SanitizeUtil', 'SyntaxHighlighter', 'Javascript', 'CommentsBuilder');
 	
+	/*All submissions to the current topic*/
 	public $paginate   = array(
 			'limit'        => '25',
 			'order'        => array('Submission.rank'     => 'desc'),
@@ -29,9 +30,7 @@ class SubmissionsController extends AppController{
 			foreach($submissions as $m)
 				$modelids[] = $m[$modelname]['id'];
 
-			$uservotes = array();
-				if($userid)
-					$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $userid);
+			$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $userid);
 				
 			$this->set('uservotes', $uservotes);
 		}

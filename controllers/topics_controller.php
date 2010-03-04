@@ -28,8 +28,7 @@ class TopicsController extends AppController{
 			$modelids  = array();
 			foreach($topicdata as $m)
 				$modelids[] = $m[$modelname]['id'];
-
-			$uservotes = array();
+				
 			$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $userid);
 				
 			$this->set('uservotes', $uservotes);
@@ -44,9 +43,7 @@ class TopicsController extends AppController{
 		$userid          = $this->Auth->user('id');
 		$modelname       = 'Topic';
 		if($userid){
-			$uservotes = array();
 			$uservotes = $this->Vote->getUserVotes($modelname, $id, $userid);
-
 			$this->set('uservotes', $uservotes);
 		}
 	}
