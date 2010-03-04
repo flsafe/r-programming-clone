@@ -15,7 +15,7 @@ class TopicsController extends AppController{
 		
 	function beforeFilter(){
 		$this->Auth->allow(array('index', 'view'));
-		$this->Auth->authError = "You've got to be logged in to submit a puzzle!";
+		$this->Auth->authError = "You've got to be logged in to do that!";
 	}
 
 	function index(){
@@ -51,6 +51,27 @@ class TopicsController extends AppController{
 			$this->set('uservotes', $uservotes);
 			$this->set('loggedin', true);
 		}
+	}
+	
+	function review(){
+		$user_id = $this->Auth->user('id');
+		if(!$user_id)
+			return;
+		
+		/*Get the user's submissions, so they can review them*/
+		$this->paginate   = array('limit'      => '25',
+															'order'      => array('Topic.created' => 'desc'),
+															'conditions' => array('Topic.user_id' => $user_id));
+															
+		$topics  = $this->paginate('Topic');
+		$this->set('topics', $topics);
+		
+		$modelids  = array();
+		foreach($topics as $m)
+			$modelids[] = $m['Topic']['id'];
+
+		$uservotes = $this->Vote->getUserVotes('Topic', $modelids, $user_id);
+		$this->set('uservotes', $uservotes);
 	}
 	
 	function add(){

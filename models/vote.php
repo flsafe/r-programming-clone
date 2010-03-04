@@ -75,7 +75,6 @@ class Vote extends AppModel{
       $rank                          = call_user_func($rankFunction, $upvotes, $downvotes, $created);
       $modeldata[$modelname]['rank'] = $rank;
 
-
 			$model->save($modeldata);
 			$modelnamelow = strtolower($modelname);
 			$votedata = array('Vote' =>array(
@@ -90,7 +89,7 @@ class Vote extends AppModel{
 	
 	/**
 	*Returns an associative array mapping model ids to 
-	*the user vote for that model.
+	*the user vote for the model associated with the id.
 	*@param $modelname The name of the model. Typicaly the Model->name field.
 	*@param array $modelids An array of model ids. The function returns the user vote,
 	*if a vote exists, for each model id.

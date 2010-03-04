@@ -18,4 +18,4 @@
 	
 </div>
 
-<?php $this->element('paginiation') ?>
+<?php $this->element('pagination') ?>

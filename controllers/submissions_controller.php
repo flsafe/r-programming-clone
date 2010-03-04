@@ -15,7 +15,7 @@ class SubmissionsController extends AppController{
 	
 	function beforeFilter(){
 		$this->Auth->allow(array('index', 'view'));
-		$this->Auth->authError = "Oops! You've got to be logged in to submit.";
+		$this->Auth->authError = "You've got to be logged in to do that!";
 	}
 
 	function index(){
@@ -58,15 +58,23 @@ class SubmissionsController extends AppController{
 	
 	function review(){
 		$user_id = $this->Auth->user('id');
-		if(!user_id)
+		if(!$user_id)
 			return;
-			
+		
+		/*Get the user's submissions, so they can review them*/
 		$this->paginate   = array('limit'      => '25',
-															'order'      => array('Submission.created'     => 'desc'),
-															'conditions' => array('Topic.user_id' => $user_id));
+															'order'      => array('Submission.created' => 'desc'),
+															'conditions' => array('Submission.user_id' => $user_id));
 															
-		$usersubmissions = $this->paginate('Submission');
-		$this->set('usersubmissions', $usersubmissions);
+		$submissions  = $this->paginate('Submission');
+		$this->set('submissions', $submissions);
+		
+		$modelids  = array();
+		foreach($submissions as $m)
+			$modelids[] = $m['Submission']['id'];
+
+		$uservotes = $this->Vote->getUserVotes("Submission", $modelids, $user_id);
+		$this->set('uservotes', $uservotes);
 	}
 	
 	function add(){
