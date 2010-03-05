@@ -11,5 +11,5 @@
 
 		<?php echo $this->element('topicslist', array('topics'    => $topics,
 																						      'uservotes' => $uservotes,
-																						      'loggedin'  => $loggedin)) 
+																						      'user_id'  => $user_id)) 
 		?>

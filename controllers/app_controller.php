@@ -1,6 +1,6 @@
 <?php
 	class AppController extends Controller{
-    public $components = array('Captcha', 'Auth');
+    public $components = array('Captcha', 'Auth', 'Common');
     
     public $helpers = array('SanitizeUtil', 'Html', 'Form');
 		
