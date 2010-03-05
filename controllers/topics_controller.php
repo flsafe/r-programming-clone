@@ -9,7 +9,7 @@ class TopicsController extends AppController{
 	public $helpers    = array('Markdown', 'Javascript', 'CommentsBuilder');
 	
 	public $paginate = array(
-		'limit'      => '12',
+		'limit'      => '25',
 		'order'      => array('Topic.rank' => 'desc'),
 		'conditions' => array('Topic.was_chosen'=>'0', 'Topic.current_topic'=>'0'));
 		
