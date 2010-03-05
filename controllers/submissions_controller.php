@@ -61,29 +61,6 @@ class SubmissionsController extends AppController{
 		}
 	}
 	
-	function review(){
-		$user_id = $this->Auth->user('id');
-		if(!$user_id)
-			return;
-		
-		$this->set('user_id', $user_id);
-		
-		/*Get the user's submissions, so they can review them*/
-		$this->paginate   = array('limit'      => '25',
-															'order'      => array('Submission.created' => 'desc'),
-															'conditions' => array('Submission.user_id' => $user_id));
-															
-		$submissions  = $this->paginate('Submission');
-		$this->set('submissions', $submissions);
-		
-		$modelids  = array();
-		foreach($submissions as $m)
-			$modelids[] = $m['Submission']['id'];
-
-		$uservotes = $this->Vote->getUserVotes("Submission", $modelids, $user_id);
-		$this->set('uservotes', $uservotes);
-	}
-	
 	function add(){
 		if(empty($this->data))
 			return;						

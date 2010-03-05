@@ -55,29 +55,6 @@ class TopicsController extends AppController{
 		}
 	}
 	
-	function review(){
-		$user_id = $this->Auth->user('id');
-		if(!$user_id)
-			return;
-			
-		$this->set('user_id', $user_id);
-		
-		/*Get the user's submissions, so they can review them*/
-		$this->paginate   = array('limit'      => '25',
-															'order'      => array('Topic.created' => 'desc'),
-															'conditions' => array('Topic.user_id' => $user_id));
-															
-		$topics  = $this->paginate('Topic');
-		$this->set('topics', $topics);
-		
-		$modelids  = array();
-		foreach($topics as $m)
-			$modelids[] = $m['Topic']['id'];
-
-		$uservotes = $this->Vote->getUserVotes('Topic', $modelids, $user_id);
-		$this->set('uservotes', $uservotes);
-	}
-	
 	function add(){
 		if(empty($this->data))
 			return;

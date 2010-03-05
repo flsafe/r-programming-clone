@@ -4,6 +4,10 @@ class UsersController extends AppController{
 	
 	public $components  = array('Auth', 'Email','Session', 'Security', 'Ticket');
 	
+	public $uses        = array('Submission','Topic', 'Vote', 'User');
+	
+	public $helpers      = array('SyntaxHighlighter');
+	
 	function beforeFilter(){
 		$this->Auth->allow('add', 'forgot_password','reset_password', 'captcha');
 	}
@@ -122,6 +126,29 @@ class UsersController extends AppController{
         }
 			}
 		}
+	}
+	
+	function review($modelname){
+		$user_id = $this->Auth->user('id');
+		if(!$user_id)
+			return;
+		$this->set('user_id', $user_id);
+		
+		if(! $this->Common->validModel($modelname))
+			return;
+		$this->set('modelname', $modelname);
+		
+		/*Get the user's submissions, so they can review them*/
+		$this->paginate   = array('limit'      => '25',
+															'order'      => array("${modelname}.created" => 'desc'),
+															'conditions' => array("${modelname}.user_id" => $user_id));
+															
+		$models  = $this->paginate($modelname);
+		$this->set('models', $models);
+		
+		$modelids  = $this->Common->toIdArray($models, $modelname);
+		$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $user_id);
+		$this->set('uservotes', $uservotes);
 	}
 	
 	function login(){

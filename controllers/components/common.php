@@ -8,5 +8,10 @@
 				
 			return $modelids;
 		}
+		
+		public function validModel($modelname){
+			$validModels = array('Topic', 'Submission');
+			return in_array($modelname, $validModels);
+		}
 	}
 ?>

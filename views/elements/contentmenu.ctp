@@ -4,11 +4,11 @@
 		<img	src="/img/postsolution.png" alt="Submit my solution to the puzzle above"/>
 	</a>
 	&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="/submissions/review" title="See the solutions I posted">
+	<a href="/users/review/Submission" title="See the solutions I posted">
 		<img	src="/img/mysolutions.png" alt="See the solutions I posted"/>
 	</a>
 
-	<a href="/topics/review" title="See the puzzles I posted">
+	<a href="/users/review/Topic" title="See the puzzles I posted">
 		<img	src="/img/mypuzzles.png" alt="See the puzzles I posted"/>
 	</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;

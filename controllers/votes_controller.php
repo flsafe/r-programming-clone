@@ -5,7 +5,9 @@
 		
 		public $uses       = array('Vote', 'Submission', 'Topic');
 		
-		public $helpers     = array('Markdown', 'SanitizeUtil', 'SyntaxHighlighter', 'Javascript', 'CommentsBuilder');
+		public $helpers    = array('Markdown', 'SanitizeUtil', 'SyntaxHighlighter', 'Javascript', 'CommentsBuilder', 'Translator');
+		
+		public $belongsTo = array('Submission', 'Topic'); #TODO: Can this be replaced with one parent class?*/
 		
 		public function vote( $type = null, $modelname = null, $id = null){
 			$this->autoRender = false;
@@ -44,7 +46,8 @@
 		}
 		
 		/**
-		 * Displays upvoted or down voted models.
+		 * Displays upvoted or down voted models not included
+		 * the models the user owns.
 		 * If $liked is set to true, then upvoted models are displayed
 		 * otherwise downvoted models are displayed.
 		 */
@@ -52,17 +55,18 @@
 			$user_id = $this->Auth->user('id');
 			if(!$user_id)
 				return;
+			$this->set('user_id', $user_id);
 			
 			$liked = $liked ? '1' : '0';
 			
 			$modelname = strtolower($model->name);
 			$this->__bindToUpVotes($user_id, $model, "${modelname}_id", $liked);
-
-			$this->paginate = array('limit'      => '25',
-															'order'      => array('Vote.created' => 'desc'),
-															'conditions' => array('Vote.upvote'=>"$liked",
-															                      'Vote.user_id <>'=>"$user_id"));
 			$model->unbindModel(array('hasMany'=>array('Comment')), false);
+			$this->paginate = array('limit'      => '25',
+															'order'      => array('Vote.created'     => 'desc'),
+															'conditions' => array('Vote.upvote'      => "$liked",
+															                      "User.id <>"       => $user_id));
+
 			$models = $this->paginate($model->name);
 			$this->set('models', $models);
 
@@ -89,8 +93,8 @@
 																								'Vote'=> array(
 																										'className'  => 'Vote',
 																										'foreignKey' => $foreign_key,
-																										'conditions' => array('Vote.upvote' => $upvote,
-																																				'Vote.user_id'  => $user_id),
+																										'conditions' => array('Vote.upvote'  => $upvote,
+																																				  'Vote.user_id' => $user_id),
 																										'order'      => 'Vote.created DESC'))), false);
 		}
 		
