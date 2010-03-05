@@ -131,6 +131,10 @@ body img{
     color: black;
 }
 
+#selectedtopic h1{
+    font-size: 1.6em;
+}
+
 #morepuzzelsbutton{
     float: right;
     position: relative;
