@@ -141,11 +141,14 @@ body img{
     top: 15px;
 }
 
+/*--------content menu-----------*/
+
+#contentmenu{
+}
+
 /*---------------Submissions----------------*/
 
-#submissionmenu{
 
-}
 
 #submissions{
     margin: 0px 0px 40px 0px;

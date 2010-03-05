@@ -76,6 +76,14 @@ class TopicsController extends AppController{
 		$this->set('uservotes', $uservotes);
 	}
 	
+	function liked(){
+		
+	}
+	
+	function disliked(){
+		
+	}
+	
 	function add(){
 		if(empty($this->data))
 			return;
