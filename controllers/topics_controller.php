@@ -26,14 +26,14 @@ class TopicsController extends AppController{
 		$this->set('loggedin', false);
 		$this->set('uservotes', array());
 		
-		$userid    = $this->Auth->user('id');
-		if($userid){
+		$user_id    = $this->Auth->user('id');
+		$this->set('user_id', $user_id);
+		if($user_id){
 			$modelname = 'Topic';
-			$modelids  = array();
-			foreach($topicdata as $m)
-				$modelids[] = $m[$modelname]['id'];
+
+			$modelids = $this->Common->toIdArray($topicdata, 'Topic');
 				
-			$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $userid);
+			$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $user_id);
 			$this->set('loggedin', true);
 			$this->set('uservotes', $uservotes);
 		}
@@ -59,6 +59,8 @@ class TopicsController extends AppController{
 		$user_id = $this->Auth->user('id');
 		if(!$user_id)
 			return;
+			
+		$this->set('user_id', $user_id);
 		
 		/*Get the user's submissions, so they can review them*/
 		$this->paginate   = array('limit'      => '25',
@@ -74,14 +76,6 @@ class TopicsController extends AppController{
 
 		$uservotes = $this->Vote->getUserVotes('Topic', $modelids, $user_id);
 		$this->set('uservotes', $uservotes);
-	}
-	
-	function liked(){
-		
-	}
-	
-	function disliked(){
-		
 	}
 	
 	function add(){

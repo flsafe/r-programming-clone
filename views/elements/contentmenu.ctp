@@ -12,11 +12,11 @@
 		<img	src="/img/mypuzzles.png" alt="See the puzzles I posted"/>
 	</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="/submissions/liked" title="See the solutions I liked">
+	<a href="/votes/liked/Submission" title="See the solutions I liked">
 		<img	src="/img/likedsolutions.png" alt="See the solutions I liked"/>
 	</a>
 	
-	<a href="/topics/liked" title="See the puzzles I liked">
+	<a href="/votes/liked/Topic" title="See the puzzles I liked">
 		<img	src="/img/likedpuzzles.png" alt="See the puzzles I liked"/>
 	</a>
 	

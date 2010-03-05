@@ -18,7 +18,7 @@
 	echo $this->element('contentmenu');
 	echo $this->element('submissionslist', array('submissions'=> $submissions, 
 																							 'uservotes'  => $uservotes,
-																							 'loggedin'   => $loggedin));
+																							 'user_id'    => $user_id));
 ?>
 
 
