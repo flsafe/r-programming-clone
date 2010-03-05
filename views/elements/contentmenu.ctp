@@ -1,4 +1,4 @@
-<div id="submissionmenu">
+<div id="contentmenu">
 
 	<a href="/submissions/add" title="Submit my solution to the puzzle above">
 		<img	src="/img/postsolution.png" alt="Submit my solution to the puzzle above"/>
