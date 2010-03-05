@@ -83,31 +83,11 @@ class SubmissionsController extends AppController{
 	}
 	
 	function liked(){
-		$user_id = $this->Auth->user('id');
-		if(!$user_id)
-			return;
-		
-		/*Get the submissions that this user upvoted*/
-		$this->Submission->bindModel(array('hasOne'=>array(
-																							'Vote'=> array(
-																									'className'=>'Vote',
-																									'foreignKey'=>'submission_id',
-																									'conditions'=>array('Vote.upvote'=>'1',
-																																			'Vote.user_id'=>$user_id),
-																									'order'=>'Vote.created DESC'))), false);
-
-		$this->paginate = array('limit' => '25',
-														'order' => array('Vote.created' => 'desc')); #try conditions here if the ones above don't work
-														
-		$submissions = $this->paginate('Submission');
-		$this->set('submissions', $submissions);
-		
-		$modelids = array();
-		foreach($submissions as $m)
-			$modelids[] = $m['Submission']['id'];
-			
-		$uservotes = $this->Vote->getUserVotes('Submission', $modelids,  $user_id);
-		$this->set('uservotes', $uservotes);
+		$this->__getLiked(true);
+	}
+	
+	function disliked(){
+		$this->__getLiked(false);
 	}
 	
 	function add(){
@@ -150,6 +130,40 @@ class SubmissionsController extends AppController{
 				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 			}
 		}
+	}
+	
+	function __getLiked($liked){
+		$user_id = $this->Auth->user('id');
+		if(!$user_id)
+			return;
+		
+		$liked = $liked ? '1' : '0';
+		/*Get the submissions that this user upvoted*/
+		$this->Submission->bindModel(array('hasOne'=>array(
+																							'Vote'=> array(
+																									'className'  => 'Vote',
+																									'foreignKey' => 'submission_id',
+																									'conditions' => array('Vote.upvote' => "$liked",
+																																			'Vote.user_id'  => $user_id),
+																									'order'      => 'Vote.created DESC'))), false);
+
+		$this->Submission->unbindModel(array('hasMany'=>array('Comment')), false);
+		$this->Submission->unbindModel(array('belongsTo'=>array('Topic')), false);
+		$this->paginate = array('limit'      => '25',
+														'order'      => array('Vote.created' => 'desc'),
+														'conditions' => array('Vote.upvote'=>"$liked")); #try conditions here if the ones above don't work
+		$submissions = $this->paginate('Submission');
+		$this->set('submissions', $submissions);
+		
+		$modelids = array();
+		foreach($submissions as $m)
+			$modelids[] = $m['Submission']['id'];
+			
+		$uservotes = $this->Vote->getUserVotes('Submission', $modelids,  $user_id);
+		$this->set('uservotes', $uservotes);
+		
+		$this->set('liked', $liked);
+		$this->render('liked');
 	}
 }
 ?>

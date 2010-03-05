@@ -1,6 +1,11 @@
-<h1>The Solutions You Upvoted</h1>
+
 <?php #Show the user all the submissions they upvoted
-	echo $this->element('submissionslist', array('submissions'=>$submissions,
-																							'uservotes'=>$uservotes,
-																							'loggedin'=> true));
+	if($liked)
+		echo $html->tag('h1', "Solutions You Liked");
+	else
+		echo $html->tag('h1', "Solutions You Didn't Like");
+
+	echo $this->element('submissionslist', array('submissions'=> $submissions,
+																							'uservotes'   => $uservotes,
+																							'loggedin'    => true));
 ?>
