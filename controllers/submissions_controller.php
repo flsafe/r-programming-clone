@@ -53,9 +53,10 @@ class SubmissionsController extends AppController{
 		$this->set('loggedin', false);
 		$this->set('uservotes', array());
 		
-		$userid = $this->Auth->user('id');
-		if(isset($userid)){
-			$uservotes = $this->Vote->getUserVotes("Submission", array($id), $userid);
+		$user_id = $this->Auth->user('id');
+		$this->set('user_id', $user_id);
+		if(isset($user_id)){
+			$uservotes = $this->Vote->getUserVotes("Submission", array($id), $user_id);
 			$this->set('uservotes', $uservotes);
 			$this->set('loggedin', true);
 		}

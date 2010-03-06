@@ -148,9 +148,6 @@ body img{
 }
 
 /*---------------Submissions----------------*/
-
-
-
 #submissions{
     margin: 0px 0px 40px 0px;
 }
@@ -167,6 +164,11 @@ body img{
 .submission a{
     color: rgb(32, 161, 195);
     font-size: 1.3em;
+}
+
+a.submissiontopic {
+    font-size: 13px;
+    color: rgb(100, 138, 30);
 }
 
 #submissions .votearrows img{

@@ -10,6 +10,7 @@ class UsersController extends AppController{
 	
 	function beforeFilter(){
 		$this->Auth->allow('add', 'forgot_password','reset_password', 'captcha');
+		$this->Auth->authError = "Oops! You've got be logged in to do that!";
 	}
 	
 	function edit(){

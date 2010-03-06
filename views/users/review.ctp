@@ -14,7 +14,8 @@
 	if($modelname == 'Submission'){
 		echo $this->element('submissionslist', array('submissions' => $models,
 																							   'uservotes'   => $uservotes,
-																						     'user_id'     => $user_id));
+																						     'user_id'     => $user_id,
+																						      'showtopic'  => true));
 	}
 	else{
 		echo $this->element('topicslist', array('topics'     => $models,

@@ -1,7 +1,7 @@
 <?php #Params:
 			#topic     - A reference to the topic that will be displayed
 			#uservotes - A reference to the array of user votes
-			#showedit - Show the edit link? 
+			#user_id   - The current user id
 			
 		 	$id       = $topic['Topic']['id'];
 			$title    = $topic['Topic']['title'];
@@ -23,7 +23,9 @@
 		?>
 	</p>
 
-	<?php echo $this->element('meta', array('id'  => $id,
+	<?php 
+		$showedit = $user_id == $topic['User']['id'] ? true : false;
+		echo $this->element('meta', array('id'  => $id,
 																		 'modelname'=> "Topic",
 																		 'points'   => $points,
 																		 'username' => $username,

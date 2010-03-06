@@ -13,7 +13,7 @@
 		<div id="viewsubmissionheadtitle">
 			<?php
 			 echo $this->element('submission', array('uservotes' => $uservotes,
-																					     'showedit'  => $loggedin ? true: false));
+																					     '$user_id'  => $user_id));
 			?>
 		</div>
 		

@@ -8,12 +8,10 @@
 	
  	if(!isset($topic['User']))
 		$topic['User']['username'] = "";
-	
-	
 ?>
 
-<?php echo $this->element('topic', array('topic'=>$topic,
-																				 'showedit'=>$loggedin ? true : false)); ?>
+<?php echo $this->element('topic', array('topic'   => $topic,
+																				 'user_id' => $user_id)); ?>
 
 <div id="topictext">
 	<?php 

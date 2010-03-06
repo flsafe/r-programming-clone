@@ -46,10 +46,11 @@ class TopicsController extends AppController{
 		$this->set('loggedin', false);
 		$this->set('uservotes', array());
 		
-		$userid          = $this->Auth->user('id');
-		$modelname       = 'Topic';
-		if($userid){
-			$uservotes = $this->Vote->getUserVotes($modelname, $id, $userid);
+		$user_id   = $this->Auth->user('id');
+		$this->set('user_id', $user_id);
+		$modelname = 'Topic';
+		if($user_id){
+			$uservotes = $this->Vote->getUserVotes($modelname, $id, $user_id);
 			$this->set('uservotes', $uservotes);
 			$this->set('loggedin', true);
 		}
