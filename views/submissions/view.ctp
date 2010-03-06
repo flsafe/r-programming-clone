@@ -12,31 +12,32 @@
 	<div id="viewsubmissionhead">	
 		<div id="viewsubmissionheadtitle">
 			<?php
-			 echo $this->element('submission', array('uservotes' => $uservotes,
-																					     '$user_id'  => $user_id));
+			 echo $this->element('submission', array('uservotes'  => $uservotes,
+																					     '$user_id'   => $user_id,
+																					     'submission' => $model));
 			?>
 		</div>
 		
 		<p>
 			<?php 
-				$sanitizeUtil->htmlEsc($submission['Submission'], array('description1'));
-				echo $markdown->parse($submission['Submission']['description1']); 
+				$sanitizeUtil->htmlEsc($model['Submission'], array('description1'));
+				echo $markdown->parse($model['Submission']['description1']); 
 			?>
 		</p>
   </div>
 
 	<div id='viewsubmissioncode'>
 		<?php 
-				$code = $submission['Submission']['text1'];
-				echo $syntaxHighlighter->highlight($code, $submission['Submission']['syntax']);
+				$code = $model['Submission']['text1'];
+				echo $syntaxHighlighter->highlight($code, $model['Submission']['syntax']);
 		?>
 	</div>
 
 	<?php
 		echo $this->element('comments', array('modelname'=>'Submission', 
-															'model_id' => $submission['Submission']['id'],
-															'username' => $submission['User']['username'],
-															'user_id'  => $submission['User']['id']));
+															'model_id' => $model['Submission']['id'],
+															'username' => $model['User']['username'],
+															'user_id'  => $model['User']['id']));
 	?>
 
 </div>

@@ -9,7 +9,7 @@
 
 <a href="/topics/add"><img src="/img/postpuzzle.png" alt="submit topic" title="submittopic"></a>
 
-		<?php echo $this->element('topicslist', array('topics'    => $topics,
+		<?php echo $this->element('topicslist', array('topics'    => $models,
 																						      'uservotes' => $uservotes,
-																						      'user_id'  => $user_id)) 
+																						      'user_id'   => $user_id)) 
 		?>

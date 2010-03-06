@@ -5,7 +5,6 @@
 			#user_id    - Id of the current user
 			#showtopic  - Show the title of the topic associated with this submission (optional default false)
 			
-			
 			if(! isset($showtopic))
 				$showtopic = false;
 			

@@ -2,7 +2,7 @@
 class TopicsController extends AppController{
 	public $name       = "Topics";
 	
-	public $components = array('RequestHandler', 'Security');
+	public $components = array('RequestHandler', 'Security', 'LineItem');
 	
 	public $uses       = array('Topic', 'Vote');
 	
@@ -19,41 +19,11 @@ class TopicsController extends AppController{
 	}
 
 	function index(){
-		$this->Topic->unbindModel(array('hasMany'=>array('Comment')), false);
-		$topicdata = $this->paginate('Topic');
-		
-		$this->set('topics', $topicdata);
-		$this->set('loggedin', false);
-		$this->set('uservotes', array());
-		
-		$user_id    = $this->Auth->user('id');
-		$this->set('user_id', $user_id);
-		if($user_id){
-			$modelname = 'Topic';
-
-			$modelids = $this->Common->toIdArray($topicdata, 'Topic');
-				
-			$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $user_id);
-			$this->set('loggedin', true);
-			$this->set('uservotes', $uservotes);
-		}
+		$this->LineItem->index($this->Topic);
 	}
 	
 	function view($id = null){
-		$this->Topic->id = $id;
-		$this->data      = $this->Topic->read();
-		$this->set('topic', $this->data);
-		$this->set('loggedin', false);
-		$this->set('uservotes', array());
-		
-		$user_id   = $this->Auth->user('id');
-		$this->set('user_id', $user_id);
-		$modelname = 'Topic';
-		if($user_id){
-			$uservotes = $this->Vote->getUserVotes($modelname, $id, $user_id);
-			$this->set('uservotes', $uservotes);
-			$this->set('loggedin', true);
-		}
+		$this->LineItem->view($this->Topic, $id);
 	}
 	
 	function add(){

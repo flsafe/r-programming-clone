@@ -2,7 +2,7 @@
 class SubmissionsController extends AppController{
 	public $name       = "Submissions";
 	
-	public $components = array('RequestHandler', 'Security');
+	public $components = array('RequestHandler', 'Security', 'LineItem');
 	
 	public $uses       = array('Submission', 'Topic', 'Vote');
 
@@ -22,44 +22,13 @@ class SubmissionsController extends AppController{
 		This is the home page
 	*/
 	function index(){
-		$this->Submission->unbindModel(array('hasMany'=>array('Comment')), false);
-		$submissions = $this->paginate('Submission');
-		
-		$this->set('submissions', $submissions);
-		$this->set('uservotes', array());
-		$this->set('loggedin', false);
-
-		$modelname  = 'Submission';
-		$user_id    =  $this->Auth->user('id');
-		$this->set('user_id', $user_id);
-		if($user_id){
-			$modelids  = array();
-			foreach($submissions as $m)
-				$modelids[] = $m[$modelname]['id'];
-
-			$uservotes = $this->Vote->getUserVotes($modelname, $modelids, $user_id);
-				
-			$this->set('uservotes', $uservotes);
-		}
-
+		$this->LineItem->index($this->Submission);
 		$topic = $this->Submission->Topic->findByCurrentTopic('1');
 		$this->set('topic', $topic);
 	}
 	
 	function view($id = null){
-		$this->Submission->id = $id;
-		$data = $this->Submission->read();
-		$this->set('submission', $data);
-		$this->set('loggedin', false);
-		$this->set('uservotes', array());
-		
-		$user_id = $this->Auth->user('id');
-		$this->set('user_id', $user_id);
-		if(isset($user_id)){
-			$uservotes = $this->Vote->getUserVotes("Submission", array($id), $user_id);
-			$this->set('uservotes', $uservotes);
-			$this->set('loggedin', true);
-		}
+		$this->LineItem->view($this->Submission, $id);
 	}
 	
 	function add(){

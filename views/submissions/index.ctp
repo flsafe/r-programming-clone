@@ -16,7 +16,7 @@
 
   echo $this->element('selectedtopic', array('title'=>$title, 'username'=>$username, 'text'=>$markdown->parse($text)));
 	echo $this->element('contentmenu');
-	echo $this->element('submissionslist', array('submissions'=> $submissions, 
+	echo $this->element('submissionslist', array('submissions'=> $models, 
 																							 'uservotes'  => $uservotes,
 																							 'user_id'    => $user_id));
 ?>

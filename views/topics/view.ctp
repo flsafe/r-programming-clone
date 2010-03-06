@@ -10,19 +10,19 @@
 		$topic['User']['username'] = "";
 ?>
 
-<?php echo $this->element('topic', array('topic'   => $topic,
+<?php echo $this->element('topic', array('topic'   => $model,
 																				 'user_id' => $user_id)); ?>
 
 <div id="topictext">
 	<?php 
-		$sanitizeUtil->htmlEsc($topic['Topic'], array('text'));
-		echo $markdown->parse($topic['Topic']['text']);
+		$sanitizeUtil->htmlEsc($model['Topic'], array('text'));
+		echo $markdown->parse($model['Topic']['text']);
 	?>
 </div>
 
 <?php
 	echo $this->element('comments', array('modelname'=>'Topic', 
-																				'model_id' => $topic['Topic']['id'],
-																				'username' => $topic['User']['username'],
-																				'user_id'  => $topic['User']['id']));
+																				'model_id' => $model['Topic']['id'],
+																				'username' => $model['User']['username'],
+																				'user_id'  => $model['User']['id']));
 ?>
