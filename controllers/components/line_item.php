@@ -41,7 +41,5 @@ class LineItemComponent extends Object{
 			$this->controller->set('uservotes', $uservotes);
 		}
 	}
-	
-	
 }
 ?>

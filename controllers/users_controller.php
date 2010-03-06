@@ -129,6 +129,9 @@ class UsersController extends AppController{
 		}
 	}
 	
+	/**
+	 * Review all the user posts
+	 */
 	function review($modelname){
 		$user_id = $this->Auth->user('id');
 		if(!$user_id)
