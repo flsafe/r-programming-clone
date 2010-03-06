@@ -60,14 +60,27 @@ class SubmissionsController extends AppController{
 	}
 	
 	function edit($id = null){
-		$this->Submission->id = $id;
-		
 		if(empty($this->data)){
-			$this->data = $this->Submission->read();
+			$data = $this->Common->getUserOwned($this->Submission, $id, $this->Auth->user('id'));
+		  if(!$data){
+				$this->Session->setFlash('Ooops!');
+				$this->cakeError('error404');
+			}
+			$this->data = $data;
 		}
 		else{
-			$this->data['Submission']['size'] = strlen($this->data['Submission']['text1']);
-			if($this->Submission->save($this->data, array('title', 'description1', 'text1', 'syntax', 'size'))){
+			$data = $this->Common->getUserOwned($this->Submission, $id, $this->Auth->user('id'));
+			if(!$data){
+				$this->cakeError('error404');
+			}
+
+			$data['Submission']['title']        = $this->data['Submission']['title'];
+			$data['Submission']['description1'] = $this->data['Submission']['description1'];
+			$data['Submission']['text1']        = $this->data['Submission']['text1'];
+			$data['Submission']['syntax']       = $this->data['Submission']['syntax'];
+			$data['Submission']['size']         = strlen($this->data['Submission']['text1']);
+
+			if($this->Submission->save($data)){
 				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 			}
 		}

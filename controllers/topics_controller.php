@@ -40,27 +40,34 @@ class TopicsController extends AppController{
 	}
 	
 	function edit($id=null){
-		$this->Topic->id = $id;
-		
 		if(empty($this->data)){
-			$topic         = $this->Topic->read();
-			$topicOfTheDay = $topic['Topic']['current_topic'] != '0' || $topic['Topic']['was_chosen'] != '0';
+			$data         = $this->Common->getUserOwned($this->Topic, $id, $this->Auth->user('id'));
+			if(!$data)
+				return;
+
+			$topicOfTheDay = $data['Topic']['current_topic'] != '0' || $data['Topic']['was_chosen'] != '0';
 			
 			if($topicOfTheDay){
-				$this->data = null;
 				$this->Session->setFlash("You can't edit the topic of the day!");
 				return;
 			}
-			$this->data = $topic;
+			$this->data = $data;
 		}
 		else{
-			$topicOfTheDay = $this->data['Topic']['current_topic'] != '0' || $this->data['Topic']['was_chosen'] != '0';
+			$data = $this->Common->getUserOwned($this->Topic, $id, $this->Auth->user('id'));
+			if(!$data)
+				return;
+				
+			$topicOfTheDay = $data['Topic']['current_topic'] != '0' || $data['Topic']['was_chosen'] != '0';
 			if($topicOfTheDay){
 				$this->Session->setFlash("You can't edit the topic of the day!");
 				return;
 			}
-				
-			if($this->Topic->save($this->data, array('title', 'text'))){
+			
+			$data['Topic']['title'] = $this->data['Topic']['title'];
+			$data['Topic']['text']  = $this->data['Topic']['text'];
+			
+			if($this->Topic->save($this->data)){
 				$this->redirect(array('controller'=>'topics', 'action'=>'index'));
 			}
 		}
