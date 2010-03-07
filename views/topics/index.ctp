@@ -1,4 +1,4 @@
-<h1>Vote On Tommorrow's Puzzle!</h1>
+<h1 id="pagetitleheader">Vote On Tommorrow's Puzzle!</h1>
 
 <?php 
 	echo $javascript->link('jquery/jquery.min', false);

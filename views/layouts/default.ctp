@@ -34,12 +34,15 @@
 
 		<a href="/submissions/index/"><img src="/img/codekettllogo.png"/></a>
 		<img id="beta" src="/img/beta.png"/ height="50"/>
-		<div><a href="/submissions/index/" id="tagline">Your Daily Cup Of Programming Interview Practice</a></div>
+		<div><a href="/submissions/index/" id="tagline">Your Daily Cup Of Programming Practice</a></div>
 	</div>
 
 	<div id="content">
-		<?php echo $session->flash();?>
-		<?php echo $content_for_layout;?>
+		<?php 
+			echo $this->element('contentmenu');
+			echo $session->flash();
+			echo $content_for_layout;
+		?>
 	</div>		
 
 	<div id="footer">

@@ -7,6 +7,8 @@
 	echo $javascript->link('jquery/vote', false);
 ?>
 
+<h1 id="pagetitleheader">View Solution</h1>
+
 <div id="viewsubmission">
 	
 	<div id="viewsubmissionhead">	

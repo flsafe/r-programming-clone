@@ -15,7 +15,13 @@
   $sanitizeUtil->htmlEsc($topic['Topic'], array('title','text'));
 
   echo $this->element('selectedtopic', array('title'=>$title, 'username'=>$username, 'text'=>$markdown->parse($text)));
-	echo $this->element('contentmenu');
+?>
+
+<a href="/submissions/add" title="Submit my solution to the puzzle above">
+	<img	src="/img/postsolution.png" alt="Submit my solution to the puzzle above"/>
+</a>
+
+<?php
 	echo $this->element('submissionslist', array('submissions'=> $models, 
 																							 'uservotes'  => $uservotes,
 																							 'user_id'    => $user_id));

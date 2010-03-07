@@ -6,9 +6,9 @@
 	$listtype        = $modelnameplural . 'list';
 	
 	if($liked)
-		echo $html->tag('h1', "${modelnameplural} You Liked");
+		echo $html->tag('h1', "${modelnameplural} You Liked", array('id'=>'pagetitleheader'));
 	else
-		echo $html->tag('h1', "${modelnameplural} You Didn't Like");
+		echo $html->tag('h1', "${modelnameplural} You Didn't Like", array('id'=>'pagetitleheader'));
 	
 	if($modelname == "Submission"){
 		echo $this->element('submissionslist', array('submissions' => $models,
