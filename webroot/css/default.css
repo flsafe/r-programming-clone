@@ -21,7 +21,7 @@ body img{
 
 #pagetitleheader{
     margin-bottom: 35px;
-    font-size: 3em;
+    font-size: 2.50em;
 }
 
 #content{
@@ -73,15 +73,15 @@ body img{
 
 #header{
     border-bottom: 4px  solid rgb(0, 129, 163);
-    padding: 0px;
+    padding-top: 5px;
     font-weight: bold;
     font-size: 1.4em;
 }
 
 #tagline {
-    font-size:0.70em;
+    font-size:0.75em;
     width:300px;
-    margin-left:20px;
+    margin-left:18px;
 }
 
 #header a{
@@ -97,7 +97,7 @@ body img{
 
 #beta{
     position: absolute;
-    left: 275px;
+    left: 290px;
 }
 
 /*--------------Login Page--------------*/
@@ -138,7 +138,7 @@ body img{
 }
 
 #selectedtopic h1{
-    font-size: 2em;
+    font-size: 1.75em;
 }
 
 /*--------content menu-----------*/
@@ -170,7 +170,7 @@ body img{
 }
 
 a.submissiontopic {
-    font-size: 13px;
+    font-size: 14px;
     font-family: Times, "Times New Roman", serif;
     color: rgb(100, 138, 30);
 }
