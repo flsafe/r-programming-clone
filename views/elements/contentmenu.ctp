@@ -1,3 +1,6 @@
+<?php
+	#params - none
+?>
 <div id="contentmenu">
 
 	<div id="contentlinks">

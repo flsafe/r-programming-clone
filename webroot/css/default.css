@@ -26,7 +26,7 @@ body img{
 
 #content{
     margin-top:10px;
-    margin-right: 0px;
+    margin-right: 40px;
     margin-bottom: 30px;
     margin-left: 40px;
 }
@@ -74,14 +74,14 @@ body img{
 #header{
     border-bottom: 4px  solid rgb(0, 129, 163);
     padding-top: 0px;
-    font-weight: bold;
     height: 135px;
 }
 
 #header a{
     text-decoration: none;
     color: rgb(100, 138, 30);
-    font-size: 1.3em;
+    font-size: 1.1em;
+    text-decoration: underline;
 }
 
 #tagline a{
@@ -89,6 +89,8 @@ body img{
     margin-left:20px;
     color: rgb(199, 102, 42);
     font-size: 1em;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 #menu{
@@ -154,23 +156,19 @@ body img{
     margin-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 
 #contentmenu a{
     color: rgb(100, 138, 30);
-    margin-left: 25px;
-    margin-right: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
     width: 100px;
-    font-weight: bold;
-}
-
-#contentmenu a:hover{
     text-decoration: underline;
 }
 
 #contentlinks{
-    width: 700px;
+    width:500px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -197,7 +195,7 @@ body img{
 a.submissiontopic {
     font-size: 14px;
     font-family: Times, "Times New Roman", serif;
-    color: rgb(100, 138, 30);
+    text-decoration: underline;
 }
 
 #submissions .votearrows img{
@@ -299,6 +297,7 @@ a.submissiontopic {
     padding-bottom: 5px;
     -moz-border-radius: 2px;
    -webkit-border-radius: 2px;
+   border-bottom: 1px dotted rgb(230,230,230);
 }
 
 #topictext{
