@@ -73,26 +73,32 @@ body img{
 
 #header{
     border-bottom: 4px  solid rgb(0, 129, 163);
-    padding-top: 5px;
+    padding-top: 0px;
     font-weight: bold;
-    font-size: 1.4em;
-}
-
-#tagline {
-    font-size:0.75em;
-    width:300px;
-    margin-left:18px;
+    height: 135px;
 }
 
 #header a{
     text-decoration: none;
     color: rgb(100, 138, 30);
+    font-size: 1.3em;
+}
+
+#tagline a{
+    width:300px;
+    margin-left:20px;
+    color: rgb(199, 102, 42);
+    font-size: 1em;
 }
 
 #menu{
     float: right;
     padding: 0px 0px 0px 0px;
-    margin-top: 115px;
+    margin-top: 113px;
+}
+
+#menu a:hover{
+    text-decoration: underline;
 }
 
 #beta{
@@ -144,10 +150,29 @@ body img{
 /*--------content menu-----------*/
 
 #contentmenu{
+    margin-top: 20px;
     margin-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
-    width: 600px;
+    font-size: 1.2em;
+}
+
+#contentmenu a{
+    color: rgb(100, 138, 30);
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 100px;
+    font-weight: bold;
+}
+
+#contentmenu a:hover{
+    text-decoration: underline;
+}
+
+#contentlinks{
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*---------------Submissions----------------*/

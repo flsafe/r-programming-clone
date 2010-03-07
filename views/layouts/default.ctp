@@ -34,7 +34,7 @@
 
 		<a href="/submissions/index/"><img src="/img/codekettllogo.png"/></a>
 		<img id="beta" src="/img/beta.png"/ height="50"/>
-		<div><a href="/submissions/index/" id="tagline">Your Daily Cup Of Programming Practice</a></div>
+		<div id="tagline"><a href="/submissions/index/">Your Daily Cup Of Programming Practice</a></div>
 	</div>
 
 	<div id="content">

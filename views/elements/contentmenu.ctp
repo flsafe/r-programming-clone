@@ -1,20 +1,21 @@
 <div id="contentmenu">
 
-	<a href="/submissions/index" title="Puzzle of the day">
-		<img src="/img/puzzleoftheday.png" alt="Puzzle of the day">
+	<div id="contentlinks">
+	<a class="contentmenulink" href="/submissions/index" title="Puzzle of the day">
+		Today's Puzzle
 	</a>
 	
-	<a href="/topics/index" title="Vote on puzzles">
-		<img src="/img/voteonpuzzles.png" alt="Vote on puzzles">
+	<a  class="contentmenulink" href="/topics/index" title="Vote on puzzles">
+		Vote On Puzzles
 	</a>
 	
-	<a href="/users/review/Submission" title="See the solutions I posted">
-		<img	src="/img/mysolutions.png" alt="See the solutions I posted"/>
+	<a class="contentmenulink" href="/users/review/Submission" title="See the solutions I posted or liked">
+		My Solutions
 	</a>
 
-	<a href="/users/review/Topic" title="See the puzzles I posted">
-		<img	src="/img/mypuzzles.png" alt="See the puzzles I posted"/>
+	<a class="contentmenulink" href="/users/review/Topic" title="See the puzzles I posted or liked">
+		My Puzzles
 	</a>
-
+	</div>
 	
 </div>
