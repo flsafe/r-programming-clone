@@ -12,9 +12,10 @@
 	<div id="viewsubmissionhead">	
 		<div id="viewsubmissionheadtitle">
 			<?php
-			 echo $this->element('submission', array('uservotes'  => $uservotes,
-																					     '$user_id'   => $user_id,
-																					     'submission' => $model));
+			 echo $this->element('submission', array('uservotes'     => $uservotes,
+																					     '$user_id'      => $user_id,
+																					     'submission'    => $model,
+																					     'showeverything'=>false));
 			?>
 		</div>
 		

@@ -1,7 +1,8 @@
 <?php #Params:
-			#topic     - A reference to the topic that will be displayed
-			#uservotes - A reference to the array of user votes
-			#user_id   - The current user id
+			#topic          - A reference to the topic that will be displayed
+			#uservotes      - A reference to the array of user votes
+			#user_id        - The current user id
+			#showeverything - Show only the title if false. (Optional default is true) 
 			
 		 	$id       = $topic['Topic']['id'];
 			$title    = $topic['Topic']['title'];
@@ -10,6 +11,8 @@
 			$vote     = 'none';
 			if(isset($uservotes[$id]))
 				$vote = $uservotes[$id] ? 'up' : 'down';
+			if(! isset($showeverything))
+				$showeverything = true;
 ?>
 
 <div class="topic">
@@ -23,12 +26,14 @@
 		?>
 	</p>
 
-	<?php 
-		$showedit = $user_id == $topic['User']['id'] ? true : false;
-		echo $this->element('meta', array('id'  => $id,
+	<?php
+		if($showeverything){
+			$showedit = $user_id == $topic['User']['id'] ? true : false;
+			echo $this->element('meta', array('id'  => $id,
 																		 'modelname'=> "Topic",
 																		 'points'   => $points,
 																		 'username' => $username,
 																		 'showedit' => $showedit)); 
+	 }
 	?>
 </div>

@@ -4,9 +4,12 @@
 			#uservotes  - The votes asscociated with this user
 			#user_id    - Id of the current user
 			#showtopic  - Show the title of the topic associated with this submission (optional default false)
+			#showeveything  - Show the title only (optional default is true)
 			
 			if(! isset($showtopic))
 				$showtopic = false;
+			if(! isset($showeverything))
+				$showeverything = true;
 			
 			$sanitizeUtil->htmlEsc($submission['Submission'], array('id', 'size', 'upvotes', 'downvotes', 'text1'));
 			$id       = $submission['Submission']['id'];
@@ -21,9 +24,11 @@
 ?>
 <div class="submission">
 
-	<div class="submissionpreview">
-		<?php echo $syntaxHighlighter->highlight($text, 'java');?>
-	</div>
+	<?php  if($showeverything):?>
+		<div class="submissionpreview">
+			<?php echo $syntaxHighlighter->highlight($text, 'java');?>
+		</div>
+	<?php endif; ?>
 
 	<div class="submissiontitle">
 		<?php 
@@ -40,20 +45,22 @@
 		?>
 	</div>
 
-	<div class="submissionstats">
-			<?php 
-				echo "Size: $size <br/>" ;
-			?>
-	</div>
+	<?php if($showeverything): ?>
+		<div class="submissionstats">
+				<?php 
+					echo "Size: $size <br/>" ;
+				?>
+		</div>
 
-	<?php
-		$showedit = $user_id == $submission['Submission']['user_id'] ? true : false;
-		echo $this->element('meta', array('modelname'   => "Submission",
-																			'id'          => $id,
-																 			'points'      => $points,
-																 			'username'    => $username,
-																      'showedit'    => $showedit));
-	?>
+		<?php
+			$showedit = $user_id == $submission['Submission']['user_id'] ? true : false;
+			echo $this->element('meta', array('modelname'   => "Submission",
+																				'id'          => $id,
+																	 			'points'      => $points,
+																	 			'username'    => $username,
+																	      'showedit'    => $showedit));
+		?>
+	<?php endif; ?>
 	
 </div>
 

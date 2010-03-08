@@ -99,7 +99,7 @@ body img{
 #menu{
     float: right;
     padding: 0px 0px 0px 0px;
-    margin-top: 113px;
+    margin-top: 115px;
 }
 
 #menu a:hover{
@@ -206,7 +206,7 @@ a:hover.contentlink{
     padding: 12px 0px 12px 12px ;
     margin: 3px 0px 10px 0px;
     border: 1px solid  rgb(175,175,175);
-    -moz-border-radius: 3px; /*firefox and webkit only*/
+    -moz-border-radius: 3px; 
     -webkit-border-radius: 3px;
 }
 
@@ -218,6 +218,9 @@ a:hover.contentlink{
 a.submissiontopic {
     font-size: 14px;
     font-family: Times, "Times New Roman", serif;
+}
+
+a:hover.submissiontopic{
     text-decoration: underline;
 }
 
@@ -233,7 +236,6 @@ a.submissiontopic {
     font-size: .25em;
     color: white;
     margin:0px 0px 0px 0px;
-    padding: 0px;
     width: 255px;
     height:88px;
     overflow: hidden;
@@ -270,7 +272,6 @@ a.submissiontopic {
 }
 
 #viewsubmissionhead {
-    margin-left: 0px;
     margin-bottom:50px;
     font-size: 1.1em;
     padding: 10px;
@@ -290,8 +291,7 @@ a.submissiontopic {
 }
 
 #viewsubmissioncode{
-    margin: 40px 15px 10px 0px;
-    background: rgb(230,230,230);
+    background: rgb(250,250,250);
     border: 1px solid rgb(150, 150, 150);
 }
 
@@ -320,7 +320,7 @@ a.submissiontopic {
     padding-bottom: 5px;
     -moz-border-radius: 2px;
    -webkit-border-radius: 2px;
-   border-top: 1px dotted rgb(200,200,200);
+   border: 1px dotted rgb(200,200,200);
 }
 
 #topictext{
