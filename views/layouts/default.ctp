@@ -16,6 +16,7 @@
 <body>
 	
 	<div id="header">
+		
 		<span id="menu">
 			<?php 
 				$space = "&nbsp;&nbsp;&nbsp;";
@@ -32,9 +33,13 @@
 			?>
 		</span>
 
-		<a href="/submissions/index/"><img src="/img/codekettllogo.png"/></a>
-		<img id="beta" src="/img/beta.png"/ height="50"/>
-		<div id="tagline"><a href="/submissions/index/">Your Daily Cup Of Programming Practice</a></div>
+		<?php echo $html->link($html->image('codekettllogo.png'), array('controller'=>'submissions', 'action'=>'index'),
+		                                                         array('alt'=>'codekettl logo'), false, false); 
+					echo $html->image('beta.png', array('id'=>'beta'));
+		?>
+		<div id="tagline">
+			<?php echo $html->link('Your Daily Cup Of Programming Practice', array('controller'=>'submissions')); ?>
+		</div>
 	</div>
 
 	<div id="content">
@@ -49,10 +54,10 @@
 		<div id="footerlinks">
 
 		<?php 
-			echo $html->link("About", array('controller'=>'pages', 'action'=>'about_us')). $space;
+			echo $html->link('About', array('controller'=>'pages', 'action'=>'about_us')) . $space;
+			echo $html->link('Feedback', array('controller'=>'pages', 'action'=>'feedback')) . $space;
+			echo $html->link('Blog', array('controller'=>'pages', 'action'=>'blog')).$space;
 		?>
-		<a href="">Feedback</a>&nbsp;&nbsp;
-		<a href="">Blog</a>
 		</div>
 	
 		<div id="footerlegal">

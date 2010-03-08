@@ -26,7 +26,9 @@
 			echo $form->input('User.password', array('type'=>'password'));
 			echo $form->end("Login");
 		?>
-		<p id="forgotpassword">Forgot your password? Get it <a href="forgot_password">here.</a></p>
+		<p id="forgotpassword">
+			<?php echo $html->link('Forgot Your Password?', array('controller'=>'users', 'action'=>'forgot_password' )) ?>
+		</p>
 	</div>
 
 </div>
