@@ -144,7 +144,7 @@ body img{
     padding: 0px 10px 10px 10px;
     margin: 0px 0px 60px 0px;
     font-size: 1.1em;
-    border: 1px dotted rgb(228, 97, 0);
+    border: 1px dotted rgb(200,200,200);
     color: black;
 }
 
@@ -182,6 +182,11 @@ body img{
 a:hover.contentlink{
     text-decoration: underline;
    
+}
+
+.selected{
+    color: rgb(228, 97, 0);
+    text-decoration: underline;
 }
 
 #contentlinks{

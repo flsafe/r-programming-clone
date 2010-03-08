@@ -50,13 +50,11 @@
 	Router::connect('/puzzles/:id', array('controller'=>'topics', 'action'=>'view'),
 	     													  array('pass'=>array('id')));
 	
-	Router::connect('/mysolutions/:modelname', array('controller'=>'users', 'action'=>'review'),
+	Router::connect('/myitems/:modelname', array('controller'=>'users', 'action'=>'review'),
 																				     array('pass'=>array('modelname')));
-	Router::connect('/mypuzzles/:modelname',   array('controller'=>'users', 'action'=>'review'),
-																			       array('pass'=>array('modelname')));
 		
-	Router::connect('/mysolutions/liked/:modelname', array('controller'=>'votes', 'action'=>'liked'),
+	Router::connect('/myitems/liked/:modelname', array('controller'=>'votes', 'action'=>'liked'),
 																						  array('pass'=>array('modelname')));
-	Router::connect('/mypuzzles/liked/:modelname',   array('controller'=>'votes', 'action'=>'liked'),
+	Router::connect('/myitems/liked/:modelname',   array('controller'=>'votes', 'action'=>'liked'),
 																						  array('pass'=>array('modelname')));
 ?>

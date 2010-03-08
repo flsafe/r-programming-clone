@@ -6,6 +6,7 @@
 <div id="topicform">
 	
 <?php
+	echo $html->tag('h1', 'Post Your Puzzle');
 	echo $form->create('Topic', array('controller'=>'topics', 'action'=>$action));
 	echo $form->input('Topic.id', array('type'=>'hidden'));
 	echo $form->input('Topic.current_topic', array('type'=>'hidden'));
