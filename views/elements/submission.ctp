@@ -1,6 +1,6 @@
 <?php 
 			#params
-			#submission - A reference to the submission object that will be displayed
+			#submission - A reference to toe submission object that will be displayed
 			#uservotes  - The votes asscociated with this user
 			#user_id    - Id of the current user
 			#showtopic  - Show the title of the topic associated with this submission (optional default false)
@@ -36,7 +36,7 @@
 				echo "<br/>";
 			}
 
-			echo $html->link($title, array('controller'=>'submissions', 'action'=>'view', $id));
+			echo $html->link($title, array('controller'=>'submissions', 'action'=>'view', 'id'=>$id));
 		?>
 	</div>
 

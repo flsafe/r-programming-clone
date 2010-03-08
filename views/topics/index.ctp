@@ -7,7 +7,7 @@
  	echo $javascript->link('jquery/vote', false);
 ?>
 
-<a href="/topics/add"><img src="/img/postpuzzle.png" alt="submit topic" title="submittopic"></a>
+<a href="/puzzles/add"><img src="/img/postpuzzle.png" alt="submit topic" title="submittopic"></a>
 
 		<?php echo $this->element('topicslist', array('topics'    => $models,
 																						      'uservotes' => $uservotes,

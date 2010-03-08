@@ -4,21 +4,19 @@
 <div id="contentmenu">
 
 	<div id="contentlinks">
-	<a class="contentmenulink" href="/submissions/index" title="Puzzle of the day">
-		Today's Puzzle
-	</a>
-	
-	<a  class="contentmenulink" href="/topics/index" title="Vote on puzzles">
-		Vote On Puzzles
-	</a>
-	
-	<a class="contentmenulink" href="/users/review/Submission" title="See the solutions I posted or liked">
-		My Solutions
-	</a>
-
-	<a class="contentmenulink" href="/users/review/Topic" title="See the puzzles I posted or liked">
-		My Puzzles
-	</a>
+	<?php
+		echo $html->link("Today's Puzzle", array('controller'=>'submissions', 'action'=>'index'),
+						                           array('class'=>'contentmenulink'));
+						
+		echo $html->link("Vote On Puzzles", array('controller'=>'topics', 'action'=>'index'),
+						                            array('class'=>'contentmenulink'));
+		
+		echo $html->link("My Solutions", array('controller'=>'users', 'action'=>'review', 'modelname'=>'Submission'),
+			                               array('class'=>'contentmenulink'));
+			
+		echo $html->link("My Puzzles", array('controller'=>'users', 'action'=>'review', 'modelname'=>'Topic'),
+		                               array('class'=>'contentmenulink'));
+	?>
 	</div>
 	
 </div>

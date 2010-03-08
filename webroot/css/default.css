@@ -81,6 +81,9 @@ body img{
     text-decoration: none;
     color: rgb(100, 138, 30);
     font-size: 1.1em;
+}
+
+#header a:hover{
     text-decoration: underline;
 }
 
@@ -149,7 +152,7 @@ body img{
     font-size: 1.75em;
 }
 
-/*--------content menu-----------*/
+/*--------content menu and links-----------*/
 
 #contentmenu{
     margin-top: 20px;
@@ -159,12 +162,26 @@ body img{
     font-size: 1.1em;
 }
 
-#contentmenu a{
+#contentmenu a:hover{
+    text-decoration: underline;
+}
+
+.contentmenulink{
     color: rgb(100, 138, 30);
     margin-left: 15px;
     margin-right: 15px;
     width: 100px;
+}
+
+.contentlink{
+    color: rgb(100, 138, 30);
+    margin: 5px 0px 5px 0px;
+    font-size: 1.1em;
+}
+
+a:hover.contentlink{
     text-decoration: underline;
+   
 }
 
 #contentlinks{
@@ -297,7 +314,7 @@ a.submissiontopic {
     padding-bottom: 5px;
     -moz-border-radius: 2px;
    -webkit-border-radius: 2px;
-   border-bottom: 1px dotted rgb(230,230,230);
+   border-top: 1px dotted rgb(200,200,200);
 }
 
 #topictext{

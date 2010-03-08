@@ -17,7 +17,7 @@
   echo $this->element('selectedtopic', array('title'=>$title, 'username'=>$username, 'text'=>$markdown->parse($text)));
 ?>
 
-<a href="/submissions/add" title="Submit my solution to the puzzle above">
+<a href="/today/add" title="Submit my solution to the puzzle above">
 	<img	src="/img/postsolution.png" alt="Submit my solution to the puzzle above"/>
 </a>
 

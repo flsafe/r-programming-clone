@@ -10,18 +10,15 @@
 			 ?>
 </h1>
 
-<?php if($modelname == 'Submission'): ?>
-	<a href="/votes/liked/Submission" title="See the solutions I liked">
-		<img	src="/img/likedsolutions.png" alt="See the solutions I liked"/>
-	</a>
-	
-<?php else: ?>
-	<a href="/votes/liked/Topic" title="See the puzzles I liked">
-		<img	src="/img/likedpuzzles.png" alt="See the puzzles I liked"/>
-	</a>
-<?php endif; ?>
-
-<?php
+<?php 
+if($modelname == 'Submission'){
+			echo $html->link("Solutions You Liked", array('controller'=>'votes', 'action'=>'liked', 'modelname'=>'Submission'),
+			                                        array('class'=>'contentlink')); 
+		}
+ else{
+		echo $html->link('Puzzles You Liked', array('controller'=>'votes', 'action'=>'liked', 'modelname'=>'Topic'),
+		                                      array('class'=>'contentlink'));
+	}
 	if($modelname == 'Submission'){
 		echo $this->element('submissionslist', array('submissions' => $models,
 																							   'uservotes'   => $uservotes,

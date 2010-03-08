@@ -31,10 +31,32 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/views/pages/home.ctp)...
  */
-	/*Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));*/ #I don't use pages/home, instead it's submissions/index
+
+	/*Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));*/
 	Router::connect('/', array('controller'=>'submissions', 'action'=>'index'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+
+	/*Custom routes*/
+	Router::connect('/today/',      array('controller'=>'submissions', 'action'=>'index'));
+	Router::connect('/puzzles/',    array('controller'=>'topics', 'action'=>'index'));
+	Router::connect('/today/add',   array('controller'=>'submissions', 'action'=>'add'));
+	Router::connect('/puzzles/add', array('controller'=>'topics', 'action'=>'add'));
+	
+	Router::connect('/today/:id',   array('controller'=>'submissions', 'action'=>'view'),
+	                                array('pass'=>array('id')));
+	Router::connect('/puzzles/:id', array('controller'=>'topics', 'action'=>'view'),
+	     													  array('pass'=>array('id')));
+	
+	Router::connect('/mysolutions/:modelname', array('controller'=>'users', 'action'=>'review'),
+																				     array('pass'=>array('modelname')));
+	Router::connect('/mypuzzles/:modelname',   array('controller'=>'users', 'action'=>'review'),
+																			       array('pass'=>array('modelname')));
+		
+	Router::connect('/mysolutions/liked/:modelname', array('controller'=>'votes', 'action'=>'liked'),
+																						  array('pass'=>array('modelname')));
+	Router::connect('/mypuzzles/liked/:modelname',   array('controller'=>'votes', 'action'=>'liked'),
+																						  array('pass'=>array('modelname')));
 ?>

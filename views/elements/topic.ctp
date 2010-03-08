@@ -19,7 +19,7 @@
 	
 	<p class="topictitle"> 
 		<?php 
-			echo $html->link($title, array('controller'=>'topics', 'action'=>'view', $id));
+			echo $html->link($title, array('controller'=>'topics', 'action'=>'view', 'id'=>$id));
 		?>
 	</p>
 
