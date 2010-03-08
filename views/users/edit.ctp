@@ -9,6 +9,6 @@
 	?>
 	
 	<p>
-		Change your password? Click <a href="<?php echo "/users/change_password/$user_id"; ?>">here.</a>
+		<?php echo $html->link('Change Password', array('controller'=>'users', 'action'=>'change_password')) ?>
 	<p>
 </div>

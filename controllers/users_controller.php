@@ -23,17 +23,13 @@ class UsersController extends AppController{
 			if($this->User->save($this->data, array('email')))
 				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 		}
-		$this->set('user_id', $this->User->id);
 	}
 	
-	function change_password($userid){
+	function change_password(){
 		if(!empty($this->data)){
-			$idmatch = $this->data['User']['id'] == $this->Auth->user('id');
-			if(!$idmatch)
-				return;
-				
 			$providedpass = $this->data['User']['password_current'];
-			$data         = $this->User->read();	
+			$this->User->id = $this->Auth->user('id');
+			$data         = $this->User->read();
 			$userpass     = $data['User']['password'];
 	
 			if($this->Auth->password($providedpass) == $userpass){
@@ -47,9 +43,6 @@ class UsersController extends AppController{
 			else{
 				$this->Session->setFlash("Incorrect Password");
 			}
-		}
-		else{
-			$this->data['User']['id'] = $userid;
 		}
 	}
 	
