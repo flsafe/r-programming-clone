@@ -21,7 +21,7 @@ body img{
 
 #pagetitleheader{
     margin-bottom: 35px;
-    font-size: 2.50em;
+    font-size: 2em;
 }
 
 #content{
@@ -138,20 +138,6 @@ body img{
     width: 200px;
 }
 
-/*--------------Selected Topic-----------*/
-
-#selectedtopic{
-    padding: 0px 10px 10px 10px;
-    margin: 0px 0px 60px 0px;
-    font-size: 1.1em;
-    border: 1px dotted rgb(200,200,200);
-    color: black;
-}
-
-#selectedtopic h1{
-    font-size: 1.75em;
-}
-
 /*--------content menu and links-----------*/
 
 #contentmenu{
@@ -186,7 +172,7 @@ a:hover.contentlink{
 
 .selected{
     color: rgb(228, 97, 0);
-    text-decoration: underline;
+    font-weight: bold;
 }
 
 #contentlinks{
@@ -195,7 +181,22 @@ a:hover.contentlink{
     margin-right: auto;
 }
 
+/*--------------Selected Topic-----------*/
+
+#selectedtopic{
+    padding: 0px 10px 10px 10px;
+    margin: 0px 0px 60px 0px;
+    font-size: 1.1em;
+    border: 1px dotted rgb(200,200,200);
+    color: black;
+}
+
+#selectedtopic h1{
+    font-size: 1.75em;
+}
+
 /*---------------Submissions----------------*/
+
 #submissions{
     margin: 0px 0px 40px 0px;
 }

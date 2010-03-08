@@ -4,14 +4,6 @@
 	#action - add, edit
 ?>
 <div id="submissionform">
-	
-	<?php
-		if($action == "add")
-			echo $html->tag('h1', "Add Your Solution");
-		else
-			echo $html->tag('h1', "Edit Your Solution")
-	?>
-
 	<?php
 		$syntax = array('c'          => 'C',
 										'clojure'    => 'Clojure',

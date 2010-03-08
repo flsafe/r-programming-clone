@@ -10,8 +10,6 @@
 		$topic['User']['username'] = "";
 ?>
 
-<h1 id="pagetitleheader">View Puzzle</h1>
-
 <?php echo $this->element('topic', array('topic'   => $model,
 																				 'user_id' => $user_id)); ?>
 

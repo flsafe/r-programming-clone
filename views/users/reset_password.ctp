@@ -1,3 +1,4 @@
+<h2 id="pagetitleheader">Reset Password</h2>
 <?php
 if(!isset($ticket))
   $ticket = "";

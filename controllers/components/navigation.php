@@ -1,7 +1,7 @@
 <?php
 /**
  * This class keeps track of what content menu item
- * is current selected.
+ * is currently selected. Used with contentmenu.ctp
  */
 class NavigationComponent extends object{
 	

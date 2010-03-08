@@ -2,13 +2,13 @@
 	App::import('Core','Inflector');
 ?>
 
-<h1 id="pagetitleheader">
+<h2 id="pagetitleheader">
 	My <?php 
 					$trans = $translator->toViewName($modelname);
 					$plural = Inflector::pluralize($trans);
 					echo $plural;
 			 ?>
-</h1>
+</h2>
 
 <?php 
 if($modelname == 'Submission'){

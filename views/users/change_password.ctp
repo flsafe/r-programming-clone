@@ -1,3 +1,4 @@
+<h2 id="pagetitleheader">Change Password</h2>
 <div id="changepassword">
 <?php  
 	echo $form->create('User', array('controller'=>'users', 'action'=>'change_password'));
