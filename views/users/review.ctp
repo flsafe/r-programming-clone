@@ -12,11 +12,11 @@
 
 <?php 
 if($modelname == 'Submission'){
-			echo $html->link(" View The Solutions You Liked", array('controller'=>'votes', 'action'=>'liked', 'modelname'=>'Submission'),
+			echo $html->link('Show Liked', array('controller'=>'votes', 'action'=>'liked', 'modelname'=>'Submission'),
 			                                        array('class'=>'contentlink')); 
 		}
  else{
-		echo $html->link('View The Puzzles You Liked', array('controller'=>'votes', 'action'=>'liked', 'modelname'=>'Topic'),
+		echo $html->link('Show Liked', array('controller'=>'votes', 'action'=>'liked', 'modelname'=>'Topic'),
 		                                      array('class'=>'contentlink'));
 	}
 	if($modelname == 'Submission'){
