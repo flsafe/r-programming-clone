@@ -20,7 +20,8 @@ body img{
 }
 
 #pagetitleheader{
-    margin-bottom: 35px;
+    margin-top: 45px;
+    margin-bottom: 15px;
     font-size: 2em;
 }
 
@@ -146,11 +147,14 @@ body img{
 /*--------content menu and links-----------*/
 
 #contentmenu{
-    margin-top: 20px;
-    margin-bottom: 30px;
-    margin-left: auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    /*margin-left: auto;*/
     margin-right: auto;
     font-size: 1.1em;
+    width: 445px;
+    border-left: 5px solid rgb(150,150,150);
+    padding-left: 2px;
 }
 
 #contentmenu a:hover{
@@ -159,8 +163,7 @@ body img{
 
 .contentmenulink{
     color: rgb(100, 138, 30);
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-right: 25px;
     width: 100px;
 }
 
