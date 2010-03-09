@@ -5,6 +5,12 @@
 		public $belongsTo = array(
 			  'User'   => array('fields' => array('id', 'username')));
 			
+		public $hasAndBelongsToMany = array('Algorithm'=>array('classname' => 'Algorithm',
+																									 'joinTable' => 'algorithms_topics',
+																									 'foriegnKey'=> 'topic_id',
+																									 'associationForeignKey'=>'algorithm_id',
+																									 'unique'=>'true'));
+			
 		public $validate = array(
 			'title' => array(
 				'rule1'        => array(
