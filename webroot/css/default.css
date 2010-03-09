@@ -147,7 +147,7 @@ body img{
 /*--------content menu and links-----------*/
 
 #contentmenu{
-    margin-top: 30px;
+    margin-top: 0px;
     margin-bottom: 10px;
     /*margin-left: auto;*/
     margin-right: auto;
@@ -193,7 +193,7 @@ a:hover.contentlink{
 
 #selectedtopic{
     padding: 0px 10px 10px 10px;
-    margin: 0px 0px 30px 0px;
+    margin: 45px 0px 30px 0px;
     font-size: 1.1em;
     border: 1px dotted rgb(200,200,200);
     color: black;

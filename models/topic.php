@@ -3,9 +3,7 @@
 		public $name = "Topic";
 		
 		public $belongsTo = array(
-			  'User'   => array(
-				'fields' => array('id', 'username'))
-			);
+			  'User'   => array('fields' => array('id', 'username')));
 			
 		public $validate = array(
 			'title' => array(

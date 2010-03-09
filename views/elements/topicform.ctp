@@ -18,7 +18,9 @@
 </div>
 
 <div class="input">
-	<?php echo $form->textArea('Topic.text', array('rows'=>'22')); ?>
+	<?php 
+		echo $form->textArea('Topic.text', array('rows'=>'22')); 
+	?>
 </div>
 
 <?php 
