@@ -86,6 +86,7 @@ class PagesController extends AppController {
 	*Of course this assumes that we don't need passwords for the static pages like "aboutus"
 	*/
 	function beforeFilter(){
+		parent::beforeFilter();
 		$this->Auth->allow(array('display'));
 	}
 }

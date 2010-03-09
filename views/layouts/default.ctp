@@ -44,7 +44,7 @@
 
 	<div id="content">
 		<?php 
-			if($selected)
+			if(isset($selected) && $selected)
 				echo $this->element('contentmenu', array('selected'=>$selected));
 			echo $session->flash();
 			echo $content_for_layout;
