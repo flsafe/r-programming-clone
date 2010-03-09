@@ -2,13 +2,14 @@
 class UsersController extends AppController{
 	public $name        = "Users";
 	
-	public $components  = array('Auth', 'Email','Session', 'Security', 'Ticket');
+	public $components  = array('Email','Session', 'Security', 'Ticket');
 	
 	public $uses        = array('Submission','Topic', 'Vote', 'User');
 	
 	public $helpers      = array('SyntaxHighlighter');
 	
 	function beforeFilter(){
+		parent::beforeFilter();
 		$this->Auth->allow('add', 'forgot_password','reset_password', 'captcha');
 		$this->Auth->authError = "Oops! You've got be logged in to do that!";
 	}

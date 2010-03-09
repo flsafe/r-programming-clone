@@ -4,7 +4,7 @@
     
     public $helpers = array('SanitizeUtil', 'Html', 'Form', 'Translator');
 		
-		function beforeRender(){
+		function beforeFilter(){
 			$this->set('selected', $this->Navigation->getContentMenuSelection());
 			$userdata = $this->Auth->user();
 			$loggedin = !empty($userdata['User']);

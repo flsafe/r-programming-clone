@@ -4,7 +4,7 @@ class SubmissionsController extends AppController{
 	
 	public $components = array('RequestHandler', 'Security', 'LineItem');
 	
-	public $uses       = array('Submission', 'Topic', 'Vote');
+	public $uses       = array('Submission', 'Topic', 'Vote', 'DataStructure');
 
   public $helpers    = array('Markdown', 'SyntaxHighlighter', 'Javascript', 'CommentsBuilder');
 	
@@ -14,6 +14,7 @@ class SubmissionsController extends AppController{
 														 'conditions' => array('Topic.current_topic' => '1'));
 	
 	function beforeFilter(){
+		parent::beforeFilter();
 		$this->Auth->allow(array('index', 'view'));
 		$this->Auth->authError = "You've got to be logged in to do that!";
 	}
@@ -84,6 +85,6 @@ class SubmissionsController extends AppController{
 				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 			}
 		}
-	}	
+	}
 }
 ?>

@@ -14,6 +14,7 @@ class TopicsController extends AppController{
 		'conditions' => array('Topic.was_chosen'=>'0', 'Topic.current_topic'=>'0'));
 		
 	function beforeFilter(){
+		parent::beforeFilter();
 		$this->Auth->allow(array('index', 'view'));
 		$this->Auth->authError = "You've got to be logged in to do that!";
 	}

@@ -1,7 +1,7 @@
 <?php
 	class VotesController extends AppController{
 		
-		public $components = array('RequestHandler', 'Auth', 'Common'); #TODO: Watchout! What does this do to ajax requests like 'vote'?
+		public $components = array('RequestHandler'); #TODO: Watchout! What does this do to ajax requests like 'vote'?
 		
 		public $uses       = array('Vote', 'Submission', 'Topic');
 		

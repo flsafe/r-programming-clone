@@ -5,7 +5,9 @@
  */
 class NavigationComponent extends object{
 	
-	/*Maps the route to what content menu item should be selected*/
+	public $components = array('Session');
+	
+	/*Maps the route to content menu item*/
 	private $show = array('/'                   => 'today',
 												'/puzzles'            => 'puzzles',
 												'/myitems/Submission' => 'mysolutions',
@@ -14,13 +16,14 @@ class NavigationComponent extends object{
 	/*Don't show the content menu if the url contains these strings*/
 	 private $noshow = array('/users/', '/pages/');
 	
-	function startup(&$controller){
+	function initialize(&$controller){
       $this->controller = $controller;
   }
 	
 	/**
 	 * Return what content menu link should 
-	 * be displayed as selected. 
+	 * be displayed as selected. Is this function
+	 * to set the selected param for the contentmenu.ctp
 	 */
 	function getContentMenuSelection(){
 		$here = $this->controller->here;
@@ -31,11 +34,11 @@ class NavigationComponent extends object{
 		}
 
 		if(isset($this->show[$here])){
-			$this->controller->Session->write('lastselected', $this->show[$here]);
+			$this->Session->write('lastselected', $this->show[$here]);
 			return $this->show[$here];
 		}
 		else{
-			return $this->controller->Session->read('lastselected');
+			return $this->Session->read('lastselected');
 		}
 	}
 }

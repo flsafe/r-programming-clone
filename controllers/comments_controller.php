@@ -2,7 +2,7 @@
 class CommentsController extends AppController{
 	public $name       = 'Comments';
 	
-	public $components = array('RequestHandler', 'Auth');
+	public $components = array('RequestHandler');
 	
 	public $uses       = array('Comment', 'Submission');
 	
