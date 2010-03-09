@@ -10,25 +10,12 @@ class Comment extends AppModel{
 	#TODO: add the validation rules
 	
 	#TODO: Huh, I'm not sure that this function should serve both model comments and user coments
-	public function getModelComments($modelname = null, $model_id = null, $user_id = null){
-		$getAllModelComments = $modelname && $model_id && !($user_id);
-		$getAllUserComments  = !($modelname) && !($model_id) && $user_id;
+	public function getModelComments($modelname = null, $model_id = null){
 		$modelname           = strtolower($modelname);
-		
-		if($getAllModelComments){
-      $modelname = Sanitize::escape($modelname);
-      $model_id  = Sanitize::escape($model_id);
-      $user_id   = Sanitize::escape($user_id);
-      return $this->query("Select Comment.id, Comment.lft, Comment.rght, Comment.text, Comment.created, User.username, User.id, (COUNT(parent.id)-1) AS depth 
-                                          FROM comments AS Comment, 
-                                               comments AS parent  
-																					LEFT JOIN users as User ON (user_id = User.id)
-                                          WHERE Comment.lft BETWEEN parent.lft AND parent.rght AND Comment.${modelname}_id = $model_id
-                                          GROUP BY Comment.id ORDER BY Comment.lft");
-		}
-		elseif ($getAllUserComments){
-			return $this->getneratetreelist(array('Comment.user_id'=>$user_id), '$nbsp;&nbsp');
-		}
+    $modelname = Sanitize::escape($modelname);
+    $model_id  = Sanitize::escape($model_id);
+  	return $this->find('threaded', array('conditions'=> array("Comment.{$modelname}_id"=>$model_id),
+																				 'order'     => array('Comment.created DESC')));
 	}
 	
 	public function commentOnModel($modelname, $model_id, $parent_id, $user_id, $text){

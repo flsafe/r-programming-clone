@@ -1,5 +1,6 @@
 <?php #params modelname, model_id, username, user_id
 	$comments = $this->requestAction("comments/model_comments/${modelname}/${model_id}");
+	$this->log(print_r($comments, true));
 	$doc      = new DOMDocument();
 	
 	if($loggedin)

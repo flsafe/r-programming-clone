@@ -13,70 +13,6 @@ class CommentsBuilderHelper extends AppHelper{
 	private $sanitizeUtil;
 	
 	/**
-	 * Get the comment with its Comment.lft field
-	 * equal to $left 
-	 */
-	private function get($left, &$comments){
-		if(empty($comments))
-			return null;
-		
-		$l = 0;
-		$u = count($comments) - 1;
-		
-		while($l <= $u){
-			$mid     = intval(($l + $u) / 2);
-			$comment = $comments[$mid];
-			
-			if($comment['Comment']['lft'] == $left)
-				return $comment;
-
-			if($left < $comments[$mid]['Comment']['lft'])
-				$u = $mid - 1;
-			else
-				$l = $mid + 1;
-		}
-		
-		return null;
-	}
-	
-	/**
-	 * Get the next sibling of $comment. $rootComment
-	 * is the parent of $comment.
-	 */
-	private function nextSibling(&$comment, &$rootComment, &$comments){
-		$nextLeftVal = $comment['Comment']['rght'] + 1;
-		
-		$noSibling   = $nextLeftVal >= $rootComment['Comment']['rght'];
-		if($noSibling)
-			return null;
-			
-		return $this->get($nextLeftVal, $comments);
-	}
-	
-	/**
-	 * Get the children of $rootComment. They are returned in
-	 * FILO order
-	 */
-	private function getChildren(&$rootComment, &$comments){
-		$noChildren = $rootComment['Comment']['lft'] + 1 == $rootComment['Comment']['rght'];
-		
-		if($noChildren)
-			return array();
-		
-		/*I will buy the childrens a school bus, so they can go on field trips*/
-		$childrens   = array(); 
-		$firstChild  = $this->get($rootComment['Comment']['lft'] + 1, $comments);
-		$childrens[] = $firstChild;
-		
-		$nextChild   = $firstChild;
-		while(($nextChild = $this->nextSibling($nextChild, $rootComment, $comments)) != null){
-			$childrens[] = $nextChild;
-		}
-		
-		return array_reverse($childrens);
-	}
-	
-	/**
 	 * Returns a rough estimate of how long ago
 	 * $created is compared to $now. Returns
 	 * a string in the form '(N) [years,months, days, hours, minutes, seconds] ago'.
@@ -129,14 +65,14 @@ class CommentsBuilderHelper extends AppHelper{
 	 * fields that help identify the comment on replies, meta data, and the
 	 * comment text.
 	 */
-	private function createFormElem($commentid, &$comment, &$dom){
+	private function createFormElem(&$comment, &$dom){
 		$commentForm = $dom->createElement('form');
 		$commentForm->setAttribute('class', 'replyform');
 		
 		/*Identifiying data for replies to this comment*/
 		$hidden = $dom->createElement('input');
 		$hidden->setAttribute('type', 'hidden');
-		$hidden->setAttribute('value', $commentid);
+		$hidden->setAttribute('value', $comment['Comment']['id']);
 		$hidden->setAttribute('name', 'commentid');
 		$commentForm->appendChild($hidden);
 		
@@ -150,7 +86,8 @@ class CommentsBuilderHelper extends AppHelper{
 		$now         = $now->format('U');
 		$timeAgo     = $this->timeAgo($now, $created);
 			
-		$username    = $comment['User']['username'];			
+		$username    = $comment['User']['username'];		
+		$this->log("username: {$username} commenttext: {$comment['Comment']['text']}");
 		$commentMeta->appendChild($dom->createTextNode("by {$username} {$timeAgo}"));
 		
 		/*Append the meta and comment text*/
@@ -182,18 +119,16 @@ class CommentsBuilderHelper extends AppHelper{
 	/**
 	 * Each comment is inside a div. The div itself contains
 	 * a form with the comment data in it, followed
-	 * by more comment divs.
+	 * by more comment divs (recursively).
 	 */
 	function createCommentDiv($rootComment, $dom){
-			$topOfTree  = $rootComment[0]['depth'] == 0;
+			$topOfTree  = $rootComment['Comment']['parent_id'] == 0;
 
 			$commentDiv = $dom->createElement('div');
 			$class      = $topOfTree ? 'rootcomment' : 'childcomment';
 			$commentDiv->setAttribute('class', $class);
 
-			$commentDiv->appendChild($this->createFormElem($rootComment['Comment']['id'],
-															$rootComment, 
-															$dom));
+			$commentDiv->appendChild($this->createFormElem($rootComment, $dom));
 			
 			return $commentDiv;
 	}
@@ -202,12 +137,12 @@ class CommentsBuilderHelper extends AppHelper{
 	*Build the html comments bottom to top starting
 	*with the leaf comments.
 	*/
-	private function getComments(&$rootComment, &$comments, &$dom){
-		$children = $this->getChildren($rootComment, $comments);
+	private function getComments(&$rootComment, &$dom){
+		$children = $rootComment['children'];
 			
 		$replys   = array();
 		foreach($children as $c){
-			$replys[] = $this->getComments($c, $comments, $dom);
+			$replys[] = $this->getComments($c, $dom);
 		}
 		
 		$commentDiv = $this->createCommentDiv($rootComment, $dom);
@@ -216,7 +151,7 @@ class CommentsBuilderHelper extends AppHelper{
 			$commentDiv->appendChild($r);
 		}
 		
-		$topOfTree  = $rootComment[0]['depth'] == 0;
+		$topOfTree  = $rootComment['Comment']['parent_id'] == 0;
 		if($topOfTree)
 			$dom->appendChild($commentDiv);
 		else
@@ -234,17 +169,9 @@ class CommentsBuilderHelper extends AppHelper{
 		$this->markdown     = $markdown;
 		$this->sanitizeUtil = $sanitizeUtil;
 		
-		/*Comments are a forest. Get all the root comments
-		  so we can build the nested comment structure for each.*/
-		$rootComments       = array();
-		$nextRoot           = $comments[0];
-		$rootComments[]     = $nextRoot;
-		while(($nextRoot = $this->get($nextRoot['Comment']['rght'] + 1, $comments)) != null)
-			$rootComments[] = $nextRoot;
-		$rootComments = array_reverse($rootComments); /*Order by FILO*/
-		
-		foreach($rootComments as $root){
-			$this->getComments($root, $comments, $doc);
+		/*Comments are a forest, processes each comment tree*/
+		foreach($comments as $root){
+			$this->getComments($root, $doc);
 		}
 	}
 }
