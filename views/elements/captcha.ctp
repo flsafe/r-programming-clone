@@ -7,7 +7,22 @@
 	$controller = Inflector::pluralize(Inflector::underscore(strtolower($modelname)));
 ?>
 
+
 <img src="<?php echo $html->url(array('controller'=>"$controller", 'action'=>'captcha'))?>" />
-<?php
-	echo $formhelper->input("${modelname}.captcha", array('label'=>"Are you a robot?"));
-?>
+<table>
+	
+	<tr>
+		<td class="input">
+		<?php echo $formhelper->label("${modelname}.captcha", "Are you a robot?") ?>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+		<?php
+			echo $formhelper->input("${modelname}.captcha", array('label'=>false));
+		?>
+		</td>
+	</tr>
+
+</table>

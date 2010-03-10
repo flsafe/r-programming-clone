@@ -4,7 +4,7 @@ class SubmissionsController extends AppController{
 	
 	public $components = array('RequestHandler', 'Security', 'LineItem');
 	
-	public $uses       = array('Submission', 'Topic', 'Vote', 'DataStructure');
+	public $uses       = array('Submission', 'Vote');
 
   public $helpers    = array('Markdown', 'SyntaxHighlighter', 'Javascript', 'CommentsBuilder');
 	
@@ -23,13 +23,12 @@ class SubmissionsController extends AppController{
 		This is the home page
 	*/
 	function index(){
-		$this->LineItem->index($this->Submission);
-		$topic = $this->Submission->Topic->findByCurrentTopic('1');
-		$this->set('topic', $topic);
+		$this->LineItem->showIndex($this->Submission);
+		$this->set('topic', $this->Submission->Topic->findByCurrentTopic('1'));
 	}
 	
 	function view($id = null){
-		$this->LineItem->view($this->Submission, $id);
+		$this->LineItem->showView($this->Submission, $id);
 	}
 	
 	function add(){

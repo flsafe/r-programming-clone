@@ -87,7 +87,6 @@ class CommentsBuilderHelper extends AppHelper{
 		$timeAgo     = $this->timeAgo($now, $created);
 			
 		$username    = $comment['User']['username'];		
-		$this->log("username: {$username} commenttext: {$comment['Comment']['text']}");
 		$commentMeta->appendChild($dom->createTextNode("by {$username} {$timeAgo}"));
 		
 		/*Append the meta and comment text*/

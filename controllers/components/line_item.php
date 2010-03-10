@@ -11,7 +11,7 @@ class LineItemComponent extends Object{
 			$this->common     = new CommonComponent();
   }
 	
-	public function index(&$model){
+	public function showIndex(&$model){
   	$model->unbindModel(array('hasMany'=>array('Comment')), false);
 		$modelname  = $model->name;
 		
@@ -28,7 +28,7 @@ class LineItemComponent extends Object{
 		}
 	}
 	
-	public function view(&$model, $id){
+	public function showView(&$model, $id){
 		$model->id = $id;
 		$data = $model->read();
 		$this->controller->set('model', $data);

@@ -6,15 +6,13 @@
 ?>
 
 <?php 
-	$id       = $topic['Topic']['id'];
-	$title    = $topic['Topic']['title'];
-	$text     = $topic['Topic']['text'];
-	$points   = $topic['Topic']['upvotes'] - $topic['Topic']['downvotes'];
-	$username = $topic['User']['username'];
-	
   $sanitizeUtil->htmlEsc($topic['Topic'], array('title','text'));
-
-  echo $this->element('selectedtopic', array('title'=>$title, 'username'=>$username, 'text'=>$markdown->parse($text)));
+	$text = $markdown->parse($topic['Topic']['text']);
+  echo $this->element('selectedtopic', array('title'           => $topic['Topic']['title'], 
+																						 'username'        => $topic['User']['username'], 
+																						 'text'            => $text,
+																						  'datastructures' => $topic['DataStructure'],
+																						  'algorithms'     => $topic['Algorithm']));
 ?>
 
 <a href="/today/add" title="Submit my solution to the puzzle above">

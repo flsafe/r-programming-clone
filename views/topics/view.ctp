@@ -5,9 +5,6 @@
 	echo $javascript->link('jquery/comment');
 	echo $javascript->link('jquery/topics', false);
  	echo $javascript->link('jquery/vote', false);
-	
- 	if(!isset($topic['User']))
-		$topic['User']['username'] = "";
 ?>
 
 <?php echo $this->element('topic', array('topic'         => $model,
@@ -22,6 +19,9 @@
 </div>
 
 <?php
+	echo $this->element('topicdatastructs', array('algorithms'=>$model['Algorithm'],
+																					 			'datastructures'=>$model['DataStructure']));
+																					
 	echo $this->element('comments', array('modelname'=>'Topic', 
 																				'model_id' => $model['Topic']['id'],
 																				'username' => $model['User']['username'],

@@ -7,10 +7,11 @@ class Submission extends AppModel{
 			'fields' => array('id', 'username')
 		),
 		
-		'Topic'=>array()
+		'Topic'=>array(
+			'fields'=>array('id', 'title', 'user_id'))
 		);
 		
-	public $hasMany = array('Comment', 'Vote');
+	public $hasMany = array('Comment');
 		
 	public $validate = array(
 		'title'=>array(

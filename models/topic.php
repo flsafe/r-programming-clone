@@ -2,14 +2,19 @@
 	class Topic extends AppModel{
 		public $name = "Topic";
 		
-		public $belongsTo = array(
-			  'User'   => array('fields' => array('id', 'username')));
+		public $belongsTo = array('User'=> array('fields' => array('id', 'username')));
 			
-		public $hasAndBelongsToMany = array('Algorithm'=>array('classname' => 'Algorithm',
-																									 'joinTable' => 'algorithms_topics',
-																									 'foriegnKey'=> 'topic_id',
-																									 'associationForeignKey'=>'algorithm_id',
-																									 'unique'=>'true'));
+		public $hasAndBelongsToMany = array('Algorithm'=>array('classname' 		=> 'Algorithm',
+																									 'joinTable' 				 		=> 'algorithms_topics',
+																									 'foriegnKey'				 		=> 'topic_id',
+																									 'associationForeignKey'=> 'algorithm_id',
+																									 'unique'								=> 'true'),
+																									
+																				 'DataStructure'=>array('classname' => 'DataStructure',
+																					         'joinTable' 						  => 'data_structures_topics',
+																					         'foriegnKey'						  => 'topic_id',
+																					         'associationForeignKey'  => 'data_structure_id',
+																					         'unique'								  => 'true'));
 			
 		public $validate = array(
 			'title' => array(
