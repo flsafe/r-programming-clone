@@ -20,7 +20,7 @@
 	<tr>
 		<td>
 		<?php
-			echo $formhelper->input("${modelname}.captcha", array('label'=>false));
+			echo $formhelper->input("${modelname}.captcha", array('label'=>false, 'maxLength'=>'45', 'size'=>'14'));
 		?>
 		</td>
 	</tr>

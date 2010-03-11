@@ -15,31 +15,68 @@
 																					         'foriegnKey'						  => 'topic_id',
 																					         'associationForeignKey'  => 'data_structure_id',
 																					         'unique'								  => 'true'));
-			
+
 		public $validate = array(
-			'title' => array(
-				'rule1'        => array(
+		'title' => array(
+				'between'      => array(
 					'rule'       => array('between', 1, 255),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
-					'message'    => 'Your title has to be between one and one-hundred characters long.')
+					'message'    => 'Your title has to be between one and two-hundred characters long.',
+					'last'			 => true)
 			),
-			
-			'text'=>array(
-				'rule1'        => array(
-					'rule'       => array('between', 1, 16000),
+
+		'text'=>array(
+				'between'      => array(
+					'rule'       => array('between', 1, 4000),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
 					'message'    => "You can't leave your topic text empty!")
 			),
-			
-			'captcha'=>array(
-				'rule1'        => array(
+
+		'captcha'=>array(
+				'between'      => array(
+					'rule'       => array('between', 0, 125),
+					'message'    => 'That is one mighty long captcha.',
+					'last'	     => true,
+					'on'         => 'create'
+				),
+					
+				'captcahMatch'=> array(
 					'rule'       => array('checkCaptcha', 'Topic'),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
-					'message'    => "Oh, no! Try again.")
-				)
-		);
+					'message'    => "Oh, no! Try again.",
+					'on'         => 'create')
+				),
+
+		'Algorithm'=>array(
+				'multiple'=>array(
+					'rule'=> array('multiple', array('min'=>'1', 'max'=>'20')),
+					'required'=> 'true',
+					'allowEmpty'=>'false',
+					'message'=>" ") /*is this a fucking bug in my code or in cakephp? No mater what I put here only the first char shows*/
+			),
+
+		'DataStructure'=>array(
+				'multiple'=>array(
+					'rule'=>array('multiple', array('min'=>'1', 'max'=>'20')),
+					'required'=>'true',
+					'allowEmpty'=>'false',
+					'message'=>' '))
+);
+		
+	function beforeValidate(){
+ 		foreach($this->hasAndBelongsToMany as $k=>$v)
+    	if(isset($this->data[$k][$k]))
+      	$this->data[$this->alias][$k] = $this->data[$k][$k];
+
+		$this->log("Before Validate");
+		$this->log(print_r($this->data, true));
+		$this->log("Validation rules");
+		$this->log(print_r($this->validate, true));
+		
+		return true;
 	}
+}
 ?>

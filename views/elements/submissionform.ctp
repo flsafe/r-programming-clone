@@ -21,7 +21,7 @@
 										'python'     =>'Python',
 										'ruby'       =>'Ruby');
 	
-		echo $form->create('Submission', array('controller'=>'submissions', 'action'=>$action));
+		echo $form->create('Submission', array('controller'=>'submissions'));
 		echo $form->input('Submission.id', array('type'=>'hidden'));
 		echo $form->input('Submission.title');
 		echo $form->input('Submission.description1', array('label'=>'File Description'));

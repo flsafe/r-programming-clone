@@ -6,10 +6,8 @@
 <div id="topicform">
 	
 <?php
-	echo $form->create('Topic', array('controller'=>'topics', 'action'=>$action));
+	echo $form->create('Topic', array('controller'=>'topics'));
 	echo $form->input('Topic.id', array('type'=>'hidden'));
-	echo $form->input('Topic.current_topic', array('type'=>'hidden'));
-	echo $form->input('Topic.was_chosen', array('type'=>'hidden'));
 	echo $form->input('Topic.title', array('label'=>'Title'));
 	echo $form->input('Topic.text', array('div'=>'input','label'=>"Puzzle", 'rows'=>'22', 'type'=>'textArea'));
 ?>
@@ -27,11 +25,12 @@
 																					 'type'     => 'select',
 																					 'multiple' => 'checkbox'/*,
 																					 'options'  => $datastructures)*/));
+																					
+	echo $form->error('Algorithm', 'Please choose at least one algorithm', array('wrap'=>'p'));
+	echo $form->error('DataStructure', 'Please choose at least one datastructure', array('wrap'=>'p'));
   ?>
 </div>
 	
-
-
 <?php 
 	if($action == 'add')
 		echo $this->element('captcha', array('modelname'=>'Topic', 'formhelper'=>$form));

@@ -10,7 +10,7 @@ class User extends AppModel{
 					'rule'       => '/^[a-z0-9_]{3,45}$/i',
 					'required'   => 'true' ,
 					'allowEmpty' => 'false',
-					'message'    => 'Only letters, numbers and underscores are allowed.'),
+					'message'    => 'Letters, numbers and underscores only. Must be between three and forty-five characters long.'),
 					
 			'rule2' => array(
 				'rule' => array('unique'),
@@ -19,25 +19,26 @@ class User extends AppModel{
 			
 		'email' => array(
 			'rule1' => array(
-					'rule' => 'email',
+					'rule'       => 'email',
 					'required'   => 'true' ,
 					'allowEmpty' => 'false',
 					'message'    => 'You have to specify a valid email address.'),
 					
 			 'rule2' => array(
 					'rule'       => array('unique'),
-					'message'    => 'That email address is already in use! Try a different email address.')
+					'message'    => 'That email address is already in use!')
 		),
 			
-			'password_new' => array(
+			'password_new' => array( /*This is the unhashed password*/
 				'rule1' => array(
-					'rule'       => array('minLength', 6),
+					'rule'       => array('between', 6, 45),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
-					'message'    => 'Your password must be at least 6 characters.'),
+					'message'    => 'Your password must be between six and forty-five characters.'),
+					
 				'rule2' => array(
 					'rule'       => array('confirmPassword'),
-					'message'    => 'Your passwords must match.'
+					'message'    => 'The passwords didn\'t match.'
 				)
 			),
 			
@@ -46,7 +47,13 @@ class User extends AppModel{
 					'rule'       => array('checkCaptcha', 'User'),
 					'required'   => 'true',
 					'allowEmpty' => 'false',
-					'message'    => "Shoot! Your captcha wasn't right.")
+					'message'    => "Shoot! Try again.",
+					'on'         => 'create'),
+					
+				'rule2'=>array(
+					'rule' => array('between', 0, 255),
+					'on'   => 'create'
+					)
 			)
 		);
 		

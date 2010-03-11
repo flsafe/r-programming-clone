@@ -6,12 +6,12 @@
 			echo $form->create("User", array('controller'=>'users', 'action'=>'add'));
 			echo $form->input('User.username');
 			echo $form->input('User.email');
-			echo $form->input('User.password_new', array('label'=>'Password', 'type'=>'password'));
-			echo $form->input('User.password_confirm', array('label'=>'Confirm Password', 'type'=>'password'));
+			echo $form->input('User.password_new', array('label'=>'Password', 'type'=>'password', 'maxLength'=>'45'));
+			echo $form->input('User.password_confirm', array('label'=>'Confirm Password', 'type'=>'password', 'maxLength'=>'45'));
 		?>
 		<img src="<?php echo $html->url(array('controller'=>'users', 'action'=>'captcha')); ?>"/>
 		<?php
-			echo $form->input('User.captcha', array('label'=>'Are you a computer program?'));
+			echo $form->input('User.captcha', array('label'=>'Are you a computer program?', 'maxLength'=>'45'));
 			echo $form->end('Register');
 		?>
 	</div>

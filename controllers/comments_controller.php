@@ -4,7 +4,7 @@ class CommentsController extends AppController{
 	
 	public $components = array('RequestHandler');
 	
-	public $uses       = array('Comment', 'Submission');
+	public $uses       = array('Comment', 'Submission', 'Topic');
 	
 	public $models     = array('Submission', 'Topic');
 	
@@ -19,10 +19,9 @@ class CommentsController extends AppController{
 		return $this->Comment->getModelComments($modelname, $modelid);
 	}
 	
-	public function user_comments(){
-		
-	}
-	
+	/**
+	 * Save a comment to a specific model
+	 */
 	public function add($modelname, $model_id, $parent_id){
 		$this->autoRender = false;
 		
@@ -35,6 +34,13 @@ class CommentsController extends AppController{
 		
 		$modelDoesNotExist = ! in_array($modelname, $this->models);
 		if($modelDoesNotExist)
+			return;
+			
+		$commentOn = array('Submission'=>$this->Submission, 'Topic'=>$this->Topic);
+		$m = $commentOn[$modelname];
+		$m->id = $model_id;
+		$commentOnThis = $m->read();
+		if(empty($commentOnThis))
 			return;
 			
 		$userdata    = $this->Auth->user();

@@ -7,7 +7,12 @@ class Comment extends AppModel{
 	
 	public $belongsTo = array('User' => array('fields'=>array('id', 'username')));
 	
-	#TODO: add the validation rules
+	public $validate = array(
+			'text' => array(
+				'rule'=>array('between', 1, 4000),
+				'required'=>'true',
+				'allowEmpty'=>'false')
+	);
 	
 	#TODO: Huh, I'm not sure that this function should serve both model comments and user coments
 	public function getModelComments($modelname = null, $model_id = null){

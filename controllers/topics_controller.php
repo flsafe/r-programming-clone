@@ -36,11 +36,10 @@ class TopicsController extends AppController{
 				$this->redirect(array('controller'=>'topics', 'action'=>'index'));
 			}
 		}
-		else{
-			$structs = $this->__getStructsLists();
-			$this->set('dataStructures', $structs['datastructs']);
-			$this->set('algorithms', $structs['algorithms']);
-		}
+
+		$structs = $this->__getStructsLists();
+		$this->set('dataStructures', $structs['datastructs']);
+		$this->set('algorithms', $structs['algorithms']);
 	}
 	
 	function edit($id=null){
