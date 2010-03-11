@@ -2,6 +2,8 @@
 class Submission extends AppModel{
 	public $name = "Submission";
 	
+	public $actsAs = array('Searchable');
+	
 	public $belongsTo = array(
 		'User'=>array(
 			'fields' => array('id', 'username')

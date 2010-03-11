@@ -188,11 +188,10 @@ a:hover.contentlink{
 
 #sidebar{
     width: 300px;
-    height: 600px;
+    height: 400px;
     margin-right:5px;
     float:right;
     padding: 5px 2px 2px 2px;
-    border: 1px dotted rgb(200,200,200);
     font: 125% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
     color: rgb(19, 98, 200);
 }
@@ -203,7 +202,7 @@ a:hover.contentlink{
     padding: 0px 10px 10px 10px;
     margin: 45px 0px 30px 0px;
     font-size: 1.1em;
-    border: 1px dotted rgb(200,200,200);
+    border-left: 4px solid rgb(200,200,200);
     color: black;
 }
 
@@ -411,7 +410,7 @@ a:hover.submissiontopic{
 }
 
 .replyform{
-    border-bottom: 1px dotted rgb(220,220,220);
+    /*border-bottom: 1px dotted rgb(220,220,220);*/
     overflow: auto;
 }
 

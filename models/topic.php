@@ -16,6 +16,8 @@
 																					         'associationForeignKey'  => 'data_structure_id',
 																					         'unique'								  => 'true'));
 
+		public $actsAs = array('Searchable');
+
 		public $validate = array(
 		'title' => array(
 				'between'      => array(
