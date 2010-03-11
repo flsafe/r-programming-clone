@@ -1,7 +1,13 @@
 <?php
+App::import('Core', 'Sanitize');
 class	SearchesController extends AppController{
 		
 		public $uses = array('SearchIndex', 'Vote');
+		
+		public function beforeFilter(){
+			parent::beforeFilter();
+			$this->Auth->allow('search');
+		}
 		
 		/**
 		 * Search the current model.

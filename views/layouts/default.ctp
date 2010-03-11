@@ -43,17 +43,22 @@
 	</div>
 
 	<div id="sidebar">
-		<p>Code Kettl is is a tool that lets you practice programing with other programmers.<p>
+		<p>Code Kettl is is a tool that lets you practice programing with other programmers.</p>
 			<?php
-				echo $form->create('Search', array('controller'=>'searches', 'action'=>'search'));
-				echo $form->input('Search.text', array('label'=>false));
-				echo $form->input('Search.model', array('label'=>'Search For',
+				echo $form->create('Search', array('controller'=>'searches', 'action'=>'search', 'div'=>false));
+				echo $form->input('Search.text', array('label'=>false, 'div'=>false, 'value'=>'search'));
+				echo $form->input('Search.model', array('label'=>false,
 																								'type'=>'select', 
 																								'options'=>array('Submission'=>'Solutions','Topic'=>'Puzzles'),
-																								'selected'=>'Submission'));
+																								'selected'=>'Submission',
+																								'div'=>false));
 				echo $form->end("Search");
+				echo $javascript->link('jquery/search');
 			?>
-			<img src="/img/tps.png" height="200">
+			<div id="add">
+				Advertisement
+				<img id="addimg" src="/img/tps.png" height="200">
+			</div>
 	</div>
 
 	<div id="content">

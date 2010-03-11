@@ -186,6 +186,8 @@ a:hover.contentlink{
     margin-right: auto;
 }
 
+/*-------------Side Bar-------------------*/
+
 #sidebar{
     width: 300px;
     height: 400px;
@@ -194,6 +196,35 @@ a:hover.contentlink{
     padding: 5px 2px 2px 2px;
     font: 125% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
     color: rgb(19, 98, 200);
+}
+
+#SearchSearchForm{
+    border: 1px solid #999;
+    padding: 5px;
+}
+
+#SearchSearchForm label{
+    width: 55px;
+}
+
+#SearchSearchForm .submit{
+    margin-left: 160px;
+    display: none;
+}
+
+#SearchModel{
+    margin-left:5px;
+}
+
+#SearchText{
+    width: 190px;
+    color: rgb(50,50,50);
+    font: 90% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+
+#add{
+    margin:20px 0px 20px 0px;
+    border: 1px solid #999;
 }
 
 /*--------------Selected Topic-----------*/
