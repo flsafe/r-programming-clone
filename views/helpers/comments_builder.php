@@ -95,9 +95,9 @@ class CommentsBuilderHelper extends AppHelper{
 		$this->sanitizeUtil->htmlEsc($comment['Comment'], array('text'));
 		$commentDoc  = new DOMDocument();
 		$t           = $this->markdown->parse($comment['Comment']['text']);
-		if($commentDoc->loadHTML("<div class=\"commenttext\">$t</div>")){
+		if($commentDoc->loadHTML("<span class=\"commenttext\">$t</span>")){
 			try{
-				$textnode    = $commentDoc->getElementsByTagName('div')->item(0);
+				$textnode    = $commentDoc->getElementsByTagName('span')->item(0);
 				$textnode    = $dom->importNode($textnode, true);
 				$commentForm->appendChild($textnode);
 			}

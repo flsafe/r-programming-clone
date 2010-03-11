@@ -42,6 +42,11 @@
 		</div>
 	</div>
 
+	<div id="sidebar">
+		Code Kettl is is a tool that lets you practice programing with other programmers.
+
+	</div>
+
 	<div id="content">
 		<?php 
 			if(isset($selected) && $selected)

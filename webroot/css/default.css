@@ -26,9 +26,9 @@ body img{
 
 #content{
     margin-top:10px;
-    margin-right: 40px;
+    margin-right: 320px;
     margin-bottom: 60px;
-    margin-left: 40px;
+    margin-left: 20px;
 }
 
 .input label{ /*Cake php form helper labels*/
@@ -148,11 +148,9 @@ body img{
 #contentmenu{
     margin-top: 0px;
     margin-bottom: 45px;
-    /*margin-left: auto;*/
     margin-right: auto;
     font-size: 1.1em;
     width: 445px;
-    border-left: 5px solid rgb(150,150,150);
     padding-left: 2px;
 }
 
@@ -186,6 +184,17 @@ a:hover.contentlink{
     width:500px;
     margin-left: auto;
     margin-right: auto;
+}
+
+#sidebar{
+    width: 300px;
+    height: 600px;
+    margin-right:5px;
+    float:right;
+    padding: 5px 2px 2px 2px;
+    border: 1px dotted rgb(200,200,200);
+    font: 125% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+    color: rgb(19, 98, 200);
 }
 
 /*--------------Selected Topic-----------*/
@@ -403,16 +412,19 @@ a:hover.submissiontopic{
 
 .replyform{
     border-bottom: 1px dotted rgb(220,220,220);
-    /*border-top: 1px dotted #999;*/
+    overflow: auto;
 }
 
+.commenttext{
+    overflow: auto;
+}
 .replyformtext{
     width: 400px;
     height: 100px;
 }
 
 .childcomment{
-    margin-left: 30px;
+    margin-left: 12px;
 }
 
 .childcomment, .rootcomment{
@@ -424,6 +436,13 @@ a:hover.submissiontopic{
 .commentmeta{
     font-size: 0.90em;
     color: rgb(150, 150, 150);
+    position: relative;
+    top: 5px;
+}
+
+.reply{
+    position: relative;
+    bottom: 5px;
 }
 
 .commenttext h1, .commenttext h2, .commenttex h3, .commenttext h4{
