@@ -33,8 +33,11 @@ body img{
 
 .input label{ /*Cake php form helper labels*/
     color:rgb(100, 100, 100);
-    width: 135px;
-    float:left;
+    size: 1.1em;
+}
+
+label{
+    color:rgb(100, 100, 100);
     size: 1.1em;
 }
 
@@ -314,6 +317,8 @@ a:hover.submissiontopic{
     text-decoration: underline;
 }
 
+/*-----------Submission Form------------*/
+
 #submissionform .input{
     width: 100px;
 }
@@ -324,6 +329,17 @@ a:hover.submissiontopic{
 
 #SubmissionTitle{
     width: 600px;
+}
+
+#noalgorithm{
+    width:200px;
+    margin-left: 195px;
+}
+
+#nodatastruct{
+    width: 100px;
+    position:relative;
+    bottom: 34px;
 }
 
 /*-------View Submission-----*/

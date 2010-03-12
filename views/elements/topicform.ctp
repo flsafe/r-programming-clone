@@ -11,7 +11,7 @@
 	echo $form->input('Topic.title', array('label'=>'Title'));
 	echo $form->input('Topic.text', array('div'=>'input','label'=>"Puzzle", 'rows'=>'22', 'type'=>'textArea'));
 ?>
-
+<label class='input'>Please Choose What Fits Best</label>
 <div id="topicstructs">	
 	<?php
 	echo $form->input('Algorithm', array('label'        => 'Related Algorithms',
@@ -19,6 +19,7 @@
 																			 'type'         => 'select',
 																			 'multiple'     => 'checkbox'/*
 																			 'options'      =>  $algorithms)*/)); 
+															
 	
 	echo $form->input('DataStructure', array('label'    => 'Related Data Structures',
 																					 'div'      => 'relateddatastructs',
@@ -26,8 +27,10 @@
 																					 'multiple' => 'checkbox'/*,
 																					 'options'  => $datastructures)*/));
 																					
-	echo $form->error('Algorithm', 'Please choose at least one algorithm', array('wrap'=>'p'));
-	echo $form->error('DataStructure', 'Please choose at least one datastructure', array('wrap'=>'p'));
+	echo $form->error('Algorithm', 'Please choose at least one algorithm', array('wrap'=>'div', 'id'=>'noalgorithm'));		
+
+	echo $form->error('DataStructure', 'Please choose at least one datastructure', array('wrap'=>'div', 'id'=>'nodatastruct'));
+	
   ?>
 </div>
 	
