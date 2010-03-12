@@ -97,8 +97,14 @@
 			$this->log('updating');
 			$rightNow = new DateTime();
 			$this->setLastTime($rightNow->format('U'));
-			$this->query('UPDATE topics set topics.current_topic=0 where topics.current_topic=1');
-			$this->query('UPDATE topics,(select topics.id,topics.was_chosen,topics.current_topic, (topics.upvotes - topics.downvotes) as popular from topics where topics.was_chosen=0 and topics.current_topic=0 order by popular desc limit 1) as pop_query  SET topics.current_topic=1, topics.was_chosen=1 where topics.id = pop_query.id');
+			
+			$chooseFrom = $this->find('count', array('fields'     => 'DISTINCT Topic.id',
+																	 						'conditions' => array('Topic.was_chosen'    => '0', 
+																	 																  'Topic.current_topic' => '0')));
+			if($chooseFrom > 1 ){
+				$this->query('UPDATE topics set topics.current_topic=0 where topics.current_topic=1');
+				$this->query('UPDATE topics,(select topics.id,topics.was_chosen,topics.current_topic, (topics.upvotes - topics.downvotes) as popular from topics where topics.was_chosen=0 and topics.current_topic=0 order by popular desc limit 1) as pop_query  SET topics.current_topic=1, topics.was_chosen=1 where topics.id = pop_query.id');
+			}
 		}
 	}
 	
