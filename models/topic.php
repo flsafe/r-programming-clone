@@ -62,12 +62,15 @@
 
 		'DataStructure'=>array(
 				'multiple'=>array(
-					'rule'=>array('multiple', array('min'=>'1', 'max'=>'20')),
+					'rule'=>array('multiple', array('min'=>'1', 'max'=>'20')), #TODO, just put in some kind of limit, doesn't mean anything yet
 					'required'=>'true',
 					'allowEmpty'=>'false',
 					'message'=>' '))
 );
-		
+	
+	/**
+	 * Move the HABTM data into the Model->data array for validation
+	 */
 	function beforeValidate(){
  		foreach($this->hasAndBelongsToMany as $k=>$v)
     	if(isset($this->data[$k][$k]))
@@ -79,6 +82,46 @@
 		$this->log(print_r($this->validate, true));
 		
 		return true;
+	}
+	
+	function updateSelectedTopic(){
+		$secondsInterval = 10;
+		$updateTime      = 1; /*update every 24 hours*/
+		
+		$lastUpdate     = $this->getLastTime();
+    $now            = new DateTime();
+    $now            = $now->format('U');
+
+    $sinceLastUpdate = ($now - $lastUpdate) / $secondsInterval;
+		if($sinceLastUpdate >= $updateTime){
+			$this->log('updating');
+			$rightNow = new DateTime();
+			$this->setLastTime($rightNow->format('U'));
+			$this->query('UPDATE topics set topics.current_topic=0 where topics.current_topic=1');
+			$this->query('UPDATE topics,(select topics.id,topics.was_chosen,topics.current_topic, (topics.upvotes - topics.downvotes) as popular from topics where topics.was_chosen=0 and topics.current_topic=0 order by popular desc limit 1) as pop_query  SET topics.current_topic=1, topics.was_chosen=1 where topics.id = pop_query.id');
+		}
+	}
+	
+	private function getLastTime(){
+		$f = fopen('time/time', 'r');
+		if(!$f){
+			$f = fopen('time/time', 'w');
+			$datetime = new DateTime();
+			$time = $datetime->format('U');
+		 	fwrite($f, $time);
+			fclose($f);
+			return $time;
+		}
+		$time = fread($f, 15);
+		return $time;
+	}
+	
+	private function setLastTime($str){
+ 		$f = fopen('time/time', 'w');
+		if(!$f)
+			return;
+		fwrite($f, $str);
+		fclose($f);
 	}
 }
 ?>

@@ -4,7 +4,7 @@ class SubmissionsController extends AppController{
 	
 	public $components = array('RequestHandler', 'Security', 'LineItem');
 	
-	public $uses       = array('Submission', 'Vote');
+	public $uses       = array('Submission', 'Vote', 'Topic');
 
   public $helpers    = array('Markdown', 'SyntaxHighlighter', 'CommentsBuilder');
 	
@@ -24,6 +24,7 @@ class SubmissionsController extends AppController{
 	*/
 	function index(){
 		$this->LineItem->showIndex($this->Submission);
+		$this->Topic->updateSelectedTopic();
 		$this->set('topic', $this->Submission->Topic->findByCurrentTopic('1'));
 	}
 	
