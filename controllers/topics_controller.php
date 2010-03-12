@@ -50,7 +50,7 @@ class TopicsController extends AppController{
 				
 			$topicOfTheDay = $data['Topic']['current_topic'] != '0' || $data['Topic']['was_chosen'] != '0';
 			if($topicOfTheDay){
-				$this->Session->setFlash("You can't edit the topic of the day!");
+				$this->Session->setFlash("Congrats! Your puzzle made it to the front page! Unfortunately you can't edit it anymore so that other users can work on it!");
 				return;
 			}
 			
@@ -69,7 +69,7 @@ class TopicsController extends AppController{
 			$topicOfTheDay = $data['Topic']['current_topic'] != '0' || $data['Topic']['was_chosen'] != '0';
 			
 			if($topicOfTheDay){
-				$this->Session->setFlash("You can't edit the topic of the day!");
+				$this->Session->setFlash("Congrats! Your puzzle made it to the front page! Unfortunately you can't edit it anymore so that other users can work on it!");
 				return;
 			}
 			$structs = $this->__getStructsLists();

@@ -1,5 +1,7 @@
 
-<?php #Show the user all the submissions they upvoted
+<?php 
+	#Shows all the models the user upvoted
+	
 	App::import('Core', 'Inflector');
 
 	$modelnameplural = Inflector::pluralize($translator->toViewName($modelname));
@@ -11,13 +13,16 @@
 		echo $html->tag('h2', "${modelnameplural} You Didn't Like", array('id'=>'pagetitleheader'));
 	
 	if($modelname == "Submission"){
+		echo $this->element('javascriptvote', array('votingFor'=>'submissions'));
 		echo $this->element('submissionslist', array('submissions' => $models,
 																							   'uservotes'   => $uservotes,
-																							   'user_id'    => $user_id));
+																							   'user_id'     => $user_id,
+																							   'showtopic'   => true));
 	}
 	else{
-		echo $this->element('topicslist', array('topics'    => $models,
-																						'uservotes' => $uservotes,
-																						'user_id'  => $user_id));
+		echo $this->element('javascriptvote', array('votingFor'=>'topics'));
+		echo $this->element('topicslist', array('topics'       => $models,
+																						'uservotes'    => $uservotes,
+																						'user_id'      => $user_id));
 	}
 ?>

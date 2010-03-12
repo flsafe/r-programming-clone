@@ -1,8 +1,7 @@
-<?php 
-	echo $javascript->link('jquery/jquery.min', false);
-	echo $javascript->link('util', false);
-	echo  $javascript->link('jquery/submissions', false); #TODO: Kind of a hack. What's the better way?
-	echo  $javascript->link('jquery/vote', false);
+<?php
+	#This is the home page. It shows the topic of the day, and all the submissions for that topic
+	
+	echo $this->element('javascriptvote', array('votingFor'=>'submissions'));
 ?>
 
 <?php 

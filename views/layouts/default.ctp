@@ -37,6 +37,7 @@
 		                                                         array('alt'=>'codekettl logo'), false, false); 
 					echo $html->image('beta.png', array('id'=>'beta'));
 		?>
+		
 		<div id="tagline">
 			<?php echo $html->link('Your Daily Cup Of Programming Practice', array('controller'=>'submissions')); ?>
 		</div>
@@ -45,15 +46,24 @@
 	<div id="sidebar">
 		<p>Code Kettl is is a tool that lets you practice programing with other programmers.</p>
 			<?php
-				echo $form->create('Search', array('controller'=>'searches', 'action'=>'search', 'div'=>false));
-				echo $form->input('Search.text', array('label'=>false, 'div'=>false, 'value'=>'search'));
-				echo $form->input('Search.model', array('label'=>false,
-																								'type'=>'select', 
-																								'options'=>array('Submission'=>'Solutions','Topic'=>'Puzzles'),
-																								'selected'=>'Submission',
-																								'div'=>false));
+				echo $form->create('Search',      array('controller'=>'searches', 
+																								'action'    =>'search', 
+																								'div'       =>false));
+																								
+				echo $form->input('Search.text',  
+																				array('label' =>false, 
+																							'div'   =>false, 
+																							'value' =>'search'));
+																							
+				echo $form->input('Search.model', array('label'   =>false,
+																								'type'    =>'select', 
+																								'options' =>array('Submission'=>'Solutions','Topic'=>'Puzzles'),
+																								'selected'=>'Topic',
+																								'div'     =>false));
 				echo $form->end("Search");
-				echo $javascript->link('jquery/search');
+				
+				echo $javascript->link('jquery/jquery.min', false);
+				echo $javascript->link('jquery/search', false);
 			?>
 			<div id="add">
 				Advertisement
