@@ -15,7 +15,7 @@
 ?>
 
 <a href="/today/add" title="Submit my solution to the puzzle above">
-	<img	src="/img/postsolution.png" alt="Submit my solution to the puzzle above"/>
+	<img	src="/img/postsolution.png" alt="Submit my solution to the puzzle above" width="110" height="27"/>
 </a>
 
 <?php

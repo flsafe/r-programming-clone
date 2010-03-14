@@ -4,7 +4,7 @@
 	$this->element('javascriptvote', array('votingFor'=>'topics'));
 ?>
 
-<a href="/puzzles/add"><img src="/img/postpuzzle.png" alt="submit topic" title="submittopic"></a>
+<a href="/puzzles/add"><img src="/img/postpuzzle.png" alt="submit topic" title="submittopic" width="110" height="27"></a>
 
 <?php 
 	echo $this->element('topicslist', array('topics'    => $models,

@@ -82,8 +82,8 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'root',
-		'password' => 'mysql',
+		'login' => 'codekettlman',
+		'password' => '19857177atelpaso',
 		'database' => 'codekettl',
 		'prefix' => '',
 	);
@@ -92,9 +92,9 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'test_database_name',
+		'login' => 'codekettlman',
+		'password' => '19857177atelpaso',
+		'database' => 'testcodekettl',
 		'prefix' => '',
 	);
 }

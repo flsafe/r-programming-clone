@@ -33,9 +33,9 @@
 			?>
 		</span>
 
-		<?php echo $html->link($html->image('codekettllogo.png'), array('controller'=>'submissions', 'action'=>'index'),
+		<?php echo $html->link($html->image('codekettllogo.png', array('width'=>'266', 'height'=>'112')), array('controller'=>'submissions', 'action'=>'index'),
 		                                                         array('alt'=>'codekettl logo'), false, false); 
-					echo $html->image('beta.png', array('id'=>'beta'));
+					echo $html->image('beta.png', array('id'=>'beta', 'wdith'=>'100', 'height'=>'75'));
 		?>
 		
 		<div id="tagline">
