@@ -6,7 +6,7 @@ class SubmissionsController extends AppController{
 	
 	public $uses       = array('Submission', 'Vote', 'Topic');
 
-  public $helpers    = array('Markdown', 'SyntaxHighlighter', 'CommentsBuilder');
+  public $helpers    = array('Markdown', 'SyntaxHighlighter', 'CommentsBuilder', 'Cache');
 	
 	/*All submissions to the current topic*/
 	public $paginate   = array('limit'      => '25',

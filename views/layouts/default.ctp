@@ -44,7 +44,8 @@
 	</div>
 
 	<div id="sidebar">
-		<p>Code Kettl is is a tool that lets you practice programing with other programmers.</p>
+		<p>Code Kettl is is a tool that lets you practice programing with other programmers.
+		</p>
 			<?php
 				echo $form->create('Search',      array('controller'=>'searches', 
 																								'action'    =>'search', 

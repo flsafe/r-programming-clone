@@ -8,17 +8,16 @@ class Comment extends AppModel{
 	public $belongsTo = array('User' => array('fields'=>array('id', 'username')));
 	
 	public $validate = array(
-			'text' => array(
-				'rule'=>array('between', 1, 4000),
-				'required'=>'true',
+			'text'        => array(
+				'rule'      =>array('between', 1, 4000),
+				'required'  =>'true',
 				'allowEmpty'=>'false')
 	);
 	
-	#TODO: Huh, I'm not sure that this function should serve both model comments and user coments
 	public function getModelComments($modelname = null, $model_id = null){
 		$modelname           = strtolower($modelname);
-    $modelname = Sanitize::escape($modelname);
-    $model_id  = Sanitize::escape($model_id);
+    $modelname           = Sanitize::escape($modelname);
+    $model_id            = Sanitize::escape($model_id);
   	return $this->find('threaded', array('conditions'=> array("Comment.{$modelname}_id"=>$model_id),
 																				 'order'     => array('Comment.created DESC')));
 	}
