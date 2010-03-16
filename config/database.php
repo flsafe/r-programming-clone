@@ -81,7 +81,7 @@ class DATABASE_CONFIG {
 	var $default = array(
 		'driver' => 'mysql',
 		'persistent' => false,
-		'host' => 'localhost',
+		'host' => 'flicea.db',
 		'login' => 'codekettlman',
 		'password' => '19857177atelpaso',
 		'database' => 'codekettl',
@@ -91,7 +91,7 @@ class DATABASE_CONFIG {
 	var $test = array(
 		'driver' => 'mysql',
 		'persistent' => false,
-		'host' => 'localhost',
+		'host' => 'flicea.db',
 		'login' => 'codekettlman',
 		'password' => '19857177atelpaso',
 		'database' => 'testcodekettl',

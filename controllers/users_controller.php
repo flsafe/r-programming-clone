@@ -76,7 +76,7 @@ class UsersController extends AppController{
 		
 		if(!empty($userdata)){
 			$this->Email->from    = 'CodeKettl';
-			$this->Email->to      = 'francisco.licea@gmail.com'; #TODO: Session user's email is hard-coded
+			$this->Email->to      = $userdata['User']['email'];
 			$this->Email->subject = "Reset Password";
 			$ticket               = $this->Ticket->set($userdata['User']['email']);
       
