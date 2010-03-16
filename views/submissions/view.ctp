@@ -2,6 +2,7 @@
  	echo $javascript->link('jquery/jquery.min', false);
 	echo $javascript->link('util', false);
 	echo $javascript->link('showdown');
+	echo $javascript->link('json2min');
 	echo $javascript->link('jquery/comment');
 	echo $javascript->link('jquery/submissions', false); #TODO: Defines some vars that enable votes on submissions
 	echo $javascript->link('jquery/vote', false);
@@ -36,9 +37,8 @@
 
 	<?php
 		echo $this->element('comments', array('modelname'=>'Submission', 
-															'model_id' => $model['Submission']['id'],
-															'username' => $model['User']['username'],
-															'user_id'  => $model['User']['id']));
+															            'model'    => $model,
+															            'user_id'  => $user_id));
 	?>
 
 </div>

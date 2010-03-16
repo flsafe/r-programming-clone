@@ -11,7 +11,8 @@ class Comment extends AppModel{
 			'text'        => array(
 				'rule'      =>array('between', 1, 4000),
 				'required'  =>'true',
-				'allowEmpty'=>'false')
+				'allowEmpty'=>'false',
+				'message'   => "You can't leave your comment text empty!")
 	);
 	
 	public function getModelComments($modelname = null, $model_id = null){
@@ -32,8 +33,10 @@ class Comment extends AppModel{
 		
 		if($parent_id)
 			$data[$c]['parent_id'] = $parent_id;
-			
-		return $this->save($data);
+		
+		$this->id = false;
+		$this->save($data);
+		return $this->id;
 	}
 }
 ?>
