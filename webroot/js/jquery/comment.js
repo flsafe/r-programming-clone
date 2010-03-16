@@ -54,6 +54,7 @@ function postComment(modelname, model_id, parent_id, commenttext, tag){
             resp = JSON.parse(data);
             if(resp){
                 $("#tag"+resp.tag).html(' | <a href="/comments/edit/'+resp.comment_id+'">edit</a>');
+
             }
         });
 }
@@ -80,7 +81,11 @@ function displayReply(replytext, parentelem, tag){
     var newcomment = $(replydiv);
 
     fillOutMetadata(newcomment, tag);
+<<<<<<< HEAD
     fillOutCommentText(newcomment, replytext);
+=======
+    fillOutMetadata(newcomment, replytext);
+>>>>>>> 93745a7245b9d861e2b37321e10d59b4570f0af4
     
     parentelem.find(".replyform").first().after(newcomment); //Add to top of replies
 }
