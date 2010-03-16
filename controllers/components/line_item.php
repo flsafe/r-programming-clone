@@ -29,6 +29,7 @@ class LineItemComponent extends Object{
 	}
 	
 	public function showView(&$model, $id){
+		$model->unbindModel(array('hasMany'=>array('Comment')), false);
 		$model->id = $id;
 		$data = $model->read();
 		$this->controller->set('model', $data);
@@ -36,7 +37,8 @@ class LineItemComponent extends Object{
 		$this->controller->set('uservotes', array());
 		$user_id = $this->controller->Auth->user('id');
 		$this->controller->set('user_id', $user_id);
-		if(isset($user_id)){
+		$this->log("user id: {$user_id}");
+		if($user_id){
 			$uservotes = $this->controller->Vote->getUserVotes("{$model->name}", array($id), $user_id);
 			$this->controller->set('uservotes', $uservotes);
 		}

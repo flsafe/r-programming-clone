@@ -1,6 +1,5 @@
 <?php
 	#This is the home page. It shows the topic of the day, and all the submissions for that topic
-	
 	echo $this->element('javascriptvote', array('votingFor'=>'submissions'));
 ?>
 

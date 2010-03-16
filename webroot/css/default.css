@@ -486,6 +486,14 @@ a:hover.submissiontopic{
     top: 5px;
 }
 
+.commentmeta a{
+    color: rgb(150, 150, 150);
+}
+
+.commentmeta a:hover{
+    text-decoration: underline;
+}
+
 .reply{
     position: relative;
     bottom: 5px;

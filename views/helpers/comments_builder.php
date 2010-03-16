@@ -1,4 +1,8 @@
 <?php
+/**
+ * Builds the HTML to display the nested comment hierarchy
+ */
+
 class CommentsBuilderHelper extends AppHelper{
 	/**
 	 * Used to display the little 'reply' link under comment text.
@@ -11,6 +15,17 @@ class CommentsBuilderHelper extends AppHelper{
 	*/
 	private $markdown;
 	private $sanitizeUtil;
+	
+	/**
+	 * If a comments that match this user_id are shown with 
+	 * an edit link
+	 */
+	 private $user_id;
+	
+	/**
+	 * Used to create edit links
+	 */
+	 public $helpers = array('Html');
 	
 	/**
 	 * Returns a rough estimate of how long ago
@@ -68,6 +83,7 @@ class CommentsBuilderHelper extends AppHelper{
 	private function createFormElem(&$comment, &$dom){
 		$commentForm = $dom->createElement('form');
 		$commentForm->setAttribute('class', 'replyform');
+		$commentForm->setAttribute('id', "comment{$comment['Comment']['id']}");
 		
 		/*Identifiying data for replies to this comment*/
 		$hidden = $dom->createElement('input');
@@ -76,7 +92,7 @@ class CommentsBuilderHelper extends AppHelper{
 		$hidden->setAttribute('name', 'commentid');
 		$commentForm->appendChild($hidden);
 		
-		/*Meta data*/
+		/*Meta data and the edit link*/
 		$commentMeta = $dom->createElement('span');
 		$commentMeta->setAttribute('class', 'commentmeta');
 		
@@ -85,9 +101,22 @@ class CommentsBuilderHelper extends AppHelper{
 		$now         = new DateTime();
 		$now         = $now->format('U');
 		$timeAgo     = $this->timeAgo($now, $created);
-			
-		$username    = $comment['User']['username'];		
-		$commentMeta->appendChild($dom->createTextNode("by {$username} {$timeAgo}"));
+
+		$editLink    = false;
+		$this->log("session userid: {$this->user_id}, comment user_id: {$comment['User']['id']}");
+		if($this->user_id == $comment['User']['id']){
+			$edit      = $this->Html->url(array('controller'=>'comments', 'action'=>'edit', 'id'=>$comment['Comment']['id']));
+			$editLink  = $dom->createElement('a', 'edit');
+			$editLink->setAttribute('href', $edit);
+		}
+		
+		$username  = $comment['User']['username'];
+		$edit      = $editLink ? "| " : "";
+		$commentMeta->appendChild($dom->createTextNode("by {$username} {$timeAgo} {$edit}"));
+		if($editLink != false){
+			$commentMeta->appendChild($editLink);
+			$this->log("Added the edit link");
+		}
 		
 		/*Append the meta and comment text*/
 		$commentForm->appendChild($commentMeta);
@@ -161,12 +190,13 @@ class CommentsBuilderHelper extends AppHelper{
 	 * Builds a a div structure containing nested
 	 * comments. The html structure is written to $dom.
 	 */
-	function buildCommentHiearchy(&$comments, &$doc, $markdown, $sanitizeUtil){
+	function buildCommentHiearchy($user_id, &$comments, &$doc, $markdown, $sanitizeUtil){
 		if(empty($comments))
 			return;
-			
+		
 		$this->markdown     = $markdown;
 		$this->sanitizeUtil = $sanitizeUtil;
+		$this->user_id      = $user_id;
 		
 		/*Comments are a forest, processes each comment tree*/
 		foreach($comments as $root){
