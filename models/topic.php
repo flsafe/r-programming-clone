@@ -85,14 +85,14 @@
 	}
 	
 	function updateSelectedTopic(){
-		$secondsInterval = 10;
-		$updateTime      = 1; /*update every 24 hours*/
+		$secondsPerInterval = 3600; /*3600 seconds an hour*/
+		$updateTime         = 24;   /*update every 24 hours/intervals*/
 		
 		$lastUpdate     = $this->getLastTime();
     $now            = new DateTime();
     $now            = $now->format('U');
 
-    $sinceLastUpdate = ($now - $lastUpdate) / $secondsInterval;
+    $sinceLastUpdate = ($now - $lastUpdate) / $secondsPerInterval;
 		if($sinceLastUpdate >= $updateTime){
 			$this->log('updating');
 			$rightNow = new DateTime();
