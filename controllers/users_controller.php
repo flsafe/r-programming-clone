@@ -150,7 +150,9 @@ class UsersController extends AppController{
 	}
 	
 	function login(){
-		#Nothing here for now.
+		$user = $this->Auth->user();
+		$this->Session->write('User.username', $user['User']['username']);
+		$this->Session->write('User.username', $user['User']['id']);
 	}
 	
 	function logout(){

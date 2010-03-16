@@ -6,15 +6,14 @@ class SubmissionsController extends AppController{
 	
 	public $uses       = array('Submission', 'Vote', 'Topic');
 
-  public $helpers    = array('Markdown', 'SyntaxHighlighter', 'CommentsBuilder');
+  public $helpers    = array('Markdown', 'SyntaxHighlighter', 'CommentsBuilder', 'Session');
 	
 	/*All submissions to the current topic*/
 	public $paginate   = array('limit'      => '25',
 														 'order'      => array('Submission.rank'     => 'desc'),
 														 'conditions' => array('Topic.current_topic' => '1'));
-														
-
 	
+
 	function beforeFilter(){
 		parent::beforeFilter();
 		$this->Auth->allow(array('index', 'view'));
@@ -35,11 +34,7 @@ class SubmissionsController extends AppController{
 	}
 	
 	function add(){
-		$this->log('Made it here!');
-		
 		if(!empty($this->data)){
-			$this->log("not empty part");
-			
 			$user_id = $this->Auth->user('id');			
 			$this->data['Submission']['user_id'] = $user_id;		
 			$this->data['Submission']['size']    = strlen($this->data['Submission']['text1']);
@@ -62,9 +57,6 @@ class SubmissionsController extends AppController{
 	      $this->Vote->voteForModel('up', $this->Submission, $this->Submission->id, $this->Auth->user('id'));
 				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 			}
-		}
-		else{
-			$this->log("else part");
 		}
 	}
 	
