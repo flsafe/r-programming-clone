@@ -81,6 +81,7 @@ function displayReply(replytext, parentelem, tag){
     var newcomment = $(replydiv);
 
     fillOutMetadata(newcomment, tag);
+
     fillOutCommentText(newcomment, replytext);
     
     parentelem.find(".replyform").first().after(newcomment); //Add to top of replies
