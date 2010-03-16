@@ -54,6 +54,7 @@ function postComment(modelname, model_id, parent_id, commenttext, tag){
             resp = JSON.parse(data);
             if(resp){
                 $("#tag"+resp.tag).html(' | <a href="/comments/edit/'+resp.comment_id+'">edit</a>');
+
             }
         });
 }
