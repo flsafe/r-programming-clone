@@ -31,8 +31,6 @@ class CommentsController extends AppController{
 		
 		if(!$this->RequestHandler->isAjax())
 			return;
-			
-		$this->log("modelname: $modelname, modelid: $model_id, parentid: $parent_id, tag: $tag");
 		
 		$emptyComment = empty($this->params) || empty($this->params['form']['text']);
 		if($emptyComment)

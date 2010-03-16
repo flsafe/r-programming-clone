@@ -23,7 +23,7 @@
 										'ruby'       =>'Ruby');
 	
 	
-		echo $form->create('Submission', array('controller'=>'submissions'));
+		echo $form->create('Submission', array('controller'=>'submissions', 'action'=>'add'));
 		
 		echo $form->input('Submission.id', array('type'=>'hidden'));
 		
@@ -33,7 +33,7 @@
 		echo $form->label('Submisson.description1', 'Describe Your Solution');
 		echo $form->input('Submission.description1', array('label'=>false));
 		
-		echo $form->label('Submission.text1', "Paste Your Code Here");
+		echo $form->label('Submission.text1', "Paste Your Code Here") . "<br/>";
 		echo $form->textArea('Submission.text1', array('rows'=>'22', 'label'=>false)) . "<br/>"; #TODO: Temp hack. Get the CSS to do this for you
 		echo $form->error('Submission.text1');
 		
@@ -45,6 +45,7 @@
 			
 		if($action == 'add')
 	 		echo $this->element('captcha', array('modelname'=>'Submission', 'formhelper'=>$form));
+	
 		echo $form->end('Submit');
 ?>
 </div>

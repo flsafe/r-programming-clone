@@ -39,6 +39,7 @@
  * In development mode, you need to click the flash message to continue.
  */
 	Configure::write('debug', 2);
+	Configure::write('Cache.check', true);
 /**
  * Application wide charset encoding
  */
@@ -174,24 +175,24 @@
  * If you are on PHP 5.3 uncomment this line and correct your server timezone
  * to fix the date & time related errors.
  */
-	//date_default_timezone_set('UTC');
+	date_default_timezone_set('UTC');
 /**
  *
  * Cache Engine Configuration
  * Default settings provided below
- *
- * File storage engine.
- *
- * 	 Cache::config('default', array(
- *		'engine' => 'File', //[required]
- *		'duration'=> 3600, //[optional]
- *		'probability'=> 100, //[optional]
- * 		'path' => CACHE, //[optional] use system tmp directory - remember to use absolute path
- * 		'prefix' => 'cake_', //[optional]  prefix every cache file with this string
- * 		'lock' => false, //[optional]  use file locking
- * 		'serialize' => true, [optional]
- *	));
- *
+ */
+ // File storage engine
+  	 Cache::config('default', array(
+ 		'engine' => 'File', //[required]
+ 		'duration'=> 3600, //[optional]
+ 		'probability'=> 100, //[optional]
+ 		'path' => CACHE, //[optional] use system tmp directory - remember to use absolute path
+  		'prefix' => 'cake_', //[optional]  prefix every cache file with this string
+  		'lock' => false, //[optional]  use file locking
+  		'serialize' => true, //[optional]
+ 	));
+ 
+/*
  *
  * APC (http://pecl.php.net/package/APC)
  *
@@ -229,5 +230,4 @@
  *
  */
 	Cache::config('default', array('engine' => 'File'));
-	//Cache::config('Cache.check', 'true');
 ?>

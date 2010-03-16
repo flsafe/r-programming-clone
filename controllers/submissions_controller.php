@@ -6,12 +6,14 @@ class SubmissionsController extends AppController{
 	
 	public $uses       = array('Submission', 'Vote', 'Topic');
 
-  public $helpers    = array('Markdown', 'SyntaxHighlighter', 'CommentsBuilder', 'Cache');
+  public $helpers    = array('Markdown', 'SyntaxHighlighter', 'CommentsBuilder');
 	
 	/*All submissions to the current topic*/
 	public $paginate   = array('limit'      => '25',
 														 'order'      => array('Submission.rank'     => 'desc'),
 														 'conditions' => array('Topic.current_topic' => '1'));
+														
+
 	
 	function beforeFilter(){
 		parent::beforeFilter();
@@ -33,30 +35,36 @@ class SubmissionsController extends AppController{
 	}
 	
 	function add(){
-		if(empty($this->data))
-			return;						
-			
-		$user_id = $this->Auth->user('id');			
-		$this->data['Submission']['user_id'] = $user_id;		
-		$this->data['Submission']['size']    = strlen($this->data['Submission']['text1']);
-			
-		$this->data['Submission']['captcha_keystring'] = $this->Session->read('captcha_keystring');
+		$this->log('Made it here!');
 		
-		$topic    = $this->Submission->Topic->findByCurrentTopic('1');
-		$topic_id = $topic['Topic']['id'];
-		$this->data['Submission']['topic_id'] = $topic_id;
+		if(!empty($this->data)){
+			$this->log("not empty part");
+			
+			$user_id = $this->Auth->user('id');			
+			$this->data['Submission']['user_id'] = $user_id;		
+			$this->data['Submission']['size']    = strlen($this->data['Submission']['text1']);
+			
+			$this->data['Submission']['captcha_keystring'] = $this->Session->read('captcha_keystring');
 		
-		if($this->Submission->save($this->data,
-                               array('user_id', 
-																		 'topic_id', 
-																		 'size', 
-																		 'title', 
-																		 'description1', 
-																		 'text1', 
-																		 'syntax'))){
+			$topic    = $this->Submission->Topic->findByCurrentTopic('1');
+			$topic_id = $topic['Topic']['id'];
+			$this->data['Submission']['topic_id'] = $topic_id;
+		
+			if($this->Submission->save($this->data,
+	                               array('user_id', 
+																			 'topic_id', 
+																			 'size', 
+																			 'title', 
+																			 'description1', 
+																			 'text1', 
+																			 'syntax'))){
 
-      $this->Vote->voteForModel('up', $this->Submission, $this->Submission->id, $this->Auth->user('id'));
-			$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+	      $this->Vote->voteForModel('up', $this->Submission, $this->Submission->id, $this->Auth->user('id'));
+				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+			}
+		}
+		else{
+			$this->log("else part");
 		}
 	}
 	

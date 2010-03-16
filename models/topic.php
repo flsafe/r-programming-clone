@@ -76,11 +76,6 @@
     	if(isset($this->data[$k][$k]))
       	$this->data[$this->alias][$k] = $this->data[$k][$k];
 
-		$this->log("Before Validate");
-		$this->log(print_r($this->data, true));
-		$this->log("Validation rules");
-		$this->log(print_r($this->validate, true));
-		
 		return true;
 	}
 	
@@ -94,7 +89,6 @@
 
     $sinceLastUpdate = ($now - $lastUpdate) / $secondsPerInterval;
 		if($sinceLastUpdate >= $updateTime){
-			$this->log('updating');
 			$rightNow = new DateTime();
 			$this->setLastTime($rightNow->format('U'));
 			
@@ -114,7 +108,8 @@
 			$f = fopen('time/time', 'w');
 			$datetime = new DateTime();
 			$time = $datetime->format('U');
-		 	fwrite($f, $time);
+			$dayAgo = 3600 * 24;
+		 	fwrite($f, $time - $dayAgo);
 			fclose($f);
 			return $time;
 		}

@@ -1,7 +1,4 @@
 <?php
-	$this->log("Search results");
-	$this->log(print_r($results, true));
-	
 	echo $html->tag('h1', 'Search Results', array('id'=>'#pagetitleheader'));
 	
 	if($modelname == "Submission"){

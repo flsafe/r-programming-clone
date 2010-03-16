@@ -103,7 +103,6 @@ class CommentsBuilderHelper extends AppHelper{
 		$timeAgo     = $this->timeAgo($now, $created);
 
 		$editLink    = false;
-		$this->log("session userid: {$this->user_id}, comment user_id: {$comment['User']['id']}");
 		if($this->user_id == $comment['User']['id']){
 			$edit      = $this->Html->url(array('controller'=>'comments', 'action'=>'edit', 'id'=>$comment['Comment']['id']));
 			$editLink  = $dom->createElement('a', 'edit');
@@ -115,7 +114,6 @@ class CommentsBuilderHelper extends AppHelper{
 		$commentMeta->appendChild($dom->createTextNode("by {$username} {$timeAgo} {$edit}"));
 		if($editLink != false){
 			$commentMeta->appendChild($editLink);
-			$this->log("Added the edit link");
 		}
 		
 		/*Append the meta and comment text*/
