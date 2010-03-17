@@ -51,20 +51,22 @@
 																								'action'    =>'search', 
 																								'div'       =>false));
 																								
+				echo $form->input('Search.model', array('label'   =>false,
+																								'type'    =>'select', 
+																								'options' =>array('Submission'=>'Solutions','Topic'=>'Puzzles'),
+																								'selected'=>'Topic',
+																								'div'     =>false));																
+												
 				echo $form->input('Search.text',  
 																				array('label' =>false, 
 																							'div'   =>false, 
 																							'value' =>'search'));
 																							
-				echo $form->input('Search.model', array('label'   =>false,
-																								'type'    =>'select', 
-																								'options' =>array('Submission'=>'Solutions','Topic'=>'Puzzles'),
-																								'selected'=>'Topic',
-																								'div'     =>false));
+				
 				echo $form->end("Search");
 				
-				echo $javascript->link('jquery/jquery.min', false);
-				echo $javascript->link('jquery/search', false);
+				echo $javascript->link('jquery/jquery.min');
+				echo $javascript->link('jquery/search');
 			?>
 			<div id="add">
 				Advertisement

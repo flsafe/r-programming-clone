@@ -14,8 +14,13 @@
 
 <div id="topictext">
 	<?php 
-		$sanitizeUtil->htmlEsc($model['Topic'], array('text'));
-		echo $markdown->parse($model['Topic']['text']);
+		/*$sanitizeUtil->htmlEsc($model['Topic'], array('text'));*/
+		$marked =  $markdown->parse($model['Topic']['text']);
+		
+		//$this->log("AFTER MARKDOWN");
+		//$this->log(print_r($marked, true));
+		
+		echo $marked;
 	?>
 </div>
 

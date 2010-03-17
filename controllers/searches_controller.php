@@ -2,7 +2,9 @@
 App::import('Core', 'Sanitize');
 class	SearchesController extends AppController{
 		
-		public $uses = array('SearchIndex', 'Vote');
+		public $uses    = array('SearchIndex', 'Vote');
+		
+		public $helpers = array('SyntaxHighlighter');
 		
 		public function beforeFilter(){
 			parent::beforeFilter();
@@ -17,17 +19,21 @@ class	SearchesController extends AppController{
 
 			$searchText = Sanitize::escape($this->data['Search']['text']);
 			$modelname  = $this->data['Search']['model'];
+			
 			if(! $this->Common->validModel($modelname))
 				return;
+				
 			
 			$this->paginate = array('limit' 		 => 25,
 		                          'conditions' => "MATCH(SearchIndex.data) AGAINST('$searchText' IN BOOLEAN MODE)");
+		
 			$this->SearchIndex->searchModels(array($modelname));
 			$results 				= $this->paginate('SearchIndex'); #returns the only the id fields of the matches
 			$ids     				= $this->Common->toIdArray($results, $modelname);
 			$this->paginate = array('limit'=>25,
 															'order'=>array("{$modelname}.created" => 'asc'),
-															'conditions'=>array("{$modelname}.id"=>$ids));
+															'conditions'=>array("{$modelname}.id" =>$ids));
+															
 			$results = $this->paginate($modelname);
 			$this->set('results', $results);
 			

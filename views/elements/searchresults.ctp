@@ -3,12 +3,13 @@
 	
 	if($modelname == "Submission"){
 		echo $this->element('submissionslist', array('submissions'=> $results,
-																						'user_id'    => $user_id,
-																						'uservotes'  => $uservotes));
+																						     'user_id'    => $user_id,
+																						     'uservotes'  => $uservotes));
+		
 	}
 	elseif($modelname == "Topic"){
-		echo $this->element('topicslist', array('topics'=>   $results,
-																			 'user_id'=>  $user_id,
-																			'uservotes'=> $uservotes));
+		echo $this->element('topicslist', array('topics'=> $results,
+																			     'user_id'=> $user_id,
+																			   'uservotes'=> $uservotes));
 	}
 ?>

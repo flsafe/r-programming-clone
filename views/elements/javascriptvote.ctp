@@ -8,9 +8,9 @@
 	echo $javascript->link('util', false);
 
 	if($votingFor == 'submissions')
-		echo $javascript->link('jquery/submissions');
+		echo $javascript->link('jquery/submissions', false);
 	else
-		echo $javascript->link('jquery/topics');
+		echo $javascript->link('jquery/topics', false);
 		
 	echo $javascript->link('jquery/vote', false);
 ?>

@@ -401,6 +401,7 @@ a:hover.submissiontopic{
 
 #topictext{
     font-size:1.1em;
+    overflow: auto;
 }
 
 #topicform{
