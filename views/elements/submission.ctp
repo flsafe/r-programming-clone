@@ -26,7 +26,7 @@
 
 	<?php  if($showeverything):?>
 		<div class="submissionpreview">
-			<?php echo $syntaxHighlighter->highlight($text, 'java');?>
+			<?php echo $syntaxHighlighter->highlight(substr($text, 0, 500), 'java');?>
 		</div>
 	<?php endif; ?>
 

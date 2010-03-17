@@ -53,7 +53,6 @@
 				echo $form->input('Search.model', array('label'   =>false,
 																								'type'    =>'select', 
 																								'options' =>array('Submission'=>'Solutions','Topic'=>'Puzzles'),
-																								'selected'=>'Topic',
 																								'div'     =>false));																
 												
 				echo $form->input('Search.text',  

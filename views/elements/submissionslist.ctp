@@ -21,4 +21,4 @@
 	
 </div>
 
-<?php $this->element('pagination') ?>
+<?php echo $this->element('pagination') ?>
