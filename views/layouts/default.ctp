@@ -28,7 +28,7 @@
 				}
 				else{
 					echo $html->link('Login', array('controller'=>'users', 'action'=>'login')) . $space;
-					echo $html->link('Register', array('controller'=>'users', 'action'=>'login')) . $space;
+					echo $html->link('Register', array('controller'=>'users', 'action'=>'add')) . $space;
 				}
 			?>
 		</span>

@@ -127,27 +127,19 @@ label{
 /*--------------Login Page--------------*/
 
 #loginpage{
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 30px;
     width: 540px;
     height: 500px;
 }
 
 #forgotpassword{
-    color:black;
     size: 1.1em;
 }
 
 #register{
-    width:275px;
-    float: right;
-    border-left: 1px solid #999;
-    padding-left: 45px;
+
 }
 
 #login{
-    border: 1px solid white; /*Both login and register need borders so they line up*/
     width: 200px;
 }
 
