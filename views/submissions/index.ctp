@@ -2,12 +2,12 @@
 	#This is the home page. It shows the topic of the day, and all the submissions for that topic
 
 	echo $this->element('javascriptvote', array('votingFor'=>'submissions'));
-	$this->log($session->read('User.username'));
 ?>
 
 <?php 
-  $sanitizeUtil->htmlEsc($topic['Topic'], array('title','text'));
+  $sanitizeUtil->htmlEsc($topic['Topic'], array('title'));
 	$text = $markdown->parse($topic['Topic']['text']);
+	$text = $htmlPurifier->purify($text);
   echo $this->element('selectedtopic', array('title'           => $topic['Topic']['title'], 
 																						 'username'        => $topic['User']['username'], 
 																						 'text'            => $text,

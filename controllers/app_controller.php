@@ -2,7 +2,7 @@
 	class AppController extends Controller{
     public $components = array('Captcha', 'Auth', 'Common', 'Navigation');
     
-    public $helpers = array('SanitizeUtil', 'Html', 'Form', 'Translator', 'Javascript');
+    public $helpers = array('SanitizeUtil', 'HtmlPurifier', 'Html', 'Form', 'Translator', 'Javascript');
 
 		/**
 		 * Sets the currently selected link in the content menu (the navigation menu) and

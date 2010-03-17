@@ -22,8 +22,7 @@
 		
 		<p>
 			<?php 
-				$sanitizeUtil->htmlEsc($model['Submission'], array('description1'));
-				echo $markdown->parse($model['Submission']['description1']); 
+				echo $htmlPurifier->purify($markdown->parse($model['Submission']['description1'])); 
 			?>
 		</p>
   </div>

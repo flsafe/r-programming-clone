@@ -14,7 +14,7 @@ class CommentsBuilderHelper extends AppHelper{
 	*Used to process comment data from the data base
 	*/
 	private $markdown;
-	private $sanitizeUtil;
+	private $htmlPurifier;
 	
 	/**
 	 * If a comments that match this user_id are shown with 
@@ -119,9 +119,9 @@ class CommentsBuilderHelper extends AppHelper{
 		/*Append the meta and comment text*/
 		$commentForm->appendChild($commentMeta);
 		
-		$this->sanitizeUtil->htmlEsc($comment['Comment'], array('text'));
 		$commentDoc  = new DOMDocument();
 		$t           = $this->markdown->parse($comment['Comment']['text']);
+		$t           = $this->htmlPurifier->purify($t);
 		if($commentDoc->loadHTML("<span class=\"commenttext\">$t</span>")){
 			try{
 				$textnode    = $commentDoc->getElementsByTagName('span')->item(0);
@@ -188,12 +188,12 @@ class CommentsBuilderHelper extends AppHelper{
 	 * Builds a a div structure containing nested
 	 * comments. The html structure is written to $dom.
 	 */
-	function buildCommentHiearchy($user_id, &$comments, &$doc, $markdown, $sanitizeUtil){
+	function buildCommentHiearchy($user_id, &$comments, &$doc, $markdown, $purifier){
 		if(empty($comments))
 			return;
 		
 		$this->markdown     = $markdown;
-		$this->sanitizeUtil = $sanitizeUtil;
+		$this->htmlPurifier = $purifier;
 		$this->user_id      = $user_id;
 		
 		/*Comments are a forest, processes each comment tree*/

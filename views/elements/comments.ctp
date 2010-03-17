@@ -12,7 +12,7 @@
 	
 	if($loggedin)
 		$commentsBuilder->displayReplys = true;
-	$commentsBuilder->buildCommentHiearchy($user_id, $comments, $doc, $markdown, $sanitizeUtil);
+	$commentsBuilder->buildCommentHiearchy($user_id, $comments, $doc, $markdown, $htmlPurifier);
 ?>
 
 <div id="comments">

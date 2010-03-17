@@ -5,7 +5,7 @@
 		
 		public $uses       = array('Vote', 'Submission', 'Topic');
 		
-		public $helpers    = array('Markdown', 'SanitizeUtil', 'SyntaxHighlighter', 'CommentsBuilder', 'Translator');
+		public $helpers    = array('Markdown', 'SyntaxHighlighter', 'CommentsBuilder', 'Translator');
 		
 		public $belongsTo = array('Submission', 'Topic'); #TODO: Can this be replaced with one parent class?*/
 		
