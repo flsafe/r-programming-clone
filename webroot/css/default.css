@@ -74,10 +74,14 @@ label{
 
 /*----------------Header-----------------*/
 
+#logo{
+    margin-left:8px;
+}
+
 #header{
     border-bottom: 4px  solid rgb(0, 129, 163);
     padding-top: 0px;
-    height: 135px;
+    height: 92px;
 }
 
 #header a{
@@ -92,9 +96,9 @@ label{
 
 #tagline a{
     width:300px;
-    margin-left:20px;
+    margin-left:0px;
     color: rgb(100, 138, 30);
-    font-size: 1em;
+    font-size: .86em;
     text-decoration: none;
     font-weight: bold;
 }
@@ -106,7 +110,8 @@ label{
 #menu{
     float: right;
     padding: 0px 0px 0px 0px;
-    margin-top: 115px;
+    margin-top: 74px;
+    margin-right: 10px;
 }
 
 #menu a:hover{
@@ -196,7 +201,7 @@ a:hover.contentlink{
     height: 400px;
     margin-right:5px;
     float:right;
-    padding: 5px 2px 2px 2px;
+    padding: 0px 2px 2px 2px;
     font: 125% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
     color: rgb(19, 98, 200);
 }
