@@ -14,7 +14,7 @@ class NavigationComponent extends object{
 												'/myitems/Topic'      => 'mypuzzles');
 
 	/*Don't show the content menu if the url contains these strings*/
-	 private $noshow = array('/users/', '/pages/');
+	 private $noshow = array('/users/', '/pages/', '/contacts/');
 	
 	function initialize(&$controller){
       $this->controller = $controller;

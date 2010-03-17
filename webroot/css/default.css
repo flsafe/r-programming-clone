@@ -521,6 +521,17 @@ a:hover.submissiontopic{
     font-size: .90em;
 }
 
+.feedbackmessage{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: rgb(125, 125, 125);
+}
+
+/*#fluster{
+    font-size: 1.2em;
+    color: rgb(100, 80,80);
+}*/
+
 /*--------meta data----------------*/
 /*
 I put meta data down here so that it has preference

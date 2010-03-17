@@ -67,7 +67,7 @@
 				echo $javascript->link('jquery/search');
 			?>
 			<div id="add">
-				Advertisement
+				Your advertisement could be here! Details coming soon.
 				<img id="addimg" src="/img/tps.png" height="200">
 			</div>
 	</div>
@@ -86,8 +86,8 @@
 
 		<?php 
 			echo $html->link('About', array('controller'=>'pages', 'action'=>'about_us')) . $space;
-			echo $html->link('Feedback', array('controller'=>'pages', 'action'=>'feedback')) . $space;
-			echo $html->link('Blog', array('controller'=>'pages', 'action'=>'blog')).$space;
+			echo $html->link('Feedback', array('controller'=>'contacts', 'action'=>'add')) . $space;
+			echo $html->link('Blog', "http://www.cozysystems.com/blog").$space;
 		?>
 		</div>
 	
