@@ -40,7 +40,7 @@ function changeVoteDisplay(type, id){
         return;
         
     points = $('#points'+id ).html().trim();
-    points = parseInt(points) + (type == 'up' ? 1 : -1);
+    points = parseInt(points) + (type == 'up' ? 2 : -2);
     $('#points'+id).html(points + " points | by ");
     
     $('#upvoteimg'+id).attr('src', up);
