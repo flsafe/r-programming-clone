@@ -58,7 +58,7 @@ class TopicsController extends AppController{
 			$data['Topic']['text']  = $this->data['Topic']['text'];
 			
 			if($this->Topic->save($this->data)){
-				$this->redirect(array('controller'=>'topics', 'action'=>'index'));
+				$this->redirect(array('controller'=>'topics', 'action'=>'view', 'id'=>$id));
 			}
 		}
 		else{

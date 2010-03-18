@@ -82,7 +82,7 @@ class SubmissionsController extends AppController{
 			$data['Submission']['size']         = strlen($this->data['Submission']['text1']);
 
 			if($this->Submission->save($data)){
-				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+				$this->redirect(array('controller'=>'submissions', 'action'=>'view', 'id'=>$id));
 			}
 		}
 	}
