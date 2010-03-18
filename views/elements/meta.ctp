@@ -22,7 +22,7 @@
 			<span>
 				<?php 
 					$controller = Inflector::pluralize(Inflector::underscore(strtolower($modelname)));
-					echo $html->link("$username", array());
+					echo "$username";
 					
 
 					if($showedit){
