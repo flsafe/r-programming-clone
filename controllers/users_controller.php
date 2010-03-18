@@ -114,7 +114,6 @@ class UsersController extends AppController{
         if($this->User->save($userdata, array('password'))){
           $this->Ticket->del($ticket);
           $this->Auth->login(array('username'=>$userdata['User']['username'], 'password'=>$userdata['User']['password']));
-          $this->Session->setFlash("We've updated your password!");
           $this->redirect(array('controller'=>'submissions', 'action'=>'index'));
         }
 			}

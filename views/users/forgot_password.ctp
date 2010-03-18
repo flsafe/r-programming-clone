@@ -3,7 +3,7 @@
 <?php
 	echo $form->create('User', array('controller'=>'users', 'action'=>'forgot_password'));
 	
-	echo $form->label('User.username', "User Name");
+	echo $form->label('User.username', "Username");
 	echo $form->input('User.username', array('label'=>false));
 	
 	echo $form->label('User.email', "Email");
