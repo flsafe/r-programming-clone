@@ -127,6 +127,7 @@ class Vote extends AppModel{
   static function hackerNewsRank($upvotes, $downvotes, $created){
     $secondsPerHour = 3600;
     $points         = $upvotes - $downvotes;
+		$a              = Configure::read('codekettl.ranking.c');
     $c              = Configure::read('codekettl.ranking.c');
     $b              = Configure::read('codekettl.ranking.b');
 
@@ -137,7 +138,7 @@ class Vote extends AppModel{
 
     $ageInHours     = ($now - $created) / $secondsPerHour;
 
-    $rank           =  ($points)/pow(($ageInHours + $b), $c);
+    $rank           =  ($points - $a)/pow(($ageInHours + $b), $c);
     return $rank;
   }
 }
