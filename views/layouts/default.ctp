@@ -6,7 +6,7 @@
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Code Kettl</title>
+	<title>CodeKettl</title>
 	<meta name="keywords" content="Programming Practice Collaborate" />
 	<meta name="description" content="Practice Programming Together" />
 	<?php echo $html->css("default")?>
@@ -38,12 +38,16 @@
 		?>
 		
 		<div id="tagline">
-			<?php echo $html->link('Your Daily Cup Of Programming Practice', array('controller'=>'submissions')); ?>
+			<?php echo $html->link('Your Daily Cup Of Programming Interview Practice', array('controller'=>'submissions')); ?>
 		</div>
 	</div>
 
 	<div id="sidebar">
-		<p>Code Kettl is is a tool that lets you practice programing with other programmers.
+		<p>
+			CodeKettl is the funnest way to practice your programming skills and learn from other programmers.
+		</p>
+		<p>
+			Browse tough programming puzzles, share your solutions, get feedback, get better, learn together!
 		</p>
 			<?php
 				echo $form->create('Search',      array('controller'=>'searches', 
@@ -67,7 +71,7 @@
 				echo $javascript->link('jquery/search');
 			?>
 			<div id="add">
-				Your advertisement could be here! Details coming soon.
+				<p>Your advertisement or job listing could be here! Details coming soon.</p>
 				<img id="addimg" src="/img/tps.png" height="200">
 			</div>
 	</div>
