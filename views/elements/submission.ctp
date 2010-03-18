@@ -4,6 +4,7 @@
 		#uservotes  - The votes asscociated with this user
 		#user_id    - Id of the current user
 		#showtopic  - Show the title of the topic associated with this submission (optional default false)
+		#showeverything - Show all items? false the code preview won't be show. (Optional default true)
 	
 		$sanitizeUtil->htmlEsc($submission['Submission'], array('text1'));
 		$id       = $submission['Submission']['id'];
@@ -13,6 +14,8 @@
 		
 		if(! isset($showtopic))
 			$showtopic = false;
+		if(! isset($showeverything))
+			$showeverything = true;
 		
 		$vote     = "none";
 		if(isset($uservotes[$id]))
@@ -20,9 +23,11 @@
 ?>
 <div class="submission">
 
-	<div class="submissionpreview">
-		<?php echo $syntaxHighlighter->highlight(substr($text, 0, 500), 'java');?>
-	</div>
+	<?php if($showeverything): ?>
+		<div class="submissionpreview">
+			<?php	echo $syntaxHighlighter->highlight(substr($text, 0, 500), 'java');?>
+		</div>
+	<?php endif; ?>
 
 	<div class="submissiontitle">
 		<?php 
@@ -39,12 +44,15 @@
 			echo $html->link($title, array('controller'=>'submissions', 'action'=>'view', 'id'=>$id));
 		?>
 	</div>
+	
 
-	<div class="submissionstats">
-			<?php 
-				echo "Size: $size <br/>" ;
-			?>
-	</div>
+		<div class="submissionstats">
+				<?php 
+					if($showeverything)
+						echo "Size: $size <br/>" ;
+				?>
+		</div>
+
 
 	<?php
 		echo $this->element('meta', array('modelname'   => "Submission",
