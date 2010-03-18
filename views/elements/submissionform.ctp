@@ -23,7 +23,7 @@
 										'ruby'       =>'Ruby');
 	
 	
-		echo $form->create('Submission', array('controller'=>'submissions', 'action'=>'add'));
+		echo $form->create('Submission', array('controller'=>'submissions'));
 		
 		echo $form->input('Submission.id', array('type'=>'hidden'));
 		
