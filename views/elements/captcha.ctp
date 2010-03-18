@@ -8,7 +8,7 @@
 ?>
 
 
-<img src="<?php echo $html->url(array('controller'=>"$controller", 'action'=>'captcha'))?>" />
+<img src="<?php echo $html->url(array('controller'=>"$controller", 'action'=>'captcha'))?>" widht="120" height="60"/>
 <table>
 	
 	<tr>
