@@ -96,7 +96,7 @@
 		</div>
 	
 		<div id="footerlegal">
-			&copy; 2010 
+			<?php echo "&copy;".date('Y') ?>
 			<?php echo $html->link(' CozySystems LLC ', 'http://www.cozysystems.com');?>
 		</div>
 	</div>

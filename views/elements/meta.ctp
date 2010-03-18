@@ -11,7 +11,12 @@
 <span class="meta">
 	
 			<span id="<?php echo "points${id}"?>" class="metadatapoints">
-				<?php echo "$points points | by " ?>
+				<?php 
+					if($points > 1 || $points == 0)
+						echo "$points points | by ";
+					else
+						echo "$points point | by ";
+				?>
 			</span>
 			
 			<span>
