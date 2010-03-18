@@ -30,7 +30,8 @@
 		echo $form->label('Submission.title', 'Title');
 		echo $form->input('Submission.title', array('label'=>false));
 		
-		echo $form->label('Submisson.description1', 'Describe Your Solution');
+		echo $form->label('Submisson.description1', 'Description');
+		echo $html->link('(format help)', array('controller'=>'pages', 'action'=>'display', 'format_help'), array('id'=>'formformathelp'));
 		echo $form->input('Submission.description1', array('label'=>false));
 		
 		echo $form->label('Submission.text1', "Paste Your Code Here") . "<br/>";

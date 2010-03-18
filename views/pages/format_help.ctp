@@ -1,3 +1,16 @@
+<h2>What flavor markdown are you using?</h2>
+<p><a href="http://michelf.com/projects/php-markdown/extra/">PHP Markdown Extra</a></p>
+
+<h2>How do I insert a paragraph?</h2>
+<p>Just make sure to leave an empty line between your paragraphs like you would normally.</p>
+
+<h4>Example:</h4>
+<p>This is the first line of my paragraph</p>
+<br>
+<p>This is another paragraph below the empty line</p>
+
+<br/>
+
 <h2>How do I format a link?</h2>
 <p>
 	[your text here](your address here)

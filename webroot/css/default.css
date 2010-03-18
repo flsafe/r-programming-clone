@@ -190,7 +190,7 @@ a:hover.contentlink{
 
 #sidebar{
     width: 300px;
-    height: 400px;
+    height: 500px;
     margin-right:5px;
     float:right;
     padding: 0px 2px 2px 2px;
@@ -451,6 +451,10 @@ a:hover.submissiontopic{
     font-size:12px;
 }
 
+#formformathelp{
+    margin-left: 10px;
+}
+
 .commentslist{
     
 }
@@ -512,6 +516,7 @@ a:hover.submissiontopic{
 #footer{
     text-align: center;
     clear:right;
+    margin-top: 200px;
 }
 
 #footer a:hover{
