@@ -15,7 +15,17 @@ down    = '/img/down_arrow.gif';
 upred   = '/img/up_arrow_red.gif';
 downred = '/img/down_arrow_red.gif';
 
+function alreadyVoted(type, id){
+    voted =   type == 'up'  && $('#upvoteimg'+id).attr('src')   == upred
+           || type == 'down'&& $('#downvoteimg'+id).attr('src') == downred;
+
+    return voted;
+}
+
 function vote(type, model, id){
+   if(alreadyVoted(type, id))
+        return;
+        
     $.post('/votes/vote/'+type+'/'+model+'/'+id, function(data){
         //Nothing here yet
     });
@@ -33,14 +43,11 @@ function getHtmlId(type, id){
 }
 
 function changeVoteDisplay(type, id){
-    alreadyVoted =    type == 'up'  && $('#upvoteimg'+id).attr('src')   == upred
-                   || type == 'down'&& $('#downvoteimg'+id).attr('src') == downred;
-                   
-    if(alreadyVoted)
+    if(alreadyVoted(type,id))
         return;
         
     points = $('#points'+id ).html().trim();
-    points = parseInt(points) + (type == 'up' ? 2 : -2);
+    points = parseInt(points) + (type == 'up' ? 1 : -1);
     $('#points'+id).html(points + " points | by ");
     
     $('#upvoteimg'+id).attr('src', up);
@@ -51,24 +58,28 @@ function changeVoteDisplay(type, id){
 }
 
 $(document).ready(function(){
-	$('.upvote').click(function(){
-	    
-    if(bailIfNotLoggedIn())
-        return;
-    
     //The up/down vote id(s) are in the form 'upvote(N)' or 'downvote(N)' where (N) is the 
     //id of the model object the user is voting on. This convention is followed for
     //points(N) and images so you'll see this type of replace in several places.
-	var modelid = $(this).attr('id').replace("upvote","");
-	changeVoteDisplay('up', modelid);
-    vote("up", model, modelid);});
+    
+	$('.upvote').click(function(){
+        if(bailIfNotLoggedIn())
+            return;
+    
+    	var modelid = $(this).attr('id').replace("upvote","");
+
+        vote("up", model, modelid);
+        changeVoteDisplay('up', modelid);
+    });
+
 	
 	$('.downvote').click(function(){
-	    
         if(bailIfNotLoggedIn())
             return;
 	        
 		var modelid = $(this).attr('id').replace("downvote","");
+        vote("down", model, modelid);
         changeVoteDisplay('down', modelid);
-        vote("down", model, modelid);});
+    });
+    
 });
