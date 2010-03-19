@@ -40,6 +40,11 @@
  */
 	Configure::write('debug', 2);
 	Configure::write('Cache.check', false);
+	
+	App::import('Core', 'Cache');
+	Cache::config('lineitems', array('engine'=>'file',
+																	'duration'=>'1 hour'));
+
 /**
  * Application wide charset encoding
  */
