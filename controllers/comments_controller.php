@@ -16,11 +16,21 @@ class CommentsController extends AppController{
 	/**
 	 * Returns all the comments associated to a model
 	 */
-	public function model_comments($modelname, $modelid){
+	public function model_comments($modelname, $model_id){
 		if(! in_array($modelname, $this->models))
 			return;
-
-		return $this->Comment->getModelComments($modelname, $modelid);
+			
+		$comments = Cache::read("CommentList.{$modelname}.{$model_id}", 'default');
+		if($comments){
+			$this->log("Hit on: CommentList.{$modelname}.${model_id}");
+			return $comments;
+		}
+		else{
+			$this->log("Miss on: CommentList.{$modelname}.${model_id}");
+			$comments = $this->Comment->getModelComments($modelname, $model_id);
+			Cache::write("CommentList.{$modelname}.${model_id}", $comments, 'default');
+			return $comments;
+		}
 	}
 	
 	/**
