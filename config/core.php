@@ -42,7 +42,7 @@
 	Configure::write('Cache.check', false);
 	
 	App::import('Core', 'Cache');
-	Cache::config('lineitems', array('engine'=>'file',
+	Cache::config('default', array('engine'=>'file',
 																	'duration'=>'1 hour'));
 
 /**

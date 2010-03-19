@@ -17,55 +17,57 @@ class LineItemComponent extends Object{
   }
 	
 	public function showIndex(&$model){
-		#Display a list of line item models. Logged out users 
-		#get a cached view of the line item models.
+		#Display a list of line item models.
+		
+		$model->unbindModel(array('hasMany'=>array('Comment')), false);
 		
 		$user_id  = $this->Auth->user('id');
 		$loggedin = $user_id ? true : false;
 		
-		$model->unbindModel(array('hasMany'=>array('Comment')), false);
 		$modelname  = $model->name;
-
-		$models;                                  
+		$models     = $this->controller->paginate("$modelname"); #TODO: Should be passed in
+		$this->controller->set('models', $models);
+		
 		$this->controller->set('uservotes', array());
 		$this->controller->set('user_id', $user_id);
-		
-		if(!$loggedin){
-			#Serve cached models
-			$models = Cache::read('models');
-			if($models){
-				$this->controller->set('models', $models);
-			}
-			else{
-				$models = $this->controller->paginate("$modelname");
-				$this->controller->set('models', $models);
-				Cache::write('models', $models, 'lineitems');
-			}
-		}
-		else{
-			$models = $this->controller->paginate("$modelname"); #TODO: Paginate should be passed in
-			$this->controller->set('models', $models);
-		
+		if($loggedin){
 			$modelids  = $this->Common->toIdArray($models, $modelname);
-			$uservotes = $this->controller->Vote->getUserVotes($modelname, $modelids, $user_id); #Vote should be passed in
-			$this->controller->set('uservotes', $uservotes);  #data here
+			$uservotes = $this->controller->Vote->getUserVotes($modelname, $modelids, $user_id); #TODO: Vote should be passed in
+			$this->controller->set('uservotes', $uservotes);  
 		 }
 	}
 	
 	public function showView(&$model, $id){
-		$model->unbindModel(array('hasMany'=>array('Comment')), false);
-		$model->id = $id;
-		$data = $model->read();
-		$this->controller->set('model', $data);
+		#Show a line item model in isolation
 		
-		$this->controller->set('uservotes', array());
-		$user_id = $this->controller->Auth->user('id');
+		$model->unbindModel(array('hasMany'=>array('Comment')), false); #TODO: maybe these should alwasy be binded manually
+		
+		$user_id   = $this->Auth->user('id');
+		$loggedin  = $user_id ? true : false;
 		$this->controller->set('user_id', $user_id);
 		
-		if($user_id){
-			$uservotes = $this->controller->Vote->getUserVotes("{$model->name}", array($id), $user_id);
-			$this->controller->set('uservotes', $uservotes);
+		$model->id = $id;
+		$modelname = $model->name;		
+		
+		$modelMiss = false;
+		$voteMiss  = false;
+		
+		$modelData = Cache::read("${modelname}.${id}", 'default');
+		if(! $modelData){
+			$modelData = $model->read();
+			Cache::write("${modelname}.${id}", $modelData, 'default');
 		}
+		$this->controller->set('model', $modelData);
+		
+		$voteData = array();
+		if($loggedin){
+			$voteData  = Cache::read("Vote.${modelname}.${id}", 'default');
+			if(! $voteData){
+				$voteData = $this->controller->Vote->getUserVotes("$modelname", array($id), $user_id); #TODO: pass vote in
+				Cache::write("Vote.${modelname}.${id}", $voteData, 'default');
+			}
+		}
+		$this->controller->set('uservotes', $voteData);
 	}
 }
 ?>
