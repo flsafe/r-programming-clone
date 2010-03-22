@@ -33,7 +33,7 @@
  */
 
 	/*Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));*/
-	Router::connect('/', array('controller'=>'submissions', 'action'=>'index'));
+	Router::connect('/', array('controller'=>'topics', 'action'=>'index'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

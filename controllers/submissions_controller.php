@@ -9,9 +9,7 @@ class SubmissionsController extends AppController{
   public $helpers    = array('Markdown', 'SyntaxHighlighter', 'CommentsBuilder', 'Session');
 	
 	/*All submissions to the current topic*/
-	public $paginate   = array('limit'      => '25',
-														 'order'      => array('Submission.rank'     => 'desc'),
-														 'conditions' => array('Topic.current_topic' => '1'));
+
 	
 
 	function beforeFilter(){
@@ -23,10 +21,14 @@ class SubmissionsController extends AppController{
 	/*
 		This is the home page
 	*/
-	function index(){
+	function index($topic_id = null){
+		$paginate   = array('limit'      => '25',
+															 'order'      => array('Submission.rank'     => 'desc'),
+															 'conditions' => array('Topic.id'            => $topic_id));
 		$this->LineItem->showIndex($this->Submission);
-		$this->Topic->updateSelectedTopic();
-		$this->set('topic', $this->Submission->Topic->findByCurrentTopic('1'));
+		
+		$viewVars = $this->viewVars;
+		$this->set('topic', $this->Submission->Topic->findById($viewVars['models'][0]['Topic']['id']));
 	}
 	
 	function view($id = null){
@@ -57,6 +59,9 @@ class SubmissionsController extends AppController{
 	      $this->Vote->voteForModel('up', $this->Submission, $this->Submission->id, $this->Auth->user('id'));
 				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
 			}
+		}
+		else{
+			
 		}
 	}
 	

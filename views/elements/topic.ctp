@@ -21,7 +21,7 @@
 	
 	<p class="topictitle"> 
 		<?php 
-			echo $html->link($title, array('controller'=>'topics', 'action'=>'view', 'id'=>$id));
+			echo $html->link($title, array('controller'=>'submissions', 'action'=>'index', $id));
 		?>
 	</p>
 

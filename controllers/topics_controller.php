@@ -8,9 +8,7 @@ class TopicsController extends AppController{
 	
 	public $helpers    = array('Markdown', 'CommentsBuilder');
 	
-	public $paginate   = array('limit'       => '25',
-															'order'      => array('Topic.rank' => 'desc'),
-															'conditions' => array('Topic.was_chosen'=>'0', 'Topic.current_topic'=>'0'));
+	
 		
 	function beforeFilter(){
 		parent::beforeFilter();
@@ -19,6 +17,8 @@ class TopicsController extends AppController{
 	}
 
 	function index(){
+		$paginate   = array('limit'  => '25',
+											  'order'  => array('Topic.rank' => 'desc'));
 		$this->LineItem->showIndex($this->Topic);
 	}
 	

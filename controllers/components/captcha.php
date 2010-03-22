@@ -18,7 +18,7 @@ class CaptchaComponent extends Object
 					$keystring = 'automatedtest';
 				else
 					$keystring = $kcaptcha->getKeyString();
-        $this->controller->Session->write('captcha_keystring', keystring);
+        $this->controller->Session->write('captcha_keystring', $keystring);
     }
 }
 ?>
