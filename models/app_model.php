@@ -1,8 +1,9 @@
 <?php
 App::import('Core', 'Cache');
+App::import('Core', 'Configure');
 class AppModel extends Model{
 		function checkCaptcha($check, $modelname){
-			return $check['captcha'] == $this->data[$modelname]['captcha_keystring'];
+				return $check['captcha'] == $this->data[$modelname]['captcha_keystring'];
 		}
 		
 		public function afterSave(){

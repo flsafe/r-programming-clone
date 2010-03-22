@@ -1,4 +1,6 @@
 <?php 
+App::import('Core', 'Configure');
+
 class CaptchaComponent extends Object
 {
     function startup(&$controller)
@@ -10,7 +12,13 @@ class CaptchaComponent extends Object
     {
         App::import('Vendor', 'kcaptcha/kcaptcha');
         $kcaptcha = new KCAPTCHA();
-        $this->controller->Session->write('captcha_keystring', $kcaptcha->getKeyString());
+
+				$keystring;
+				if(Configure::read('automatedtest') == true)
+					$keystring = 'automatedtest';
+				else
+					$keystring = $kcaptcha->getKeyString();
+        $this->controller->Session->write('captcha_keystring', keystring);
     }
 }
 ?>
