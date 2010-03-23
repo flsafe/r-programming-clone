@@ -1,5 +1,5 @@
 <?php
-	echo $this->element('javascriptjquery');
+	echo $javascript->link('jquery/jquery.min');
 	echo $javascript->link('jquery/search');
 ?>
 
@@ -10,21 +10,10 @@
 	<p>
 		Browse tough programming puzzles, share your solutions, get feedback, get better, learn together!
 	</p>
-		<?php
-			echo $form->create('Search',      array('controller'=>'searches', 
-																							'action'    =>'search', 
-																							'div'       =>false));
-																							
-			echo $form->input('Search.model', array('label'     =>false,
-																							'type'      =>'select', 
-																							'options'   =>array('Submission'=>'Solutions','Topic'=>'Puzzles'),
-																							'div'       =>false));																
-											
-			echo $form->input('Search.text',  array('label'     =>false, 
-																						'div'         =>false, 
-																						'value'       =>'search'));
-			echo $form->end("Search");
-		?>
+		
+	<?php
+		echo $this->element('search');
+	?>
 		
 		<div id="add">
 			<p>Your advertisement or job listing could be here! Details coming soon.</p>
