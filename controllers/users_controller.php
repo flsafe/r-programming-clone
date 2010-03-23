@@ -147,14 +147,12 @@ class UsersController extends AppController{
 	}
 	
 	function login(){
-		$user = $this->Auth->user();
-		$this->Session->write('User.username', $user['User']['username']);
-		$this->Session->write('User.username', $user['User']['id']);
 	}
 	
 	function logout(){
+		$this->Session->delete('User');
 		$this->Auth->logout();
-		$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+		$this->redirect(array('controller'=>'topics', 'action'=>'index'));
 	}
 }
 ?>

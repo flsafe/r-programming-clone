@@ -3,7 +3,7 @@
 		public $name = "Topic";
 		
 		public $belongsTo = array('User'=> array('fields' => array('id', 'username')));
-			
+		
 		public $hasAndBelongsToMany = array('Algorithm'=>array('classname' 		=> 'Algorithm',
 																									 'joinTable' 				 		=> 'algorithms_topics',
 																									 'foriegnKey'				 		=> 'topic_id',

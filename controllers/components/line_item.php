@@ -17,8 +17,11 @@ class LineItemComponent extends Object{
   }
 	
 	public function showIndex(&$model){
-		#Display a list of line item models.
-		
+		#
+		# Display a list of line item models. $model is a reference to the
+		# model the model that will be displayed.
+		#
+
 		$model->unbindModel(array('hasMany'=>array('Comment')), false);
 		
 		$user_id  = $this->Auth->user('id');
@@ -26,6 +29,7 @@ class LineItemComponent extends Object{
 		
 		$modelname  = $model->name;
 		$models     = $this->controller->paginate("$modelname"); #TODO: Should be passed in
+		
 		$this->controller->set('models', $models);
 		
 		$this->controller->set('uservotes', array());
@@ -38,7 +42,9 @@ class LineItemComponent extends Object{
 	}
 	
 	public function showView(&$model, $id){
+		#
 		#Show a line item model in isolation
+		#
 		
 		$model->unbindModel(array('hasMany'=>array('Comment')), false); #TODO: maybe these should alwasy be binded manually
 		

@@ -38,23 +38,20 @@
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+	
 
-	/*These are the routes defined for the navigation menu*/
-	Router::connect('/today/',      array('controller'=>'submissions', 'action'=>'index'));
-	Router::connect('/puzzles/',    array('controller'=>'topics',      'action'=>'index'));
-	Router::connect('/today/add',   array('controller'=>'submissions', 'action'=>'add'));
-	Router::connect('/puzzles/add', array('controller'=>'topics',      'action'=>'add'));
-	
-	Router::connect('/today/:id',   array('controller'=>'submissions', 'action'=>'view'),
-	                                array('pass'      =>array('id')));
-	Router::connect('/puzzles/:id', array('controller'=>'topics', 'action'=>'view'),
-	     													  array('pass'      =>array('id')));
-	
+	Router::connect('/puzzles/add_solution/:id',   array('controller'=>'topics', 'action'=>'add_submission'),
+																								 array('pass'      =>array('id')));
+																			
+	Router::connect('/puzzles/add', array('controller'=>'topics', 'action'=>'add'));
+
+	 Router::connect('/puzzles/:id', array('controller'=>'topics', 'action'=>'view'),
+	      													 array('pass'      =>array('id')));
+
 	Router::connect('/myitems/:modelname', array('controller'=>'users', 'action'=>'review'),
-																				 array('pass'      =>array('modelname')));
-		
-	Router::connect('/myitems/liked/:modelname', array('controller'=>'votes', 'action'=>'liked'),
-																						  array('pass'       =>array('modelname')));
-	Router::connect('/myitems/liked/:modelname', array('controller'=>'votes', 'action'=>'liked'),
-																						   array('pass'      =>array('modelname')));
+	 																			 array('pass'      =>array('modelname')));
+	 	
+	 Router::connect('/myitems/liked/:modelname', array('controller'=>'votes', 'action'=>'liked'),
+	 																					  array('pass'        =>array('modelname')));
+	
 ?>

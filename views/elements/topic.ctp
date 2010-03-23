@@ -5,7 +5,8 @@
 			
 		 	$id       = $topic['Topic']['id'];
 			$title    = $topic['Topic']['title'];
-
+			$showedit = $user_id == $topic['Topic']['user_id'] ? true : false;
+			
 			$vote     = 'none';
 			if(isset($uservotes[$id]))
 				$vote = $uservotes[$id] ? 'up' : 'down';
@@ -21,7 +22,7 @@
 	
 	<p class="topictitle"> 
 		<?php 
-			echo $html->link($title, array('controller'=>'submissions', 'action'=>'index', $id));
+			echo $html->link($title, array('controller'=>'topics', 'action'=>'view', 'id'=>$id));
 		?>
 	</p>
 

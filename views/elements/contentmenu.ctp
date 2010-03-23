@@ -1,26 +1,29 @@
 <?php
-	#params
-	#selected - (today, puzzles, mysolutions, mypuzzles) Which content link should be highlighted as selected?
+	#
+	#Displays the content menu with the currently selected link highlighted. 
+	#
 ?>
+
 <div id="contentmenu">
 
 	<div id="contentlinks">
 	<?php
-	  $class            = array('today'=>'', 'puzzles'=>'', 'mysolutions'=>'', 'mypuzzles'=>'');
+	  $selected = $session->read('selected');
 	
-		$class[$selected] = 'selected';
-													
-		echo $html->link("Today's Puzzle",  array('controller'=>'submissions', 'action'=>'index'),
-						                            array('class'     =>"contentmenulink {$class['today']}"));
-						
-		echo $html->link("Vote On Puzzles", array('controller'=>'topics', 'action'=>'index'),
-						                            array('class'     =>"contentmenulink {$class['puzzles']}"));
+		$sessionUser = $session->read('Auth.User');
+		if($selected && !empty($sessionUser)){
+		  $class            = array('today'=>'', 'puzzles'=>'', 'mysolutions'=>'', 'mypuzzles'=>'');
+			$class[$selected] = 'selected';
 		
-		echo $html->link("My Solutions",    array('controller'=>'users', 'action'=>'review', 'modelname'=>'Submission'),
-			                                  array('class'     =>"contentmenulink {$class['mysolutions']}"));
+			echo $html->link("Puzzles",         array('controller'=>'topics', 'action'=>'index'),
+				                                  array('class'     =>"contentmenulink {$class['puzzles']}"));
+				
+			echo $html->link("My Solutions",    array('controller'=>'users', 'action'=>'review', 'modelname'=>'Submission'),
+				                                  array('class'     =>"contentmenulink {$class['mysolutions']}"));
 			
-		echo $html->link("My Puzzles",      array('controller'=>'users', 'action'=>'review', 'modelname'=>'Topic'),
-		                               			array('class'     =>"contentmenulink {$class['mypuzzles']}"));
+			echo $html->link("My Puzzles",      array('controller'=>'users', 'action'=>'review', 'modelname'=>'Topic'),
+			                               			array('class'     =>"contentmenulink {$class['mypuzzles']}"));
+		}
 	?>
 	</div>
 	

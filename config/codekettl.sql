@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2010 at 08:31 PM
+-- Generation Time: Mar 22, 2010 at 07:00 PM
 -- Server version: 5.1.43
 -- PHP Version: 5.3.1
 
@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `tickets` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `hash` (`hash`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tickets`
@@ -261,13 +261,9 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `upvotes` int(11) NOT NULL,
   `downvotes` int(11) NOT NULL,
   `rank` double NOT NULL,
-  `current_topic` tinyint(1) NOT NULL,
-  `was_chosen` tinyint(1) NOT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `current_topic` (`current_topic`),
-  KEY `was_chosen` (`was_chosen`),
   KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -294,12 +290,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `username` (`username`),
   KEY `password` (`password`),
   KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `users`
 --
 
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created`, `modified`) VALUES
+(1, 'user', 'user@mail.com', '104ebb054ccb8abe19738875ad5b5626897841d0', '2010-03-22 16:37:04', '2010-03-22 16:37:04');
 
 -- --------------------------------------------------------
 

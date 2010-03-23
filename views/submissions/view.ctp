@@ -1,11 +1,7 @@
 <?php
- 	echo $javascript->link('jquery/jquery.min', false);
-	echo $javascript->link('util', false);
-	echo $javascript->link('showdown');
-	echo $javascript->link('json2min');
-	echo $javascript->link('jquery/comment');
-	echo $javascript->link('jquery/submissions', false); #TODO: Defines some vars that enable votes on submissions
-	echo $javascript->link('jquery/vote', false);
+	echo $this->element('javascriptjquery');
+	echo $this->element('javascriptcomment');
+ 	echo $this->element('javascriptvote', array('votingFor'=>'submissions'));
 ?>
 
 <div id="viewsubmission">

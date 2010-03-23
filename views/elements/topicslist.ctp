@@ -10,7 +10,7 @@
 			<?php 
 				echo $this->element('topic', array('topic'    => $topic,
 																			    'uservotes' => $uservotes,
-																			    'showedit'  => $user_id == $topic['Topic']['user_id'] ? true : false));
+																			     'user_id'  => $user_id));
 			?>
 	<?php endforeach;?>
 	

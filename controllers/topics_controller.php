@@ -6,10 +6,8 @@ class TopicsController extends AppController{
 	
 	public $uses       = array('Topic', 'Vote');
 	
-	public $helpers    = array('Markdown', 'CommentsBuilder');
-	
-	
-		
+	public $helpers    = array('Markdown', 'CommentsBuilder', 'SyntaxHighlighter');
+
 	function beforeFilter(){
 		parent::beforeFilter();
 		$this->Auth->allow(array('index', 'view'));
@@ -17,16 +15,38 @@ class TopicsController extends AppController{
 	}
 
 	function index(){
-		$paginate   = array('limit'  => '25',
+		#
+		#This is the home page. Displays the list of puzzles.
+		#
+		
+		$this->paginate   = array('limit'  => '25',
 											  'order'  => array('Topic.rank' => 'desc'));
 		$this->LineItem->showIndex($this->Topic);
 	}
 	
-	function view($id = null){
-		$this->LineItem->showView($this->Topic, $id);
+	function view($topic_id){
+		#
+		# Displays the selected topic and the submissions associated with
+		# the topic
+		#
+		
+		$this->Topic->bindModel(array('hasMany'=>array(
+																	 'Submission'=>
+																		 array('className'=>'Submission'))));
+																		
+		$this->paginate = array('limit'=> '25',
+												'order'      => array('Submission.rank'     => 'desc'),
+											  'conditions' => array('Submission.topic_id' => $topic_id));
+		$this->LineItem->showIndex($this->Topic->Submission);
+		
+		$this->set('topic', $this->Topic->findById($topic_id));
 	}
 	
 	function add(){
+		#
+		#Add a new topic
+		#
+		
 		if(!empty($this->data)){
 			$this->data['Topic']['captcha_keystring'] = $this->Session->read('captcha_keystring');
 			$this->data['Topic']['user_id']           = $this->Auth->user('id');
@@ -42,18 +62,50 @@ class TopicsController extends AppController{
 		$this->set('algorithms', $structs['algorithms']);
 	}
 	
+	function add_submission($id = null){
+		#
+		#Posts a solution to the topic specified by $id
+		#
+		
+		if(!empty($this->data)){
+			$user_id = $this->Auth->user('id');			
+			$this->data['Submission']['user_id'] = $user_id;		
+			$this->data['Submission']['size']    = strlen($this->data['Submission']['text1']);
+			
+			$this->data['Submission']['captcha_keystring'] = $this->Session->read('captcha_keystring');
+		
+			$this->Topic->bindModel(array('hasMany'=>array(
+																	 'Submission'=>
+																		 array('className'=>'Submission'))));
+			$topic    = $this->Topic->findById($id);
+
+			$this->data['Submission']['topic_id'] = $topic['Topic']['id'];
+		
+			if($this->Topic->Submission->save($this->data,
+	                               array('user_id', 
+																			 'topic_id', 
+																			 'size', 
+																			 'title', 
+																			 'text1', 
+																			 'syntax'))){
+																					
+	      $this->Vote->voteForModel('up', $this->Topic->Submission, $this->Topic->Submission->id, $this->Auth->user('id'));
+				$this->redirect(array('controller'=>'topics', 'action'=>'view', 'id'=>$topic['Topic']['id']));
+			}
+		}
+		$this->set('topic_id', $id);
+	}
+	
 	function edit($id=null){
+		#
+		# Edit the topic specified by $id
+		#
+		
 		if(!empty($this->data)){
 			$data = $this->Common->getUserOwned($this->Topic, $id, $this->Auth->user('id'));
 			if(!$data)
 				return;
-				
-			$topicOfTheDay = $data['Topic']['current_topic'] != '0' || $data['Topic']['was_chosen'] != '0';
-			if($topicOfTheDay){
-				$this->Session->setFlash("Congrats! Your puzzle made it to the front page! Unfortunately you can't edit it anymore so that other users can work on it!");
-				return;
-			}
-			
+
 			$data['Topic']['title'] = $this->data['Topic']['title'];
 			$data['Topic']['text']  = $this->data['Topic']['text'];
 			
@@ -66,12 +118,6 @@ class TopicsController extends AppController{
 			if(!$data)
 				return;
 
-			$topicOfTheDay = $data['Topic']['current_topic'] != '0' || $data['Topic']['was_chosen'] != '0';
-			
-			if($topicOfTheDay){
-				$this->Session->setFlash("Congrats! Your puzzle made it to the front page! Unfortunately you can't edit it anymore so that other users can work on it!");
-				return;
-			}
 			$structs = $this->__getStructsLists();
 			$this->set('dataStructures', $structs['datastructs']);
 			$this->set('algorithms', $structs['algorithms']);

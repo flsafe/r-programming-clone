@@ -1,30 +1,26 @@
 <?php
-	echo $javascript->link('jquery/jquery.min', false);
-	echo $javascript->link('showdown');
-	echo $javascript->link('util', false);
-	echo $javascript->link('json2min', false); #TODO, put the comment includes in an element, and the vote includes in a different element
-	echo $javascript->link('jquery/comment');
-	echo $javascript->link('jquery/topics', false);
- 	echo $javascript->link('jquery/vote', false);
+	#
+	#Displays a the topic the user selected with the user submissions under it.
+	#
+	echo $this->element('javascriptjquery');
+	echo $this->element('javascriptvote', array('votingFor'=>'submissions'));
 ?>
 
-<?php echo $this->element('topic', array('topic'         => $model,
-																				 'user_id'       => $user_id,
-																				 'showeverything'=>false)); ?>
-
-<div id="topictext">
-	<?php 
-		$marked =  $markdown->parse($model['Topic']['text']);
-		$marked = $htmlPurifier->purify($marked);
-		echo $marked;
-	?>
-</div>
+<?php 
+  echo $this->element('selectedtopic', $topic);
+?>
 
 <?php
-	echo $this->element('topicdatastructs', array('algorithms'    =>$model['Algorithm'],
-																					 			'datastructures'=>$model['DataStructure']));
-																					
-	echo $this->element('comments', array('model'     => $model,
-																				'modelname' => 'Topic',
-																				'user_id'   => $user_id));
+	echo $html->link($html->image('/img/postsolution.png', array('alt'=>'Submit my solution to the puzzle',
+																												'title'=>'Submit my solution to the puzzle above',
+																												'width'=>'110',
+																												'height'=>'27')),
+							array('controller'=>'topics', 'action'=>'add_submission', 'id'=>$topic['Topic']['id']),
+							array(),
+							false,
+							false);
+
+	echo $this->element('submissionslist', array('submissions'=> $models, 
+																							 'uservotes'  => $uservotes,
+																							 'user_id'    => $user_id));
 ?>

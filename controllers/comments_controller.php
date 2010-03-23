@@ -22,11 +22,9 @@ class CommentsController extends AppController{
 			
 		$comments = Cache::read("CommentList.{$modelname}.{$model_id}", 'default');
 		if($comments){
-			$this->log("Hit on: CommentList.{$modelname}.${model_id}");
 			return $comments;
 		}
 		else{
-			$this->log("Miss on: CommentList.{$modelname}.${model_id}");
 			$comments = $this->Comment->getModelComments($modelname, $model_id);
 			Cache::write("CommentList.{$modelname}.${model_id}", $comments, 'default');
 			return $comments;
