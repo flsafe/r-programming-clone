@@ -78,51 +78,5 @@
 
 		return true;
 	}
-	
-	function updateSelectedTopic(){
-		$secondsPerInterval = 3600; /*3600 seconds an hour*/
-		$updateTime         = 24;   /*update every 24 hours/intervals*/
-		
-		$lastUpdate     = $this->getLastTime();
-    $now            = new DateTime();
-    $now            = $now->format('U');
-
-    $sinceLastUpdate = ($now - $lastUpdate) / $secondsPerInterval;
-		if($sinceLastUpdate >= $updateTime){
-			$rightNow = new DateTime();
-			$this->setLastTime($rightNow->format('U'));
-			
-			$chooseFrom = $this->find('count', array('fields'     => 'DISTINCT Topic.id',
-																	 						'conditions' => array('Topic.was_chosen'    => '0', 
-																	 																  'Topic.current_topic' => '0')));
-			if($chooseFrom > 1 ){
-				$this->query('UPDATE topics set topics.current_topic=0 where topics.current_topic=1');
-				$this->query('UPDATE topics,(select topics.id,topics.was_chosen,topics.current_topic, (topics.upvotes - topics.downvotes) as popular from topics where topics.was_chosen=0 and topics.current_topic=0 order by popular desc limit 1) as pop_query  SET topics.current_topic=1, topics.was_chosen=1 where topics.id = pop_query.id');
-			}
-		}
-	}
-	
-	private function getLastTime(){
-		$f = fopen('time/time', 'r');
-		if(!$f){
-			$f = fopen('time/time', 'w');
-			$datetime = new DateTime();
-			$time = $datetime->format('U');
-			$dayAgo = 3600 * 24;
-		 	fwrite($f, $time - $dayAgo);
-			fclose($f);
-			return $time;
-		}
-		$time = fread($f, 15);
-		return $time;
-	}
-	
-	private function setLastTime($str){
- 		$f = fopen('time/time', 'w');
-		if(!$f)
-			return;
-		fwrite($f, $str);
-		fclose($f);
-	}
 }
 ?>

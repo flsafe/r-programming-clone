@@ -20,7 +20,7 @@ class TopicsController extends AppController{
 		#
 		
 		$this->paginate   = array('limit'  => '25',
-											  'order'  => array('Topic.rank' => 'desc'));
+											        'order'  => array('Topic.rank' => 'desc'));
 		$this->LineItem->showIndex($this->Topic);
 	}
 	
@@ -31,12 +31,11 @@ class TopicsController extends AppController{
 		#
 		
 		$this->Topic->bindModel(array('hasMany'=>array(
-																	 'Submission'=>
-																		 array('className'=>'Submission'))));
+																	 'Submission'=>array('className'=>'Submission'))));
 																		
-		$this->paginate = array('limit'=> '25',
-												'order'      => array('Submission.rank'     => 'desc'),
-											  'conditions' => array('Submission.topic_id' => $topic_id));
+		$this->paginate = array('limit'      => '25',
+												    'order'      => array('Submission.rank'     => 'desc'),
+											      'conditions' => array('Submission.topic_id' => $topic_id));
 		$this->LineItem->showIndex($this->Topic->Submission);
 		
 		$this->set('topic', $this->Topic->findById($topic_id));
@@ -89,8 +88,12 @@ class TopicsController extends AppController{
 																			 'text1', 
 																			 'syntax'))){
 																					
-	      $this->Vote->voteForModel('up', $this->Topic->Submission, $this->Topic->Submission->id, $this->Auth->user('id'));
-				$this->redirect(array('controller'=>'topics', 'action'=>'view', 'id'=>$topic['Topic']['id']));
+	      $this->Vote->voteForModel('up', $this->Topic->Submission, 
+																				$this->Topic->Submission->id, 
+																				$this->Auth->user('id'));
+				$this->redirect(array('controller'=>'topics', 
+															'action'=>'view', 
+															'id'=>$topic['Topic']['id']));
 			}
 		}
 		$this->set('topic_id', $id);
@@ -126,11 +129,13 @@ class TopicsController extends AppController{
 	}
 	
 	function __getStructsLists(){
-		$datastructs = $this->Topic->DataStructure->find('list', array('fields'=>array('id', 'name'),
-																																	 'order' =>array('DataStructure.name')));
+		$datastructs = $this->Topic->DataStructure->find('list', 
+																										array('fields'=>array('id', 'name'),
+																													'order' =>array('DataStructure.name')));
 																																	
-		$algorithms  = $this->Topic->Algorithm->find('list', array('fields'    =>array('id', 'name'),
-																															 'order'     =>array('Algorithm.name')));
+		$algorithms  = $this->Topic->Algorithm->find('list', 
+																								 array('fields'   =>array('id', 'name'),
+																											 'order'    =>array('Algorithm.name')));
 		
 		return array('datastructs'=>$datastructs, 'algorithms'=>$algorithms);
 	}

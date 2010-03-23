@@ -19,18 +19,22 @@
 	if($modelname == 'Submission'){
 			echo $this->element('javascriptvote', array('votingFor'=>'submissions'));
 			
-			echo $html->link('Show Liked', array('controller'=>'votes', 'action'=>'liked', 'modelname'=>'Submission'),
+			echo $html->link('Show Liked', array('controller'=>'votes', 
+																					 'action'    =>'liked', 
+																					 'modelname' =>'Submission'),
 				                             array('class'     =>'contentlink')); 
 			
 			echo $this->element('submissionslist', array('submissions'   => $models,
 																									   'uservotes'   => $uservotes,
 																								     'user_id'     => $user_id,
-																								      'showtopic'  => true));			
+																								     'showtopic'   => true));			
 	}
 	 else{
 			echo $this->element('javascriptvote', array('votingFor'=>'topics'));
 	
-			echo $html->link('Show Liked', array('controller'=>'votes', 'action'=>'liked', 'modelname'=>'Topic'),
+			echo $html->link('Show Liked', array('controller'=>'votes', 
+			                                     'action'    =>'liked', 
+			                                     'modelname' =>'Topic'),
 			                               array('class'     =>'contentlink'));
 		
 			echo $this->element('topicslist', array('topics'     => $models,

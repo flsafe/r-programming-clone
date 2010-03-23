@@ -28,10 +28,11 @@ class UsersController extends AppController{
 	
 	function change_password(){
 		if(!empty($this->data)){
-			$providedpass = $this->data['User']['password_current'];
+			$providedpass   = $this->data['User']['password_current'];
+			
 			$this->User->id = $this->Auth->user('id');
-			$data         = $this->User->read();
-			$userpass     = $data['User']['password'];
+			$data           = $this->User->read();
+			$userpass       = $data['User']['password'];
 	
 			if($this->Auth->password($providedpass) == $userpass){
 				$newpass = $this->Auth->password($this->data['User']['password_new']);
@@ -39,7 +40,7 @@ class UsersController extends AppController{
 		
 				if($this->User->save($this->data, array('password'))){
 					$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
-				}/*Else, the validation rules failed. There is no redirect so that the errors show*/
+				}
 			}
 			else{
 				$this->Session->setFlash("Incorrect Password");
@@ -120,10 +121,11 @@ class UsersController extends AppController{
 		}
 	}
 	
-	/**
-	 * Review all the user posts
-	 */
 	function review($modelname){
+		#
+		# Review the models that belong to this user
+		#
+		
 		$user_id = $this->Auth->user('id');
 		if(!$user_id)
 			return;
@@ -147,6 +149,7 @@ class UsersController extends AppController{
 	}
 	
 	function login(){
+		#nothing here
 	}
 	
 	function logout(){
