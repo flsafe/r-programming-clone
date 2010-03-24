@@ -40,7 +40,7 @@
  */
 
 	
-	Configure::write('debug', 2);
+	Configure::write('debug', 3);
 	Configure::write('Cache.check', false);
 	
 	App::import('Core', 'Cache');
