@@ -38,13 +38,22 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('automatedtest', true);
+
+	
 	Configure::write('debug', 2);
 	Configure::write('Cache.check', false);
 	
 	App::import('Core', 'Cache');
 	Cache::config('default', array('engine'=>'file',
 																	'duration'=>'1 hour'));
+
+  /**
+   * Testing configuration options
+   * browserurl    - The url to run the functional tests on
+   * automatedtest - Set to true to allow the functional tests to get past captchas
+   */
+	Configure::write('browserUrl', 'http://codekettl');
+	Configure::write('automatedtest', true);
 
 /**
  * Application wide charset encoding

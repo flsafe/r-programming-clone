@@ -1,22 +1,27 @@
 #!/bin/bash
 #This script transfers ssh public keys over to the server, so the server can pull down
 #changes from the github repo.
+
 #Assumes the target server has this machine's ssh keys and allows ssh access
-#without a password. Also assumes the target machine has github as a known host. (On NFS.NET host)
+#without a password. Also assumes the target machine has github as a known host. (On a NFS.NET machine)
+
 
 #The server to deploy to. Assumes this server has 
-#a git repository installed that can pull from the master (the realease branch) codekettl branch.
+#a git repository installed that can pull from the master (the realease branch) codekettl repo branch.
 REMOTE_SERV="${1}@ssh.phx.nearlyfreespeech.net"
 
-#The location of the codekettl deploy server keys registered with github. 
+#The location of the codekettl keys registered with github. 
 #These keys are not stored on the deploy server or the test server. Instead they
-#are transfered to the deploy or test server when needed, then deleted on the server.
+#are transfered to the deploy or test server when needed, 
+#then used to pull from the github repo, then deleted on the server.
 PRIVATE_KEY="/Users/flicea/CozySystemsLLC/github-keys/id_rsa"
 PUBLIC_KEY="/Users/flicea/CozySystemsLLC/github-keys/id_rsa.pub"
 
 #The location to save the above keys when transfered to the deploy
 #server.
 REMOTE_SERV_KEYS="${REMOTE_SERV}:~/.ssh"
+#This is the location of the directory with the git repos installed.
+#This is the cakephp/app directory
 REMOTE_SERV_CODE="${REMOTE_SERV}:~/../public/app"
 
 #These directories need to be writeable by the webserver. On NFS.NET
@@ -25,8 +30,9 @@ REMOTE_SERV_CODE="${REMOTE_SERV}:~/../public/app"
 TEMP_DIR="tmp/" #cakephp cache and other stuff
 HTML_PUR="vendors/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer"
 FILE_PUR='vendors/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer.php'
-TIME='chgrp -Rv web webroot/time; chmod -Rv g+w webroot'
 
+
+#These are the commands that will run on the remote server
 mk_tmp="chgrp -R web ${TEMP_DIR};chmod -Rv g+w ${TEMP_DIR}"
 mk_srl="chgrp -R web ${HTML_PUR};chmod -Rv g+w ${HTML_PUR}"
 mk_html="mkdir -pv ${HTML_PUR}/HTML;chgrp -Rv web ${HTML_PUR}/HTML;chmod -R g+w ${HTML_PUR}/HTML"
@@ -36,9 +42,21 @@ mk_file="chgrp -Rv web ${FILE_PUR}"
 scp  $PRIVATE_KEY $REMOTE_SERV_KEYS
 scp  $PUBLIC_KEY $REMOTE_SERV_KEYS
 
-ssh ${REMOTE_SERV} "cd app;git pull origin master;${mk_tmp};${mk_srl};${mk_html};${mk_uri};${mk_file};${TIME}"
+ssh ${REMOTE_SERV} "cd app;git pull origin master;${mk_tmp};${mk_srl};${mk_html};${mk_uri};${mk_file};"
 
-#CLEAN UP
+#TODO:
+#If deploy in production mode somethings need to change:
+    #set debug mode to 0
+    #set automated test to false
+    #set default database to codekettl, instead of testcodekettl
+    #delete: codekettl.sql, codekettl-scripts, tests
+    
+#if deploy in test mode
+    #change urlBrowser configuration for the selenium server to the
+    #test site: test.codekettl.com if deploying to NFS.NET
+    #
+
+#CLEAN UP. Remove the ssh keys used to pull from git hub. Remove zip/tar left overs
 clean="rm -vf ~/.ssh/id_rsa;rm -vf ~/.ssh/id_rsa.pub; find . -name '*._*' -exec rm {} \;"
 ssh ${REMOTE_SERV} $clean
 

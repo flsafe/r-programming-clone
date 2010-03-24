@@ -84,9 +84,21 @@ class DATABASE_CONFIG {
 		'host' => 'flicea.db',
 		'login' => 'codekettlman',
 		'password' => '19857177atelpaso',
-		'database' => 'codekettl',
+		'database' => 'testcodekettl',
 		'prefix' => '',
 	);
+
+	//This is the live site configuration. Don't
+	//Use until actual deployment or you'll be sorry.
+	/*var $default = array(
+		'driver' => 'mysql',
+		'persistent' => false,
+		'host' => 'flicea.db',
+		'login' => 'codekettlman',
+		'password' => '19857177atelpaso',
+		'database' => 'codekettl',
+		'prefix' => '',
+	);*/
 
 	var $test = array(
 		'driver' => 'mysql',

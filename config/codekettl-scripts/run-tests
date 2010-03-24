@@ -1,0 +1,19 @@
+#!/bin/bash
+#This script runs the unit tests and functional tests for codekettl
+#The unit tests are basic cakephp unit tests. The functional tests
+#use the selenium test framework and server.
+
+#Start selenium server
+java -jar selenium-server.jar > /dev/null &
+servpid=$!
+
+#Wait a bit for the server to start
+echo "Starting Selenium-RC server..."
+sleep 5
+
+#Run the cakephp tests
+echo "Running CakePHP tests..."
+../../../cake/console/cake testsuite app all
+
+#Kill the selenium server
+kill $servpid

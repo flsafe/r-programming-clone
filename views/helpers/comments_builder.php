@@ -119,6 +119,7 @@ class CommentsBuilderHelper extends AppHelper{
 		/*Append the meta and comment text*/
 		$commentForm->appendChild($commentMeta);
 		
+		#TODO: use the sanitize util helper to markdown and parse the text
 		$commentDoc  = new DOMDocument();
 		$t           = $this->markdown->parse($comment['Comment']['text']);
 		$t           = $this->htmlPurifier->purify($t);

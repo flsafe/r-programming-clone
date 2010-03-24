@@ -24,7 +24,7 @@
  * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
-set_time_limit(0);
+//set_time_limit(0); #NOTE: Not supported on NFS.NET. It will be killed by NSFW after 3 mins anyway.
 ini_set('memory_limit','128M');
 ini_set('display_errors', 1);
 /**
