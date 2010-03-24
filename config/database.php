@@ -79,13 +79,13 @@
 class DATABASE_CONFIG {
 
 	var $default = array(
-		'driver' => 'mysql',
+		'driver'     => 'mysql',
 		'persistent' => false,
-		'host' => 'flicea.db',
-		'login' => 'codekettlman',
-		'password' => '19857177atelpaso',
-		'database' => 'testcodekettl',
-		'prefix' => '',
+		'host'       => 'flicea.db',
+		'login'      => 'codekettlman',
+		'password'   => '19857177atelpaso',
+		'database'   => 'testcodekettl',
+		'prefix'     => '',
 	);
 
 	//This is the live site configuration. Don't
@@ -101,13 +101,13 @@ class DATABASE_CONFIG {
 	);*/
 
 	var $test = array(
-		'driver' => 'mysql',
+		'driver'     => 'mysql',
 		'persistent' => false,
-		'host' => 'flicea.db',
-		'login' => 'codekettlman',
-		'password' => '19857177atelpaso',
-		'database' => 'testcodekettl',
-		'prefix' => '',
+		'host'       => 'flicea.db',
+		'login'      => 'codekettlman',
+		'password'   => '19857177atelpaso',
+		'database'   => 'testcodekettl',
+		'prefix'     => '',
 	);
 }
 ?>
