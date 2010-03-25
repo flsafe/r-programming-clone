@@ -137,7 +137,6 @@ class SubmissionsWebTestCase extends CozyWebTestCase{
 		$this->assertTrue($this->selenium->isTextPresent("solution 1 edit description"));
 		$this->assertTrue($this->selenium->isTextPresent("solution 1 edit title"));
 		$this->selenium->click("link=Logout");
-		$this->selenium->waitForPageToLoad("50000");
 	}
 	
 	public function testsubmissionVote(){
