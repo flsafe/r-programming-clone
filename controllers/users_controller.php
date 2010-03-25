@@ -22,7 +22,7 @@ class UsersController extends AppController{
 		}
 		else{
 			if($this->User->save($this->data, array('email')))
-				$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+				$this->redirect(array('controller'=>'topics', 'action'=>'index'));
 		}
 	}
 	
@@ -39,7 +39,7 @@ class UsersController extends AppController{
 				$this->data['User']['password'] = $newpass;
 		
 				if($this->User->save($this->data, array('password'))){
-					$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+					$this->redirect(array('controller'=>'topics', 'action'=>'index'));
 				}
 			}
 			else{
@@ -59,7 +59,7 @@ class UsersController extends AppController{
 
 					$this->Auth->login(array('username'=>$this->data['User']['username'],
 																	 'password'=>$this->data['User']['password']));
-					$this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+					$this->redirect(array('controller'=>'topics', 'action'=>'index'));
 				}
 				$this->data['User']['password'] = null;
 			}
@@ -115,7 +115,7 @@ class UsersController extends AppController{
         if($this->User->save($userdata, array('password'))){
           $this->Ticket->del($ticket);
           $this->Auth->login(array('username'=>$userdata['User']['username'], 'password'=>$userdata['User']['password']));
-          $this->redirect(array('controller'=>'submissions', 'action'=>'index'));
+          $this->redirect(array('controller'=>'topics', 'action'=>'index'));
         }
 			}
 		}
