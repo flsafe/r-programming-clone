@@ -240,7 +240,6 @@ class SubmissionsWebTestCase extends CozyWebTestCase{
 		$this->selenium->click("downvoteimg1");
 		$this->assertTrue($this->selenium->isTextPresent("-2 points | by testuser"));
 		$this->selenium->click("link=Logout");
-		$this->selenium->waitForPageToLoad("50000");
 	}
 }
 ?>
