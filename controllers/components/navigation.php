@@ -13,7 +13,7 @@ class NavigationComponent extends object{
 												'/myitems/Topic'      => 'mypuzzles');
 
 	#Don't show the content menu if the url contains these strings
-	 private $noshow = array('/users/', '/pages/', '/contacts/');
+	 private $noshow = array('users/', 'pages/', 'contacts/');
 	
 	function initialize(&$controller){
       $this->controller = $controller;
@@ -28,8 +28,10 @@ class NavigationComponent extends object{
 		$here = $this->controller->here;
 		
 		foreach($this->noshow as $url){
-			if(strstr($here, $url))
+			if(strpos($here, $url)){
 				$this->Session->write('selected', false);
+				return;
+			}
 		}
 
 		if(isset($this->show[$here])){
