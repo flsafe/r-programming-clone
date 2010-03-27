@@ -40,7 +40,7 @@
  */
 
 	
-	Configure::write('debug', 3);
+	Configure::write('debug', 0);
 	Configure::write('Cache.check', false);
 	
 	App::import('Core', 'Cache');
@@ -53,7 +53,7 @@
    * automatedtest - Set to true to allow the functional tests to get past captchas
    */
 	Configure::write('browserUrl', 'http://codekettl');
-	Configure::write('automatedtest', true);
+	Configure::write('automatedtest', false);
 
 /**
  * Application wide charset encoding
