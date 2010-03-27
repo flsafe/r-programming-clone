@@ -1,13 +1,11 @@
 <?php
 	class VotesController extends AppController{
 		
-		public $components = array('RequestHandler'); #TODO: Watchout! What does this do to ajax requests like 'vote'?
-		
+		public $components = array('RequestHandler');
+				
 		public $uses       = array('Vote', 'Submission', 'Topic');
 		
 		public $helpers    = array('Markdown', 'SyntaxHighlighter', 'CommentsBuilder', 'Translator');
-		
-		public $belongsTo = array('Submission', 'Topic'); #TODO: Can this be replaced with one parent class?*/
 		
 		public function vote( $type = null, $modelname = null, $id = null){
 			$this->autoRender = false;

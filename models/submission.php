@@ -13,8 +13,6 @@ class Submission extends AppModel{
 			'fields'=>array('id', 'title', 'user_id'))
 		);
 		
-	public $hasMany = array('Comment');
-		
 	public $validate = array(
 		'title'=>array(
 			'rule'       =>array('between',1, 255),

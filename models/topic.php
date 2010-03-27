@@ -62,7 +62,7 @@
 
 		'DataStructure'=>array(
 				'multiple'=>array(
-					'rule'=>array('multiple', array('min'=>'1', 'max'=>'20')), #TODO, just put in some kind of limit, doesn't mean anything yet
+					'rule'=>array('multiple', array('min'=>'1', 'max'=>'20')), #Just put in some kind of limit, doesn't mean anything yet
 					'required'=>'true',
 					'allowEmpty'=>'false',
 					'message'=>' '))
