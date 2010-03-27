@@ -3,6 +3,7 @@
 	#Shows all the models the user upvoted
 	
 	App::import('Core', 'Inflector');
+	$this->element('javascriptjquery');
 
 	$modelnameplural = Inflector::pluralize($translator->toViewName($modelname));
 	$listtype        = $modelnameplural . 'list';

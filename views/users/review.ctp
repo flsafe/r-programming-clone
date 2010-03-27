@@ -2,6 +2,9 @@
 	#This view shows the models owned by a user
 
 	App::import('Core','Inflector');
+	
+	echo $this->element('javascriptjquery');
+	echo $this->element('javascriptvote', array('votingFor'=>'submissions'));
 ?>
 
 <h2 id="pagetitleheader">
