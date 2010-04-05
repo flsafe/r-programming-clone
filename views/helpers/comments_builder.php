@@ -25,7 +25,7 @@ class CommentsBuilderHelper extends AppHelper{
 	/**
 	 * Used to create edit links
 	 */
-	 public $helpers = array('Html');
+	 public $helpers = array('Html', 'Session');
 	
 	/**
 	 * Returns a rough estimate of how long ago
@@ -133,7 +133,7 @@ class CommentsBuilderHelper extends AppHelper{
 	 	}
 
 		/*Reply links are visible if the user is logged in*/
-		if($this->displayReplys){
+		if($this->Session->read('Auth.User.id')){
 			$replyLink = $dom->createElement('a', 'reply');
 			$replyLink->setAttribute('href', '#');
 			$replyLink->setAttribute('class', 'reply');
